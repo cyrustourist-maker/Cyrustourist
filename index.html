@@ -1,629 +1,693 @@
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-void main() {
-  runApp(const CyrusTouristApp());
-}
+  <title>سایروس توریست | راهنمای گردشگری ایران</title>
 
-class CyrusTouristApp extends StatelessWidget {
-  const CyrusTouristApp({super.key});
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'سایروس توریست',
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: 'sans',
-        colorSchemeSeed: Colors.teal,
-      ),
-      home: const HomePage(),
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f8f7;
+      color: #183b3a;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    header {
+      background: white;
+      text-align: center;
+      padding: 18px 15px 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 5px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: bold;
+      color: #087f78;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #777;
+      margin-top: 6px;
+    }
+
+    main {
+      max-width: 850px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .search {
+      display: flex;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+      margin-bottom: 16px;
+    }
+
+    .search input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 16px;
+      font-size: 15px;
+      text-align: right;
+    }
+
+    .search button {
+      width: 60px;
+      border: none;
+      background: #087f78;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    #map {
+      height: 300px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
+      margin-bottom: 18px;
+    }
+
+    .map-button {
+      width: 100%;
+      border: none;
+      background: #087f78;
+      color: white;
+      padding: 14px;
+      margin-top: -5px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tool {
+      background: white;
+      border-radius: 18px;
+      padding: 15px 5px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,.07);
+      cursor: pointer;
+    }
+
+    .tool-icon {
+      font-size: 30px;
+      margin-bottom: 7px;
+    }
+
+    .tool-title {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-size: 21px;
+      font-weight: bold;
+      margin: 25px 0 12px;
+      text-align: right;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      background: white;
+      min-height: 135px;
+      border-radius: 20px;
+      padding: 20px 10px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .big-card {
+      background: linear-gradient(135deg, #087f78, #22a89d);
+      color: white;
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
+      cursor: pointer;
+    }
+
+    .big-card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    .big-card-text {
+      font-size: 13px;
+      opacity: .95;
+    }
+
+    .button {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 15px;
+      margin-top: 18px;
+      background: #087f78;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .about {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 18px;
+      line-height: 2;
+      text-align: right;
+      box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    }
+
+    .contact {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    }
+
+    .contact-number {
+      display: block;
+      color: #087f78;
+      font-size: 21px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 8px;
+      direction: ltr;
+    }
+
+    .social {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .social a {
+      text-decoration: none;
+      background: white;
+      border-radius: 17px;
+      padding: 15px 5px;
+      text-align: center;
+      color: #183b3a;
+      box-shadow: 0 3px 10px rgba(0,0,0,.07);
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+      .tools {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      #map {
+        height: 270px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img
+    src="assets/logo.png"
+    class="logo"
+    alt="سایروس توریست"
+    onerror="this.style.display='none'"
+  >
+
+  <div class="brand">سایروس توریست</div>
+
+  <div class="subtitle">
+    راهنمای گردشگری، طبیعت و اقامتگاه‌های ایران
+  </div>
+</header>
+
+<main>
+
+  <!-- جستجو -->
+  <div class="search">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="جستجوی شهر، جاذبه یا اقامتگاه"
+    >
+
+    <button onclick="searchPlace()">🔍</button>
+  </div>
+
+  <!-- نقشه -->
+  <div id="map"></div>
+
+  <button class="map-button" onclick="findNearby()">
+    📍 جاذبه‌های گردشگری اطراف من
+  </button>
+
+  <!-- ابزارها -->
+  <div class="tools">
+
+    <div class="tool" onclick="showMessage('قطب‌نما')">
+      <div class="tool-icon">🧭</div>
+      <div class="tool-title">قطب‌نما</div>
+    </div>
+
+    <div class="tool" onclick="findNearby()">
+      <div class="tool-icon">📍</div>
+      <div class="tool-title">مکان من</div>
+    </div>
+
+    <div class="tool" onclick="openAparat()">
+      <div class="tool-icon">🏨</div>
+      <div class="tool-title">اقامتگاه</div>
+    </div>
+
+    <div class="tool" onclick="openAparat()">
+      <div class="tool-icon">🎬</div>
+      <div class="tool-title">گردشگری</div>
+    </div>
+
+  </div>
+
+  <!-- جاذبه ها -->
+  <div class="section-title">
+    جاذبه‌های گردشگری
+  </div>
+
+  <div class="cards">
+
+    <div class="card" onclick="openAparat()">
+      <div class="card-icon">🌄</div>
+      <div class="card-title">طبیعت ایران</div>
+    </div>
+
+    <div class="card" onclick="openAparat()">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">جاذبه‌های تاریخی</div>
+    </div>
+
+    <div class="card" onclick="openAparat()">
+      <div class="card-icon">🕌</div>
+      <div class="card-title">جاذبه‌های مذهبی</div>
+    </div>
+
+    <div class="card" onclick="openAparat()">
+      <div class="card-icon">🎡</div>
+      <div class="card-title">تفریح و سرگرمی</div>
+    </div>
+
+  </div>
+
+  <!-- اقامتگاه -->
+  <div class="section-title">
+    اقامتگاه‌ها
+  </div>
+
+  <div class="cards">
+
+    <div class="card" onclick="openAparat()">
+      <div class="card-icon">🏡</div>
+      <div class="card-title">بوم‌گردی</div>
+    </div>
+
+    <div class="card" onclick="openAparat()">
+      <div class="card-icon">🏨</div>
+      <div class="card-title">هتل و اقامتگاه</div>
+    </div>
+
+  </div>
+
+  <!-- ویدئو -->
+  <div class="big-card" onclick="openAparat()">
+
+    <div class="big-card-title">
+      🎥 ویدئوهای گردشگری سایروس توریست
+    </div>
+
+    <div class="big-card-text">
+      جاذبه‌ها، طبیعت و اقامتگاه‌ها را در ویدئوهای سایروس توریست ببینید.
+    </div>
+
+  </div>
+
+  <!-- ثبت نام -->
+  <button
+    class="button"
+    onclick="showMessage('بخش ثبت نام مسافر و اقامتگاه به‌زودی فعال می‌شود.')"
+  >
+    👤 ثبت نام مسافر / اقامتگاه
+  </button>
+
+  <!-- درباره ما -->
+  <div class="about">
+
+    <div class="section-title" style="margin-top:0;">
+      ℹ️ درباره ما
+    </div>
+
+    <div>
+      سایروس توریست یک نرم‌افزار و راهنمای گردشگری برای معرفی
+      جاذبه‌های دیدنی، طبیعت، اماکن تاریخی، مذهبی، تفریحی و
+      اقامتگاه‌های ایران است.
+    </div>
+
+    <div style="margin-top:10px;">
+      هدف ما این است که گردشگران بتوانند مقصدهای جذاب ایران را
+      آسان‌تر پیدا کنند و سفر خود را بهتر برنامه‌ریزی کنند.
+    </div>
+
+  </div>
+
+  <!-- تماس -->
+  <div class="contact">
+
+    <strong>📞 تماس با ما</strong>
+
+    <a
+      class="contact-number"
+      href="tel:09153448818"
+    >
+      09153448818
+    </a>
+
+  </div>
+
+  <!-- شبکه های اجتماعی -->
+  <div class="section-title">
+    شبکه‌های اجتماعی
+  </div>
+
+  <div class="social">
+
+    <a
+      href="https://www.aparat.com/Cyrustourist"
+      target="_blank"
+    >
+      🎬<br>
+      آپارات
+    </a>
+
+    <a
+      href="https://www.instagram.com/cyrustourist"
+      target="_blank"
+    >
+      📷<br>
+      اینستاگرام
+    </a>
+
+    <a
+      href="https://youtube.com/@cyrustourist"
+      target="_blank"
+    >
+      ▶️<br>
+      یوتیوب
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+
+  سفر با سایروس توریست را تجربه کن 🌿
+
+  <br><br>
+
+  © سایروس توریست
+
+</footer>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+  // نقشه اولیه ایران
+  const map = L.map('map').setView([32.4279, 53.6880], 5);
+
+  L.tileLayer(
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }
+  ).addTo(map);
+
+  let userMarker = null;
+
+  // پیام
+  function showMessage(message) {
+    alert(message);
+  }
+
+  // آپارات
+  function openAparat() {
+    window.open(
+      'https://www.aparat.com/Cyrustourist',
+      '_blank'
     );
   }
-}
 
-Future<void> openLink(String url) async {
-  final uri = Uri.parse(url);
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
-  }
-}
+  // مکان کاربر
+  function findNearby() {
 
-Future<void> makeCall() async {
-  final uri = Uri.parse('tel:09153448818');
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri);
-  }
-}
+    if (!navigator.geolocation) {
+      alert('مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.');
+      return;
+    }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+    navigator.geolocation.getCurrentPosition(
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Image.asset(
-          'assets/logo.png',
-          height: 58,
-          errorBuilder: (_, __, ___) => const Text(
-            'سایروس توریست',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
-          ),
-        ),
-      ),
+      function(position) {
 
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
 
-            // جستجو
-            TextField(
-              textDirection: TextDirection.rtl,
-              decoration: InputDecoration(
-                hintText: 'جستجوی شهر، جاذبه یا اقامتگاه',
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.grey.shade100,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+        map.setView([lat, lon], 14);
 
-            const SizedBox(height: 16),
+        if (userMarker) {
+          map.removeLayer(userMarker);
+        }
 
-            // نقشه
-            Container(
-              height: 230,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                color: Colors.grey.shade200,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(22),
-                child: Stack(
-                  children: [
-                    const Center(
-                      child: Icon(
-                        Icons.map,
-                        size: 80,
-                        color: Colors.teal,
-                      ),
-                    ),
-                    Positioned(
-                      top: 12,
-                      right: 12,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: const Text(
-                          'نقشه گردشگری',
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+        userMarker = L.marker([lat, lon])
+          .addTo(map)
+          .bindPopup(
+            '<b>📍 موقعیت شما</b><br>در حال نمایش جاذبه‌های اطراف...'
+          )
+          .openPopup();
 
-            const SizedBox(height: 20),
+        // جستجوی جاذبه های اطراف
+        searchNearbyPlaces(lat, lon);
 
-            // ابزارها
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ToolIcon(
-                  icon: Icons.explore,
-                  title: 'قطب‌نما',
-                  onTap: () {},
-                ),
-                ToolIcon(
-                  icon: Icons.location_on,
-                  title: 'مکان من',
-                  onTap: () {},
-                ),
-                ToolIcon(
-                  icon: Icons.hotel,
-                  title: 'اقامتگاه',
-                  onTap: () {
-                    openLink('https://www.aparat.com/Cyrustourist');
-                  },
-                ),
-                ToolIcon(
-                  icon: Icons.photo_library,
-                  title: 'گردشگری',
-                  onTap: () {
-                    openLink('https://www.aparat.com/Cyrustourist');
-                  },
-                ),
-              ],
-            ),
+      },
 
-            const SizedBox(height: 24),
+      function() {
 
-            // جاذبه های اطراف
-            ActionCard(
-              icon: Icons.near_me,
-              title: 'جاذبه‌های گردشگری اطراف من',
-              subtitle: 'مشاهده مکان‌های دیدنی نزدیک شما روی نقشه',
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'قابلیت نمایش جاذبه‌های اطراف شما در مرحله بعد فعال می‌شود.',
-                      textDirection: TextDirection.rtl,
-                    ),
-                  ),
-                );
-              },
-            ),
+        alert(
+          'برای نمایش جاذبه‌های اطراف، اجازه دسترسی به موقعیت مکانی را فعال کنید.'
+        );
 
-            const SizedBox(height: 24),
+      }
 
-            const SectionTitle(title: 'جاذبه‌های گردشگری'),
-
-            const SizedBox(height: 12),
-
-            Row(
-              children: [
-                Expanded(
-                  child: TouristCard(
-                    icon: Icons.landscape,
-                    title: 'طبیعت ایران',
-                    onTap: () {
-                      openLink('https://www.aparat.com/Cyrustourist');
-                    },
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: TouristCard(
-                    icon: Icons.account_balance,
-                    title: 'تاریخی',
-                    onTap: () {
-                      openLink('https://www.aparat.com/Cyrustourist');
-                    },
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-
-            const SectionTitle(title: 'اقامتگاه‌ها'),
-
-            const SizedBox(height: 12),
-
-            Row(
-              children: [
-                Expanded(
-                  child: TouristCard(
-                    icon: Icons.cottage,
-                    title: 'بوم‌گردی',
-                    onTap: () {
-                      openLink('https://www.aparat.com/Cyrustourist');
-                    },
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: TouristCard(
-                    icon: Icons.hotel,
-                    title: 'هتل و اقامتگاه',
-                    onTap: () {
-                      openLink('https://www.aparat.com/Cyrustourist');
-                    },
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 24),
-
-            // ثبت نام
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.person_add),
-                label: const Text(
-                  'ثبت نام مسافر / اقامتگاه',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // درباره ما
-            ActionCard(
-              icon: Icons.info_outline,
-              title: 'درباره ما',
-              subtitle: 'آشنایی با سایروس توریست',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const AboutPage(),
-                  ),
-                );
-              },
-            ),
-
-            const SizedBox(height: 12),
-
-            // تماس با ما
-            ActionCard(
-              icon: Icons.phone,
-              title: 'تماس با ما',
-              subtitle: '09153448818',
-              onTap: makeCall,
-            ),
-
-            const SizedBox(height: 28),
-
-            const Text(
-              'سفر با سایروس توریست را تجربه کن',
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // شبکه های اجتماعی
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SocialButton(
-                  icon: Icons.video_library,
-                  title: 'آپارات',
-                  onTap: () {
-                    openLink('https://www.aparat.com/Cyrustourist');
-                  },
-                ),
-                SocialButton(
-                  icon: Icons.camera_alt,
-                  title: 'اینستاگرام',
-                  onTap: () {
-                    openLink('https://www.instagram.com/cyrustourist');
-                  },
-                ),
-                SocialButton(
-                  icon: Icons.play_circle,
-                  title: 'یوتیوب',
-                  onTap: () {
-                    openLink('https://youtube.com/@cyrustourist');
-                  },
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            const Text(
-              'سایروس توریست',
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
+
   }
-}
 
-class ToolIcon extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
+  // جستجوی جاذبه ها با Overpass
+  async function searchNearbyPlaces(lat, lon) {
 
-  const ToolIcon({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  });
+    const query = `
+      [out:json];
+      (
+        node["tourism"](around:5000,${lat},${lon});
+        way["tourism"](around:5000,${lat},${lon});
+        node["historic"](around:5000,${lat},${lon});
+        way["historic"](around:5000,${lat},${lon});
+      );
+      out center;
+    `;
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(50),
-      child: Padding(
-        padding: const EdgeInsets.all(5),
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 28,
-              child: Icon(icon, size: 28),
-            ),
-            const SizedBox(height: 7),
-            Text(
-              title,
-              textDirection: TextDirection.rtl,
-              style: const TextStyle(fontSize: 12),
-            ),
-          ],
-        ),
-      ),
-    );
+    try {
+
+      const response = await fetch(
+        'https://overpass-api.de/api/interpreter',
+        {
+          method: 'POST',
+          body: query
+        }
+      );
+
+      const data = await response.json();
+
+      data.elements.slice(0, 30).forEach(place => {
+
+        let pLat = place.lat;
+        let pLon = place.lon;
+
+        if (place.center) {
+          pLat = place.center.lat;
+          pLon = place.center.lon;
+        }
+
+        if (!pLat || !pLon) return;
+
+        const tags = place.tags || {};
+
+        const name =
+          tags.name ||
+          tags['name:fa'] ||
+          'جاذبه گردشگری';
+
+        L.marker([pLat, pLon])
+          .addTo(map)
+          .bindPopup(
+            '<b>📍 ' + escapeHtml(name) + '</b><br>' +
+            'جاذبه نزدیک شما'
+          );
+
+      });
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert(
+        'در دریافت جاذبه‌های اطراف مشکلی پیش آمد. دوباره تلاش کنید.'
+      );
+
+    }
+
   }
-}
 
-class TouristCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
+  // جلوگیری از ورود HTML در نام مکان
+  function escapeHtml(text) {
 
-  const TouristCard({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  });
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        height: 125,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.grey.shade100,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 50),
-            const SizedBox(height: 10),
-            Text(
-              title,
-              textDirection: TextDirection.rtl,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-    );
   }
-}
 
-class ActionCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
+  // جستجوی ساده
+  async function searchPlace() {
 
-  const ActionCard({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
+    const text =
+      document.getElementById('searchInput').value.trim();
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.teal.shade50,
-        ),
-        child: Row(
-          textDirection: TextDirection.rtl,
-          children: [
-            Icon(
-              icon,
-              size: 40,
-              color: Colors.teal,
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    title,
-                    textDirection: TextDirection.rtl,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    subtitle,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 8),
-            const Icon(Icons.arrow_back_ios, size: 18),
-          ],
-        ),
-      ),
-    );
+    if (!text) {
+      alert('نام شهر یا مکان را وارد کنید.');
+      return;
+    }
+
+    try {
+
+      const url =
+        'https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=fa&q=' +
+        encodeURIComponent(text);
+
+      const response = await fetch(url);
+
+      const data = await response.json();
+
+      if (!data.length) {
+
+        alert('مکان موردنظر پیدا نشد.');
+        return;
+
+      }
+
+      const lat = parseFloat(data[0].lat);
+      const lon = parseFloat(data[0].lon);
+
+      map.setView([lat, lon], 13);
+
+      L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(
+          '<b>📍 ' +
+          escapeHtml(data[0].display_name) +
+          '</b>'
+        )
+        .openPopup();
+
+    } catch (error) {
+
+      alert('خطا در جستجوی مکان.');
+
+    }
+
   }
-}
 
-class SectionTitle extends StatelessWidget {
-  final String title;
+</script>
 
-  const SectionTitle({
-    super.key,
-    required this.title,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Text(
-        title,
-        textDirection: TextDirection.rtl,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
-
-class SocialButton extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
-
-  const SocialButton({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          IconButton(
-            onPressed: onTap,
-            tooltip: title,
-            icon: Icon(icon, size: 32),
-          ),
-          Text(
-            title,
-            textDirection: TextDirection.rtl,
-            style: const TextStyle(fontSize: 11),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'درباره ما',
-          textDirection: TextDirection.rtl,
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(22),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/logo.png',
-              height: 100,
-              errorBuilder: (_, __, ___) {
-                return const Icon(
-                  Icons.travel_explore,
-                  size: 90,
-                  color: Colors.teal,
-                );
-              },
-            ),
-
-            const SizedBox(height: 25),
-
-            const Text(
-              'سایروس توریست',
-              textDirection: TextDirection.rtl,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            const Text(
-              'سایروس توریست یک نرم‌افزار گردشگری برای معرفی جاذبه‌های دیدنی، طبیعت، اماکن تاریخی، مذهبی، تفریحی و اقامتگاه‌های ایران است.',
-              textDirection: TextDirection.rtl,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 16,
-                height: 2,
-              ),
-            ),
-
-            const SizedBox(height: 15),
-
-            const Text(
-              'هدف ما این است که گردشگران بتوانند مقصدهای جذاب ایران را آسان‌تر پیدا کنند، اطلاعات گردشگری دریافت کنند و با کمک نقشه و محتوای ویدئویی، سفر خود را بهتر برنامه‌ریزی کنند.',
-              textDirection: TextDirection.rtl,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 16,
-                height: 2,
-              ),
-            ),
-
-            const SizedBox(height: 25),
-
-            const Text(
-              'سفر با سایروس توریست را تجربه کن',
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+</body>
+</html>
