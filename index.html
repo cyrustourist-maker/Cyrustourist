@@ -4,57 +4,301 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>سایروس توریست | گردشگری ایران</title>
-<meta name="description" content="سایروس توریست؛ معرفی جاذبه‌های گردشگری، طبیعت، اقامتگاه‌ها و تجربه‌های سفر در ایران">
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7f4;color:#17352a}
-.hero{min-height:100vh;padding:28px 20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#dcefdc,#eef7f0)}
-.card{max-width:900px;width:100%;background:#fff;border-radius:28px;padding:42px 28px;box-shadow:0 15px 50px #17352a22;text-align:center}
-.logo{width:110px;height:110px;border-radius:24px;object-fit:cover;background:#e8f1e9;margin-bottom:14px}
-h1{font-size:40px;margin:8px 0 12px}h2{font-size:24px;margin-top:38px}
-p{font-size:18px;line-height:2;color:#456055}
-.search{display:flex;gap:10px;max-width:650px;margin:25px auto}
-.search input{flex:1;padding:15px;border:1px solid #ccd9d0;border-radius:14px;font-size:16px}
-.search button,.btn{border:0;border-radius:14px;padding:14px 22px;background:#1f7a4d;color:#fff;text-decoration:none;cursor:pointer;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-.item{padding:22px;border-radius:18px;background:#f0f6f1}.item b{display:block;font-size:18px;margin-bottom:7px}
-.links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
-footer{margin-top:35px;color:#6a7b72;font-size:14px}
-@media(max-width:650px){h1{font-size:30px}.grid{grid-template-columns:1fr}.search{flex-direction:column}}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Tahoma,Arial,sans-serif;
+ background:linear-gradient(180deg,#eef8f3,#f8fbf9);
+ color:#17352c
+}
+.hero{
+ min-height:100vh;
+ padding:24px 16px 35px;
+ display:flex;
+ justify-content:center
+}
+.card{
+ width:100%;
+ max-width:900px;
+ background:#fff;
+ border-radius:30px;
+ padding:25px 18px;
+ box-shadow:0 12px 40px #17352c18;
+ overflow:hidden
+}
+.brand{
+ text-align:center;
+ font-size:34px;
+ font-weight:900;
+ margin:5px 0 8px
+}
+.subtitle{
+ text-align:center;
+ font-size:17px;
+ line-height:2;
+ color:#587067;
+ margin:0 auto 20px;
+ max-width:650px
+}
+.search{
+ display:flex;
+ gap:9px;
+ max-width:680px;
+ margin:auto
+}
+.search input{
+ flex:1;
+ min-width:0;
+ padding:15px;
+ border:1px solid #d4e2dc;
+ border-radius:16px;
+ font-size:16px;
+ outline:none
+}
+.search button{
+ border:0;
+ border-radius:16px;
+ padding:0 22px;
+ background:#218653;
+ color:white;
+ font-size:16px;
+ font-weight:bold
+}
+.mapbox{
+ margin:25px auto 22px;
+ max-width:620px;
+ background:linear-gradient(145deg,#e8f5ef,#f7fbf9);
+ border-radius:26px;
+ padding:15px;
+ text-align:center
+}
+.map-title{
+ font-size:23px;
+ font-weight:800;
+ margin:4px 0 4px
+}
+.map-note{
+ color:#668077;
+ font-size:13px;
+ margin-bottom:4px
+}
+.iran{
+ width:100%;
+ max-width:430px;
+ height:230px;
+ margin:auto;
+ display:block
+}
+.iran path{
+ fill:#8cc9aa;
+ stroke:#236b4b;
+ stroke-width:3;
+ stroke-linejoin:round
+}
+.section-title{
+ text-align:center;
+ font-size:27px;
+ margin:28px 0 16px
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px
+}
+.item{
+ background:#f0f7f3;
+ border:1px solid #e0eee8;
+ border-radius:20px;
+ padding:20px 12px;
+ text-align:center;
+ transition:.2s
+}
+.item:active{transform:scale(.98)}
+.icon{font-size:32px}
+.item h3{margin:8px 0;font-size:18px}
+.item p{
+ margin:0;
+ color:#657b73;
+ line-height:1.8;
+ font-size:13px
+}
+.links{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin-top:18px
+}
+.links a{
+ text-decoration:none;
+ color:white;
+ text-align:center;
+ padding:14px 5px;
+ border-radius:15px;
+ font-weight:bold;
+ font-size:14px
+}
+.aparat{background:#e83f76}
+.instagram{background:#c13584}
+.youtube{background:#d92323}
+footer{
+ text-align:center;
+ margin-top:28px;
+ color:#789087;
+ font-size:12px;
+ line-height:2
+}
+@media(max-width:600px){
+ .brand{font-size:30px}
+ .subtitle{font-size:16px}
+ .search{flex-direction:column}
+ .search button{padding:14px}
+ .grid{grid-template-columns:1fr}
+ .links{grid-template-columns:1fr}
+ .iran{height:210px}
+}
 </style>
 </head>
+
 <body>
-<main class="hero">
-<section class="card">
-<img class="logo" src="logo.png" alt="لوگوی سایروس توریست" onerror="this.style.display='none'">
-<h1>سایروس توریست</h1>
-<p>همراه شما برای کشف زیبایی‌های ایران؛ از طبیعت و جاذبه‌های تاریخی تا اقامتگاه‌ها و تجربه‌های سفر.</p>
+<div class="hero">
+<div class="card">
+
+<div class="brand">سایروس توریست</div>
+
+<p class="subtitle">
+همراه شما برای کشف زیبایی‌های ایران؛
+از طبیعت و جاذبه‌های تاریخی تا اقامتگاه‌ها و تجربه‌های سفر
+</p>
 
 <div class="search">
-<input id="q" placeholder="جستجوی شهر، جاذبه یا اقامتگاه">
-<button onclick="search()">جستجو</button>
+<input id="searchBox" type="text"
+placeholder="جستجوی شهر، جاذبه یا اقامتگاه">
+<button onclick="searchTour()">جستجو</button>
 </div>
 
-<h2>کشف ایران</h2>
-<div class="grid">
-<div class="item"><b>🏔️ طبیعت‌گردی</b><span>کوه‌ها، چشمه‌ها و جاذبه‌های طبیعی</span></div>
-<div class="item"><b>🏛️ تاریخی و فرهنگی</b><span>دیدنی‌های تاریخی و فرهنگی ایران</span></div>
-<div class="item"><b>🏡 اقامتگاه‌ها</b><span>معرفی اقامتگاه‌ها و بوم‌گردی‌ها</span></div>
+<div class="mapbox">
+<div class="map-title">ایران را کشف کن</div>
+<div class="map-note">جاذبه‌ها و مقصدهای گردشگری ایران</div>
+
+<!-- نقشه اصلی ایران -->
+<svg class="iran" viewBox="0 0 500 270"
+xmlns="http://www.w3.org/2000/svg"
+aria-label="نقشه ایران">
+
+<path d="
+M73 74
+L105 54
+L132 61
+L154 47
+L181 57
+L203 48
+L226 58
+L252 54
+L274 67
+L302 63
+L326 76
+L350 72
+L373 88
+L405 91
+L421 108
+L413 126
+L431 142
+L420 158
+L397 163
+L384 181
+L357 179
+L340 194
+L314 191
+L293 208
+L267 205
+L246 219
+L218 211
+L195 224
+L169 214
+L145 221
+L126 207
+L102 209
+L89 192
+L67 183
+L73 162
+L57 147
+L67 128
+L55 111
+L69 96
+Z"/>
+</svg>
 </div>
+
+<h2 class="section-title">کشف ایران</h2>
+
+<div class="grid">
+
+<div class="item">
+<div class="icon">🏔️</div>
+<h3>طبیعت‌گردی</h3>
+<p>کوه‌ها، چشمه‌ها، جنگل‌ها و جاذبه‌های طبیعی</p>
+</div>
+
+<div class="item">
+<div class="icon">🏛️</div>
+<h3>تاریخی و فرهنگی</h3>
+<p>دیدنی‌های تاریخی و فرهنگی ایران</p>
+</div>
+
+<div class="item">
+<div class="icon">🏡</div>
+<h3>اقامتگاه‌ها</h3>
+<p>آشنایی با اقامتگاه‌ها و بوم‌گردی‌ها</p>
+</div>
+
+<div class="item">
+<div class="icon">🎬</div>
+<h3>ویدئوهای گردشگری</h3>
+<p>تصاویر و فیلم‌های جذاب از مقصدهای ایران</p>
+</div>
+
+<div class="item">
+<div class="icon">🕌</div>
+<h3>مذهبی</h3>
+<p>جاذبه‌ها و مکان‌های مذهبی ایران</p>
+</div>
+
+<div class="item">
+<div class="icon">🌊</div>
+<h3>تفریحی</h3>
+<p>مقصدهای تفریحی و گردشگری</p>
+</div>
+
+</div>
+
+<h2 class="section-title">سایروس توریست در فضای مجازی</h2>
 
 <div class="links">
-<a class="btn" href="https://www.instagram.com/cyrustourist" target="_blank">اینستاگرام</a>
-<a class="btn" href="https://youtube.com/@cyrustourist" target="_blank">یوتیوب</a>
-<a class="btn" href="https://www.aparat.com/Cyrustourist" target="_blank">آپارات</a>
+<a class="aparat" href="https://www.aparat.com/Cyrustourist" target="_blank">آپارات</a>
+<a class="instagram" href="https://www.instagram.com/cyrustourist" target="_blank">اینستاگرام</a>
+<a class="youtube" href="https://youtube.com/@cyrustourist" target="_blank">یوتیوب</a>
 </div>
 
-<footer>سایروس توریست | سفر را تجربه کن 🇮🇷</footer>
-</section>
-</main>
+<footer>
+سایروس توریست<br>
+راهنمای گردشگری و کشف زیبایی‌های ایران
+</footer>
+
+</div>
+</div>
+
 <script>
-function search(){
- const q=document.getElementById('q').value.trim();
- if(q) alert('جستجو برای «'+q+'» در نسخه بعدی به نقشه و محتوای سایت متصل می‌شود.');
+function searchTour(){
+ const q=document.getElementById("searchBox").value.trim();
+ if(!q){
+   alert("لطفاً نام شهر، جاذبه یا اقامتگاه را وارد کنید.");
+   return;
+ }
+ alert("جستجو برای «"+q+"» در نسخه بعدی تکمیل می‌شود.");
 }
 </script>
+
 </body>
 </html>
