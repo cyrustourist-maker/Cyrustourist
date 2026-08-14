@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سایروس توریست | گردشگری ایران</title>
+<meta name="description" content="سایروس توریست؛ معرفی جاذبه‌های گردشگری، طبیعت، اقامتگاه‌ها و تجربه‌های سفر در ایران">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7f4;color:#17352a}
+.hero{min-height:100vh;padding:28px 20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#dcefdc,#eef7f0)}
+.card{max-width:900px;width:100%;background:#fff;border-radius:28px;padding:42px 28px;box-shadow:0 15px 50px #17352a22;text-align:center}
+.logo{width:110px;height:110px;border-radius:24px;object-fit:cover;background:#e8f1e9;margin-bottom:14px}
+h1{font-size:40px;margin:8px 0 12px}h2{font-size:24px;margin-top:38px}
+p{font-size:18px;line-height:2;color:#456055}
+.search{display:flex;gap:10px;max-width:650px;margin:25px auto}
+.search input{flex:1;padding:15px;border:1px solid #ccd9d0;border-radius:14px;font-size:16px}
+.search button,.btn{border:0;border-radius:14px;padding:14px 22px;background:#1f7a4d;color:#fff;text-decoration:none;cursor:pointer;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.item{padding:22px;border-radius:18px;background:#f0f6f1}.item b{display:block;font-size:18px;margin-bottom:7px}
+.links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+footer{margin-top:35px;color:#6a7b72;font-size:14px}
+@media(max-width:650px){h1{font-size:30px}.grid{grid-template-columns:1fr}.search{flex-direction:column}}
+</style>
+</head>
+<body>
+<main class="hero">
+<section class="card">
+<img class="logo" src="logo.png" alt="لوگوی سایروس توریست" onerror="this.style.display='none'">
+<h1>سایروس توریست</h1>
+<p>همراه شما برای کشف زیبایی‌های ایران؛ از طبیعت و جاذبه‌های تاریخی تا اقامتگاه‌ها و تجربه‌های سفر.</p>
+
+<div class="search">
+<input id="q" placeholder="جستجوی شهر، جاذبه یا اقامتگاه">
+<button onclick="search()">جستجو</button>
+</div>
+
+<h2>کشف ایران</h2>
+<div class="grid">
+<div class="item"><b>🏔️ طبیعت‌گردی</b><span>کوه‌ها، چشمه‌ها و جاذبه‌های طبیعی</span></div>
+<div class="item"><b>🏛️ تاریخی و فرهنگی</b><span>دیدنی‌های تاریخی و فرهنگی ایران</span></div>
+<div class="item"><b>🏡 اقامتگاه‌ها</b><span>معرفی اقامتگاه‌ها و بوم‌گردی‌ها</span></div>
+</div>
+
+<div class="links">
+<a class="btn" href="https://www.instagram.com/cyrustourist" target="_blank">اینستاگرام</a>
+<a class="btn" href="https://youtube.com/@cyrustourist" target="_blank">یوتیوب</a>
+<a class="btn" href="https://www.aparat.com/Cyrustourist" target="_blank">آپارات</a>
+</div>
+
+<footer>سایروس توریست | سفر را تجربه کن 🇮🇷</footer>
+</section>
+</main>
+<script>
+function search(){
+ const q=document.getElementById('q').value.trim();
+ if(q) alert('جستجو برای «'+q+'» در نسخه بعدی به نقشه و محتوای سایت متصل می‌شود.');
+}
+</script>
+</body>
+</html>
