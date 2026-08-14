@@ -2,302 +2,789 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>سایروس توریست | گردشگری ایران</title>
 
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIINfQ3i6j9l1QYJ8x8Y8z5J9Q0xJ8x8J8="
+crossorigin=""/>
+
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
- margin:0;
- font-family:Tahoma,Arial,sans-serif;
- background:linear-gradient(180deg,#eef8f3,#f8fbf9);
- color:#17352c
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#edf8f4,#ffffff);
+  color:#17352c;
 }
+
+.container{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+/* لوگو */
+
+.logo-box{
+  text-align:center;
+  padding:12px 5px 18px;
+}
+
+.logo-icon{
+  width:78px;
+  height:78px;
+  margin:auto;
+  border-radius:24px;
+  background:linear-gradient(145deg,#178653,#39b879);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:38px;
+  box-shadow:0 8px 22px #176b4730;
+}
+
+.logo-title{
+  font-size:34px;
+  font-weight:bold;
+  margin-top:12px;
+  color:#123c30;
+}
+
+.logo-sub{
+  color:#6a8178;
+  font-size:14px;
+  margin-top:6px;
+}
+
+/* معرفی */
+
 .hero{
- min-height:100vh;
- padding:24px 16px 35px;
- display:flex;
- justify-content:center
+  background:white;
+  border-radius:28px;
+  padding:25px 18px;
+  box-shadow:0 10px 35px #17352c12;
+  text-align:center;
 }
-.card{
- width:100%;
- max-width:900px;
- background:#fff;
- border-radius:30px;
- padding:25px 18px;
- box-shadow:0 12px 40px #17352c18;
- overflow:hidden
+
+.hero h1{
+  margin:0 0 12px;
+  font-size:29px;
 }
-.brand{
- text-align:center;
- font-size:34px;
- font-weight:900;
- margin:5px 0 8px
+
+.hero p{
+  color:#5c7069;
+  line-height:2;
+  font-size:16px;
+  margin:0 0 20px;
 }
-.subtitle{
- text-align:center;
- font-size:17px;
- line-height:2;
- color:#587067;
- margin:0 auto 20px;
- max-width:650px
+
+/* جستجو */
+
+.search-box{
+  display:flex;
+  gap:9px;
+  margin-bottom:12px;
 }
-.search{
- display:flex;
- gap:9px;
- max-width:680px;
- margin:auto
+
+.search-box input{
+  flex:1;
+  min-width:0;
+  padding:15px;
+  border:1px solid #d4e1dc;
+  border-radius:17px;
+  font-size:15px;
+  font-family:inherit;
+  outline:none;
 }
-.search input{
- flex:1;
- min-width:0;
- padding:15px;
- border:1px solid #d4e2dc;
- border-radius:16px;
- font-size:16px;
- outline:none
+
+.search-box input:focus{
+  border-color:#22945d;
+  box-shadow:0 0 0 3px #22945d18;
 }
-.search button{
- border:0;
- border-radius:16px;
- padding:0 22px;
- background:#218653;
- color:white;
- font-size:16px;
- font-weight:bold
+
+button{
+  border:0;
+  font-family:inherit;
+  cursor:pointer;
 }
-.mapbox{
- margin:25px auto 22px;
- max-width:620px;
- background:linear-gradient(145deg,#e8f5ef,#f7fbf9);
- border-radius:26px;
- padding:15px;
- text-align:center
+
+.search-btn{
+  background:#218b58;
+  color:white;
+  border-radius:17px;
+  padding:0 20px;
+  font-size:15px;
 }
+
+/* نقشه */
+
+.map-card{
+  margin-top:18px;
+  background:white;
+  border-radius:26px;
+  padding:10px;
+  box-shadow:0 10px 35px #17352c16;
+}
+
 .map-title{
- font-size:23px;
- font-weight:800;
- margin:4px 0 4px
+  padding:10px 12px 8px;
+  font-size:20px;
+  font-weight:bold;
 }
-.map-note{
- color:#668077;
- font-size:13px;
- margin-bottom:4px
+
+.map-info{
+  padding:0 12px 10px;
+  color:#71817c;
+  font-size:13px;
 }
-.iran{
- width:100%;
- max-width:430px;
- height:230px;
- margin:auto;
- display:block
+
+#map{
+  width:100%;
+  height:430px;
+  border-radius:20px;
+  overflow:hidden;
 }
-.iran path{
- fill:#8cc9aa;
- stroke:#236b4b;
- stroke-width:3;
- stroke-linejoin:round
+
+/* دکمه های نقشه */
+
+.map-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:10px;
 }
+
+.map-actions button{
+  padding:13px 8px;
+  border-radius:15px;
+  font-size:14px;
+  background:#edf7f2;
+  color:#176b47;
+}
+
+.map-actions .route{
+  background:#218b58;
+  color:white;
+}
+
+/* مسیر */
+
+.route-box{
+  margin-top:12px;
+  background:#f5faf7;
+  border:1px solid #dcebe4;
+  border-radius:18px;
+  padding:14px;
+  display:none;
+}
+
+.route-box strong{
+  display:block;
+  margin-bottom:7px;
+}
+
+#routeText{
+  color:#61746c;
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* دسته بندی */
+
 .section-title{
- text-align:center;
- font-size:27px;
- margin:28px 0 16px
+  text-align:center;
+  font-size:26px;
+  margin:30px 0 14px;
 }
+
 .grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
+
 .item{
- background:#f0f7f3;
- border:1px solid #e0eee8;
- border-radius:20px;
- padding:20px 12px;
- text-align:center;
- transition:.2s
+  background:white;
+  border-radius:22px;
+  padding:20px 13px;
+  text-align:center;
+  box-shadow:0 7px 25px #17352c0d;
+  transition:.2s;
 }
-.item:active{transform:scale(.98)}
-.icon{font-size:32px}
-.item h3{margin:8px 0;font-size:18px}
+
+.item:active{
+  transform:scale(.98);
+}
+
+.item-icon{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.item h3{
+  margin:5px 0 7px;
+  font-size:17px;
+}
+
 .item p{
- margin:0;
- color:#657b73;
- line-height:1.8;
- font-size:13px
+  margin:0;
+  color:#71817c;
+  font-size:12px;
+  line-height:1.8;
 }
-.links{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- margin-top:18px
+
+/* پیام */
+
+#message{
+  margin-top:12px;
+  text-align:center;
+  color:#64756f;
+  font-size:13px;
 }
-.links a{
- text-decoration:none;
- color:white;
- text-align:center;
- padding:14px 5px;
- border-radius:15px;
- font-weight:bold;
- font-size:14px
-}
-.aparat{background:#e83f76}
-.instagram{background:#c13584}
-.youtube{background:#d92323}
+
+/* فوتر */
+
 footer{
- text-align:center;
- margin-top:28px;
- color:#789087;
- font-size:12px;
- line-height:2
+  text-align:center;
+  margin-top:35px;
+  color:#789088;
+  font-size:12px;
+  line-height:2;
 }
+
 @media(max-width:600px){
- .brand{font-size:30px}
- .subtitle{font-size:16px}
- .search{flex-direction:column}
- .search button{padding:14px}
- .grid{grid-template-columns:1fr}
- .links{grid-template-columns:1fr}
- .iran{height:210px}
+
+  .logo-title{
+    font-size:30px;
+  }
+
+  .hero h1{
+    font-size:25px;
+  }
+
+  #map{
+    height:390px;
+  }
+
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
 }
+
 </style>
 </head>
 
 <body>
-<div class="hero">
-<div class="card">
 
-<div class="brand">سایروس توریست</div>
+<div class="container">
 
-<p class="subtitle">
-همراه شما برای کشف زیبایی‌های ایران؛
-از طبیعت و جاذبه‌های تاریخی تا اقامتگاه‌ها و تجربه‌های سفر
-</p>
+  <!-- لوگو -->
+  <div class="logo-box">
 
-<div class="search">
-<input id="searchBox" type="text"
-placeholder="جستجوی شهر، جاذبه یا اقامتگاه">
-<button onclick="searchTour()">جستجو</button>
+    <div class="logo-icon">✦</div>
+
+    <div class="logo-title">
+      سایروس توریست
+    </div>
+
+    <div class="logo-sub">
+      همراه شما در کشف ایران
+    </div>
+
+  </div>
+
+  <!-- معرفی -->
+  <section class="hero">
+
+    <h1>ایران را کشف کن</h1>
+
+    <p>
+      جاذبه‌های طبیعی، تاریخی، فرهنگی و اقامتگاه‌های ایران را
+      پیدا کن و مسیر رسیدن به مقصد را روی نقشه ببین.
+    </p>
+
+    <!-- جستجو -->
+    <div class="search-box">
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="نام شهر، جاذبه یا اقامتگاه..."
+      >
+
+      <button class="search-btn" onclick="searchPlace()">
+        جستجو
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- نقشه واقعی -->
+  <section class="map-card">
+
+    <div class="map-title">
+      🗺️ نقشه و مسیریابی
+    </div>
+
+    <div class="map-info">
+      روی نقشه کلیک کن یا مقصد را جستجو کن.
+      سپس مسیر را مشاهده کن.
+    </div>
+
+    <div id="map"></div>
+
+    <div class="map-actions">
+
+      <button onclick="findMe()">
+        📍 موقعیت من
+      </button>
+
+      <button onclick="chooseDestination()">
+        🎯 انتخاب مقصد
+      </button>
+
+      <button class="route" onclick="makeRoute()">
+        🧭 مسیریابی
+      </button>
+
+      <button onclick="clearMap()">
+        پاک کردن
+      </button>
+
+    </div>
+
+    <div class="route-box" id="routeBox">
+
+      <strong>🧭 مسیر انتخاب‌شده</strong>
+
+      <div id="routeText">
+        در حال آماده‌سازی مسیر...
+      </div>
+
+    </div>
+
+    <div id="message"></div>
+
+  </section>
+
+
+  <!-- دسته بندی -->
+  <h2 class="section-title">
+    کشف ایران
+  </h2>
+
+  <div class="grid">
+
+    <div class="item">
+      <div class="item-icon">🏔️</div>
+      <h3>طبیعت‌گردی</h3>
+      <p>
+        کوه‌ها، چشمه‌ها، آبشارها و جاذبه‌های طبیعی
+      </p>
+    </div>
+
+    <div class="item">
+      <div class="item-icon">🏛️</div>
+      <h3>تاریخی و فرهنگی</h3>
+      <p>
+        بناهای تاریخی و فرهنگ شهرهای ایران
+      </p>
+    </div>
+
+    <div class="item">
+      <div class="item-icon">🏕️</div>
+      <h3>اقامتگاه‌ها</h3>
+      <p>
+        اقامتگاه‌ها و بوم‌گردی‌های گردشگری
+      </p>
+    </div>
+
+    <div class="item">
+      <div class="item-icon">🎡</div>
+      <h3>تفریح و گردش</h3>
+      <p>
+        مکان‌های تفریحی و دیدنی
+      </p>
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    سایروس توریست<br>
+    راهنمای گردشگری و کشف زیبایی‌های ایران
+
+  </footer>
+
 </div>
 
-<div class="mapbox">
-<div class="map-title">ایران را کشف کن</div>
-<div class="map-note">جاذبه‌ها و مقصدهای گردشگری ایران</div>
 
-<!-- نقشه اصلی ایران -->
-<svg class="iran" viewBox="0 0 500 270"
-xmlns="http://www.w3.org/2000/svg"
-aria-label="نقشه ایران">
-
-<path d="
-M73 74
-L105 54
-L132 61
-L154 47
-L181 57
-L203 48
-L226 58
-L252 54
-L274 67
-L302 63
-L326 76
-L350 72
-L373 88
-L405 91
-L421 108
-L413 126
-L431 142
-L420 158
-L397 163
-L384 181
-L357 179
-L340 194
-L314 191
-L293 208
-L267 205
-L246 219
-L218 211
-L195 224
-L169 214
-L145 221
-L126 207
-L102 209
-L89 192
-L67 183
-L73 162
-L57 147
-L67 128
-L55 111
-L69 96
-Z"/>
-</svg>
-</div>
-
-<h2 class="section-title">کشف ایران</h2>
-
-<div class="grid">
-
-<div class="item">
-<div class="icon">🏔️</div>
-<h3>طبیعت‌گردی</h3>
-<p>کوه‌ها، چشمه‌ها، جنگل‌ها و جاذبه‌های طبیعی</p>
-</div>
-
-<div class="item">
-<div class="icon">🏛️</div>
-<h3>تاریخی و فرهنگی</h3>
-<p>دیدنی‌های تاریخی و فرهنگی ایران</p>
-</div>
-
-<div class="item">
-<div class="icon">🏡</div>
-<h3>اقامتگاه‌ها</h3>
-<p>آشنایی با اقامتگاه‌ها و بوم‌گردی‌ها</p>
-</div>
-
-<div class="item">
-<div class="icon">🎬</div>
-<h3>ویدئوهای گردشگری</h3>
-<p>تصاویر و فیلم‌های جذاب از مقصدهای ایران</p>
-</div>
-
-<div class="item">
-<div class="icon">🕌</div>
-<h3>مذهبی</h3>
-<p>جاذبه‌ها و مکان‌های مذهبی ایران</p>
-</div>
-
-<div class="item">
-<div class="icon">🌊</div>
-<h3>تفریحی</h3>
-<p>مقصدهای تفریحی و گردشگری</p>
-</div>
-
-</div>
-
-<h2 class="section-title">سایروس توریست در فضای مجازی</h2>
-
-<div class="links">
-<a class="aparat" href="https://www.aparat.com/Cyrustourist" target="_blank">آپارات</a>
-<a class="instagram" href="https://www.instagram.com/cyrustourist" target="_blank">اینستاگرام</a>
-<a class="youtube" href="https://youtube.com/@cyrustourist" target="_blank">یوتیوب</a>
-</div>
-
-<footer>
-سایروس توریست<br>
-راهنمای گردشگری و کشف زیبایی‌های ایران
-</footer>
-
-</div>
-</div>
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin="">
+</script>
 
 <script>
-function searchTour(){
- const q=document.getElementById("searchBox").value.trim();
- if(!q){
-   alert("لطفاً نام شهر، جاذبه یا اقامتگاه را وارد کنید.");
-   return;
- }
- alert("جستجو برای «"+q+"» در نسخه بعدی تکمیل می‌شود.");
+
+/* =========================
+   راه‌اندازی نقشه
+========================= */
+
+const map = L.map('map').setView([32.4279, 53.6880], 5);
+
+L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    maxZoom:19,
+    attribution:'© OpenStreetMap'
+  }
+).addTo(map);
+
+
+/* متغیرها */
+
+let userMarker = null;
+let destinationMarker = null;
+let routeLine = null;
+let userLocation = null;
+let destinationLocation = null;
+
+
+/* پیام */
+
+function showMessage(text){
+
+  document.getElementById('message').innerText = text;
+
 }
+
+
+/* =========================
+   کلیک روی نقشه
+========================= */
+
+map.on('click', function(e){
+
+  destinationLocation = [
+    e.latlng.lat,
+    e.latlng.lng
+  ];
+
+  if(destinationMarker){
+    map.removeLayer(destinationMarker);
+  }
+
+  destinationMarker = L.marker(destinationLocation)
+    .addTo(map)
+    .bindPopup('مقصد انتخاب شد')
+    .openPopup();
+
+  showMessage(
+    'مقصد انتخاب شد. برای مشاهده مسیر روی «مسیریابی» بزن.'
+  );
+
+});
+
+
+/* =========================
+   موقعیت کاربر
+========================= */
+
+function findMe(){
+
+  if(!navigator.geolocation){
+
+    showMessage('مرورگر شما موقعیت مکانی را پشتیبانی نمی‌کند.');
+    return;
+
+  }
+
+  showMessage('در حال دریافت موقعیت شما...');
+
+  navigator.geolocation.getCurrentPosition(
+
+    function(position){
+
+      userLocation = [
+        position.coords.latitude,
+        position.coords.longitude
+      ];
+
+      if(userMarker){
+        map.removeLayer(userMarker);
+      }
+
+      userMarker = L.marker(userLocation)
+        .addTo(map)
+        .bindPopup('📍 موقعیت شما')
+        .openPopup();
+
+      map.setView(userLocation,14);
+
+      showMessage(
+        'موقعیت شما پیدا شد. اکنون مقصد را انتخاب یا جستجو کن.'
+      );
+
+    },
+
+    function(){
+
+      showMessage(
+        'دسترسی موقعیت مکانی داده نشد. لطفاً اجازه Location را فعال کن.'
+      );
+
+    },
+
+    {
+      enableHighAccuracy:true,
+      timeout:10000
+    }
+
+  );
+
+}
+
+
+/* =========================
+   جستجوی مکان
+========================= */
+
+async function searchPlace(){
+
+  const input =
+    document.getElementById('searchInput').value.trim();
+
+  if(!input){
+
+    showMessage('نام شهر یا مکان را وارد کن.');
+    return;
+
+  }
+
+  showMessage('در حال جستجوی مقصد...');
+
+  try{
+
+    const url =
+      'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=ir&q='
+      + encodeURIComponent(input);
+
+    const response = await fetch(url,{
+      headers:{
+        'Accept-Language':'fa'
+      }
+    });
+
+    const data = await response.json();
+
+    if(!data.length){
+
+      showMessage('مکان موردنظر پیدا نشد.');
+      return;
+
+    }
+
+    const lat = parseFloat(data[0].lat);
+    const lon = parseFloat(data[0].lon);
+
+    destinationLocation = [lat,lon];
+
+    if(destinationMarker){
+      map.removeLayer(destinationMarker);
+    }
+
+    destinationMarker =
+      L.marker(destinationLocation)
+      .addTo(map)
+      .bindPopup(data[0].display_name)
+      .openPopup();
+
+    map.setView(destinationLocation,14);
+
+    showMessage(
+      'مقصد پیدا شد. برای مسیریابی روی دکمه «مسیریابی» بزن.'
+    );
+
+  }
+
+  catch(error){
+
+    showMessage(
+      'خطا در جستجو. دوباره تلاش کن.'
+    );
+
+  }
+
+}
+
+
+/* =========================
+   انتخاب مقصد
+========================= */
+
+function chooseDestination(){
+
+  showMessage(
+    'روی هر نقطه از نقشه کلیک کن تا مقصد انتخاب شود.'
+  );
+
+}
+
+
+/* =========================
+   مسیریابی
+========================= */
+
+async function makeRoute(){
+
+  if(!destinationLocation){
+
+    showMessage(
+      'ابتدا مقصد را با جستجو یا کلیک روی نقشه انتخاب کن.'
+    );
+
+    return;
+
+  }
+
+  if(!userLocation){
+
+    showMessage(
+      'ابتدا روی «موقعیت من» بزن تا مبدأ مشخص شود.'
+    );
+
+    return;
+
+  }
+
+  showMessage('در حال محاسبه مسیر...');
+
+  try{
+
+    const start =
+      userLocation[1] + ',' + userLocation[0];
+
+    const end =
+      destinationLocation[1] + ',' + destinationLocation[0];
+
+    const url =
+      'https://router.project-osrm.org/route/v1/driving/'
+      + start + ';' + end
+      + '?overview=full&geometries=geojson';
+
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    if(data.code !== 'Ok'){
+
+      showMessage('مسیر پیدا نشد.');
+      return;
+
+    }
+
+    if(routeLine){
+      map.removeLayer(routeLine);
+    }
+
+    routeLine =
+      L.geoJSON(data.routes[0].geometry,{
+        weight:6
+      }).addTo(map);
+
+    map.fitBounds(routeLine.getBounds(),{
+      padding:[30,30]
+    });
+
+    const distance =
+      (data.routes[0].distance / 1000).toFixed(1);
+
+    const duration =
+      Math.round(data.routes[0].duration / 60);
+
+    document.getElementById('routeBox').style.display='block';
+
+    document.getElementById('routeText').innerHTML =
+      'مسافت تقریبی: <b>' + distance +
+      ' کیلومتر</b><br>' +
+      'زمان تقریبی رانندگی: <b>' +
+      duration + ' دقیقه</b>';
+
+    showMessage('مسیر روی نقشه نمایش داده شد.');
+
+
+  }
+
+  catch(error){
+
+    showMessage(
+      'خطا در محاسبه مسیر. دوباره امتحان کن.'
+    );
+
+  }
+
+}
+
+
+/* =========================
+   پاک کردن
+========================= */
+
+function clearMap(){
+
+  if(userMarker){
+    map.removeLayer(userMarker);
+    userMarker=null;
+  }
+
+  if(destinationMarker){
+    map.removeLayer(destinationMarker);
+    destinationMarker=null;
+  }
+
+  if(routeLine){
+    map.removeLayer(routeLine);
+    routeLine=null;
+  }
+
+  userLocation=null;
+  destinationLocation=null;
+
+  document.getElementById('routeBox').style.display='none';
+
+  showMessage('نقشه پاک شد.');
+
+  map.setView([32.4279,53.6880],5);
+
+}
+
+
+/* جستجو با Enter */
+
+document
+.getElementById('searchInput')
+.addEventListener('keydown',function(e){
+
+  if(e.key==='Enter'){
+    searchPlace();
+  }
+
+});
+
 </script>
 
 </body>
