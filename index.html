@@ -411,7 +411,7 @@ section{
     کنترل لمس توسط Leaflet انجام می‌شود
     و صفحه در هنگام کار با نقشه حرکت نمی‌کند.
   */
-  touch-action:manipulation;
+  touch-action:pan-y;
   overscroll-behavior:contain;
 
   /*
@@ -427,8 +427,45 @@ section{
 #touristMap .leaflet-container{
   width:100%;
   height:100%;
-  touch-action:manipulation;
+  touch-action:pan-y;
   overscroll-behavior:contain;
+}
+
+/* لایه فعال‌سازی نقشه در موبایل */
+.mapTouchOverlay{
+  position:absolute;
+  left:0;
+  right:0;
+  /* top/height are set from #touristMap by JavaScript so the overlay
+     covers ONLY the map, not the map title/search area. */
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(6,19,27,.28);
+  cursor:pointer;
+  touch-action:pan-y;
+}
+
+.mapTouchOverlay.hidden{
+  display:none;
+}
+
+.mapTouchMessage{
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(0,0,0,.78);
+  color:#fff;
+  font-size:14px;
+  text-align:center;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+@media (pointer:coarse){
+  #touristMap,
+  #touristMap .leaflet-container{
+    touch-action:pan-y;
+  }
 }
 
 /*
@@ -474,63 +511,6 @@ section{
   margin-top:8px;
   color:#8deed5;
   font-size:13px;
-}
-
-
-/* =========================
-   MOBILE MAP ACTIVATION
-   نقشه در ابتدا غیرفعال است.
-   با اولین لمس فعال می‌شود؛ سپس یک انگشت
-   برای اسکرول صفحه آزاد می‌ماند و دو انگشت
-   برای زوم نقشه استفاده می‌شود.
-========================= */
-.mobileMapOverlay{
-  position:absolute;
-  inset:0;
-  z-index:1000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-  box-sizing:border-box;
-  background:rgba(3,12,18,.38);
-  backdrop-filter:blur(2px);
-  -webkit-backdrop-filter:blur(2px);
-  color:#fff;
-  cursor:pointer;
-  user-select:none;
-  -webkit-user-select:none;
-}
-
-.mobileMapOverlay span{
-  display:block;
-  max-width:290px;
-  padding:13px 18px;
-  border:1px solid rgba(255,255,255,.22);
-  border-radius:14px;
-  background:rgba(0,0,0,.62);
-  font-size:14px;
-  line-height:1.8;
-  box-shadow:0 8px 30px rgba(0,0,0,.28);
-}
-
-@media (max-width:768px){
-  .mobileMapOverlay{
-    display:flex;
-  }
-
-  #touristMap.mapActivated .mobileMapOverlay{
-    display:none;
-  }
-
-  #touristMap{
-    touch-action:pan-y;
-  }
-
-  #touristMap .leaflet-container{
-    touch-action:pan-y;
-  }
 }
 
 /* NEARBY */
@@ -2854,11 +2834,6 @@ function initializeMap(){
       /*
         تنظیمات کامل تعامل نقشه
       */
-      /*
-        روی موبایل: یک انگشت فقط برای اسکرول صفحه است.
-        زوم با دو انگشت توسط Leaflet فعال می‌ماند.
-        Drag یک‌انگشتی نقشه عمداً خاموش است.
-      */
       dragging:false,
       scrollWheelZoom:true,
       doubleClickZoom:true,
@@ -2874,6 +2849,59 @@ function initializeMap(){
     }
   );
 
+  /* =========================
+     MOBILE MAP GESTURE CONTROL
+     یک انگشت = اسکرول صفحه
+     دو انگشت = تعامل با نقشه
+     اولین لمس روی نقشه = فعال‌سازی نقشه
+  ========================= */
+  if(window.matchMedia('(pointer: coarse)').matches){
+
+    const mapBox = mapElement.parentElement;
+
+    const mapOverlay = document.createElement('div');
+    mapOverlay.className = 'mapTouchOverlay';
+    mapOverlay.innerHTML = '<div class="mapTouchMessage">برای فعال کردن نقشه، یک بار لمس کنید</div>';
+    mapBox.style.position = 'relative';
+    mapBox.appendChild(mapOverlay);
+
+    function positionMapOverlay(){
+      mapOverlay.style.top = mapElement.offsetTop + 'px';
+      mapOverlay.style.height = mapElement.offsetHeight + 'px';
+    }
+
+    positionMapOverlay();
+    window.addEventListener('resize',positionMapOverlay);
+
+    mapOverlay.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      mapOverlay.classList.add('hidden');
+      mapElement.classList.add('mapActive');
+      touristMap.dragging.disable();
+    },{passive:false});
+
+    mapElement.addEventListener('touchstart',function(e){
+      if(!mapElement.classList.contains('mapActive')) return;
+
+      if(e.touches.length >= 2){
+        touristMap.dragging.enable();
+      }else{
+        touristMap.dragging.disable();
+      }
+    },{passive:true});
+
+    mapElement.addEventListener('touchend',function(e){
+      if(e.touches.length < 2){
+        touristMap.dragging.disable();
+      }
+    },{passive:true});
+
+    mapElement.addEventListener('touchcancel',function(){
+      touristMap.dragging.disable();
+    },{passive:true});
+  }
+
 
   /*
     لایه اصلی OpenStreetMap
@@ -2887,36 +2915,6 @@ function initializeMap(){
         '&copy; OpenStreetMap contributors'
     }
   ).addTo(touristMap);
-
-
-  /*
-    لایه فعال‌سازی موبایل: نقشه ابتدا غیرفعال است.
-    اولین لمس فقط نقشه را فعال می‌کند؛ بعد از آن
-    یک انگشت صفحه را اسکرول می‌کند و دو انگشت زوم می‌کنند.
-  */
-  const mobileMapOverlay = document.createElement('div');
-  mobileMapOverlay.className = 'mobileMapOverlay';
-  mobileMapOverlay.innerHTML =
-    '<span>🗺️ برای فعال کردن نقشه یک بار لمس کنید<br>پس از فعال‌سازی، برای زوم از دو انگشت استفاده کنید.</span>';
-  mapElement.appendChild(mobileMapOverlay);
-
-  function activateMobileMap(){
-    if(window.innerWidth <= 768){
-      mapElement.classList.add('mapActivated');
-      mobileMapOverlay.remove();
-      if(touristMap){
-        touristMap.dragging.disable();
-        touristMap.touchZoom.enable();
-      }
-    }
-  }
-
-  mobileMapOverlay.addEventListener('click', activateMobileMap);
-  mobileMapOverlay.addEventListener('touchend', function(e){
-    e.preventDefault();
-    activateMobileMap();
-  }, {passive:false});
-
 
 
   /*
