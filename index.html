@@ -20,13 +20,16 @@
   --green:#29e0ad;
   --blue:#42b8ff;
   --gold:#ffd36a;
-  --red:#ff7777;
   --shadow:0 20px 55px rgba(0,0,0,.3);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
@@ -44,18 +47,22 @@ a{
   text-decoration:none;
 }
 
-button,input,select{font-family:inherit}
+button,input,select{
+  font-family:inherit;
+}
 
 .wrap{
   width:min(1200px,92%);
   margin:auto;
 }
 
+/* HEADER */
+
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:rgba(3,13,22,.9);
+  background:rgba(3,13,22,.94);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
 }
@@ -120,6 +127,8 @@ header{
   color:#03202a;
   font-weight:900;
 }
+
+/* HERO */
 
 .hero{
   padding:65px 0 40px;
@@ -206,15 +215,32 @@ header{
   filter:drop-shadow(0 8px 7px #0008);
 }
 
-.p1{top:40px;right:20%}
-.p2{bottom:45px;left:20%}
-.p3{top:45%;left:10%}
-
-@keyframes float{
-  50%{transform:translateY(-10px)}
+.p1{
+  top:40px;
+  right:20%;
 }
 
-section{padding:42px 0}
+.p2{
+  bottom:45px;
+  left:20%;
+}
+
+.p3{
+  top:45%;
+  left:10%;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+/* GENERAL */
+
+section{
+  padding:42px 0;
+}
 
 .title{
   display:flex;
@@ -234,7 +260,11 @@ section{padding:42px 0}
   color:var(--muted);
 }
 
-.muted{color:var(--muted)}
+.muted{
+  color:var(--muted);
+}
+
+/* CATEGORIES */
 
 .cats{
   display:grid;
@@ -248,7 +278,11 @@ section{padding:42px 0}
   text-align:center;
   border:1px solid var(--line);
   border-radius:20px;
-  background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.1),
+    rgba(255,255,255,.035)
+  );
   transition:.25s;
 }
 
@@ -261,22 +295,6 @@ section{padding:42px 0}
   display:block;
   font-size:32px;
 }
-
-.grid3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:23px;
-  padding:20px;
-  box-shadow:var(--shadow);
-}
-
-.card h3{margin-top:0}
 
 /* MAP */
 
@@ -310,7 +328,11 @@ section{padding:42px 0}
   border:1px solid rgba(41,224,173,.28);
   border-radius:25px;
   background:
-    linear-gradient(145deg,rgba(41,224,173,.10),rgba(66,184,255,.06)),
+    linear-gradient(
+      145deg,
+      rgba(41,224,173,.10),
+      rgba(66,184,255,.06)
+    ),
     rgba(255,255,255,.04);
   box-shadow:var(--shadow);
 }
@@ -402,7 +424,9 @@ section{padding:42px 0}
   gap:22px;
 }
 
-.videoCard{overflow:hidden}
+.videoCard{
+  overflow:hidden;
+}
 
 .videoHead{
   display:flex;
@@ -417,7 +441,11 @@ section{padding:42px 0}
   display:grid;
   place-items:center;
   border-radius:50%;
-  background:linear-gradient(135deg,var(--green),var(--blue));
+  background:linear-gradient(
+    135deg,
+    var(--green),
+    var(--blue)
+  );
   color:#03202a;
   font-weight:900;
 }
@@ -427,16 +455,19 @@ section{padding:42px 0}
   overflow:hidden;
   border-radius:17px;
   background:#000;
-  min-height:280px;
 }
 
 .embed iframe{
+  display:block;
   width:100%;
-  min-height:300px;
+  aspect-ratio:16/9;
+  min-height:280px;
   border:0;
 }
 
-.text{padding-top:12px}
+.text{
+  padding-top:12px;
+}
 
 .tag{
   color:#8deed5;
@@ -446,18 +477,57 @@ section{padding:42px 0}
 .actions{
   display:flex;
   flex-wrap:wrap;
-  gap:7px;
-  margin-top:12px;
+  gap:8px;
+  margin-top:13px;
 }
 
 .pill{
-  padding:7px 12px;
+  flex:1;
+  min-width:145px;
+  padding:10px 12px;
   border:1px solid var(--line);
   border-radius:11px;
   background:rgba(255,255,255,.06);
   color:white;
   cursor:pointer;
   font-size:13px;
+  text-align:center;
+  transition:.2s;
+}
+
+.pill:hover{
+  transform:translateY(-2px);
+}
+
+.direct{
+  background:linear-gradient(
+    135deg,
+    var(--green),
+    var(--blue)
+  );
+  color:#03202a;
+  border:0;
+  font-weight:900;
+}
+
+/* CARDS */
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:23px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.card h3{
+  margin-top:0;
 }
 
 /* FORM */
@@ -485,6 +555,8 @@ section{padding:42px 0}
   outline:none;
 }
 
+/* SOCIAL */
+
 .social{
   display:flex;
   gap:10px;
@@ -498,6 +570,8 @@ section{padding:42px 0}
   background:rgba(255,255,255,.06);
 }
 
+/* TABLE */
+
 .tableWrap{
   overflow:auto;
   border:1px solid var(--line);
@@ -510,7 +584,8 @@ table{
   border-collapse:collapse;
 }
 
-th,td{
+th,
+td{
   padding:11px 14px;
   border-bottom:1px solid var(--line);
   text-align:right;
@@ -519,6 +594,8 @@ th,td{
 th{
   background:rgba(41,224,173,.12);
 }
+
+/* FOOTER */
 
 footer{
   padding:45px 0 65px;
@@ -531,6 +608,8 @@ footer{
   grid-template-columns:2fr 1fr 1fr;
   gap:25px;
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -579,6 +658,14 @@ footer{
   .mapBox iframe{
     height:350px;
   }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .pill{
+    width:100%;
+  }
 }
 </style>
 </head>
@@ -586,17 +673,22 @@ footer{
 <body>
 
 <header>
+
 <div class="wrap nav">
 
 <a class="brand" href="#home">
+
 <img
 class="brandLogo"
 src="assets/logo.png"
 alt="لوگوی سایروس توریست">
+
 <span>سایروس توریست</span>
+
 </a>
 
 <nav class="links">
+
 <a href="#attractions">جاذبه‌ها</a>
 <a href="#map">نقشه</a>
 <a href="#nearby">جاذبه‌های اطراف</a>
@@ -605,9 +697,11 @@ alt="لوگوی سایروس توریست">
 <a href="#guide">راهنمای سفر</a>
 <a href="#about">درباره ما</a>
 <a href="#contact">تماس با ما</a>
+
 </nav>
 
 </div>
+
 </header>
 
 <main id="home">
@@ -652,29 +746,36 @@ onclick="findVideo()">
 
 <div class="heroBtns">
 
-<a class="btn primary"
+<a
+class="btn primary"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
 🎬 کانال آپارات
 </a>
 
-<a class="btn"
+<a
+class="btn"
 href="https://www.instagram.com/cyrustourist"
 target="_blank">
 📷 اینستاگرام
 </a>
 
-<a class="btn"
+<a
+class="btn"
 href="https://youtube.com/@cyrustourist"
 target="_blank">
 ▶️ یوتیوب
 </a>
 
-<a class="btn" href="#map">
+<a
+class="btn"
+href="#map">
 🗺️ نقشه گردشگری
 </a>
 
-<a class="btn primary" href="#nearby">
+<a
+class="btn primary"
+href="#nearby">
 📍 جاذبه‌های اطراف من
 </a>
 
@@ -811,7 +912,7 @@ onclick="getNearbyAttractions()">
 
 </section>
 
-<!-- NEARBY ATTRACTIONS -->
+<!-- NEARBY -->
 
 <section id="nearby">
 
@@ -836,19 +937,35 @@ onclick="getNearbyAttractions()">
 <div class="nearbyTop">
 
 <div>
+
 <strong>🔎 جستجوی هوشمند جاذبه‌های اطراف</strong>
+
 <div class="muted">
 مکان‌های طبیعی، تاریخی، گردشگری، موزه‌ها، قلعه‌ها، آبشارها و موارد مشابه
 </div>
+
 </div>
 
 <div class="nearbyControls">
 
 <select id="radius">
-<option value="5000">۵ کیلومتر</option>
-<option value="10000" selected>۱۰ کیلومتر</option>
-<option value="25000">۲۵ کیلومتر</option>
-<option value="50000">۵۰ کیلومتر</option>
+
+<option value="5000">
+۵ کیلومتر
+</option>
+
+<option value="10000" selected>
+۱۰ کیلومتر
+</option>
+
+<option value="25000">
+۲۵ کیلومتر
+</option>
+
+<option value="50000">
+۵۰ کیلومتر
+</option>
+
 </select>
 
 <button
@@ -914,22 +1031,28 @@ target="_blank">
 
 <div class="videos">
 
-<!-- 1 -->
+<!-- VIDEO 1 -->
 
 <article
 class="card videoCard"
 data-search="نمایشگاه بین المللی گردشگری تهران موسیقی شاد اقوام ایران سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۱</span>
-<h3>نمایشگاه بین‌المللی گردشگری تهران</h3>
+
+<h3>
+نمایشگاه بین‌المللی گردشگری تهران
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/cmuax?data[rnddiv]=66920955439&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -950,34 +1073,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/cmuax?data[rnddiv]=66920955439&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 2 -->
+<!-- VIDEO 2 -->
 
 <article
 class="card videoCard"
 data-search="مستند ایرانگردی قلعه سریزد نخستین بانک جهان دوره ساسانیان سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۲</span>
-<h3>قلعه سریزد؛ نخستین بانک جهان</h3>
+
+<h3>
+قلعه سریزد؛ نخستین بانک جهان
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/c4744bv?data[rnddiv]=23232512701&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -988,7 +1123,6 @@ allowfullscreen>
 مستند ایرانگردی قلعه سریزد،
 نخستین بانک جهان دوره ساسانیان،
 با دکلمه و موسیقی سنتی زیبا.
-اپلیکیشن گردشگری سایروس توریست.
 </p>
 
 <span class="tag">
@@ -999,34 +1133,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/c4744bv?data[rnddiv]=23232512701&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 3 -->
+<!-- VIDEO 3 -->
 
 <article
 class="card videoCard"
 data-search="چشمه گراب جادوی طبیعت ایران سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۳</span>
-<h3>چشمه گراب؛ جادوی طبیعت ایران</h3>
+
+<h3>
+چشمه گراب؛ جادوی طبیعت ایران
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/xvo5q9c?data[rnddiv]=53706521395&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1047,34 +1193,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/xvo5q9c?data[rnddiv]=53706521395&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 4 -->
+<!-- VIDEO 4 -->
 
 <article
 class="card videoCard"
 data-search="آموزش پخت سیب زمینی آتشی طبیعت گردی گردشگری سایروس توریست راهنمای سفر ایران">
 
 <div class="videoHead">
+
 <span class="num">۴</span>
-<h3>سیب‌زمینی آتشی در طبیعت</h3>
+
+<h3>
+سیب‌زمینی آتشی در طبیعت
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/4Z0hQ?data[rnddiv]=62853687765&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1095,34 +1253,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/4Z0hQ?data[rnddiv]=62853687765&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 5 -->
+<!-- VIDEO 5 -->
 
 <article
 class="card videoCard"
 data-search="جنگل حرا دیدنی های قشم بندر لافت آهنگ بندری سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۵</span>
-<h3>جنگل حرا؛ دیدنی‌های قشم و بندر لافت</h3>
+
+<h3>
+جنگل حرا؛ دیدنی‌های قشم و بندر لافت
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/kGS8o?data[rnddiv]=47535035744&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1143,34 +1313,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/kGS8o?data[rnddiv]=47535035744&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 6 -->
+<!-- VIDEO 6 -->
 
 <article
 class="card videoCard"
 data-search="آبشار شیرآباد بلندترین آبشار استان گلستان گردشگری سایروس توریست مهندس تیرانداز">
 
 <div class="videoHead">
+
 <span class="num">۶</span>
-<h3>آبشار شیرآباد؛ گلستان</h3>
+
+<h3>
+آبشار شیرآباد؛ گلستان
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/w8lOg?data[rnddiv]=34113224327&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1191,34 +1373,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/w8lOg?data[rnddiv]=34113224327&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 7 -->
+<!-- VIDEO 7 -->
 
 <article
 class="card videoCard"
 data-search="آبان روز کوروش بزرگ پدر ایران نرم افزار گردشگری سایروس توریست ایرانگردی">
 
 <div class="videoHead">
+
 <span class="num">۷</span>
-<h3>آبان‌روز؛ کوروش بزرگ</h3>
+
+<h3>
+آبان‌روز؛ کوروش بزرگ
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/e29ag1h?data[rnddiv]=77688303076&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1238,34 +1432,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/e29ag1h?data[rnddiv]=77688303076&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 8 -->
+<!-- VIDEO 8 -->
 
 <article
 class="card videoCard"
 data-search="جشن نوروز باستانی شادباش سفره هفت سین ماهی قرمز آهنگ نوروز سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۸</span>
-<h3>جشن نوروز باستانی</h3>
+
+<h3>
+جشن نوروز باستانی
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/s78jcie?data[rnddiv]=87298734599&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1286,34 +1492,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/s78jcie?data[rnddiv]=87298734599&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 9 -->
+<!-- VIDEO 9 -->
 
 <article
 class="card videoCard"
 data-search="آبشار اخلمد طبیعت گردی زیبا موسیقی سنتی نرم افزار گردشگری سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۹</span>
-<h3>آبشار اخلمد؛ طبیعت‌گردی زیبا</h3>
+
+<h3>
+آبشار اخلمد؛ طبیعت‌گردی زیبا
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/f91418q?data[rnddiv]=61787459820&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1333,34 +1551,46 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/f91418q?data[rnddiv]=61787459820&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 10 -->
+<!-- VIDEO 10 -->
 
 <article
 class="card videoCard"
 data-search="نور چمستان جنگل الیمالات کاشت بلوط جنگل های هیرکانی شمال راه نجات جنگل مهندس تیرانداز سایروس توریست">
 
 <div class="videoHead">
+
 <span class="num">۱۰</span>
-<h3>جنگل الیمالات؛ راه نجات جنگل</h3>
+
+<h3>
+جنگل الیمالات؛ راه نجات جنگل
+</h3>
+
 </div>
 
 <div class="embed">
 
 <iframe
 src="https://www.aparat.com/embed/guqcsg5?data[rnddiv]=36265814519&data[responsive]=yes"
-allowfullscreen>
+allowfullscreen
+loading="lazy">
 </iframe>
 
 </div>
@@ -1382,12 +1612,18 @@ allowfullscreen>
 
 <div class="actions">
 
-<a class="pill" href="#map">📍 نقشه</a>
+<a
+class="pill direct"
+href="https://www.aparat.com/embed/guqcsg5?data[rnddiv]=36265814519&data[responsive]=yes"
+target="_blank">
+▶ نمایش فیلم مستقیم
+</a>
 
-<a class="pill"
+<a
+class="pill"
 href="https://www.aparat.com/Cyrustourist"
 target="_blank">
-🎬 آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
@@ -1395,7 +1631,9 @@ target="_blank">
 </article>
 
 </div>
+
 </div>
+
 </section>
 
 <!-- APARAT -->
@@ -1456,7 +1694,9 @@ target="_blank">
 برای نمایش به گردشگران.
 </p>
 
-<a class="btn primary" href="#register">
+<a
+class="btn primary"
+href="#register">
 ثبت اقامتگاه
 </a>
 
@@ -1471,7 +1711,9 @@ target="_blank">
 از خدمات آینده سایروس توریست.
 </p>
 
-<a class="btn primary" href="#register">
+<a
+class="btn primary"
+href="#register">
 ثبت مسافر
 </a>
 
@@ -1486,14 +1728,18 @@ target="_blank">
 مقصدهای گردشگری ایران.
 </p>
 
-<a class="btn primary" href="#guide">
+<a
+class="btn primary"
+href="#guide">
 راهنمای سفر
 </a>
 
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 <!-- REGISTER -->
@@ -1582,7 +1828,9 @@ onclick="registerMessage('اقامتگاه')">
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 <!-- GUIDE -->
@@ -1607,7 +1855,9 @@ onclick="registerMessage('اقامتگاه')">
 
 <div class="grid3">
 
-<a class="card" href="#videos">
+<a
+class="card"
+href="#videos">
 
 <h3>🏔️ طبیعت ایران</h3>
 
@@ -1618,7 +1868,9 @@ onclick="registerMessage('اقامتگاه')">
 
 </a>
 
-<a class="card" href="#videos">
+<a
+class="card"
+href="#videos">
 
 <h3>🏛️ تاریخ و تمدن</h3>
 
@@ -1629,7 +1881,9 @@ onclick="registerMessage('اقامتگاه')">
 
 </a>
 
-<a class="card" href="#videos">
+<a
+class="card"
+href="#videos">
 
 <h3>🍲 تجربه سفر</h3>
 
@@ -1641,7 +1895,9 @@ onclick="registerMessage('اقامتگاه')">
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 <!-- ABOUT -->
@@ -1656,7 +1912,9 @@ onclick="registerMessage('اقامتگاه')">
 
 <h2>ℹ️ درباره سایروس توریست</h2>
 
-<p>معرفی پروژه</p>
+<p>
+معرفی پروژه
+</p>
 
 </div>
 
@@ -1664,24 +1922,63 @@ onclick="registerMessage('اقامتگاه')">
 
 <div class="card">
 
+<img
+src="assets/logo.png"
+alt="سایروس توریست"
+style="
+display:block;
+width:85px;
+height:85px;
+object-fit:contain;
+margin:0 auto 15px;
+border-radius:18px;
+">
+
 <h3>
-سایروس توریست؛ راهنمای سفر و گردشگری ایران
+گردشگری سایروس توریست
 </h3>
 
 <p class="muted">
-سایروس توریست با هدف معرفی زیبایی‌های ایران،
-جاذبه‌های طبیعی و تاریخی، فرهنگ، طبیعت‌گردی،
-اقامتگاه‌ها و تولید محتوای گردشگری فعالیت می‌کند.
+سایروس توریست با هدف معرفی ظرفیت‌های گردشگری،
+طبیعی، تاریخی، اقامتی و فرهنگی ایران فعالیت می‌کند.
 </p>
 
 <p class="muted">
-هدف ما این است که ایران چهار فصل،
-بیشتر دیده شود و گردشگران بتوانند
-مقصدهای جذاب ایران را بهتر بشناسند.
+در سایروس توریست تلاش می‌کنیم جاذبه‌های گردشگری
+و اقامتگاه‌ها را با استفاده از محتوای تصویری و فیلم
+معرفی کنیم تا مسافران پیش از سفر با مقصد خود
+بیشتر آشنا شوند.
 </p>
 
+<p class="muted">
+تولید محتوای گردشگری، ساخت تیزر تبلیغاتی،
+ساخت مستند، معرفی جاذبه‌ها، معرفی اقامتگاه‌ها
+و تولید محتوای اختصاصی متناسب با نیاز مجموعه‌ها
+از فعالیت‌های سایروس توریست است.
+</p>
+
+<p class="muted">
+هدف ما معرفی بهتر ایران و کمک به دیده‌شدن
+ظرفیت‌های گردشگری و اقامتی کشور است.
+</p>
+
+<div
+style="
+margin-top:18px;
+padding:12px;
+text-align:center;
+border-radius:13px;
+background:rgba(41,224,173,.10);
+color:#8deed5;
+font-weight:900;
+">
+مدیر پروژه: مهندس تیرانداز
 </div>
+
 </div>
+
+</div>
+
 </section>
 
 <!-- CONTACT -->
@@ -1697,7 +1994,7 @@ onclick="registerMessage('اقامتگاه')">
 <h2>📞 تماس و ارتباط با سایروس توریست</h2>
 
 <p>
-ما را در شبکه‌های اجتماعی دنبال کنید.
+برای همکاری و تولید محتوای گردشگری با ما در ارتباط باشید.
 </p>
 
 </div>
@@ -1706,60 +2003,48 @@ onclick="registerMessage('اقامتگاه')">
 
 <div class="grid3">
 
-<div class="card">
+<a
+class="card"
+href="tel:09153448818">
+
+<h3>📞 تماس تلفنی</h3>
+
+<p class="muted">
+09153448818
+</p>
+
+</a>
+
+<a
+class="card"
+href="https://www.aparat.com/Cyrustourist"
+target="_blank">
 
 <h3>🎬 آپارات</h3>
 
 <p class="muted">
-فیلم‌های گردشگری و ایرانگردی
-سایروس توریست.
+Cyrustourist
 </p>
 
-<a
-class="btn primary"
-href="https://www.aparat.com/Cyrustourist"
-target="_blank">
-صفحه آپارات
 </a>
 
-</div>
-
-<div class="card">
+<a
+class="card"
+href="https://www.instagram.com/cyrustourist"
+target="_blank">
 
 <h3>📷 اینستاگرام</h3>
 
 <p class="muted">
-محتوای جدید گردشگری و طبیعت‌گردی.
+@cyrustourist
 </p>
 
-<a
-class="btn primary"
-href="https://www.instagram.com/cyrustourist"
-target="_blank">
-صفحه اینستاگرام
-</a>
-
-</div>
-
-<div class="card">
-
-<h3>▶️ یوتیوب</h3>
-
-<p class="muted">
-ویدئوهای سایروس توریست در یوتیوب.
-</p>
-
-<a
-class="btn primary"
-href="https://youtube.com/@cyrustourist"
-target="_blank">
-صفحه یوتیوب
 </a>
 
 </div>
 
 </div>
-</div>
+
 </section>
 
 <!-- SOCIAL -->
@@ -1773,6 +2058,10 @@ target="_blank">
 <div>
 
 <h2>📱 شبکه‌های اجتماعی</h2>
+
+<p>
+جدیدترین محتوای سایروس توریست
+</p>
 
 </div>
 
@@ -1799,10 +2088,12 @@ target="_blank">
 </a>
 
 </div>
+
 </div>
+
 </section>
 
-<!-- VIDEO LIST -->
+<!-- VIDEO TABLE -->
 
 <section>
 
@@ -1814,7 +2105,9 @@ target="_blank">
 
 <h2>📊 فهرست ۱۰ فیلم</h2>
 
-<p>ترتیب نهایی ویدئوها</p>
+<p>
+۱۰ ویدئوی اصلی سایت
+</p>
 
 </div>
 
@@ -1853,35 +2146,35 @@ target="_blank">
 
 <tr>
 <td>۳</td>
-<td>چشمه گراب</td>
+<td>چشمه گراب؛ جادوی طبیعت ایران</td>
 <td>xvo5q9c</td>
 <td>طبیعت</td>
 </tr>
 
 <tr>
 <td>۴</td>
-<td>سیب‌زمینی آتشی</td>
+<td>سیب‌زمینی آتشی در طبیعت</td>
 <td>4Z0hQ</td>
 <td>طبیعت</td>
 </tr>
 
 <tr>
 <td>۵</td>
-<td>جنگل حرا و قشم</td>
+<td>جنگل حرا؛ دیدنی‌های قشم و بندر لافت</td>
 <td>kGS8o</td>
 <td>طبیعت</td>
 </tr>
 
 <tr>
 <td>۶</td>
-<td>آبشار شیرآباد</td>
+<td>آبشار شیرآباد؛ گلستان</td>
 <td>w8lOg</td>
 <td>طبیعت</td>
 </tr>
 
 <tr>
 <td>۷</td>
-<td>کوروش بزرگ و آبان‌روز</td>
+<td>آبان‌روز؛ کوروش بزرگ</td>
 <td>e29ag1h</td>
 <td>فرهنگی</td>
 </tr>
@@ -1895,14 +2188,14 @@ target="_blank">
 
 <tr>
 <td>۹</td>
-<td>آبشار اخلمد</td>
+<td>آبشار اخلمد؛ طبیعت‌گردی زیبا</td>
 <td>f91418q</td>
 <td>طبیعت</td>
 </tr>
 
 <tr>
 <td>۱۰</td>
-<td>جنگل الیمالات و هیرکانی</td>
+<td>جنگل الیمالات؛ راه نجات جنگل</td>
 <td>guqcsg5</td>
 <td>طبیعت</td>
 </tr>
@@ -1912,29 +2205,6 @@ target="_blank">
 </table>
 
 </div>
-</div>
-</section>
-
-<section>
-
-<div class="wrap">
-
-<div class="card" style="text-align:center">
-
-<h2>🎬 همه فیلم‌های سایروس توریست</h2>
-
-<p class="muted">
-برای دیدن صفحه اصلی آپارات سایروس توریست روی دکمه زیر بزنید.
-</p>
-
-<a
-class="btn primary"
-href="https://www.aparat.com/Cyrustourist"
-target="_blank">
-ورود به آپارات سایروس توریست
-</a>
-
-</div>
 
 </div>
 
@@ -1942,11 +2212,25 @@ target="_blank">
 
 </main>
 
+<!-- FOOTER -->
+
 <footer>
 
 <div class="wrap foot">
 
 <div>
+
+<img
+src="assets/logo.png"
+alt="سایروس توریست"
+style="
+width:65px;
+height:65px;
+object-fit:contain;
+background:rgba(255,255,255,.08);
+border-radius:15px;
+padding:3px;
+">
 
 <h3>سایروس توریست</h3>
 
@@ -1963,12 +2247,14 @@ target="_blank">
 <h3>دسترسی سریع</h3>
 
 <p>
+
 <a href="#videos">فیلم‌ها</a><br>
 <a href="#map">نقشه</a><br>
 <a href="#nearby">جاذبه‌های اطراف</a><br>
 <a href="#stay">اقامتگاه</a><br>
 <a href="#about">درباره ما</a><br>
 <a href="#contact">تماس با ما</a>
+
 </p>
 
 </div>
@@ -2023,12 +2309,17 @@ function findVideo(){
 
   cards.forEach(function(card){
 
-    const text=(card.dataset.search || '').toLowerCase();
+    const text=
+      (card.dataset.search || '').toLowerCase();
 
     if(!query || text.includes(query)){
+
       card.style.display='';
+
     }else{
+
       card.style.display='none';
+
     }
 
   });
@@ -2036,16 +2327,82 @@ function findVideo(){
   document.getElementById('videos').scrollIntoView({
     behavior:'smooth'
   });
+
 }
+
+
+/* ENTER SEARCH */
 
 document.getElementById('q').addEventListener(
   'keydown',
   function(e){
+
     if(e.key==='Enter'){
       findVideo();
     }
+
   }
 );
+
+
+/* =========================
+   REGISTER MESSAGE
+========================= */
+
+function registerMessage(type){
+
+  if(type==='مسافر'){
+
+    const name=
+      document.getElementById('travelerName').value.trim();
+
+    const phone=
+      document.getElementById('travelerPhone').value.trim();
+
+    if(!name || !phone){
+
+      alert(
+        'لطفاً نام و شماره تماس را وارد کنید.'
+      );
+
+      return;
+
+    }
+
+    alert(
+      'اطلاعات مسافر وارد شد.\n\n' +
+      'در نسخه فعلی ثبت نهایی روی سرور فعال نیست.'
+    );
+
+  }
+
+
+  if(type==='اقامتگاه'){
+
+    const name=
+      document.getElementById('stayName').value.trim();
+
+    const city=
+      document.getElementById('stayCity').value.trim();
+
+    if(!name || !city){
+
+      alert(
+        'لطفاً نام اقامتگاه و شهر را وارد کنید.'
+      );
+
+      return;
+
+    }
+
+    alert(
+      'اطلاعات اقامتگاه وارد شد.\n\n' +
+      'در نسخه فعلی ثبت نهایی روی سرور فعال نیست.'
+    );
+
+  }
+
+}
 
 
 /* =========================
@@ -2056,59 +2413,68 @@ let userLat=null;
 let userLon=null;
 
 
-/*
-  تبدیل فاصله به نمایش فارسی
-*/
-
 function formatDistance(meters){
 
   if(meters < 1000){
-    return Math.round(meters) + ' متر';
+
+    return Math.round(meters)+' متر';
+
   }
 
-  return (meters/1000).toFixed(1) + ' کیلومتر';
+  return (meters/1000).toFixed(1)+' کیلومتر';
+
 }
 
 
-/*
-  محاسبه فاصله دو مختصات
-*/
-
-function distanceKm(lat1,lon1,lat2,lon2){
+function distanceKm(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+){
 
   const R=6371;
 
-  const dLat=(lat2-lat1)*Math.PI/180;
+  const dLat=
+    (lat2-lat1)*Math.PI/180;
 
-  const dLon=(lon2-lon1)*Math.PI/180;
+  const dLon=
+    (lon2-lon1)*Math.PI/180;
 
   const a=
-    Math.sin(dLat/2)*Math.sin(dLat/2)+
+    Math.sin(dLat/2)*
+    Math.sin(dLat/2)+
     Math.cos(lat1*Math.PI/180)*
     Math.cos(lat2*Math.PI/180)*
-    Math.sin(dLon/2)*Math.sin(dLon/2);
+    Math.sin(dLon/2)*
+    Math.sin(dLon/2);
 
   const c=
-    2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    2*Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1-a)
+    );
 
   return R*c;
+
 }
 
 
-/*
-  دریافت موقعیت
-*/
-
 function getNearbyAttractions(){
 
-  const status=document.getElementById('locationStatus');
+  const status=
+    document.getElementById('locationStatus');
 
-  const results=document.getElementById('nearbyResults');
+  const results=
+    document.getElementById('nearbyResults');
 
-  status.innerHTML='📡 در حال دریافت موقعیت مکانی شما...';
+  status.innerHTML=
+    '📡 در حال دریافت موقعیت مکانی شما...';
 
   results.innerHTML=
-    '<div class="empty">در حال پیدا کردن جاذبه‌های گردشگری اطراف شما...</div>';
+    '<div class="empty">' +
+    'در حال پیدا کردن جاذبه‌های گردشگری اطراف شما...' +
+    '</div>';
 
   if(!navigator.geolocation){
 
@@ -2116,18 +2482,21 @@ function getNearbyAttractions(){
       '❌ مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.';
 
     return;
+
   }
 
   navigator.geolocation.getCurrentPosition(
 
     function(position){
 
-      userLat=position.coords.latitude;
+      userLat=
+        position.coords.latitude;
 
-      userLon=position.coords.longitude;
+      userLon=
+        position.coords.longitude;
 
       status.innerHTML=
-        '✅ موقعیت شما دریافت شد. در حال جستجوی جاذبه‌های اطراف...';
+        '✅ موقعیت شما دریافت شد. در حال جستجوی جاذبه‌ها...';
 
       loadNearbyAttractions();
 
@@ -2135,27 +2504,36 @@ function getNearbyAttractions(){
 
     function(error){
 
-      let message='❌ دسترسی به موقعیت مکانی امکان‌پذیر نشد.';
+      let message=
+        '❌ دسترسی به موقعیت مکانی امکان‌پذیر نشد.';
 
       if(error.code===1){
+
         message=
-          '❌ اجازه موقعیت مکانی داده نشد. لطفاً Location مرورگر را فعال کنید.';
+          '❌ اجازه موقعیت مکانی داده نشد. لطفاً Location گوشی را فعال کنید.';
+
       }
 
       if(error.code===2){
+
         message=
-          '❌ موقعیت شما قابل تشخیص نیست. GPS یا Location گوشی را روشن کنید.';
+          '❌ موقعیت شما قابل تشخیص نیست. GPS گوشی را روشن کنید.';
+
       }
 
       if(error.code===3){
+
         message=
           '❌ دریافت موقعیت بیش از حد طول کشید. دوباره امتحان کنید.';
+
       }
 
       status.innerHTML=message;
 
       results.innerHTML=
-        '<div class="empty">'+message+'</div>';
+        '<div class="empty">'+
+        message+
+        '</div>';
 
     },
 
@@ -2166,29 +2544,22 @@ function getNearbyAttractions(){
     }
 
   );
+
 }
 
 
-/*
-  جستجوی جاذبه‌ها در OpenStreetMap Overpass
-*/
-
 async function loadNearbyAttractions(){
 
-  const status=document.getElementById('locationStatus');
+  const status=
+    document.getElementById('locationStatus');
 
-  const results=document.getElementById('nearbyResults');
+  const results=
+    document.getElementById('nearbyResults');
 
   const radius=
-    parseInt(document.getElementById('radius').value);
-
-  /*
-    چند نوع جاذبه مهم:
-    tourism
-    historic
-    natural
-    leisure
-  */
+    parseInt(
+      document.getElementById('radius').value
+    );
 
   const query=`
 
@@ -2221,131 +2592,158 @@ out center tags;
     status.innerHTML=
       '🔎 در حال جستجوی جاذبه‌های گردشگری نزدیک شما...';
 
-    const response=await fetch(
-      'https://overpass-api.de/api/interpreter',
-      {
-        method:'POST',
-        headers:{
-          'Content-Type':'text/plain;charset=UTF-8'
-        },
-        body:query
-      }
-    );
+    const response=
+      await fetch(
+        'https://overpass-api.de/api/interpreter',
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':
+              'text/plain;charset=UTF-8'
+          },
+          body:query
+        }
+      );
 
     if(!response.ok){
-      throw new Error('Overpass error');
+
+      throw new Error(
+        'Overpass error'
+      );
+
     }
 
-    const data=await response.json();
+    const data=
+      await response.json();
 
     let places=[];
 
-    data.elements.forEach(function(item){
+    data.elements.forEach(
+      function(item){
 
-      const tags=item.tags || {};
+        const tags=
+          item.tags || {};
 
-      let lat=item.lat;
+        let lat=item.lat;
 
-      let lon=item.lon;
+        let lon=item.lon;
 
-      if(item.center){
+        if(item.center){
 
-        lat=item.center.lat;
-        lon=item.center.lon;
+          lat=item.center.lat;
+          lon=item.center.lon;
+
+        }
+
+        if(!lat || !lon){
+
+          return;
+
+        }
+
+        const name=
+          tags.name ||
+          tags['name:fa'] ||
+          tags['name:en'];
+
+        if(!name){
+
+          return;
+
+        }
+
+        const distance=
+          distanceKm(
+            userLat,
+            userLon,
+            parseFloat(lat),
+            parseFloat(lon)
+          );
+
+        let type=
+          'جاذبه گردشگری';
+
+        if(tags.tourism){
+
+          type=
+            translateTourism(
+              tags.tourism
+            );
+
+        }else if(tags.historic){
+
+          type=
+            translateHistoric(
+              tags.historic
+            );
+
+        }else if(tags.natural){
+
+          type=
+            translateNatural(
+              tags.natural
+            );
+
+        }else if(tags.leisure){
+
+          type=
+            'پارک و فضای تفریحی';
+
+        }
+
+        places.push({
+
+          name:name,
+          type:type,
+          lat:parseFloat(lat),
+          lon:parseFloat(lon),
+          distance:distance
+
+        });
 
       }
+    );
 
-      if(!lat || !lon){
-        return;
-      }
-
-      const name=
-        tags.name ||
-        tags['name:fa'] ||
-        tags['name:en'];
-
-      if(!name){
-        return;
-      }
-
-      const distance=
-        distanceKm(
-          userLat,
-          userLon,
-          parseFloat(lat),
-          parseFloat(lon)
-        );
-
-      let type='جاذبه گردشگری';
-
-      if(tags.tourism){
-        type=translateTourism(tags.tourism);
-      }else if(tags.historic){
-        type=translateHistoric(tags.historic);
-      }else if(tags.natural){
-        type=translateNatural(tags.natural);
-      }else if(tags.leisure){
-        type='پارک و فضای تفریحی';
-      }
-
-      places.push({
-
-        name:name,
-        type:type,
-        lat:parseFloat(lat),
-        lon:parseFloat(lon),
-        distance:distance
-
-      });
-
-    });
-
-
-    /*
-      حذف موارد تکراری
-    */
 
     const unique=[];
 
     const names=new Set();
 
-    places.forEach(function(place){
+    places.forEach(
+      function(place){
 
-      const key=place.name.toLowerCase();
+        const key=
+          place.name.toLowerCase();
 
-      if(!names.has(key)){
+        if(!names.has(key)){
 
-        names.add(key);
+          names.add(key);
 
-        unique.push(place);
+          unique.push(place);
+
+        }
 
       }
-
-    });
-
-
-    /*
-      مرتب‌سازی بر اساس نزدیک‌ترین
-    */
-
-    unique.sort(function(a,b){
-
-      return a.distance-b.distance;
-
-    });
+    );
 
 
-    /*
-      حداکثر ۳۰ نتیجه
-    */
+    unique.sort(
+      function(a,b){
 
-    places=unique.slice(0,30);
+        return a.distance-b.distance;
+
+      }
+    );
+
+
+    places=
+      unique.slice(0,30);
 
 
     if(!places.length){
 
       status.innerHTML=
-        '⚠️ در محدوده انتخاب‌شده جاذبه ثبت‌شده‌ای پیدا نشد.';
+        '⚠️ در محدوده انتخاب‌شده جاذبه‌ای پیدا نشد.';
 
       results.innerHTML=
         '<div class="empty">'+
@@ -2354,80 +2752,93 @@ out center tags;
         '</div>';
 
       return;
+
     }
 
 
     status.innerHTML=
-      '✅ '+places.length+
+      '✅ '+
+      places.length+
       ' جاذبه نزدیک شما پیدا شد.';
 
     results.innerHTML='';
 
 
-    places.forEach(function(place,index){
+    places.forEach(
+      function(place){
 
-      const card=document.createElement('div');
+        const card=
+          document.createElement('div');
 
-      card.className='placeCard';
+        card.className='placeCard';
 
-      const mapUrl=
-        'https://www.openstreetmap.org/?mlat='+
-        encodeURIComponent(place.lat)+
-        '&mlon='+
-        encodeURIComponent(place.lon)+
-        '#map=17/'+
-        encodeURIComponent(place.lat)+'/'+
-        encodeURIComponent(place.lon);
+        const mapUrl=
+          'https://www.openstreetmap.org/?mlat='+
+          encodeURIComponent(place.lat)+
+          '&mlon='+
+          encodeURIComponent(place.lon)+
+          '#map=17/'+
+          encodeURIComponent(place.lat)+
+          '/'+
+          encodeURIComponent(place.lon);
 
-      const directionUrl=
-        'https://www.google.com/maps/dir/?api=1&destination='+
-        encodeURIComponent(place.lat+','+place.lon);
+        const directionUrl=
+          'https://www.google.com/maps/dir/?api=1&destination='+
+          encodeURIComponent(
+            place.lat+','+place.lon
+          );
 
-      card.innerHTML=
+        card.innerHTML=
 
-        '<h3>'+
-        '📍 '+
-        escapeHtml(place.name)+
-        '</h3>'+
+          '<h3>'+
+          '📍 '+
+          escapeHtml(place.name)+
+          '</h3>'+
 
-        '<div class="placeMeta">'+
-        '🏷️ '+escapeHtml(place.type)+
-        '<br>'+
-        '📏 فاصله: '+formatDistance(place.distance*1000)+
-        '</div>'+
+          '<div class="placeMeta">'+
+          '🏷️ '+
+          escapeHtml(place.type)+
+          '<br>'+
+          '📏 فاصله: '+
+          formatDistance(
+            place.distance*1000
+          )+
+          '</div>'+
 
-        '<div class="placeActions">'+
+          '<div class="placeActions">'+
 
-        '<a class="smallBtn" '+
-        'href="'+mapUrl+'" '+
-        'target="_blank">'+
-        '🗺️ مشاهده روی نقشه'+
-        '</a>'+
+          '<a class="smallBtn" '+
+          'href="'+mapUrl+'" '+
+          'target="_blank">'+
+          '🗺️ مشاهده روی نقشه'+
+          '</a>'+
 
-        '<a class="smallBtn" '+
-        'href="'+directionUrl+'" '+
-        'target="_blank">'+
-        '🧭 مسیریابی'+
-        '</a>'+
+          '<a class="smallBtn" '+
+          'href="'+directionUrl+'" '+
+          'target="_blank">'+
+          '🧭 مسیریابی'+
+          '</a>'+
 
-        '</div>';
+          '</div>';
 
-      results.appendChild(card);
+        results.appendChild(card);
 
-    });
+      }
+    );
 
 
-    /*
-      رفتن خودکار به نتایج
-    */
+    setTimeout(
+      function(){
 
-    setTimeout(function(){
+        document
+          .getElementById('nearby')
+          .scrollIntoView({
+            behavior:'smooth'
+          });
 
-      document.getElementById('nearby').scrollIntoView({
-        behavior:'smooth'
-      });
-
-    },300);
+      },
+      300
+    );
 
 
   }catch(error){
@@ -2449,7 +2860,7 @@ out center tags;
 
 
 /* =========================
-   ترجمه دسته‌های OSM
+   OSM TRANSLATIONS
 ========================= */
 
 function translateTourism(value){
@@ -2464,4 +2875,79 @@ function translateTourism(value){
     hotel:'هتل',
     hostel:'هاستل',
     guest_house:'مهمان‌خانه',
-    camp_site:'محل
+    camp_site:'کمپ گردشگری',
+    theme_park:'پارک تفریحی',
+    zoo:'باغ‌وحش',
+    aquarium:'آکواریوم'
+
+  };
+
+  return map[value] || 'جاذبه گردشگری';
+
+}
+
+
+function translateHistoric(value){
+
+  const map={
+
+    castle:'قلعه',
+    archaeological_site:'محوطه باستانی',
+    monument:'بنای تاریخی',
+    ruins:'ویرانه تاریخی',
+    fort:'دژ تاریخی',
+    memorial:'یادمان',
+    building:'ساختمان تاریخی',
+    tomb:'آرامگاه',
+    battlefield:'میدان تاریخی'
+
+  };
+
+  return map[value] || 'مکان تاریخی';
+
+}
+
+
+function translateNatural(value){
+
+  const map={
+
+    peak:'قله',
+    mountain:'کوه',
+    waterfall:'آبشار',
+    spring:'چشمه',
+    beach:'ساحل',
+    cave_entrance:'غار',
+    valley:'دره',
+    forest:'جنگل',
+    wood:'جنگل',
+    water:'مکان آبی',
+    lake:'دریاچه',
+    river:'رودخانه'
+
+  };
+
+  return map[value] || 'جاذبه طبیعی';
+
+}
+
+
+/* =========================
+   SAFE HTML
+========================= */
+
+function escapeHtml(text){
+
+  const div=
+    document.createElement('div');
+
+  div.textContent=text;
+
+  return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+</html>
