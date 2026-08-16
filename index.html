@@ -23,7 +23,9 @@
   --shadow:0 20px 55px rgba(0,0,0,.3);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
@@ -49,7 +51,9 @@ a{
   text-decoration:none;
 }
 
-button,input,select{
+button,
+input,
+select{
   font-family:inherit;
 }
 
@@ -57,6 +61,8 @@ button,input,select{
   width:min(1200px,92%);
   margin:auto;
 }
+
+/* HEADER */
 
 header{
   position:sticky;
@@ -111,6 +117,29 @@ header{
   background:rgba(41,224,173,.15);
 }
 
+.languageBox{
+  position:relative;
+  direction:ltr;
+}
+
+.languageBox select{
+  appearance:none;
+  min-width:105px;
+  padding:9px 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#102b38;
+  color:white;
+  outline:none;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.languageBox select option{
+  background:#102b38;
+  color:white;
+}
+
 .btn{
   display:inline-block;
   padding:10px 15px;
@@ -127,6 +156,8 @@ header{
   color:#03202a;
   font-weight:900;
 }
+
+/* HERO */
 
 .hero{
   padding:55px 0 40px;
@@ -259,6 +290,8 @@ section{
 .muted{
   color:var(--muted);
 }
+
+/* CATEGORIES */
 
 .cats{
   display:grid;
@@ -450,13 +483,15 @@ section{
   border-radius:17px;
   background:#000;
   position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  min-height:280px;
 }
 
 .embed iframe{
   display:block;
   width:100%;
-  aspect-ratio:16/9;
-  min-height:280px;
+  height:100%;
   border:0;
   background:#000;
 }
@@ -644,7 +679,8 @@ table{
   border-collapse:collapse;
 }
 
-th,td{
+th,
+td{
   padding:11px 14px;
   border-bottom:1px solid var(--line);
   text-align:right;
@@ -690,6 +726,7 @@ footer{
   .links{
     display:none;
   }
+
 }
 
 @media(max-width:520px){
@@ -701,6 +738,12 @@ footer{
   .brandLogo{
     width:64px;
     height:64px;
+  }
+
+  .languageBox select{
+    min-width:82px;
+    padding:8px 7px;
+    font-size:11px;
   }
 
   .hero{
@@ -742,6 +785,7 @@ footer{
   .modalBox{
     width:100%;
   }
+
 }
 </style>
 </head>
@@ -762,6 +806,21 @@ alt="لوگوی سایروس توریست">
 <span>سایروس توریست</span>
 
 </a>
+
+<div class="languageBox">
+
+<select
+id="languageSelect"
+aria-label="انتخاب زبان"
+onchange="changeLanguage(this.value)">
+
+<option value="fa">🇮🇷 فارسی</option>
+<option value="en">🇬🇧 English</option>
+<option value="ar">العربية</option>
+
+</select>
+
+</div>
 
 <nav class="links">
 
@@ -1114,7 +1173,7 @@ rel="noopener">
 
 <div class="videos">
 
-<!-- 1 -->
+<!-- VIDEO 1 -->
 
 <article
 class="card videoCard"
@@ -1135,11 +1194,9 @@ data-search="نمایشگاه بین المللی گردشگری تهران مو
 <iframe
 loading="lazy"
 title="نمایشگاه بین‌المللی گردشگری تهران"
-src="https://www.aparat.com/embed/cmuax?data[rnddiv]=66920955439&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/cmuax/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1163,22 +1220,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('cmuax','نمایشگاه بین‌المللی گردشگری تهران')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/cmuax"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 2 -->
+<!-- VIDEO 2 -->
 
 <article
 class="card videoCard"
@@ -1199,11 +1256,9 @@ data-search="قلعه سریزد نخستین بانک جهان ساسانیان
 <iframe
 loading="lazy"
 title="قلعه سریزد"
-src="https://www.aparat.com/embed/c4744bv?data[rnddiv]=23232512701&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/c4744bv/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1227,22 +1282,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('c4744bv','قلعه سریزد؛ نخستین بانک جهان')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/c4744bv"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 3 -->
+<!-- VIDEO 3 -->
 
 <article
 class="card videoCard"
@@ -1263,11 +1318,9 @@ data-search="چشمه گراب جادوی طبیعت ایران سایروس ت�
 <iframe
 loading="lazy"
 title="چشمه گراب"
-src="https://www.aparat.com/embed/xvo5q9c?data[rnddiv]=53706521395&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/xvo5q9c/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1291,22 +1344,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('xvo5q9c','چشمه گراب؛ جادوی طبیعت ایران')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/xvo5q9c"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 4 -->
+<!-- VIDEO 4 -->
 
 <article
 class="card videoCard"
@@ -1327,11 +1380,9 @@ data-search="سیب زمینی آتشی طبیعت گردی گردشگری را�
 <iframe
 loading="lazy"
 title="سیب زمینی آتشی"
-src="https://www.aparat.com/embed/4Z0hQ?data[rnddiv]=62853687765&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/4Z0hQ/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1355,22 +1406,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('4Z0hQ','سیب‌زمینی آتشی در طبیعت')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/4Z0hQ"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 5 -->
+<!-- VIDEO 5 -->
 
 <article
 class="card videoCard"
@@ -1391,11 +1442,9 @@ data-search="جنگل حرا قشم بندر لافت آهنگ بندری سای
 <iframe
 loading="lazy"
 title="جنگل حرا و قشم"
-src="https://www.aparat.com/embed/kGS8o?data[rnddiv]=47535035744&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/kGS8o/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1419,22 +1468,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('kGS8o','جنگل حرا؛ دیدنی‌های قشم و بندر لافت')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/kGS8o"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 6 -->
+<!-- VIDEO 6 -->
 
 <article
 class="card videoCard"
@@ -1455,11 +1504,9 @@ data-search="آبشار شیرآباد گلستان طبیعت گردشگری س
 <iframe
 loading="lazy"
 title="آبشار شیرآباد"
-src="https://www.aparat.com/embed/w8lOg?data[rnddiv]=34113224327&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/w8lOg/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1483,22 +1530,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('w8lOg','آبشار شیرآباد؛ گلستان')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/w8lOg"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 7 -->
+<!-- VIDEO 7 -->
 
 <article
 class="card videoCard"
@@ -1519,11 +1566,9 @@ data-search="آبان روز کوروش بزرگ پدر ایران نرم افز
 <iframe
 loading="lazy"
 title="کوروش بزرگ و آبان روز"
-src="https://www.aparat.com/embed/e29ag1h?data[rnddiv]=77688303076&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/e29ag1h/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1546,22 +1591,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('e29ag1h','آبان‌روز؛ کوروش بزرگ')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/e29ag1h"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 8 -->
+<!-- VIDEO 8 -->
 
 <article
 class="card videoCard"
@@ -1582,11 +1627,9 @@ data-search="جشن نوروز باستانی شادباش سفره هفت سی�
 <iframe
 loading="lazy"
 title="جشن نوروز باستانی"
-src="https://www.aparat.com/embed/s78jcie?data[rnddiv]=87298734599&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/s78jcie/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1610,22 +1653,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('s78jcie','جشن نوروز باستانی')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/s78jcie"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 9 -->
+<!-- VIDEO 9 -->
 
 <article
 class="card videoCard"
@@ -1646,11 +1689,9 @@ data-search="آبشار اخلمد طبیعت گردی زیبا موسیقی س�
 <iframe
 loading="lazy"
 title="آبشار اخلمد"
-src="https://www.aparat.com/embed/f91418q?data[rnddiv]=61787459820&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/f91418q/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1673,22 +1714,22 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('f91418q','آبشار اخلمد؛ طبیعت‌گردی زیبا')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/f91418q"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
 
 </article>
 
-<!-- 10 -->
+<!-- VIDEO 10 -->
 
 <article
 class="card videoCard"
@@ -1709,11 +1750,9 @@ data-search="نور چمستان جنگل الیمالات کاشت بلوط ج�
 <iframe
 loading="lazy"
 title="جنگل الیمالات"
-src="https://www.aparat.com/embed/guqcsg5?data[rnddiv]=36265814519&data[responsive]=yes"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+src="https://www.aparat.com/video/video/embed/videohash/guqcsg5/vt/frame"
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -1738,15 +1777,15 @@ mozallowfullscreen>
 <button
 class="pill direct"
 onclick="openVideo('guqcsg5','جنگل الیمالات؛ راه نجات جنگل')">
-▶️ نمایش فیلم در سایت
+▶️ نمایش فیلم مستقیم
 </button>
 
 <a
 class="pill"
-href="https://www.aparat.com/v/guqcsg5"
+href="https://www.aparat.com/Cyrustourist"
 target="_blank"
 rel="noopener">
-🎬 نمایش مستقیم در آپارات
+🎬 ورود به آپارات
 </a>
 
 </div>
@@ -2337,11 +2376,8 @@ aria-label="بستن">
 <iframe
 id="modalFrame"
 src=""
-title="پخش فیلم سایروس توریست"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen
-webkitallowfullscreen
-mozallowfullscreen>
+allow="fullscreen; autoplay; encrypted-media"
+allowfullscreen>
 </iframe>
 
 </div>
@@ -2349,6 +2385,8 @@ mozallowfullscreen>
 </div>
 
 </div>
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -2425,16 +2463,50 @@ rel="noopener">
 <script>
 
 /* =========================
+   LANGUAGE
+========================= */
+
+function changeLanguage(value){
+
+  if(value === 'en'){
+
+    alert(
+      'English version is being prepared for Cyrus Tourist.'
+    );
+
+    document.getElementById('languageSelect').value='fa';
+
+    return;
+  }
+
+  if(value === 'ar'){
+
+    alert(
+      'النسخة العربية قيد الإعداد.'
+    );
+
+    document.getElementById('languageSelect').value='fa';
+
+    return;
+  }
+
+}
+
+
+/* =========================
    VIDEO SEARCH
 ========================= */
 
 function findVideo(){
 
-  const input=document.getElementById('q');
+  const input=
+    document.getElementById('q');
 
-  const query=input.value.trim().toLowerCase();
+  const query=
+    input.value.trim().toLowerCase();
 
-  const cards=document.querySelectorAll('.videoCard');
+  const cards=
+    document.querySelectorAll('.videoCard');
 
   cards.forEach(function(card){
 
@@ -2442,9 +2514,13 @@ function findVideo(){
       (card.dataset.search || '').toLowerCase();
 
     if(!query || text.includes(query)){
+
       card.style.display='';
+
     }else{
+
       card.style.display='none';
+
     }
 
   });
@@ -2452,6 +2528,7 @@ function findVideo(){
   document.getElementById('videos').scrollIntoView({
     behavior:'smooth'
   });
+
 }
 
 document.getElementById('q').addEventListener(
@@ -2467,8 +2544,23 @@ document.getElementById('q').addEventListener(
 
 
 /* =========================
-   VIDEO MODAL
-   اصلاح‌شده برای آپارات
+   APARAT VIDEO EMBED
+   نسخه اصلاح‌شده
+========================= */
+
+function aparatEmbedUrl(id){
+
+  return (
+    'https://www.aparat.com/video/video/embed/videohash/' +
+    encodeURIComponent(id) +
+    '/vt/frame'
+  );
+
+}
+
+
+/* =========================
+   DIRECT VIDEO MODAL
 ========================= */
 
 function openVideo(id,title){
@@ -2482,21 +2574,8 @@ function openVideo(id,title){
   const modalTitle=
     document.getElementById('modalTitle');
 
-  if(!id){
-    return;
-  }
-
-  /*
-    نمایش ویدئو داخل سایت
-    با Embed رسمی آپارات
-  */
-
-  const embedUrl=
-    'https://www.aparat.com/embed/' +
-    encodeURIComponent(id) +
-    '?data[responsive]=yes';
-
-  frame.src=embedUrl;
+  frame.src=
+    aparatEmbedUrl(id);
 
   modalTitle.textContent=
     title || 'نمایش فیلم';
@@ -2511,6 +2590,7 @@ function openVideo(id,title){
   document.body.classList.add('modal-open');
 
 }
+
 
 function closeVideo(){
 
@@ -2533,23 +2613,29 @@ function closeVideo(){
 
 }
 
+
 document.getElementById('videoModal').addEventListener(
   'click',
   function(e){
 
     if(e.target === this){
+
       closeVideo();
+
     }
 
   }
 );
+
 
 document.addEventListener(
   'keydown',
   function(e){
 
     if(e.key==='Escape'){
+
       closeVideo();
+
     }
 
   }
@@ -2578,15 +2664,21 @@ function registerMessage(type){
 let userLat=null;
 let userLon=null;
 
+
 function formatDistance(meters){
 
   if(meters < 1000){
+
     return Math.round(meters)+' متر';
+
   }
 
-  return (meters/1000).toFixed(1)+' کیلومتر';
+  return (
+    meters/1000
+  ).toFixed(1)+' کیلومتر';
 
 }
+
 
 function distanceKm(
   lat1,
@@ -2620,6 +2712,7 @@ function distanceKm(
   return R*c;
 
 }
+
 
 function getNearbyAttractions(){
 
@@ -2769,7 +2862,9 @@ out center tags;
       );
 
     if(!response.ok){
+
       throw new Error('Overpass error');
+
     }
 
     const data=
@@ -2792,7 +2887,9 @@ out center tags;
       }
 
       if(!lat || !lon){
+
         return;
+
       }
 
       const name=
@@ -2801,7 +2898,9 @@ out center tags;
         tags['name:en'];
 
       if(!name){
+
         return;
+
       }
 
       const distance=
@@ -2837,11 +2936,13 @@ out center tags;
       }
 
       places.push({
+
         name:name,
         type:type,
         lat:parseFloat(lat),
         lon:parseFloat(lon),
         distance:distance
+
       });
 
     });
@@ -3014,6 +3115,7 @@ function translateTourism(value){
 
 }
 
+
 function translateHistoric(value){
 
   const map={
@@ -3035,6 +3137,7 @@ function translateHistoric(value){
     'مکان تاریخی';
 
 }
+
 
 function translateNatural(value){
 
