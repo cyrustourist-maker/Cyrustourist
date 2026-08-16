@@ -11,13 +11,14 @@
 
 <!-- Leaflet -->
 <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIINfQ3LQ5xK2j9Lx0Zx8Yx3m2d8d3p7m1k="
-  crossorigin=""
->
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIINfQ3fO5H2D8xGxY5l5jK0q8K2jKQ2Q2E="
+crossorigin=""
+/>
 
 <style>
+
 :root{
   --bg:#06121d;
   --bg2:#0b2230;
@@ -31,9 +32,13 @@
   --shadow:0 20px 55px rgba(0,0,0,.30);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
@@ -46,14 +51,20 @@ body{
     linear-gradient(145deg,var(--bg),var(--bg2));
 }
 
-body.modal-open{overflow:hidden}
+body.modal-open{
+  overflow:hidden;
+}
 
 a{
   color:inherit;
   text-decoration:none;
 }
 
-button,input,select{font-family:inherit}
+button,
+input,
+select{
+  font-family:inherit;
+}
 
 .wrap{
   width:min(1200px,92%);
@@ -161,7 +172,9 @@ header{
 
 /* HERO */
 
-.hero{padding:55px 0 40px}
+.hero{
+  padding:55px 0 40px;
+}
 
 .heroGrid{
   display:grid;
@@ -244,15 +257,30 @@ header{
   filter:drop-shadow(0 8px 7px #0008);
 }
 
-.p1{top:40px;right:20%}
-.p2{bottom:45px;left:20%}
-.p3{top:45%;left:10%}
-
-@keyframes float{
-  50%{transform:translateY(-10px)}
+.p1{
+  top:40px;
+  right:20%;
 }
 
-section{padding:42px 0}
+.p2{
+  bottom:45px;
+  left:20%;
+}
+
+.p3{
+  top:45%;
+  left:10%;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+section{
+  padding:42px 0;
+}
 
 .title{
   display:flex;
@@ -272,7 +300,9 @@ section{padding:42px 0}
   color:var(--muted);
 }
 
-.muted{color:var(--muted)}
+.muted{
+  color:var(--muted);
+}
 
 /* CATEGORIES */
 
@@ -318,26 +348,20 @@ section{padding:42px 0}
   box-shadow:var(--shadow);
 }
 
-#touristMap{
-  width:100%;
-  height:500px;
-  background:#dfe7ea;
-}
-
-.mapToolbar{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
+.mapHeader{
   padding:15px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(41,224,173,.10),
+      rgba(66,184,255,.08)
+    );
   border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.035);
 }
 
 .mapSearch{
-  flex:1;
-  min-width:220px;
   display:flex;
-  gap:7px;
+  gap:8px;
 }
 
 .mapSearch input{
@@ -346,21 +370,45 @@ section{padding:42px 0}
   padding:11px 13px;
   border:1px solid var(--line);
   border-radius:12px;
-  background:#102b38;
+  background:rgba(0,0,0,.22);
   color:white;
   outline:none;
 }
 
 .mapSearch input::placeholder{
-  color:#a9bdc8;
+  color:#a9bec8;
 }
 
-.mapStatus{
-  padding:11px 15px;
-  color:var(--muted);
-  font-size:13px;
-  border-top:1px solid var(--line);
-  background:rgba(0,0,0,.12);
+#map{
+  position:relative;
+}
+
+#touristMap{
+  width:100%;
+  height:470px;
+  direction:ltr;
+  background:#dbe8ec;
+  touch-action:none;
+}
+
+/*
+ جلوگیری از حرکت صفحه هنگام لمس نقشه
+*/
+#touristMap,
+#touristMap *{
+  touch-action:pan-x pan-y;
+}
+
+.leaflet-container{
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+.leaflet-control-zoom{
+  direction:ltr;
+}
+
+.leaflet-control-attribution{
+  font-size:9px;
 }
 
 .mapButtons{
@@ -370,64 +418,16 @@ section{padding:42px 0}
   padding:15px;
 }
 
-.mapLegend{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
+.mapInfo{
   padding:0 15px 15px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-.legendItem{
-  padding:6px 10px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:rgba(255,255,255,.05);
-  font-size:12px;
-}
-
-/* Leaflet popup */
-
-.leaflet-container{
-  font-family:Tahoma,Arial,sans-serif;
-}
-
-.leaflet-popup-content-wrapper,
-.leaflet-popup-tip{
-  background:#071822;
-  color:#fff;
-}
-
-.leaflet-popup-content{
-  direction:rtl;
-  text-align:right;
-  line-height:1.8;
-}
-
-.popupTitle{
-  font-weight:900;
-  font-size:15px;
-  margin-bottom:4px;
-}
-
-.popupMeta{
-  color:#b9cbd4;
-  font-size:12px;
-}
-
-.popupActions{
+.mapSearchResult{
   margin-top:8px;
-  display:flex;
-  gap:5px;
-  flex-wrap:wrap;
-}
-
-.popupActions a{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:8px;
-  background:#173646;
-  color:#fff;
-  font-size:11px;
+  color:#8deed5;
+  font-size:13px;
 }
 
 /* NEARBY */
@@ -488,12 +488,6 @@ section{padding:42px 0}
   border:1px solid var(--line);
   border-radius:18px;
   background:rgba(0,0,0,.18);
-  transition:.2s;
-}
-
-.placeCard:hover{
-  transform:translateY(-2px);
-  border-color:rgba(41,224,173,.35);
 }
 
 .placeCard h3{
@@ -540,7 +534,9 @@ section{padding:42px 0}
   gap:22px;
 }
 
-.videoCard{overflow:hidden}
+.videoCard{
+  overflow:hidden;
+}
 
 .videoHead{
   display:flex;
@@ -582,7 +578,9 @@ section{padding:42px 0}
   background:#000;
 }
 
-.text{padding-top:12px}
+.text{
+  padding-top:12px;
+}
 
 .tag{
   color:#8deed5;
@@ -610,7 +608,9 @@ section{padding:42px 0}
   transition:.2s;
 }
 
-.pill:hover{transform:translateY(-2px)}
+.pill:hover{
+  transform:translateY(-2px);
+}
 
 .direct{
   background:linear-gradient(
@@ -637,7 +637,9 @@ section{padding:42px 0}
   backdrop-filter:blur(8px);
 }
 
-.videoModal.show{display:flex}
+.videoModal.show{
+  display:flex;
+}
 
 .modalBox{
   width:min(720px,94vw);
@@ -704,7 +706,9 @@ section{padding:42px 0}
   box-shadow:var(--shadow);
 }
 
-.card h3{margin-top:0}
+.card h3{
+  margin-top:0;
+}
 
 /* ABOUT */
 
@@ -733,7 +737,9 @@ section{padding:42px 0}
   background:rgba(41,224,173,.06);
 }
 
-.projectInfo p{margin:5px 0}
+.projectInfo p{
+  margin:5px 0;
+}
 
 .aboutEnding{
   margin-top:20px;
@@ -799,7 +805,8 @@ table{
   border-collapse:collapse;
 }
 
-th,td{
+th,
+td{
   padding:11px 14px;
   border-bottom:1px solid var(--line);
   text-align:right;
@@ -842,7 +849,9 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .links{display:none}
+  .links{
+    display:none;
+  }
 
   #touristMap{
     height:430px;
@@ -852,14 +861,18 @@ footer{
 
 @media(max-width:520px){
 
-  .nav{min-height:76px}
+  .nav{
+    min-height:76px;
+  }
 
   .brandLogo{
     width:60px;
     height:60px;
   }
 
-  .brand{font-size:15px}
+  .brand{
+    font-size:15px;
+  }
 
   .languageBox select{
     min-width:80px;
@@ -871,7 +884,9 @@ footer{
     padding-top:35px;
   }
 
-  .hero h1{font-size:37px}
+  .hero h1{
+    font-size:37px;
+  }
 
   .cats{
     grid-template-columns:repeat(2,1fr);
@@ -881,26 +896,23 @@ footer{
     flex-direction:column;
   }
 
-  .search .btn{width:100%}
+  .search .btn{
+    width:100%;
+  }
 
   .formgrid{
     grid-template-columns:1fr;
   }
 
   #touristMap{
-    height:390px;
+    height:360px;
   }
 
   .mapSearch{
-    width:100%;
     flex-direction:column;
   }
 
   .mapSearch .btn{
-    width:100%;
-  }
-
-  .mapToolbar .btn{
     width:100%;
   }
 
@@ -921,9 +933,12 @@ footer{
     width:100%;
   }
 
-  .modalBox{width:100%}
+  .modalBox{
+    width:100%;
+  }
 
 }
+
 </style>
 </head>
 
@@ -972,6 +987,7 @@ alt="لوگوی سایروس توریست">
 </div>
 
 </header>
+
 
 <main id="home">
 
@@ -1039,11 +1055,15 @@ rel="noopener">
 ▶️ یوتیوب
 </a>
 
-<a class="btn" href="#map">
+<a
+class="btn"
+href="#map">
 🗺️ نقشه گردشگری
 </a>
 
-<a class="btn primary" href="#nearby">
+<a
+class="btn primary"
+href="#nearby">
 📍 جاذبه‌های اطراف من
 </a>
 
@@ -1125,7 +1145,7 @@ rel="noopener">
 </section>
 
 
-<!-- ADVANCED MAP -->
+<!-- MAP -->
 
 <section id="map">
 
@@ -1138,7 +1158,7 @@ rel="noopener">
 <h2>🗺️ نقشه گردشگری سایروس توریست</h2>
 
 <p>
-نقشه تعاملی، جستجوی مکان و نمایش جاذبه‌های اطراف شما
+نقشه تعاملی OpenStreetMap با امکان جستجو، زوم و موقعیت‌یابی
 </p>
 
 </div>
@@ -1147,59 +1167,63 @@ rel="noopener">
 
 <div class="mapBox">
 
-<!-- MAP SEARCH -->
-
-<div class="mapToolbar">
+<div class="mapHeader">
 
 <div class="mapSearch">
 
 <input
 id="mapSearchInput"
 type="search"
-placeholder="نام شهر یا مکان را وارد کنید؛ مثلاً مشهد یا چشمه گراب">
+placeholder="مثلاً مشهد، تهران، تخت جمشید، چشمه گراب...">
 
 <button
 id="mapSearchButton"
 class="btn primary"
 type="button">
-🔎 جستجو
+🔎 جستجوی مکان
 </button>
 
 </div>
 
-<button
-id="mapLocationButton"
-class="btn primary"
-type="button">
-📍 موقعیت من
-</button>
+<div
+id="mapSearchResult"
+class="mapSearchResult">
+</div>
 
 </div>
 
-<!-- MAP -->
 
 <div id="touristMap"></div>
 
-<div
-id="mapStatus"
-class="mapStatus">
-🗺️ برای پیدا کردن مکان، نام آن را وارد کنید یا روی «موقعیت من» بزنید.
-</div>
 
 <div class="mapButtons">
+
+<button
+id="myLocationButton"
+class="btn primary"
+type="button">
+📍 نمایش موقعیت من
+</button>
 
 <button
 id="mapNearbyButton"
 class="btn primary"
 type="button">
-📍 پیدا کردن جاذبه‌های اطراف من
+📍 جاذبه‌های اطراف من
 </button>
 
 <button
-id="mapIranButton"
+id="iranButton"
 class="btn"
 type="button">
-🇮🇷 نمایش کل ایران
+🇮🇷 نمایش ایران
+</button>
+
+<button
+id="resetMapButton"
+class="btn"
+type="button">
+🔄 بازنشانی نقشه
 </button>
 
 <a
@@ -1207,37 +1231,14 @@ class="btn"
 href="https://www.openstreetmap.org/"
 target="_blank"
 rel="noopener">
-🗺️ باز کردن OpenStreetMap
-</a>
-
-<a
-class="btn"
-href="https://www.openstreetmap.org/fixthemap"
-target="_blank"
-rel="noopener">
-🛠️ گزارش مشکل نقشه
+🌍 باز کردن OpenStreetMap
 </a>
 
 </div>
 
-<div class="mapLegend">
-
-<span class="legendItem">
-📍 موقعیت شما
-</span>
-
-<span class="legendItem">
-🏛️ جاذبه تاریخی
-</span>
-
-<span class="legendItem">
-🏔️ جاذبه طبیعی
-</span>
-
-<span class="legendItem">
-🏡 مکان گردشگری
-</span>
-
+<div class="mapInfo">
+💡 نقشه را می‌توانید با یک انگشت جابه‌جا کنید و با دو انگشت زوم کنید.
+برای پیدا کردن مکان، نام شهر یا جاذبه را در کادر بالا بنویسید.
 </div>
 
 </div>
@@ -1278,7 +1279,7 @@ rel="noopener">
 </strong>
 
 <div class="muted">
-مکان‌های طبیعی، تاریخی، گردشگری، موزه‌ها، قلعه‌ها، آبشارها، پارک‌ها و موارد مشابه
+مکان‌های طبیعی، تاریخی، گردشگری، موزه‌ها، قلعه‌ها، آبشارها و موارد مشابه
 </div>
 
 </div>
@@ -1379,13 +1380,8 @@ class="card videoCard"
 data-search="نمایشگاه بین المللی گردشگری تهران موسیقی شاد اقوام ایران سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۱</span>
-
-<h3>
-نمایشگاه بین‌المللی گردشگری تهران
-</h3>
-
+<h3>نمایشگاه بین‌المللی گردشگری تهران</h3>
 </div>
 
 <div class="embed">
@@ -1444,13 +1440,8 @@ class="card videoCard"
 data-search="قلعه سریزد نخستین بانک جهان ساسانیان ایرانگردی سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۲</span>
-
-<h3>
-قلعه سریزد؛ نخستین بانک جهان
-</h3>
-
+<h3>قلعه سریزد؛ نخستین بانک جهان</h3>
 </div>
 
 <div class="embed">
@@ -1509,13 +1500,8 @@ class="card videoCard"
 data-search="چشمه گراب جادوی طبیعت ایران سایروس توریست مشهد">
 
 <div class="videoHead">
-
 <span class="num">۳</span>
-
-<h3>
-چشمه گراب؛ جادوی طبیعت ایران
-</h3>
-
+<h3>چشمه گراب؛ جادوی طبیعت ایران</h3>
 </div>
 
 <div class="embed">
@@ -1574,13 +1560,8 @@ class="card videoCard"
 data-search="سیب زمینی آتشی طبیعت گردی گردشگری راهنمای سفر سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۴</span>
-
-<h3>
-سیب‌زمینی آتشی در طبیعت
-</h3>
-
+<h3>سیب‌زمینی آتشی در طبیعت</h3>
 </div>
 
 <div class="embed">
@@ -1639,13 +1620,8 @@ class="card videoCard"
 data-search="جنگل حرا قشم بندر لافت آهنگ بندری سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۵</span>
-
-<h3>
-جنگل حرا؛ دیدنی‌های قشم و بندر لافت
-</h3>
-
+<h3>جنگل حرا؛ دیدنی‌های قشم و بندر لافت</h3>
 </div>
 
 <div class="embed">
@@ -1704,13 +1680,8 @@ class="card videoCard"
 data-search="آبشار شیرآباد گلستان طبیعت گردشگری سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۶</span>
-
-<h3>
-آبشار شیرآباد؛ گلستان
-</h3>
-
+<h3>آبشار شیرآباد؛ گلستان</h3>
 </div>
 
 <div class="embed">
@@ -1769,13 +1740,8 @@ class="card videoCard"
 data-search="آبان روز کوروش بزرگ پدر ایران نرم افزار گردشگری سایروس توریست ایرانگردی">
 
 <div class="videoHead">
-
 <span class="num">۷</span>
-
-<h3>
-آبان‌روز؛ کوروش بزرگ
-</h3>
-
+<h3>آبان‌روز؛ کوروش بزرگ</h3>
 </div>
 
 <div class="embed">
@@ -1833,13 +1799,8 @@ class="card videoCard"
 data-search="جشن نوروز باستانی شادباش سفره هفت سین ماهی قرمز آهنگ نوروز سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۸</span>
-
-<h3>
-جشن نوروز باستانی
-</h3>
-
+<h3>جشن نوروز باستانی</h3>
 </div>
 
 <div class="embed">
@@ -1898,13 +1859,8 @@ class="card videoCard"
 data-search="آبشار اخلمد طبیعت گردی زیبا موسیقی سنتی نرم افزار گردشگری سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۹</span>
-
-<h3>
-آبشار اخلمد؛ طبیعت‌گردی زیبا
-</h3>
-
+<h3>آبشار اخلمد؛ طبیعت‌گردی زیبا</h3>
 </div>
 
 <div class="embed">
@@ -1962,13 +1918,8 @@ class="card videoCard"
 data-search="نور چمستان جنگل الیمالات کاشت بلوط جنگل های هیرکانی شمال راه نجات جنگل سایروس توریست">
 
 <div class="videoHead">
-
 <span class="num">۱۰</span>
-
-<h3>
-جنگل الیمالات؛ راه نجات جنگل
-</h3>
-
+<h3>جنگل الیمالات؛ راه نجات جنگل</h3>
 </div>
 
 <div class="embed">
@@ -2755,7 +2706,7 @@ rel="noopener">
 </footer>
 
 
-<!-- Leaflet JS -->
+<!-- LEAFLET -->
 
 <script
 src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -2768,68 +2719,562 @@ crossorigin="">
 
 'use strict';
 
-/* =====================================================
-   CYRUS TOURIST
-   ADVANCED MAP VERSION
-===================================================== */
-
-
-/* =====================================================
-   GLOBAL MAP VARIABLES
-===================================================== */
+/* =========================
+   GLOBAL MAP
+========================= */
 
 let touristMap = null;
-
 let userMarker = null;
-
-let userAccuracyCircle = null;
-
-let nearbyMarkersLayer = null;
-
 let searchMarker = null;
+let nearbyMarkers = [];
 
 let userLat = null;
-
 let userLon = null;
 
 
-/* =====================================================
-   DOM READY
-===================================================== */
+/* =========================
+   INITIALIZATION
+========================= */
 
 document.addEventListener('DOMContentLoaded',function(){
 
-  initLanguage();
+  initializeMap();
 
-  initSearch();
+  initializeLanguage();
 
-  initVideos();
+  initializeSearch();
 
-  initRegister();
+  initializeVideos();
 
-  initMap();
+  initializeRegister();
 
-  initNearbyButtons();
+  initializeNearby();
+
+  initializeModal();
 
 });
 
 
-/* =====================================================
+/* =========================
+   MAP
+========================= */
+
+function initializeMap(){
+
+  const mapElement =
+    document.getElementById('touristMap');
+
+  if(!mapElement || typeof L==='undefined'){
+    return;
+  }
+
+  /*
+   مرکز ایران
+  */
+  touristMap = L.map(
+    'touristMap',
+    {
+      center:[32.5,53.7],
+      zoom:5,
+      minZoom:4,
+      maxZoom:19,
+      zoomControl:true,
+      attributionControl:true,
+      tap:true,
+      dragging:true,
+      scrollWheelZoom:true,
+      doubleClickZoom:true,
+      boxZoom:true,
+      keyboard:true,
+      touchZoom:true
+    }
+  );
+
+
+  /*
+   لایه اصلی OpenStreetMap
+  */
+
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      maxZoom:19,
+      attribution:
+        '&copy; OpenStreetMap contributors'
+    }
+  ).addTo(touristMap);
+
+
+  /*
+   دکمه ایران
+  */
+
+  const iranButton =
+    document.getElementById('iranButton');
+
+  if(iranButton){
+
+    iranButton.addEventListener(
+      'click',
+      function(){
+
+        touristMap.setView(
+          [32.5,53.7],
+          5,
+          {
+            animate:true
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+   بازنشانی
+  */
+
+  const resetButton =
+    document.getElementById('resetMapButton');
+
+  if(resetButton){
+
+    resetButton.addEventListener(
+      'click',
+      function(){
+
+        touristMap.setView(
+          [32.5,53.7],
+          5,
+          {
+            animate:true
+          }
+        );
+
+        if(searchMarker){
+
+          touristMap.removeLayer(
+            searchMarker
+          );
+
+          searchMarker=null;
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+   موقعیت من
+  */
+
+  const myLocationButton =
+    document.getElementById(
+      'myLocationButton'
+    );
+
+  if(myLocationButton){
+
+    myLocationButton.addEventListener(
+      'click',
+      showMyLocation
+    );
+
+  }
+
+
+  /*
+   جستجوی نقشه
+  */
+
+  const mapSearchButton =
+    document.getElementById(
+      'mapSearchButton'
+    );
+
+  const mapSearchInput =
+    document.getElementById(
+      'mapSearchInput'
+    );
+
+  if(mapSearchButton){
+
+    mapSearchButton.addEventListener(
+      'click',
+      searchMapLocation
+    );
+
+  }
+
+  if(mapSearchInput){
+
+    mapSearchInput.addEventListener(
+      'keydown',
+      function(e){
+
+        if(e.key==='Enter'){
+
+          e.preventDefault();
+
+          searchMapLocation();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+   جلوگیری از بیرون رفتن صفحه هنگام کار با نقشه
+  */
+
+  mapElement.addEventListener(
+    'touchstart',
+    function(e){
+
+      if(e.touches.length>1){
+
+        e.stopPropagation();
+
+      }
+
+    },
+    {
+      passive:true
+    }
+  );
+
+}
+
+
+/* =========================
+   MAP LOCATION
+========================= */
+
+function showMyLocation(){
+
+  if(!navigator.geolocation){
+
+    alert(
+      'مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.'
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      'myLocationButton'
+    );
+
+  if(button){
+
+    button.textContent =
+      '📡 در حال دریافت موقعیت...';
+
+  }
+
+
+  navigator.geolocation.getCurrentPosition(
+
+    function(position){
+
+      userLat =
+        position.coords.latitude;
+
+      userLon =
+        position.coords.longitude;
+
+
+      if(touristMap){
+
+        touristMap.setView(
+          [userLat,userLon],
+          15,
+          {
+            animate:true
+          }
+        );
+
+
+        if(userMarker){
+
+          touristMap.removeLayer(
+            userMarker
+          );
+
+        }
+
+
+        userMarker =
+          L.marker(
+            [userLat,userLon]
+          )
+          .addTo(touristMap)
+          .bindPopup(
+            '<strong>📍 موقعیت فعلی شما</strong>'
+          )
+          .openPopup();
+
+      }
+
+
+      if(button){
+
+        button.textContent =
+          '✅ موقعیت من';
+
+      }
+
+    },
+
+    function(error){
+
+      if(button){
+
+        button.textContent =
+          '📍 نمایش موقعیت من';
+
+      }
+
+
+      if(error.code===1){
+
+        alert(
+          'اجازه دسترسی به موقعیت مکانی داده نشد. Location گوشی را فعال کنید.'
+        );
+
+      }else if(error.code===2){
+
+        alert(
+          'موقعیت شما قابل تشخیص نیست. GPS یا Location گوشی را روشن کنید.'
+        );
+
+      }else{
+
+        alert(
+          'دریافت موقعیت بیش از حد طول کشید. دوباره امتحان کنید.'
+        );
+
+      }
+
+    },
+
+    {
+      enableHighAccuracy:true,
+      timeout:15000,
+      maximumAge:30000
+    }
+
+  );
+
+}
+
+
+/* =========================
+   MAP SEARCH
+========================= */
+
+async function searchMapLocation(){
+
+  const input =
+    document.getElementById(
+      'mapSearchInput'
+    );
+
+  const result =
+    document.getElementById(
+      'mapSearchResult'
+    );
+
+  if(!input || !touristMap){
+    return;
+  }
+
+
+  const query =
+    input.value.trim();
+
+
+  if(!query){
+
+    if(result){
+
+      result.textContent =
+        'لطفاً نام شهر یا جاذبه را وارد کنید.';
+
+    }
+
+    return;
+
+  }
+
+
+  if(result){
+
+    result.textContent =
+      '🔎 در حال جستجوی «'+
+      query+
+      '»...';
+
+  }
+
+
+  try{
+
+    const url =
+      'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&accept-language=fa&q='+
+      encodeURIComponent(
+        query
+      );
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          headers:{
+            'Accept':
+              'application/json'
+          }
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        'Search HTTP '+response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(!data.length){
+
+      if(result){
+
+        result.textContent =
+          '❌ مکان موردنظر پیدا نشد. نام دیگری امتحان کنید.';
+
+      }
+
+      return;
+
+    }
+
+
+    const place =
+      data[0];
+
+
+    const lat =
+      parseFloat(
+        place.lat
+      );
+
+    const lon =
+      parseFloat(
+        place.lon
+      );
+
+
+    touristMap.setView(
+      [lat,lon],
+      15,
+      {
+        animate:true
+      }
+    );
+
+
+    if(searchMarker){
+
+      touristMap.removeLayer(
+        searchMarker
+      );
+
+    }
+
+
+    searchMarker =
+      L.marker(
+        [lat,lon]
+      )
+      .addTo(touristMap)
+      .bindPopup(
+        '<strong>📍 '+
+        escapeHtml(place.display_name)+
+        '</strong>'
+      )
+      .openPopup();
+
+
+    if(result){
+
+      result.textContent =
+        '✅ پیدا شد: '+
+        place.display_name;
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      'Map search error:',
+      error
+    );
+
+
+    if(result){
+
+      result.textContent =
+        '❌ جستجوی نقشه با خطا مواجه شد. دوباره امتحان کنید.';
+
+    }
+
+  }
+
+}
+
+
+/* =========================
    LANGUAGE
-===================================================== */
+========================= */
 
-function initLanguage(){
+function initializeLanguage(){
 
-  const languageSelect =
-    document.getElementById('languageSelect');
+  const select =
+    document.getElementById(
+      'languageSelect'
+    );
 
-  if(!languageSelect)return;
+  if(!select){
+    return;
+  }
 
-  languageSelect.addEventListener(
+
+  select.addEventListener(
     'change',
     function(){
 
-      const value=this.value;
+      const value =
+        this.value;
+
 
       if(value==='en'){
 
@@ -2840,6 +3285,7 @@ function initLanguage(){
         this.value='fa';
 
       }
+
 
       if(value==='ar'){
 
@@ -2857,30 +3303,36 @@ function initLanguage(){
 }
 
 
-/* =====================================================
-   MAIN VIDEO SEARCH
-===================================================== */
+/* =========================
+   VIDEO SEARCH
+========================= */
 
-function initSearch(){
+function initializeSearch(){
 
-  const button =
-    document.getElementById('searchButton');
+  const searchButton =
+    document.getElementById(
+      'searchButton'
+    );
 
-  const input =
-    document.getElementById('q');
+  const searchInput =
+    document.getElementById(
+      'q'
+    );
 
-  if(button){
 
-    button.addEventListener(
+  if(searchButton){
+
+    searchButton.addEventListener(
       'click',
       findVideo
     );
 
   }
 
-  if(input){
 
-    input.addEventListener(
+  if(searchInput){
+
+    searchInput.addEventListener(
       'keydown',
       function(e){
 
@@ -2901,88 +3353,141 @@ function initSearch(){
 function findVideo(){
 
   const input =
-    document.getElementById('q');
+    document.getElementById(
+      'q'
+    );
 
   const videos =
-    document.getElementById('videos');
+    document.getElementById(
+      'videos'
+    );
 
-  if(!input || !videos)return;
+  if(!input || !videos){
+    return;
+  }
+
 
   const query =
-    normalizeText(input.value.trim());
+    input.value
+      .trim()
+      .toLowerCase();
+
 
   const cards =
-    document.querySelectorAll('.videoCard');
+    document.querySelectorAll(
+      '.videoCard'
+    );
+
 
   let found=0;
 
-  cards.forEach(function(card){
 
-    const text =
-      normalizeText(
-        card.dataset.search || ''
-      );
+  cards.forEach(
+    function(card){
 
-    if(!query || text.includes(query)){
+      const text =
+        (
+          card.dataset.search ||
+          ''
+        ).toLowerCase();
 
-      card.style.display='';
 
-      found++;
+      if(
+        !query ||
+        text.includes(query)
+      ){
 
-    }else{
+        card.style.display='';
 
-      card.style.display='none';
+        found++;
+
+      }else{
+
+        card.style.display='none';
+
+      }
 
     }
+  );
 
-  });
 
   videos.scrollIntoView({
     behavior:'smooth'
   });
 
+
   if(query && found===0){
 
-    setTimeout(function(){
+    setTimeout(
+      function(){
 
-      alert(
-        'فیلمی با این عبارت پیدا نشد.'
-      );
+        alert(
+          'فیلمی با این عبارت پیدا نشد.'
+        );
 
-    },300);
+      },
+      300
+    );
 
   }
 
 }
 
 
-/* =====================================================
-   VIDEO SYSTEM
-===================================================== */
+/* =========================
+   VIDEOS
+========================= */
 
-function initVideos(){
+function initializeVideos(){
 
   document
     .querySelectorAll('.videoOpen')
-    .forEach(function(button){
+    .forEach(
+      function(button){
 
-      button.addEventListener(
-        'click',
-        function(){
+        button.addEventListener(
+          'click',
+          function(){
 
-          openVideo(
-            this.dataset.id,
-            this.dataset.title
-          );
+            openVideo(
+              this.dataset.id,
+              this.dataset.title
+            );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
+}
+
+
+/* =========================
+   APARAT
+========================= */
+
+function aparatEmbedUrl(id){
+
+  return (
+    'https://www.aparat.com/video/video/embed/videohash/' +
+    encodeURIComponent(id) +
+    '/vt/frame'
+  );
+
+}
+
+
+/* =========================
+   VIDEO MODAL
+========================= */
+
+function initializeModal(){
 
   const closeButton =
-    document.getElementById('closeModal');
+    document.getElementById(
+      'closeModal'
+    );
 
   if(closeButton){
 
@@ -2995,7 +3500,9 @@ function initVideos(){
 
 
   const videoModal =
-    document.getElementById('videoModal');
+    document.getElementById(
+      'videoModal'
+    );
 
   if(videoModal){
 
@@ -3031,46 +3538,52 @@ function initVideos(){
 }
 
 
-function aparatEmbedUrl(id){
-
-  return (
-    'https://www.aparat.com/video/video/embed/videohash/' +
-    encodeURIComponent(id) +
-    '/vt/frame'
-  );
-
-}
-
-
 function openVideo(id,title){
 
   const modal =
-    document.getElementById('videoModal');
+    document.getElementById(
+      'videoModal'
+    );
 
   const frame =
-    document.getElementById('modalFrame');
+    document.getElementById(
+      'modalFrame'
+    );
 
   const modalTitle =
-    document.getElementById('modalTitle');
+    document.getElementById(
+      'modalTitle'
+    );
 
-  if(!modal || !frame)return;
+
+  if(!modal || !frame){
+    return;
+  }
+
 
   frame.src =
     aparatEmbedUrl(id);
 
+
   if(modalTitle){
 
     modalTitle.textContent =
-      title || 'نمایش فیلم';
+      title ||
+      'نمایش فیلم';
 
   }
 
-  modal.classList.add('show');
+
+  modal.classList.add(
+    'show'
+  );
+
 
   modal.setAttribute(
     'aria-hidden',
     'false'
   );
+
 
   document.body.classList.add(
     'modal-open'
@@ -3082,10 +3595,15 @@ function openVideo(id,title){
 function closeVideo(){
 
   const modal =
-    document.getElementById('videoModal');
+    document.getElementById(
+      'videoModal'
+    );
 
   const frame =
-    document.getElementById('modalFrame');
+    document.getElementById(
+      'modalFrame'
+    );
+
 
   if(frame){
 
@@ -3093,9 +3611,12 @@ function closeVideo(){
 
   }
 
+
   if(modal){
 
-    modal.classList.remove('show');
+    modal.classList.remove(
+      'show'
+    );
 
     modal.setAttribute(
       'aria-hidden',
@@ -3104,6 +3625,7 @@ function closeVideo(){
 
   }
 
+
   document.body.classList.remove(
     'modal-open'
   );
@@ -3111,28 +3633,30 @@ function closeVideo(){
 }
 
 
-/* =====================================================
+/* =========================
    REGISTER
-===================================================== */
+========================= */
 
-function initRegister(){
+function initializeRegister(){
 
   document
     .querySelectorAll('.registerButton')
-    .forEach(function(button){
+    .forEach(
+      function(button){
 
-      button.addEventListener(
-        'click',
-        function(){
+        button.addEventListener(
+          'click',
+          function(){
 
-          registerMessage(
-            this.dataset.type
-          );
+            registerMessage(
+              this.dataset.type
+            );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
 }
 
@@ -3149,596 +3673,11 @@ function registerMessage(type){
 }
 
 
-/* =====================================================
-   MAP INITIALIZATION
-===================================================== */
-
-function initMap(){
-
-  const mapElement =
-    document.getElementById('touristMap');
-
-  if(!mapElement){
-
-    console.error(
-      'Map element not found.'
-    );
-
-    return;
-
-  }
-
-  if(typeof L==='undefined'){
-
-    setMapStatus(
-      '❌ کتابخانه نقشه بارگذاری نشد.'
-    );
-
-    return;
-
-  }
-
-
-  /*
-    مرکز اولیه ایران
-  */
-
-  touristMap =
-    L.map(
-      'touristMap',
-      {
-        center:[32.4279,53.6880],
-        zoom:5,
-        minZoom:4,
-        maxZoom:18,
-        zoomControl:true,
-        attributionControl:true
-      }
-    );
-
-
-  /*
-    OpenStreetMap
-  */
-
-  L.tileLayer(
-    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-    {
-      maxZoom:19,
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
-    }
-  ).addTo(touristMap);
-
-
-  nearbyMarkersLayer =
-    L.layerGroup().addTo(
-      touristMap
-    );
-
-
-  /*
-    دکمه‌های نقشه
-  */
-
-  const locationButton =
-    document.getElementById(
-      'mapLocationButton'
-    );
-
-  const iranButton =
-    document.getElementById(
-      'mapIranButton'
-    );
-
-  const searchButton =
-    document.getElementById(
-      'mapSearchButton'
-    );
-
-  const searchInput =
-    document.getElementById(
-      'mapSearchInput'
-    );
-
-
-  if(locationButton){
-
-    locationButton.addEventListener(
-      'click',
-      showMyLocation
-    );
-
-  }
-
-
-  if(iranButton){
-
-    iranButton.addEventListener(
-      'click',
-      showIran
-    );
-
-  }
-
-
-  if(searchButton){
-
-    searchButton.addEventListener(
-      'click',
-      searchMapPlace
-    );
-
-  }
-
-
-  if(searchInput){
-
-    searchInput.addEventListener(
-      'keydown',
-      function(e){
-
-        if(e.key==='Enter'){
-
-          searchMapPlace();
-
-        }
-
-      }
-    );
-
-  }
-
-
-  /*
-    اصلاح اندازه نقشه بعد از بارگذاری
-  */
-
-  setTimeout(function(){
-
-    if(touristMap){
-
-      touristMap.invalidateSize();
-
-    }
-
-  },500);
-
-}
-
-
-/* =====================================================
-   MAP STATUS
-===================================================== */
-
-function setMapStatus(message){
-
-  const element =
-    document.getElementById(
-      'mapStatus'
-    );
-
-  if(element){
-
-    element.textContent =
-      message;
-
-  }
-
-}
-
-
-/* =====================================================
-   SHOW IRAN
-===================================================== */
-
-function showIran(){
-
-  if(!touristMap)return;
-
-  touristMap.setView(
-    [32.4279,53.6880],
-    5
-  );
-
-  setMapStatus(
-    '🇮🇷 نمای کلی ایران نمایش داده شد.'
-  );
-
-}
-
-
-/* =====================================================
-   NORMALIZE PERSIAN TEXT
-===================================================== */
-
-function normalizeText(value){
-
-  return String(value || '')
-    .toLowerCase()
-    .replace(/ي/g,'ی')
-    .replace(/ى/g,'ی')
-    .replace(/ك/g,'ک')
-    .replace(/ۀ/g,'ه')
-    .replace(/\u200c/g,' ')
-    .replace(/\s+/g,' ')
-    .trim();
-
-}
-
-
-/* =====================================================
-   MAP PLACE SEARCH
-   USER CLICK ONLY
-===================================================== */
-
-async function searchMapPlace(){
-
-  const input =
-    document.getElementById(
-      'mapSearchInput'
-    );
-
-  if(!input)return;
-
-  const query =
-    input.value.trim();
-
-  if(!query){
-
-    alert(
-      'لطفاً نام شهر یا مکان را وارد کنید.'
-    );
-
-    input.focus();
-
-    return;
-
-  }
-
-
-  setMapStatus(
-    '🔎 در حال جستجوی «'+
-    query+
-    '»...'
-  );
-
-
-  /*
-    Nominatim public endpoint.
-    Search only after user action.
-  */
-
-  const url =
-    'https://nominatim.openstreetmap.org/search?' +
-    new URLSearchParams({
-
-      q:query+', Iran',
-
-      format:'json',
-
-      limit:'5',
-
-      addressdetails:'1',
-
-      'accept-language':'fa'
-
-    }).toString();
-
-
-  try{
-
-    const response =
-      await fetch(
-        url,
-        {
-          headers:{
-            'Accept':'application/json'
-          }
-        }
-      );
-
-
-    if(!response.ok){
-
-      throw new Error(
-        'Nominatim HTTP '+
-        response.status
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    if(!Array.isArray(data) || !data.length){
-
-      setMapStatus(
-        '⚠️ مکانی با این عبارت پیدا نشد.'
-      );
-
-      return;
-
-    }
-
-
-    /*
-      اولین نتیجه
-    */
-
-    const place =
-      data[0];
-
-    const lat =
-      parseFloat(place.lat);
-
-    const lon =
-      parseFloat(place.lon);
-
-
-    if(!Number.isFinite(lat) ||
-       !Number.isFinite(lon)){
-
-      throw new Error(
-        'Invalid coordinates'
-      );
-
-    }
-
-
-    if(searchMarker){
-
-      touristMap.removeLayer(
-        searchMarker
-      );
-
-    }
-
-
-    searchMarker =
-      L.marker(
-        [lat,lon]
-      )
-      .addTo(touristMap);
-
-
-    const displayName =
-      place.display_name ||
-      query;
-
-
-    searchMarker.bindPopup(
-
-      '<div class="popupTitle">'+
-      '🔎 '+
-      escapeHtml(query)+
-      '</div>'+
-      '<div class="popupMeta">'+
-      escapeHtml(displayName)+
-      '</div>'
-
-    ).openPopup();
-
-
-    touristMap.setView(
-      [lat,lon],
-      14,
-      {
-        animate:true
-      }
-    );
-
-
-    setMapStatus(
-      '✅ مکان پیدا شد: '+
-      displayName
-    );
-
-
-  }catch(error){
-
-    console.error(
-      'Map search error:',
-      error
-    );
-
-    setMapStatus(
-      '❌ جستجوی مکان با خطا روبه‌رو شد. چند لحظه بعد دوباره امتحان کنید.'
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   GEOLOCATION
-===================================================== */
-
-function showMyLocation(){
-
-  if(!navigator.geolocation){
-
-    setMapStatus(
-      '❌ مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.'
-    );
-
-    return;
-
-  }
-
-
-  setMapStatus(
-    '📡 در حال دریافت موقعیت مکانی شما...'
-  );
-
-
-  navigator.geolocation.getCurrentPosition(
-
-    function(position){
-
-      userLat =
-        position.coords.latitude;
-
-      userLon =
-        position.coords.longitude;
-
-
-      const accuracy =
-        position.coords.accuracy || 0;
-
-
-      if(userMarker){
-
-        touristMap.removeLayer(
-          userMarker
-        );
-
-      }
-
-
-      if(userAccuracyCircle){
-
-        touristMap.removeLayer(
-          userAccuracyCircle
-        );
-
-      }
-
-
-      /*
-        موقعیت کاربر
-      */
-
-      userMarker =
-        L.marker(
-          [userLat,userLon]
-        )
-        .addTo(touristMap);
-
-
-      userMarker.bindPopup(
-
-        '<div class="popupTitle">📍 موقعیت شما</div>'+
-        '<div class="popupMeta">'+
-        'دقت تقریبی: '+
-        formatDistance(accuracy)+
-        '</div>'
-
-      );
-
-
-      /*
-        محدوده دقت GPS
-      */
-
-      userAccuracyCircle =
-        L.circle(
-          [userLat,userLon],
-          {
-            radius:accuracy,
-            color:'#29e0ad',
-            fillColor:'#29e0ad',
-            fillOpacity:.12,
-            weight:2
-          }
-        )
-        .addTo(touristMap);
-
-
-      touristMap.setView(
-        [userLat,userLon],
-        14,
-        {
-          animate:true
-        }
-      );
-
-
-      userMarker.openPopup();
-
-
-      setMapStatus(
-        '✅ موقعیت شما روی نقشه مشخص شد.'
-      );
-
-
-      /*
-        جستجوی خودکار اطراف
-      */
-
-      loadNearbyAttractions();
-
-
-    },
-
-    function(error){
-
-      let message =
-        '❌ دریافت موقعیت مکانی امکان‌پذیر نشد.';
-
-
-      if(error.code===1){
-
-        message =
-          '❌ اجازه دسترسی به موقعیت مکانی داده نشد. Location گوشی را فعال و دوباره امتحان کنید.';
-
-      }
-
-
-      if(error.code===2){
-
-        message =
-          '❌ موقعیت شما قابل تشخیص نیست. GPS یا Location گوشی را روشن کنید.';
-
-      }
-
-
-      if(error.code===3){
-
-        message =
-          '❌ دریافت موقعیت بیش از حد طول کشید. دوباره امتحان کنید.';
-
-      }
-
-
-      setMapStatus(
-        message
-      );
-
-
-      const status =
-        document.getElementById(
-          'locationStatus'
-        );
-
-      if(status){
-
-        status.textContent =
-          message;
-
-      }
-
-    },
-
-    {
-      enableHighAccuracy:true,
-      timeout:15000,
-      maximumAge:30000
-    }
-
-  );
-
-}
-
-
-/* =====================================================
-   NEARBY BUTTONS
-===================================================== */
-
-function initNearbyButtons(){
+/* =========================
+   NEARBY
+========================= */
+
+function initializeNearby(){
 
   const nearbyButton =
     document.getElementById(
@@ -3755,11 +3694,7 @@ function initNearbyButtons(){
 
     nearbyButton.addEventListener(
       'click',
-      function(){
-
-        getNearbyAttractions();
-
-      }
+      getNearbyAttractions
     );
 
   }
@@ -3776,6 +3711,7 @@ function initNearbyButtons(){
             'nearby'
           );
 
+
         if(nearby){
 
           nearby.scrollIntoView({
@@ -3783,6 +3719,7 @@ function initNearbyButtons(){
           });
 
         }
+
 
         getNearbyAttractions();
 
@@ -3794,9 +3731,75 @@ function initNearbyButtons(){
 }
 
 
-/* =====================================================
+/* =========================
+   DISTANCE
+========================= */
+
+function formatDistance(meters){
+
+  if(meters<1000){
+
+    return Math.round(meters)+' متر';
+
+  }
+
+
+  return (
+    meters/1000
+  ).toFixed(1)+' کیلومتر';
+
+}
+
+
+function distanceKm(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+){
+
+  const R=6371;
+
+
+  const dLat =
+    (lat2-lat1)*
+    Math.PI/180;
+
+
+  const dLon =
+    (lon2-lon1)*
+    Math.PI/180;
+
+
+  const a =
+    Math.sin(dLat/2)*
+    Math.sin(dLat/2)+
+    Math.cos(
+      lat1*Math.PI/180
+    )*
+    Math.cos(
+      lat2*Math.PI/180
+    )*
+    Math.sin(dLon/2)*
+    Math.sin(dLon/2);
+
+
+  const c =
+    2*
+    Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1-a)
+    );
+
+
+  return R*c;
+
+}
+
+
+/* =========================
    GET NEARBY
-===================================================== */
+========================= */
 
 function getNearbyAttractions(){
 
@@ -3811,32 +3814,25 @@ function getNearbyAttractions(){
     );
 
 
-  if(status){
-
-    status.textContent =
-      '📡 در حال دریافت موقعیت مکانی شما...';
-
+  if(!status || !results){
+    return;
   }
 
 
-  if(results){
+  status.textContent =
+    '📡 در حال دریافت موقعیت مکانی شما...';
 
-    results.innerHTML =
-      '<div class="empty">'+
-      'در حال پیدا کردن جاذبه‌های گردشگری اطراف شما...'+
-      '</div>';
 
-  }
+  results.innerHTML =
+    '<div class="empty">'+
+    'در حال پیدا کردن جاذبه‌های گردشگری اطراف شما...'+
+    '</div>';
 
 
   if(!navigator.geolocation){
 
-    if(status){
-
-      status.textContent =
-        '❌ مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.';
-
-    }
+    status.textContent =
+      '❌ مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.';
 
     return;
 
@@ -3854,19 +3850,50 @@ function getNearbyAttractions(){
         position.coords.longitude;
 
 
-      if(status){
+      status.textContent =
+        '✅ موقعیت شما دریافت شد. در حال جستجوی جاذبه‌های اطراف...';
 
-        status.textContent =
-          '✅ موقعیت شما دریافت شد. در حال جستجوی جاذبه‌های اطراف...';
+
+      /*
+       نمایش موقعیت روی نقشه
+      */
+
+      if(touristMap){
+
+        touristMap.setView(
+          [userLat,userLon],
+          14,
+          {
+            animate:true
+          }
+        );
+
+
+        if(userMarker){
+
+          touristMap.removeLayer(
+            userMarker
+          );
+
+        }
+
+
+        userMarker =
+          L.marker(
+            [userLat,userLon]
+          )
+          .addTo(touristMap)
+          .bindPopup(
+            '<strong>📍 موقعیت فعلی شما</strong>'
+          );
 
       }
 
 
-      updateUserMarker();
-
       loadNearbyAttractions();
 
     },
+
 
     function(error){
 
@@ -3898,24 +3925,17 @@ function getNearbyAttractions(){
       }
 
 
-      if(status){
-
-        status.textContent =
-          message;
-
-      }
+      status.textContent =
+        message;
 
 
-      if(results){
-
-        results.innerHTML =
-          '<div class="empty">'+
-          escapeHtml(message)+
-          '</div>';
-
-      }
+      results.innerHTML =
+        '<div class="empty">'+
+        escapeHtml(message)+
+        '</div>';
 
     },
+
 
     {
       enableHighAccuracy:true,
@@ -3928,65 +3948,9 @@ function getNearbyAttractions(){
 }
 
 
-/* =====================================================
-   UPDATE USER MARKER
-===================================================== */
-
-function updateUserMarker(){
-
-  if(!touristMap ||
-     userLat===null ||
-     userLon===null){
-
-    return;
-
-  }
-
-
-  if(userMarker){
-
-    touristMap.removeLayer(
-      userMarker
-    );
-
-  }
-
-
-  if(userAccuracyCircle){
-
-    touristMap.removeLayer(
-      userAccuracyCircle
-    );
-
-  }
-
-
-  userMarker =
-    L.marker(
-      [userLat,userLon]
-    )
-    .addTo(touristMap);
-
-
-  userMarker.bindPopup(
-    '<div class="popupTitle">📍 موقعیت شما</div>'
-  );
-
-
-  touristMap.setView(
-    [userLat,userLon],
-    14,
-    {
-      animate:true
-    }
-  );
-
-}
-
-
-/* =====================================================
+/* =========================
    OVERPASS
-===================================================== */
+========================= */
 
 async function loadNearbyAttractions(){
 
@@ -4031,13 +3995,21 @@ async function loadNearbyAttractions(){
 [out:json][timeout:25];
 
 (
-  nwr["tourism"~"attraction|museum|gallery|viewpoint|information|hotel|hostel|guest_house|camp_site|theme_park|zoo|aquarium|picnic_site|resort|alpine_hut"](around:${radius},${userLat},${userLon});
+  node["tourism"](around:${radius},${userLat},${userLon});
+  way["tourism"](around:${radius},${userLat},${userLon});
+  relation["tourism"](around:${radius},${userLat},${userLon});
 
-  nwr["historic"~"castle|ruins|monument|archaeological_site|memorial|fort|city_gate|building|tomb|battlefield"](around:${radius},${userLat},${userLon});
+  node["historic"](around:${radius},${userLat},${userLon});
+  way["historic"](around:${radius},${userLat},${userLon});
+  relation["historic"](around:${radius},${userLat},${userLon});
 
-  nwr["natural"~"peak|mountain|waterfall|spring|beach|cave_entrance|valley|wood|forest|protected_area|nature_reserve|water|bay|cape"](around:${radius},${userLat},${userLon});
+  node["natural"](around:${radius},${userLat},${userLon});
+  way["natural"](around:${radius},${userLat},${userLon});
+  relation["natural"](around:${radius},${userLat},${userLon});
 
-  nwr["leisure"~"park|nature_reserve|garden"](around:${radius},${userLat},${userLon});
+  node["leisure"="park"](around:${radius},${userLat},${userLon});
+  way["leisure"="park"](around:${radius},${userLat},${userLon});
+  relation["leisure"="park"](around:${radius},${userLat},${userLon});
 );
 
 out center tags;
@@ -4051,86 +4023,38 @@ out center tags;
       '🔎 در حال جستجوی جاذبه‌های گردشگری نزدیک شما...';
 
 
-    /*
-      چند سرور عمومی Overpass
-      برای پایداری بیشتر.
-    */
-
-    const endpoints=[
-
-      'https://overpass-api.de/api/interpreter',
-
-      'https://overpass.kumi.systems/api/interpreter'
-
-    ];
-
-
-    let data=null;
-
-    let lastError=null;
-
-
-    for(
-      let i=0;
-      i<endpoints.length;
-      i++
-    ){
-
-      try{
-
-        const response =
-          await fetch(
-            endpoints[i],
-            {
-              method:'POST',
-              headers:{
-                'Content-Type':
-                  'text/plain;charset=UTF-8'
-              },
-              body:query
-            }
-          );
-
-
-        if(!response.ok){
-
-          throw new Error(
-            'Overpass HTTP '+
-            response.status
-          );
-
+    const response =
+      await fetch(
+        'https://overpass-api.de/api/interpreter',
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':
+              'text/plain;charset=UTF-8'
+          },
+          body:query
         }
+      );
 
 
-        data =
-          await response.json();
+    if(!response.ok){
 
-        break;
-
-
-      }catch(error){
-
-        lastError=error;
-
-      }
+      throw new Error(
+        'Overpass HTTP '+
+        response.status
+      );
 
     }
 
 
-    if(!data){
-
-      throw lastError ||
-        new Error(
-          'No Overpass response'
-        );
-
-    }
+    const data =
+      await response.json();
 
 
     let places=[];
 
 
-    (data.elements || []).forEach(
+    data.elements.forEach(
       function(item){
 
         const tags =
@@ -4166,12 +4090,14 @@ out center tags;
 
 
         const name =
-          tags['name:fa'] ||
           tags.name ||
+          tags['name:fa'] ||
           tags['name:en'];
 
 
-        if(!name)return;
+        if(!name){
+          return;
+        }
 
 
         const distance =
@@ -4218,22 +4144,11 @@ out center tags;
 
         places.push({
 
-          id:
-            item.type+
-            '-'+
-            item.id,
-
           name:String(name),
-
           type:type,
-
           lat:parseFloat(lat),
-
           lon:parseFloat(lon),
-
-          distance:distance,
-
-          tags:tags
+          distance:distance
 
         });
 
@@ -4242,31 +4157,25 @@ out center tags;
 
 
     /*
-      حذف موارد تکراری
+     حذف تکراری‌ها
     */
 
     const unique=[];
-
-    const keys=new Set();
+    const names=new Set();
 
 
     places.forEach(
       function(place){
 
         const key =
-          normalizeText(
-            place.name
-          );
+          place.name
+            .trim()
+            .toLowerCase();
 
 
-        /*
-          اگر نام یکی باشد،
-          فقط نزدیک‌ترین مورد نگه داشته می‌شود.
-        */
+        if(!names.has(key)){
 
-        if(!keys.has(key)){
-
-          keys.add(key);
+          names.add(key);
 
           unique.push(place);
 
@@ -4289,18 +4198,14 @@ out center tags;
 
 
     places =
-      unique.slice(0,40);
+      unique.slice(0,30);
 
 
     /*
-      پاک کردن Markerهای قبلی
+     پاک کردن نشانگرهای قبلی
     */
 
-    if(nearbyMarkersLayer){
-
-      nearbyMarkersLayer.clearLayers();
-
-    }
+    clearNearbyMarkers();
 
 
     if(!places.length){
@@ -4308,11 +4213,13 @@ out center tags;
       status.textContent =
         '⚠️ در محدوده انتخاب‌شده جاذبه ثبت‌شده‌ای پیدا نشد.';
 
+
       results.innerHTML =
         '<div class="empty">'+
         'جاذبه‌ای در این محدوده پیدا نشد.<br>'+
         'شعاع جستجو را بیشتر کنید.'+
         '</div>';
+
 
       return;
 
@@ -4328,23 +4235,45 @@ out center tags;
     results.innerHTML='';
 
 
-    /*
-      نمایش همه جاذبه‌ها روی نقشه
-    */
-
     places.forEach(
-      function(place,index){
+      function(place){
 
-        addPlaceMarker(
-          place,
-          index
-        );
+        /*
+         نشانگر روی نقشه
+        */
+
+        if(touristMap){
+
+          const marker =
+            L.marker(
+              [place.lat,place.lon]
+            )
+            .addTo(touristMap)
+            .bindPopup(
+              '<strong>📍 '+
+              escapeHtml(place.name)+
+              '</strong><br>'+
+              escapeHtml(place.type)+
+              '<br>'+
+              '📏 '+
+              formatDistance(
+                place.distance*1000
+              )
+            );
+
+
+          nearbyMarkers.push(
+            marker
+          );
+
+        }
 
 
         const card =
           document.createElement(
             'div'
           );
+
 
         card.className =
           'placeCard';
@@ -4387,14 +4316,10 @@ out center tags;
 
           '<div class="placeActions">'+
 
-          '<button class="smallBtn showPlaceButton" type="button">'+
-          '📍 نمایش روی نقشه'+
-          '</button>'+
-
           '<a class="smallBtn" href="'+
           mapUrl+
           '" target="_blank" rel="noopener">'+
-          '🗺️ نقشه بزرگ'+
+          '🗺️ مشاهده روی نقشه'+
           '</a>'+
 
           '<a class="smallBtn" href="'+
@@ -4406,41 +4331,57 @@ out center tags;
           '</div>';
 
 
-        const showButton =
-          card.querySelector(
-            '.showPlaceButton'
-          );
-
-
-        if(showButton){
-
-          showButton.addEventListener(
-            'click',
-            function(){
-
-              showPlaceOnMap(
-                place
-              );
-
-            }
-          );
-
-        }
-
-
-        results.appendChild(card);
+        results.appendChild(
+          card
+        );
 
       }
     );
 
 
     /*
-      محدوده نتایج را روی نقشه نشان بده
+     نمایش محدوده جاذبه‌ها روی نقشه
     */
 
-    fitNearbyResults(
-      places
-    );
+    if(
+      touristMap &&
+      places.length
+    ){
+
+      const bounds =
+        L.latLngBounds(
+          places.map(
+            function(place){
+
+              return [
+                place.lat,
+                place.lon
+              ];
+
+            }
+          )
+        );
+
+
+      if(userLat!==null){
+
+        bounds.extend([
+          userLat,
+          userLon
+        ]);
+
+      }
+
+
+      touristMap.fitBounds(
+        bounds,
+        {
+          padding:[30,30],
+          maxZoom:14
+        }
+      );
+
+    }
 
 
     setTimeout(
@@ -4450,6 +4391,7 @@ out center tags;
           document.getElementById(
             'nearby'
           );
+
 
         if(nearby){
 
@@ -4478,7 +4420,7 @@ out center tags;
 
     results.innerHTML =
       '<div class="empty">'+
-      'ارتباط با سرویس جستجوی نقشه برقرار نشد.<br>'+
+      'ارتباط با سرویس نقشه برقرار نشد.<br>'+
       'لطفاً چند لحظه بعد دوباره امتحان کنید.'+
       '</div>';
 
@@ -4487,290 +4429,36 @@ out center tags;
 }
 
 
-/* =====================================================
-   ADD PLACE MARKER
-===================================================== */
+/* =========================
+   CLEAR MAP MARKERS
+========================= */
 
-function addPlaceMarker(
-  place,
-  index
-){
+function clearNearbyMarkers(){
 
-  if(
-    !touristMap ||
-    !nearbyMarkersLayer
-  ){
-
+  if(!touristMap){
     return;
-
   }
 
 
-  const marker =
-    L.marker(
-      [place.lat,place.lon]
-    )
-    .addTo(
-      nearbyMarkersLayer
-    );
+  nearbyMarkers.forEach(
+    function(marker){
 
-
-  const mapUrl =
-    'https://www.openstreetmap.org/?mlat='+
-    encodeURIComponent(place.lat)+
-    '&mlon='+
-    encodeURIComponent(place.lon)+
-    '#map=17/'+
-    encodeURIComponent(place.lat)+
-    '/'+
-    encodeURIComponent(place.lon);
-
-
-  const directionUrl =
-    'https://www.google.com/maps/dir/?api=1&destination='+
-    encodeURIComponent(
-      place.lat+','+place.lon
-    );
-
-
-  marker.bindPopup(
-
-    '<div class="popupTitle">'+
-    '📍 '+
-    escapeHtml(place.name)+
-    '</div>'+
-
-    '<div class="popupMeta">'+
-    '🏷️ '+
-    escapeHtml(place.type)+
-    '<br>'+
-    '📏 '+
-    formatDistance(
-      place.distance*1000
-    )+
-    '</div>'+
-
-    '<div class="popupActions">'+
-
-    '<a href="'+
-    mapUrl+
-    '" target="_blank" rel="noopener">'+
-    '🗺️ نقشه'+
-    '</a>'+
-
-    '<a href="'+
-    directionUrl+
-    '" target="_blank" rel="noopener">'+
-    '🧭 مسیر'+
-    '</a>'+
-
-    '</div>'
-
-  );
-
-
-  marker.on(
-    'click',
-    function(){
-
-      setMapStatus(
-        '📍 '+
-        place.name+
-        ' — '+
-        formatDistance(
-          place.distance*1000
-        )
+      touristMap.removeLayer(
+        marker
       );
 
     }
   );
 
 
-  place.marker=marker;
+  nearbyMarkers=[];
 
 }
 
 
-/* =====================================================
-   SHOW SINGLE PLACE
-===================================================== */
-
-function showPlaceOnMap(place){
-
-  if(!touristMap)return;
-
-
-  touristMap.setView(
-    [place.lat,place.lon],
-    16,
-    {
-      animate:true
-    }
-  );
-
-
-  if(place.marker){
-
-    place.marker.openPopup();
-
-  }
-
-
-  const mapSection =
-    document.getElementById(
-      'map'
-    );
-
-
-  if(mapSection){
-
-    mapSection.scrollIntoView({
-      behavior:'smooth'
-    });
-
-  }
-
-
-  setMapStatus(
-    '📍 نمایش: '+
-    place.name
-  );
-
-}
-
-
-/* =====================================================
-   FIT RESULTS
-===================================================== */
-
-function fitNearbyResults(places){
-
-  if(
-    !touristMap ||
-    !places ||
-    !places.length
-  ){
-
-    return;
-
-  }
-
-
-  const bounds =
-    L.latLngBounds([]);
-
-
-  places.forEach(
-    function(place){
-
-      bounds.extend(
-        [place.lat,place.lon]
-      );
-
-    }
-  );
-
-
-  if(
-    userLat!==null &&
-    userLon!==null
-  ){
-
-    bounds.extend(
-      [userLat,userLon]
-    );
-
-  }
-
-
-  if(bounds.isValid()){
-
-    touristMap.fitBounds(
-      bounds,
-      {
-        padding:[35,35],
-        maxZoom:14
-      }
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   DISTANCE
-===================================================== */
-
-function formatDistance(meters){
-
-  if(meters<1000){
-
-    return Math.round(
-      meters
-    )+' متر';
-
-  }
-
-  return (
-    meters/1000
-  ).toFixed(1)+
-  ' کیلومتر';
-
-}
-
-
-function distanceKm(
-  lat1,
-  lon1,
-  lat2,
-  lon2
-){
-
-  const R=6371;
-
-
-  const dLat =
-    (lat2-lat1)*
-    Math.PI/180;
-
-
-  const dLon =
-    (lon2-lon1)*
-    Math.PI/180;
-
-
-  const a =
-    Math.sin(dLat/2)*
-    Math.sin(dLat/2)+
-
-    Math.cos(
-      lat1*Math.PI/180
-    )*
-
-    Math.cos(
-      lat2*Math.PI/180
-    )*
-
-    Math.sin(dLon/2)*
-    Math.sin(dLon/2);
-
-
-  const c =
-    2*Math.atan2(
-      Math.sqrt(a),
-      Math.sqrt(1-a)
-    );
-
-
-  return R*c;
-
-}
-
-
-/* =====================================================
+/* =========================
    TRANSLATIONS
-===================================================== */
+========================= */
 
 function translateTourism(value){
 
@@ -4859,9 +4547,9 @@ function translateNatural(value){
 }
 
 
-/* =====================================================
+/* =========================
    HTML SAFETY
-===================================================== */
+========================= */
 
 function escapeHtml(value){
 
