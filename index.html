@@ -9,11 +9,10 @@
 
 <title>سایروس توریست | ایران را با سایروس توریست ببینید</title>
 
-<!-- Leaflet -->
+<!-- Leaflet CSS -->
 <link
 rel="stylesheet"
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-integrity="sha256-p4NxAoJBhIINfQ3fO5H2D8xGxY5l5jK0q8K2jKQ2Q2E="
 crossorigin=""
 />
 
@@ -64,6 +63,10 @@ button,
 input,
 select{
   font-family:inherit;
+}
+
+button{
+  -webkit-tap-highlight-color:transparent;
 }
 
 .wrap{
@@ -161,6 +164,7 @@ header{
   background:rgba(255,255,255,.07);
   color:white;
   cursor:pointer;
+  text-align:center;
 }
 
 .primary{
@@ -346,6 +350,12 @@ section{
   border-radius:25px;
   background:#06131b;
   box-shadow:var(--shadow);
+
+  /*
+    جلوگیری از انتقال اسکرول از نقشه
+    به صفحه اصلی
+  */
+  overscroll-behavior:contain;
 }
 
 .mapHeader{
@@ -379,8 +389,15 @@ section{
   color:#a9bec8;
 }
 
+/*
+  لایه اصلی نقشه
+  برای جلوگیری از اسکرول صفحه هنگام
+  لمس و جابه‌جایی نقشه
+*/
 #map{
   position:relative;
+  overflow:hidden;
+  overscroll-behavior:contain;
 }
 
 #touristMap{
@@ -388,17 +405,46 @@ section{
   height:470px;
   direction:ltr;
   background:#dbe8ec;
+
+  /*
+    مهم:
+    کنترل لمس توسط Leaflet انجام می‌شود
+    و صفحه در هنگام کار با نقشه حرکت نمی‌کند.
+  */
   touch-action:none;
+  overscroll-behavior:contain;
+
+  /*
+    جلوگیری از انتخاب ناخواسته متن
+  */
+  user-select:none;
+  -webkit-user-select:none;
 }
 
 /*
- جلوگیری از حرکت صفحه هنگام لمس نقشه
+  Leaflet container
 */
-#touristMap,
-#touristMap *{
-  touch-action:pan-x pan-y;
+#touristMap .leaflet-container{
+  width:100%;
+  height:100%;
+  touch-action:none;
+  overscroll-behavior:contain;
 }
 
+/*
+  کنترل‌های Leaflet
+  اجازه کلیک عادی داشته باشند.
+*/
+#touristMap .leaflet-control,
+#touristMap .leaflet-control *{
+  touch-action:auto;
+}
+
+/*
+  مهم:
+  قبلاً روی تمام عناصر نقشه pan-x pan-y اعمال شده بود.
+  این مورد می‌توانست باعث حرکت صفحه هنگام لمس نقشه شود.
+*/
 .leaflet-container{
   font-family:Tahoma,Arial,sans-serif;
 }
@@ -963,8 +1009,8 @@ alt="لوگوی سایروس توریست">
 
 <select id="languageSelect" aria-label="انتخاب زبان">
 
-<option value="fa">🇮🇷 فارسی</option>
-<option value="en">🇬🇧 English</option>
+<option value="fa">فارسی</option>
+<option value="en">English</option>
 <option value="ar">العربية</option>
 
 </select>
@@ -987,7 +1033,6 @@ alt="لوگوی سایروس توریست">
 </div>
 
 </header>
-
 
 <main id="home">
 
@@ -1085,7 +1130,6 @@ href="#nearby">
 
 </section>
 
-
 <!-- CATEGORIES -->
 
 <section id="attractions">
@@ -1144,7 +1188,6 @@ href="#nearby">
 
 </section>
 
-
 <!-- MAP -->
 
 <section id="map">
@@ -1192,9 +1235,7 @@ class="mapSearchResult">
 
 </div>
 
-
 <div id="touristMap"></div>
-
 
 <div class="mapButtons">
 
@@ -1216,7 +1257,7 @@ type="button">
 id="iranButton"
 class="btn"
 type="button">
-🇮🇷 نمایش ایران
+نمایش ایران
 </button>
 
 <button
@@ -1237,8 +1278,9 @@ rel="noopener">
 </div>
 
 <div class="mapInfo">
-💡 نقشه را می‌توانید با یک انگشت جابه‌جا کنید و با دو انگشت زوم کنید.
-برای پیدا کردن مکان، نام شهر یا جاذبه را در کادر بالا بنویسید.
+💡 روی موبایل برای کار با نقشه، انگشت خود را روی خود نقشه حرکت دهید.
+برای زوم می‌توانید از حرکت دو انگشتی استفاده کنید.
+صفحه اصلی هنگام کار با نقشه نباید به بالا و پایین کشیده شود.
 </div>
 
 </div>
@@ -1246,7 +1288,6 @@ rel="noopener">
 </div>
 
 </section>
-
 
 <!-- NEARBY -->
 
@@ -1339,7 +1380,6 @@ class="nearbyResults">
 
 </section>
 
-
 <!-- VIDEOS -->
 
 <section id="videos">
@@ -1371,7 +1411,6 @@ rel="noopener">
 </div>
 
 <div class="videos">
-
 
 <!-- VIDEO 1 -->
 
@@ -1432,7 +1471,6 @@ rel="noopener">
 
 </article>
 
-
 <!-- VIDEO 2 -->
 
 <article
@@ -1491,7 +1529,6 @@ rel="noopener">
 </div>
 
 </article>
-
 
 <!-- VIDEO 3 -->
 
@@ -1552,7 +1589,6 @@ rel="noopener">
 
 </article>
 
-
 <!-- VIDEO 4 -->
 
 <article
@@ -1611,7 +1647,6 @@ rel="noopener">
 </div>
 
 </article>
-
 
 <!-- VIDEO 5 -->
 
@@ -1672,7 +1707,6 @@ rel="noopener">
 
 </article>
 
-
 <!-- VIDEO 6 -->
 
 <article
@@ -1732,7 +1766,6 @@ rel="noopener">
 
 </article>
 
-
 <!-- VIDEO 7 -->
 
 <article
@@ -1790,7 +1823,6 @@ rel="noopener">
 </div>
 
 </article>
-
 
 <!-- VIDEO 8 -->
 
@@ -1851,7 +1883,6 @@ rel="noopener">
 
 </article>
 
-
 <!-- VIDEO 9 -->
 
 <article
@@ -1909,7 +1940,6 @@ rel="noopener">
 </div>
 
 </article>
-
 
 <!-- VIDEO 10 -->
 
@@ -1977,7 +2007,6 @@ rel="noopener">
 
 </section>
 
-
 <!-- APARAT -->
 
 <section>
@@ -2005,7 +2034,6 @@ rel="noopener">
 </div>
 
 </section>
-
 
 <!-- STAY -->
 
@@ -2080,7 +2108,6 @@ rel="noopener">
 
 </section>
 
-
 <!-- REGISTER -->
 
 <section id="register">
@@ -2130,7 +2157,6 @@ type="button">
 
 </div>
 
-
 <div class="form">
 
 <h3>🏡 ثبت اقامتگاه</h3>
@@ -2158,7 +2184,6 @@ type="button">
 
 </div>
 
-
 <div class="card">
 
 <h3>ℹ️ توجه</h3>
@@ -2175,7 +2200,6 @@ type="button">
 </div>
 
 </section>
-
 
 <!-- GUIDE -->
 
@@ -2237,7 +2261,6 @@ type="button">
 </div>
 
 </section>
-
 
 <!-- ABOUT -->
 
@@ -2339,7 +2362,6 @@ alt="لوگوی سایروس توریست">
 
 </section>
 
-
 <!-- CONTACT -->
 
 <section id="contact">
@@ -2423,7 +2445,6 @@ rel="noopener">
 
 </section>
 
-
 <!-- SOCIAL -->
 
 <section>
@@ -2466,7 +2487,6 @@ rel="noopener">
 </div>
 
 </section>
-
 
 <!-- VIDEO LIST -->
 
@@ -2587,7 +2607,6 @@ rel="noopener">
 
 </main>
 
-
 <!-- VIDEO MODAL -->
 
 <div
@@ -2629,7 +2648,6 @@ allowfullscreen>
 </div>
 
 </div>
-
 
 <!-- FOOTER -->
 
@@ -2705,15 +2723,12 @@ rel="noopener">
 
 </footer>
 
-
-<!-- LEAFLET -->
+<!-- LEAFLET JS -->
 
 <script
 src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
 crossorigin="">
 </script>
-
 
 <script>
 
@@ -2768,31 +2783,38 @@ function initializeMap(){
     return;
   }
 
-  /*
-   مرکز ایران
-  */
   touristMap = L.map(
-    'touristMap',
+    mapElement,
     {
       center:[32.5,53.7],
       zoom:5,
       minZoom:4,
       maxZoom:19,
+
       zoomControl:true,
       attributionControl:true,
-      tap:true,
+
+      /*
+        تنظیمات کامل تعامل نقشه
+      */
       dragging:true,
       scrollWheelZoom:true,
       doubleClickZoom:true,
       boxZoom:true,
       keyboard:true,
-      touchZoom:true
+      touchZoom:true,
+
+      /*
+        جلوگیری از رفتارهای اضافی مرورگر
+      */
+      tap:true,
+      worldCopyJump:false
     }
   );
 
 
   /*
-   لایه اصلی OpenStreetMap
+    لایه اصلی OpenStreetMap
   */
 
   L.tileLayer(
@@ -2806,7 +2828,46 @@ function initializeMap(){
 
 
   /*
-   دکمه ایران
+    اصلاح اندازه نقشه بعد از ایجاد
+    برای جلوگیری از نمایش ناقص یا
+    بیرون‌زدگی نقشه
+  */
+
+  setTimeout(function(){
+
+    if(touristMap){
+
+      touristMap.invalidateSize({
+        pan:false
+      });
+
+    }
+
+  },150);
+
+
+  /*
+    اصلاح مجدد اندازه هنگام تغییر صفحه
+  */
+
+  window.addEventListener(
+    'resize',
+    function(){
+
+      if(touristMap){
+
+        touristMap.invalidateSize({
+          pan:false
+        });
+
+      }
+
+    }
+  );
+
+
+  /*
+    دکمه ایران
   */
 
   const iranButton =
@@ -2833,7 +2894,7 @@ function initializeMap(){
 
 
   /*
-   بازنشانی
+    بازنشانی
   */
 
   const resetButton =
@@ -2844,6 +2905,8 @@ function initializeMap(){
     resetButton.addEventListener(
       'click',
       function(){
+
+        clearNearbyMarkers();
 
         touristMap.setView(
           [32.5,53.7],
@@ -2870,7 +2933,7 @@ function initializeMap(){
 
 
   /*
-   موقعیت من
+    موقعیت من
   */
 
   const myLocationButton =
@@ -2889,7 +2952,7 @@ function initializeMap(){
 
 
   /*
-   جستجوی نقشه
+    جستجوی نقشه
   */
 
   const mapSearchButton =
@@ -2929,27 +2992,6 @@ function initializeMap(){
     );
 
   }
-
-
-  /*
-   جلوگیری از بیرون رفتن صفحه هنگام کار با نقشه
-  */
-
-  mapElement.addEventListener(
-    'touchstart',
-    function(e){
-
-      if(e.touches.length>1){
-
-        e.stopPropagation();
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
 
 }
 
@@ -3133,9 +3175,7 @@ async function searchMapLocation(){
 
     const url =
       'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&accept-language=fa&q='+
-      encodeURIComponent(
-        query
-      );
+      encodeURIComponent(query);
 
 
     const response =
@@ -3182,14 +3222,10 @@ async function searchMapLocation(){
 
 
     const lat =
-      parseFloat(
-        place.lat
-      );
+      parseFloat(place.lat);
 
     const lon =
-      parseFloat(
-        place.lon
-      );
+      parseFloat(place.lon);
 
 
     touristMap.setView(
@@ -3337,6 +3373,8 @@ function initializeSearch(){
       function(e){
 
         if(e.key==='Enter'){
+
+          e.preventDefault();
 
           findVideo();
 
@@ -3854,10 +3892,6 @@ function getNearbyAttractions(){
         '✅ موقعیت شما دریافت شد. در حال جستجوی جاذبه‌های اطراف...';
 
 
-      /*
-       نمایش موقعیت روی نقشه
-      */
-
       if(touristMap){
 
         touristMap.setView(
@@ -3893,7 +3927,6 @@ function getNearbyAttractions(){
       loadNearbyAttractions();
 
     },
-
 
     function(error){
 
@@ -3935,7 +3968,6 @@ function getNearbyAttractions(){
         '</div>';
 
     },
-
 
     {
       enableHighAccuracy:true,
@@ -4157,7 +4189,7 @@ out center tags;
 
 
     /*
-     حذف تکراری‌ها
+      حذف تکراری‌ها
     */
 
     const unique=[];
@@ -4202,7 +4234,7 @@ out center tags;
 
 
     /*
-     پاک کردن نشانگرهای قبلی
+      پاک کردن نشانگرهای قبلی
     */
 
     clearNearbyMarkers();
@@ -4239,7 +4271,7 @@ out center tags;
       function(place){
 
         /*
-         نشانگر روی نقشه
+          نشانگر روی نقشه
         */
 
         if(touristMap){
@@ -4340,7 +4372,7 @@ out center tags;
 
 
     /*
-     نمایش محدوده جاذبه‌ها روی نقشه
+      نمایش محدوده جاذبه‌ها روی نقشه
     */
 
     if(
@@ -4382,6 +4414,23 @@ out center tags;
       );
 
     }
+
+
+    /*
+      اصلاح اندازه نقشه بعد از fitBounds
+    */
+
+    setTimeout(function(){
+
+      if(touristMap){
+
+        touristMap.invalidateSize({
+          pan:false
+        });
+
+      }
+
+    },250);
 
 
     setTimeout(
