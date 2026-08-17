@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#06121d">
-<meta name="color-scheme" content="dark">
-<meta name="description" content="سایروس توریست؛ راهنمای سفر و گردشگری ایران، طبیعت‌گردی، جاذبه‌ها، اقامتگاه‌ها و فیلم‌های گردشگری.">
-<title>سایروس توریست | ایران را با سایروس
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://tile.openstreetmap.org">
 <link rel="dns-prefetch" href="https://overpass-api.de">
@@ -25,22 +16,3 @@ header{position:sticky;top:0;z-index:1000;background:rgba(3,13,22,.96);backdrop-
 section{padding:42px 0}.title{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px}.title h2{margin:0;font-size:29px}.title p{margin:0;color:var(--muted)}.muted{color:var(--muted)}
 .cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cat{display:block;padding:18px 8px;text-align:center;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));transition:.25s}.cat:hover{transform:translateY(-5px);background:rgba(41,224,173,.12)}.cat b{display:block;font-size:32px}
 .mapBox{overflow:hidden;border:1px solid
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://tile.openstreetmap.org">
-<link rel="dns-prefetch" href="https://overpass-api.de">
-<link rel="dns-prefetch" href="https://nominatim.openstreetmap.org">
-<link rel="dns-prefetch" href="https://www.aparat.com">
-<link rel="preload" href="assets/logo.png" as="image">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.css">
-<style>
-:root{--bg:#06121d;--bg2:#0b2230;--card:rgba(255,255,255,.08);--line:rgba(255,255,255,.15);--text:#f5fbff;--muted:#b9cbd4;--green:#29e0ad;--blue:#42b8ff;--gold:#ffd36a;--danger:#ff6b6b;--shadow:0 20px 55px rgba(0,0,0,.3)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.9;background:radial-gradient(circle at 10% 0%,#124058 0,transparent 30%),radial-gradient(circle at 90% 10%,#16483e 0,transparent 28%),linear-gradient(145deg,var(--bg),var(--bg2))}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select{font-family:inherit}button{-webkit-tap-highlight-color:transparent}.wrap{width:min(1200px,92%);margin:auto}
-header{position:sticky;top:0;z-index:1000;background:rgba(3,13,22,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;white-space:nowrap}.brandLogo{width:68px;height:68px;object-fit:contain;display:block;border-radius:15px;background:rgba(255,255,255,.05);padding:3px}.links{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.links a{padding:7px 10px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.05);font-size:12px}.links a:hover{background:rgba(41,224,173,.15)}.languageBox{position:relative;direction:ltr}.languageBox select,.nearbyControls select,.toolSelect{appearance:auto;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:#102b38;color:#fff;outline:none;cursor:pointer;font-size:12px}.languageBox select option,.nearbyControls select option,.toolSelect option{background:#102b38;color:#fff}
-.btn{display:inline-block;padding:10px 15px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.07);color:#fff;cursor:pointer;text-align:center}.primary{border:0;background:linear-gradient(135deg,var(--green),var(--blue));color:#03202a;font-weight:900}.danger{background:rgba(255,107,107,.12);border-color:rgba(255,107,107,.35)}
-.hero{padding:55px 0 40px}.heroGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}.eyebrow{color:var(--green);font-weight:900}.hero h1{font-size:clamp(35px,5.5vw,66px);line-height:1.25;margin:8px 0 15px}.hero p{color:var(--muted);font-size:18px;max-width:700px}.search{display:flex;gap:8px;padding:8px;margin-top:20px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.07)}.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;padding:10px;font-size:16px}.heroBtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.scene{min-height:350px;display:grid;place-items:center;position:relative}.earth{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#7af5d3 0 7%,transparent 8%),radial-gradient(circle at 70% 55%,#42b8ff 0 13%,transparent 14%),radial-gradient(circle at 42% 72%,#29e0ad 0 12%,transparent 13%),linear-gradient(145deg,#236a87,#061d2d);box-shadow:inset 20px 18px 30px rgba(255,255,255,.13),inset -35px -35px 50px rgba(0,0,0,.5),0 30px 60px rgba(0,0,0,.35);animation:float 5s ease-in-out infinite}.pin{position:absolute;font-size:35px;filter:drop-shadow(0 8px 7px #0008)}.p1{top:40px;right:20%}.p2{bottom:45px;left:20%}.p3{top:45%;left:10%}@keyframes float{50%{transform:translateY(-10px)}}
-section{padding:42px 0}.title{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px}.title h2{margin:0;font-size:29px}.title p{margin:0;color:var(--muted)}.muted{color:var(--muted)}
-.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cat{display:block;padding:18px 8px;text-align:center;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));transition:.25s}.cat:hover{transform:translateY(-5px);background:rgba(41,224,173,.12)}.cat b{display:block;font-size:32px}
-.mapBox{overflow:hidden;border:1px solid
-    
