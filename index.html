@@ -401,66 +401,27 @@ section{
 }
 
 #touristMap{
-  width:100%;
-  height:470px;
-  direction:ltr;
-  background:#dbe8ec;
-
-  /*
-    مهم:
-    کنترل لمس توسط Leaflet انجام می‌شود
-    و صفحه در هنگام کار با نقشه حرکت نمی‌کند.
-  */
-  touch-action:pan-y;
-  overscroll-behavior:contain;
-
-  /*
-    جلوگیری از انتخاب ناخواسته متن
-  */
-  user-select:none;
-  -webkit-user-select:none;
+width:100%;
+height:470px;
+direction:ltr;
+background:#dbe8ec;
+touch-action:pan-x pan-y;
+overscroll-behavior:contain;
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
 }
 
-/*
-  Leaflet container
-*/
-#touristMap .leaflet-container{
-  width:100%;
-  height:100%;
-  touch-action:pan-y;
-  overscroll-behavior:contain;
-}
-
-/*
-  کنترل لمس موبایل نقشه
-  بدون هیچ Overlay روی صفحه:
-  یک انگشت = اسکرول صفحه
-  دو انگشت = حرکت و زوم نقشه
-*/
-@media (pointer:coarse){
-  #touristMap,
-  #touristMap .leaflet-container{
-    touch-action:pan-y;
-  }
-}
-
-/*
-  کنترل‌های Leaflet
-  اجازه کلیک عادی داشته باشند.
-*/
-#touristMap .leaflet-control,
-#touristMap .leaflet-control *{
-  touch-action:auto;
-}
-
-/*
-  مهم:
-  قبلاً روی تمام عناصر نقشه pan-x pan-y اعمال شده بود.
-  این مورد می‌توانست باعث حرکت صفحه هنگام لمس نقشه شود.
-*/
 .leaflet-container{
-  font-family:Tahoma,Arial,sans-serif;
+font-family:Tahoma,Arial,sans-serif;
+touch-action:pan-x pan-y !important;
+overscroll-behavior:contain !important;
 }
+
+.leaflet-control,
+.leaflet-control *{
+touch-action:manipulation;
+{}
 
 .leaflet-control-zoom{
   direction:ltr;
