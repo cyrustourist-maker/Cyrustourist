@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>دانلود اپ اندروید | سایروس توریست</title>
+
+    <meta name="description"
+          content="دانلود مستقیم اپلیکیشن سایروس توریست برای اندروید">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top right, #146c8c, transparent 40%),
+                linear-gradient(135deg, #061a2a, #073d4d, #063b35);
+
+            color: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+
+            text-align: center;
+
+            padding: 45px 30px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.10);
+
+            border: 1px solid rgba(255, 255, 255, 0.20);
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 55px;
+
+            background: rgba(255, 255, 255, 0.14);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin: 0 0 15px;
+
+            font-size: 30px;
+        }
+
+        .description {
+            margin: 0 auto 30px;
+
+            max-width: 480px;
+
+            line-height: 2;
+
+            font-size: 16px;
+
+            opacity: 0.88;
+        }
+
+        .download-button {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 18px;
+
+            padding: 18px 20px;
+
+            font-family: inherit;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #ffffff;
+
+            background: linear-gradient(
+                135deg,
+                #159957,
+                #087f5b
+            );
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.28);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 17px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .download-button:active {
+            transform: scale(0.98);
+        }
+
+        .status {
+            display: none;
+
+            margin-top: 22px;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            background: rgba(0, 0, 0, 0.22);
+
+            line-height: 1.9;
+
+            font-size: 14px;
+        }
+
+        .back {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            opacity: 0.75;
+        }
+
+        .back:hover {
+            opacity: 1;
+        }
+
+        .footer {
+            margin-top: 30px;
+
+            font-size: 12px;
+
+            opacity: 0.55;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .download-button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="card">
+
+        <div class="icon">
+            🤖
+        </div>
+
+        <h1>
+            دانلود اپ اندروید
+        </h1>
+
+        <p class="description">
+            اپلیکیشن سایروس توریست برای اندروید
+            <br>
+            سفر، طبیعت، جاذبه‌ها و خدمات گردشگری
+            <br>
+            همه در یک اپلیکیشن
+        </p>
+
+        <button
+            class="download-button"
+            onclick="showStatus()">
+
+            📥 دانلود مستقیم اپ اندروید
+
+        </button>
+
+        <div
+            id="status"
+            class="status">
+
+            ⏳ در حال بارگذاری...
+
+            <br>
+
+            لینک دانلود اپلیکیشن اندروید
+            به‌زودی فعال می‌شود.
+
+        </div>
+
+        <a
+            class="back"
+            href="../">
+
+            ← بازگشت به صفحه دانلود
+
+        </a>
+
+        <div class="footer">
+            © Cyrus Tourist
+        </div>
+
+    </main>
+
+    <script>
+
+        function showStatus() {
+
+            const status =
+                document.getElementById("status");
+
+            status.style.display = "block";
+
+            status.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+        }
+
+    </script>
+
+</body>
+</html>
