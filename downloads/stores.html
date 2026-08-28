@@ -7,22 +7,22 @@
 <meta name="theme-color" content="#06121d">
 <meta name="description" content="فروشگاه‌های رسمی اپلیکیشن سایروس توریست">
 
-<title>فروشگاه‌های سایروس توریست</title>
+<title>فروشگاه‌ها | سایروس توریست</title>
 
 <style>
 :root{
   --bg:#06121d;
   --bg2:#0b2230;
   --card:rgba(255,255,255,.075);
+  --card2:rgba(255,255,255,.045);
   --line:rgba(255,255,255,.14);
   --text:#f5fbff;
   --muted:#b9cbd4;
   --green:#29e0ad;
   --blue:#42b8ff;
   --gold:#ffd36a;
-  --gold2:#d9a936;
-  --danger:#ff7373;
-  --shadow:0 22px 60px rgba(0,0,0,.38);
+  --gold2:#dcae42;
+  --shadow:0 25px 70px rgba(0,0,0,.38);
 }
 
 *{
@@ -45,6 +45,10 @@ body{
     linear-gradient(145deg,var(--bg),var(--bg2));
 }
 
+body.modal-open{
+  overflow:hidden;
+}
+
 a{
   color:inherit;
   text-decoration:none;
@@ -53,15 +57,6 @@ a{
 button,
 select{
   font-family:inherit;
-}
-
-button{
-  -webkit-tap-highlight-color:transparent;
-}
-
-.wrap{
-  width:min(1100px,92%);
-  margin:auto;
 }
 
 /* HEADER */
@@ -73,6 +68,11 @@ header{
   background:rgba(3,13,22,.96);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
+}
+
+.wrap{
+  width:min(1150px,92%);
+  margin:auto;
 }
 
 .nav{
@@ -88,7 +88,7 @@ header{
   align-items:center;
   gap:10px;
   font-weight:900;
-  font-size:17px;
+  font-size:18px;
   white-space:nowrap;
 }
 
@@ -96,38 +96,46 @@ header{
   width:58px;
   height:58px;
   object-fit:contain;
-  border-radius:15px;
+  border-radius:14px;
   background:rgba(255,255,255,.05);
   padding:3px;
 }
 
-.headerActions{
+.links{
   display:flex;
   align-items:center;
-  gap:8px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:7px;
 }
 
-.backBtn,
-.languageSelect{
-  padding:8px 12px;
+.links a{
+  padding:7px 11px;
   border:1px solid var(--line);
-  border-radius:12px;
-  background:rgba(255,255,255,.06);
+  border-radius:11px;
+  background:rgba(255,255,255,.05);
+  font-size:12px;
+  transition:.2s;
+}
+
+.links a:hover{
+  background:rgba(41,224,173,.14);
+  transform:translateY(-1px);
+}
+
+.languageBox select{
+  appearance:auto;
+  padding:8px 10px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#102b38;
   color:#fff;
+  outline:none;
+  cursor:pointer;
   font-size:12px;
 }
 
-.backBtn:hover{
-  background:rgba(41,224,173,.13);
-}
-
-.languageSelect{
-  background:#102b38;
-  outline:none;
-  cursor:pointer;
-}
-
-.languageSelect option{
+.languageBox option{
   background:#102b38;
   color:#fff;
 }
@@ -135,281 +143,177 @@ header{
 /* HERO */
 
 .hero{
-  padding:55px 0 25px;
+  padding:60px 0 35px;
 }
 
 .heroBox{
-  position:relative;
-  overflow:hidden;
-  padding:38px 25px;
   text-align:center;
+  max-width:850px;
+  margin:auto;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 14px;
+  border-radius:999px;
   border:1px solid rgba(255,211,106,.28);
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(255,211,106,.12),transparent 45%),
-    linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
-  box-shadow:var(--shadow);
-}
-
-.heroBox::before{
-  content:"";
-  position:absolute;
-  width:240px;
-  height:240px;
-  top:-150px;
-  left:50%;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background:rgba(255,211,106,.12);
-  filter:blur(30px);
-}
-
-.heroIcon{
-  position:relative;
-  width:90px;
-  height:90px;
-  margin:0 auto 14px;
-  display:grid;
-  place-items:center;
-  border-radius:27px;
-  font-size:47px;
-  background:
-    linear-gradient(145deg,rgba(255,211,106,.22),rgba(255,255,255,.05));
-  border:1px solid rgba(255,211,106,.38);
-  box-shadow:
-    0 0 35px rgba(255,211,106,.14),
-    inset 0 1px rgba(255,255,255,.18);
+  background:rgba(255,211,106,.08);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  box-shadow:0 0 25px rgba(255,211,106,.07);
 }
 
 .hero h1{
-  position:relative;
-  margin:0;
-  font-size:clamp(27px,5vw,44px);
-  line-height:1.4;
+  margin:18px 0 10px;
+  font-size:clamp(32px,5vw,55px);
+  line-height:1.3;
   font-weight:900;
 }
 
 .hero p{
-  position:relative;
-  margin:8px auto 0;
-  max-width:700px;
+  margin:0 auto;
   color:var(--muted);
-  font-size:16px;
-}
-
-/* STATUS */
-
-.status{
-  margin:20px 0;
-  padding:13px 16px;
-  text-align:center;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:rgba(0,0,0,.16);
-  color:#9feedd;
-  font-size:13px;
+  font-size:17px;
 }
 
 /* STORE GRID */
 
+.storesSection{
+  padding:20px 0 70px;
+}
+
 .storeGrid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-  padding-bottom:45px;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
 }
 
 .storeCard{
   position:relative;
-  overflow:hidden;
-  min-height:255px;
-  padding:25px;
+  min-height:270px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 15px;
   border:1px solid var(--line);
   border-radius:25px;
   background:
-    linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.035));
-  box-shadow:0 15px 40px rgba(0,0,0,.22);
+    linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.025));
+  box-shadow:var(--shadow);
+  overflow:hidden;
   transition:
     transform .25s ease,
     border-color .25s ease,
     box-shadow .25s ease;
 }
 
-.storeCard::after{
+.storeCard::before{
   content:"";
   position:absolute;
-  inset:auto -70px -90px auto;
-  width:190px;
-  height:190px;
-  border-radius:50%;
-  background:rgba(255,211,106,.06);
-  filter:blur(12px);
+  inset:-70px;
+  background:radial-gradient(
+    circle,
+    rgba(255,211,106,.12),
+    transparent 60%
+  );
+  opacity:0;
+  transition:.3s;
 }
 
 .storeCard:hover{
-  transform:translateY(-5px);
-  border-color:rgba(255,211,106,.42);
+  transform:translateY(-7px);
+  border-color:rgba(255,211,106,.45);
   box-shadow:
-    0 22px 55px rgba(0,0,0,.35),
-    0 0 28px rgba(255,211,106,.07);
+    0 25px 70px rgba(0,0,0,.42),
+    0 0 35px rgba(255,211,106,.08);
 }
 
-.storeTop{
-  position:relative;
-  z-index:1;
-  display:flex;
-  align-items:center;
-  gap:15px;
+.storeCard:hover::before{
+  opacity:1;
 }
 
 .storeIcon{
-  width:72px;
-  height:72px;
-  flex:none;
+  position:relative;
+  z-index:1;
+  width:82px;
+  height:82px;
   display:grid;
   place-items:center;
-  border-radius:20px;
-  font-size:37px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:inset 0 1px rgba(255,255,255,.12);
+  border-radius:23px;
+  font-size:43px;
+  margin-bottom:15px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.04)
+    );
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.1),
+    0 12px 30px rgba(0,0,0,.25);
 }
 
 .storeName{
-  margin:0;
-  font-size:20px;
+  position:relative;
+  z-index:1;
+  font-size:18px;
   font-weight:900;
-}
-
-.storeType{
-  color:var(--muted);
-  font-size:12px;
+  text-align:center;
 }
 
 .storeDescription{
   position:relative;
   z-index:1;
-  min-height:57px;
-  margin:18px 0;
+  margin-top:5px;
   color:var(--muted);
-  font-size:13px;
+  font-size:11px;
+  text-align:center;
 }
 
 .storeButton{
   position:relative;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+  z-index:1;
+  margin-top:17px;
   width:100%;
-  min-height:48px;
-  padding:10px 14px;
-  border-radius:14px;
-  border:1px solid rgba(255,211,106,.38);
-  background:
-    linear-gradient(135deg,
-      rgba(255,211,106,.18),
-      rgba(255,255,255,.06));
+  padding:10px 12px;
+  border-radius:13px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
   color:#fff;
-  font-weight:900;
   cursor:pointer;
-  transition:.22s;
+  font-size:12px;
+  font-weight:900;
+  transition:.2s;
 }
 
 .storeButton:hover{
   transform:translateY(-2px);
-  border-color:var(--gold);
-  box-shadow:0 8px 25px rgba(255,211,106,.13);
-}
-
-.storeButton:active{
-  transform:scale(.97);
 }
 
 .storeButton.active{
-  background:
-    linear-gradient(135deg,
-      var(--gold),
-      var(--gold2));
-  color:#211600;
-  border-color:transparent;
-  box-shadow:
-    0 8px 25px rgba(255,211,106,.25);
+  border:0;
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  color:#03202a;
+  box-shadow:0 10px 25px rgba(41,224,173,.16);
 }
 
-.storeButton.disabled{
-  cursor:default;
-  color:#aab8be;
-  background:rgba(255,255,255,.045);
-  border-color:rgba(255,255,255,.10);
+.storeButton.coming{
+  border-color:rgba(255,211,106,.25);
+  color:var(--gold);
 }
 
-.storeButton.disabled:hover{
-  transform:none;
-  box-shadow:none;
-}
+/* FOOTER */
 
-.storeStatus{
-  position:relative;
-  z-index:2;
-  margin-top:9px;
+footer{
+  padding:25px 0 40px;
   text-align:center;
-  color:#8deed5;
-  font-size:11px;
-}
-
-/* GOLD THANK YOU */
-
-.thanks{
-  padding:5px 0 60px;
-}
-
-.thanksBox{
-  position:relative;
-  overflow:hidden;
-  padding:30px 20px;
-  text-align:center;
-  border:1px solid rgba(255,211,106,.3);
-  border-radius:25px;
-  background:
-    linear-gradient(145deg,
-      rgba(255,211,106,.10),
-      rgba(255,255,255,.035));
-  box-shadow:var(--shadow);
-}
-
-.thanksIcon{
-  width:70px;
-  height:70px;
-  margin:0 auto 12px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  border:1px solid rgba(255,211,106,.4);
-  background:rgba(255,211,106,.12);
-  font-size:34px;
-  box-shadow:0 0 30px rgba(255,211,106,.13);
-  animation:thanksPulse 2.4s ease-in-out infinite;
-}
-
-@keyframes thanksPulse{
-  50%{
-    transform:scale(1.07);
-    box-shadow:0 0 45px rgba(255,211,106,.22);
-  }
-}
-
-.thanks h2{
-  margin:0;
-  font-size:23px;
-}
-
-.thanks p{
-  margin:6px auto 0;
-  max-width:650px;
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
 }
 
 /* MODAL */
@@ -422,8 +326,8 @@ header{
   align-items:center;
   justify-content:center;
   padding:18px;
-  background:rgba(0,0,0,.82);
-  backdrop-filter:blur(9px);
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(10px);
 }
 
 .modal.show{
@@ -431,31 +335,62 @@ header{
 }
 
 .modalBox{
-  width:min(440px,100%);
-  padding:25px;
+  width:min(450px,100%);
+  padding:28px 22px;
+  border-radius:27px;
+  border:1px solid rgba(255,211,106,.3);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24,50,61,.98),
+      rgba(5,19,29,.98)
+    );
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.6),
+    0 0 45px rgba(255,211,106,.08);
   text-align:center;
-  border:1px solid rgba(255,211,106,.35);
-  border-radius:24px;
-  background:#071923;
-  box-shadow:0 25px 70px rgba(0,0,0,.55);
+  animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(15px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 .modalIcon{
-  font-size:45px;
-  margin-bottom:8px;
+  width:75px;
+  height:75px;
+  margin:0 auto 14px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,211,106,.35);
+  background:rgba(255,211,106,.09);
+  color:var(--gold);
+  font-size:35px;
+  box-shadow:0 0 35px rgba(255,211,106,.1);
 }
 
-.modalBox h3{
+.modalTitle{
+  margin:0 0 8px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.modalText{
   margin:0;
-  font-size:21px;
-}
-
-.modalBox p{
   color:var(--muted);
-  font-size:13px;
+  font-size:14px;
 }
 
 .modalClose{
+  margin-top:20px;
   width:100%;
   padding:11px;
   border:0;
@@ -466,22 +401,18 @@ header{
   cursor:pointer;
 }
 
-/* FOOTER */
-
-footer{
-  padding:25px 0 35px;
-  text-align:center;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:11px;
-}
-
 /* RESPONSIVE */
+
+@media(max-width:1000px){
+  .storeGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
 
 @media(max-width:700px){
 
   .nav{
-    min-height:74px;
+    min-height:75px;
     flex-wrap:wrap;
     padding:7px 0;
   }
@@ -495,51 +426,59 @@ footer{
     height:50px;
   }
 
-  .headerActions{
+  .links{
     width:100%;
     justify-content:center;
-    padding-bottom:5px;
+  }
+
+  .links a{
+    font-size:11px;
+    padding:6px 8px;
+  }
+
+  .storeGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .storeCard{
+    min-height:245px;
+    padding:18px 12px;
+    border-radius:21px;
+  }
+
+  .storeIcon{
+    width:68px;
+    height:68px;
+    font-size:34px;
+    border-radius:19px;
+  }
+
+  .storeName{
+    font-size:16px;
+  }
+
+  .storeDescription{
+    font-size:10px;
   }
 
   .hero{
-    padding-top:28px;
+    padding-top:40px;
   }
 
-  .heroBox{
-    padding:30px 17px;
+  .hero p{
+    font-size:14px;
   }
+}
+
+@media(max-width:390px){
 
   .storeGrid{
     grid-template-columns:1fr;
   }
 
   .storeCard{
-    min-height:230px;
-  }
-}
-
-@media(max-width:420px){
-
-  .wrap{
-    width:94%;
-  }
-
-  .storeTop{
-    gap:11px;
-  }
-
-  .storeIcon{
-    width:62px;
-    height:62px;
-    font-size:31px;
-  }
-
-  .storeName{
-    font-size:18px;
-  }
-
-  .hero h1{
-    font-size:27px;
+    min-height:225px;
   }
 }
 </style>
@@ -550,36 +489,54 @@ footer{
 <header>
   <div class="wrap nav">
 
-    <a class="brand" href="../index.html">
+    <a class="brand" href="../index.html" aria-label="Cyrus Tourist">
       <img
         class="brandLogo"
         src="../assets/images/logo.png"
         alt="Cyrus Tourist"
       >
-      <span id="brandText">گردشگری سایروس توریست</span>
+      <span data-fa="گردشگری سایروس توریست"
+            data-en="Cyrus Tourist"
+            data-ar="سياحة سايروس">
+        گردشگری سایروس توریست
+      </span>
     </a>
 
-    <div class="headerActions">
+    <nav class="links">
 
       <a
-        class="backBtn"
         href="../index.html"
-        id="backButton"
-      >
-        ← بازگشت
+        data-fa="خانه"
+        data-en="Home"
+        data-ar="الرئيسية">
+        خانه
       </a>
 
-      <select
-        class="languageSelect"
-        id="languageSelect"
-        aria-label="انتخاب زبان"
-      >
-        <option value="fa">فارسی</option>
-        <option value="en">English</option>
-        <option value="ar">العربية</option>
-      </select>
+      <a
+        href="android.html"
+        data-fa="اندروید"
+        data-en="Android"
+        data-ar="أندرويد">
+        اندروید
+      </a>
 
-    </div>
+      <a
+        href="ios.html"
+        data-fa="iOS"
+        data-en="iOS"
+        data-ar="iOS">
+        iOS
+      </a>
+
+      <div class="languageBox">
+        <select id="languageSelect" aria-label="Language">
+          <option value="fa">فارسی</option>
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+
+    </nav>
 
   </div>
 </header>
@@ -588,416 +545,211 @@ footer{
 <main>
 
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap heroBox">
 
-    <div class="heroBox">
-
-      <div class="heroIcon">
-        📱
-      </div>
-
-      <h1 id="pageTitle">
-        فروشگاه‌های اپلیکیشن
-      </h1>
-
-      <p id="pageDescription">
-        اپلیکیشن سایروس توریست را از فروشگاه موردنظر خود دریافت کنید.
-      </p>
-
+    <div class="badge">
+      ✨
+      <span
+        data-fa="دانلود و نصب اپلیکیشن"
+        data-en="Download & Install"
+        data-ar="تحميل وتثبيت التطبيق">
+        دانلود و نصب اپلیکیشن
+      </span>
     </div>
+
+    <h1
+      data-fa="فروشگاه‌های سایروس توریست"
+      data-en="Cyrus Tourist Stores"
+      data-ar="متاجر سايروس توريست">
+      فروشگاه‌های سایروس توریست
+    </h1>
+
+    <p
+      data-fa="اپلیکیشن سایروس توریست را از فروشگاه موردنظر خود دریافت کنید."
+      data-en="Get the Cyrus Tourist application from your preferred store."
+      data-ar="احصل على تطبيق سايروس توريست من المتجر الذي تفضله.">
+      اپلیکیشن سایروس توریست را از فروشگاه موردنظر خود دریافت کنید.
+    </p>
 
   </div>
 </section>
 
 
-<section>
+<section class="storesSection">
   <div class="wrap">
-
-    <div
-      class="status"
-      id="globalStatus"
-    >
-      🟢 لینک‌های نصب سایروس توریست
-    </div>
-
 
     <div class="storeGrid">
 
-
       <!-- GOOGLE PLAY -->
 
-      <article class="storeCard">
+      <div class="storeCard">
 
-        <div class="storeTop">
+        <div class="storeIcon">▶️</div>
 
-          <div class="storeIcon">
-            ▶️
-          </div>
-
-          <div>
-            <h2
-              class="storeName"
-              data-fa="گوگل پلی"
-              data-en="Google Play"
-              data-ar="جوجل بلاي"
-            >
-              گوگل پلی
-            </h2>
-
-            <div
-              class="storeType"
-              data-fa="فروشگاه رسمی اندروید"
-              data-en="Official Android Store"
-              data-ar="متجر أندرويد الرسمي"
-            >
-              فروشگاه رسمی اندروید
-            </div>
-          </div>
-
+        <div
+          class="storeName"
+          data-fa="Google Play"
+          data-en="Google Play"
+          data-ar="Google Play">
+          Google Play
         </div>
 
         <div
           class="storeDescription"
-          data-fa="دانلود و نصب نسخه رسمی سایروس توریست برای دستگاه‌های اندرویدی."
-          data-en="Download and install the official Cyrus Tourist Android application."
-          data-ar="تحميل وتثبيت تطبيق سايروس توريست الرسمي لأجهزة أندرويد."
-        >
-          دانلود و نصب نسخه رسمی سایروس توریست برای دستگاه‌های اندرویدی.
+          data-fa="فروشگاه رسمی اندروید"
+          data-en="Official Android Store"
+          data-ar="متجر أندرويد الرسمي">
+          فروشگاه رسمی اندروید
         </div>
 
-        <a
-          class="storeButton"
-          data-store-link=""
-          href="#"
-        >
-          <span>📲</span>
-          <span
-            data-fa="به‌زودی در دسترس"
-            data-en="Coming Soon"
-            data-ar="قريباً"
-          >
-            به‌زودی در دسترس
-          </span>
-        </a>
+        <button
+          class="storeButton coming"
+          data-store="Google Play"
+          data-fa="به‌زودی"
+          data-en="Coming Soon"
+          data-ar="قريباً">
+          به‌زودی
+        </button>
 
-        <div
-          class="storeStatus"
-          data-fa="لینک فروشگاه هنوز ثبت نشده است."
-          data-en="Store link has not been added yet."
-          data-ar="لم تتم إضافة رابط المتجر بعد."
-        >
-          لینک فروشگاه هنوز ثبت نشده است.
-        </div>
-
-      </article>
+      </div>
 
 
       <!-- BAZAAR -->
 
-      <article class="storeCard">
+      <div class="storeCard">
 
-        <div class="storeTop">
+        <div class="storeIcon">🛍️</div>
 
-          <div class="storeIcon">
-            🛍️
-          </div>
-
-          <div>
-            <h2
-              class="storeName"
-              data-fa="بازار"
-              data-en="Bazaar"
-              data-ar="بازار"
-            >
-              بازار
-            </h2>
-
-            <div
-              class="storeType"
-              data-fa="فروشگاه ایرانی اندروید"
-              data-en="Iranian Android Store"
-              data-ar="متجر أندرويد إيراني"
-            >
-              فروشگاه ایرانی اندروید
-            </div>
-          </div>
-
+        <div
+          class="storeName"
+          data-fa="بازار"
+          data-en="Bazaar"
+          data-ar="بازار">
+          بازار
         </div>
 
         <div
           class="storeDescription"
-          data-fa="نسخه اندرویدی سایروس توریست را از بازار دریافت کنید."
-          data-en="Get the Cyrus Tourist Android application from Bazaar."
-          data-ar="احصل على تطبيق سايروس توريست لأندرويد من بازار."
-        >
-          نسخه اندرویدی سایروس توریست را از بازار دریافت کنید.
+          data-fa="فروشگاه ایرانی اپلیکیشن"
+          data-en="Iranian App Store"
+          data-ar="متجر التطبيقات الإيراني">
+          فروشگاه ایرانی اپلیکیشن
         </div>
 
-        <a
-          class="storeButton"
-          data-store-link=""
-          href="#"
-        >
-          <span>📲</span>
-          <span
-            data-fa="به‌زودی در دسترس"
-            data-en="Coming Soon"
-            data-ar="قريباً"
-          >
-            به‌زودی در دسترس
-          </span>
-        </a>
+        <button
+          class="storeButton coming"
+          data-store="بازار"
+          data-fa="به‌زودی"
+          data-en="Coming Soon"
+          data-ar="قريباً">
+          به‌زودی
+        </button>
 
-        <div
-          class="storeStatus"
-          data-fa="لینک فروشگاه هنوز ثبت نشده است."
-          data-en="Store link has not been added yet."
-          data-ar="لم تتم إضافة رابط المتجر بعد."
-        >
-          لینک فروشگاه هنوز ثبت نشده است.
-        </div>
-
-      </article>
+      </div>
 
 
       <!-- MYKET -->
 
-      <article class="storeCard">
+      <div class="storeCard">
 
-        <div class="storeTop">
+        <div class="storeIcon">📱</div>
 
-          <div class="storeIcon">
-            📱
-          </div>
-
-          <div>
-            <h2
-              class="storeName"
-              data-fa="مایکت"
-              data-en="Myket"
-              data-ar="مايکت"
-            >
-              مایکت
-            </h2>
-
-            <div
-              class="storeType"
-              data-fa="فروشگاه ایرانی اندروید"
-              data-en="Iranian Android Store"
-              data-ar="متجر أندرويد إيراني"
-            >
-              فروشگاه ایرانی اندروید
-            </div>
-          </div>
-
+        <div
+          class="storeName"
+          data-fa="مایکت"
+          data-en="Myket"
+          data-ar="مایکت">
+          مایکت
         </div>
 
         <div
           class="storeDescription"
-          data-fa="نسخه اندرویدی سایروس توریست در مایکت."
-          data-en="Cyrus Tourist Android application on Myket."
-          data-ar="تطبيق سايروس توريست لأندرويد على مايکت."
-        >
-          نسخه اندرویدی سایروس توریست در مایکت.
+          data-fa="نسخه اندروید"
+          data-en="Android Version"
+          data-ar="نسخة أندرويد">
+          نسخه اندروید
         </div>
 
         <a
-          class="storeButton"
-          data-store-link="https://myket.ir/app/cyrustourist.ir.app"
+          class="storeButton active"
           href="https://myket.ir/app/cyrustourist.ir.app"
           target="_blank"
-          rel="noopener"
-        >
-          <span>🚀</span>
-
-          <span
-            data-fa="دانلود از مایکت"
-            data-en="Download from Myket"
-            data-ar="التحميل من مايکت"
-          >
-            دانلود از مایکت
-          </span>
+          rel="noopener noreferrer"
+          data-fa="نصب از مایکت"
+          data-en="Install from Myket"
+          data-ar="التثبيت من مایکت">
+          نصب از مایکت
         </a>
 
-        <div
-          class="storeStatus"
-          data-fa="✅ لینک مایکت فعال است."
-          data-en="✅ Myket link is active."
-          data-ar="✅ رابط مايکت فعال."
-        >
-          ✅ لینک مایکت فعال است.
-        </div>
-
-      </article>
+      </div>
 
 
       <!-- APP STORE -->
 
-      <article class="storeCard">
+      <div class="storeCard">
 
-        <div class="storeTop">
+        <div class="storeIcon">🍎</div>
 
-          <div class="storeIcon">
-            🍎
-          </div>
-
-          <div>
-            <h2
-              class="storeName"
-              data-fa="App Store"
-              data-en="App Store"
-              data-ar="App Store"
-            >
-              App Store
-            </h2>
-
-            <div
-              class="storeType"
-              data-fa="فروشگاه رسمی اپل"
-              data-en="Official Apple Store"
-              data-ar="متجر آبل الرسمي"
-            >
-              فروشگاه رسمی اپل
-            </div>
-          </div>
-
+        <div
+          class="storeName"
+          data-fa="App Store"
+          data-en="App Store"
+          data-ar="App Store">
+          App Store
         </div>
 
         <div
           class="storeDescription"
-          data-fa="نسخه iOS سایروس توریست پس از انتشار از این قسمت در دسترس خواهد بود."
-          data-en="The Cyrus Tourist iOS version will be available here after release."
-          data-ar="ستتوفر نسخة iOS من سايروس توريست هنا بعد الإصدار."
-        >
-          نسخه iOS سایروس توریست پس از انتشار از این قسمت در دسترس خواهد بود.
+          data-fa="فروشگاه رسمی اپل"
+          data-en="Official Apple Store"
+          data-ar="متجر Apple الرسمي">
+          فروشگاه رسمی اپل
         </div>
 
-        <a
-          class="storeButton"
-          data-store-link=""
-          href="#"
-        >
-          <span>🍎</span>
+        <button
+          class="storeButton coming"
+          data-store="App Store"
+          data-fa="به‌زودی"
+          data-en="Coming Soon"
+          data-ar="قريباً">
+          به‌زودی
+        </button>
 
-          <span
-            data-fa="به‌زودی در دسترس"
-            data-en="Coming Soon"
-            data-ar="قريباً"
-          >
-            به‌زودی در دسترس
-          </span>
-        </a>
-
-        <div
-          class="storeStatus"
-          data-fa="لینک App Store هنوز ثبت نشده است."
-          data-en="App Store link has not been added yet."
-          data-ar="لم تتم إضافة رابط App Store بعد."
-        >
-          لینک App Store هنوز ثبت نشده است.
-        </div>
-
-      </article>
+      </div>
 
 
       <!-- SIB -->
 
-      <article class="storeCard">
+      <div class="storeCard">
 
-        <div class="storeTop">
+        <div class="storeIcon">🍏</div>
 
-          <div class="storeIcon">
-            🍏
-          </div>
-
-          <div>
-            <h2
-              class="storeName"
-              data-fa="سیب"
-              data-en="Sib"
-              data-ar="سیب"
-            >
-              سیب
-            </h2>
-
-            <div
-              class="storeType"
-              data-fa="فروشگاه ایرانی iOS"
-              data-en="Iranian iOS Store"
-              data-ar="متجر iOS إيراني"
-            >
-              فروشگاه ایرانی iOS
-            </div>
-          </div>
-
+        <div
+          class="storeName"
+          data-fa="سیب"
+          data-en="Sib"
+          data-ar="سیب">
+          سیب
         </div>
 
         <div
           class="storeDescription"
-          data-fa="نسخه iOS سایروس توریست در فروشگاه سیب پس از انتشار قرار می‌گیرد."
-          data-en="The Cyrus Tourist iOS version will be available on Sib after release."
-          data-ar="ستتوفر نسخة iOS من سايروس توريست على متجر سيب بعد الإصدار."
-        >
-          نسخه iOS سایروس توریست در فروشگاه سیب پس از انتشار قرار می‌گیرد.
+          data-fa="فروشگاه ایرانی iOS"
+          data-en="Iranian iOS Store"
+          data-ar="متجر iOS الإيراني">
+          فروشگاه ایرانی iOS
         </div>
 
-        <a
-          class="storeButton"
-          data-store-link=""
-          href="#"
-        >
-          <span>📲</span>
+        <button
+          class="storeButton coming"
+          data-store="سیب"
+          data-fa="به‌زودی"
+          data-en="Coming Soon"
+          data-ar="قريباً">
+          به‌زودی
+        </button>
 
-          <span
-            data-fa="به‌زودی در دسترس"
-            data-en="Coming Soon"
-            data-ar="قريباً"
-          >
-            به‌زودی در دسترس
-          </span>
-        </a>
-
-        <div
-          class="storeStatus"
-          data-fa="لینک فروشگاه هنوز ثبت نشده است."
-          data-en="Store link has not been added yet."
-          data-ar="لم تتم إضافة رابط المتجر بعد."
-        >
-          لینک فروشگاه هنوز ثبت نشده است.
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-
-<section class="thanks">
-  <div class="wrap">
-
-    <div class="thanksBox">
-
-      <div class="thanksIcon">
-        ✨
       </div>
-
-      <h2
-        data-fa="سپاس از همراهی شما"
-        data-en="Thank You for Your Support"
-        data-ar="شكراً لدعمكم"
-      >
-        سپاس از همراهی شما
-      </h2>
-
-      <p
-        data-fa="سایروس توریست را از فروشگاه مورداعتماد خود دریافت کنید و همراه ما ایران را بهتر ببینید."
-        data-en="Get Cyrus Tourist from your trusted store and discover Iran with us."
-        data-ar="احصل على سايروس توريست من متجرك المفضل واكتشف إيران معنا."
-      >
-        سایروس توریست را از فروشگاه مورداعتماد خود دریافت کنید و همراه ما ایران را بهتر ببینید.
-      </p>
 
     </div>
 
@@ -1009,398 +761,276 @@ footer{
 
 <footer>
   <div class="wrap">
-    <span id="footerText">
-      © Cyrus Tourist — سایروس توریست
+
+    <span
+      data-fa="© سایروس توریست | ایران را با سایروس توریست ببینید"
+      data-en="© Cyrus Tourist | See Iran with Cyrus Tourist"
+      data-ar="© سايروس توريست | شاهد إيران مع سايروس توريست">
+      © سایروس توریست | ایران را با سایروس توریست ببینید
     </span>
+
   </div>
 </footer>
 
 
-<!-- MODAL -->
+<!-- COMING SOON MODAL -->
 
 <div
   class="modal"
-  id="comingSoonModal"
+  id="comingModal"
   role="dialog"
   aria-modal="true"
-  aria-hidden="true"
->
+  aria-labelledby="modalTitle">
 
   <div class="modalBox">
 
     <div class="modalIcon">
-      ⏳
+      ✨
     </div>
 
-    <h3 id="modalTitle">
-      به‌زودی در دسترس
-    </h3>
+    <h2
+      class="modalTitle"
+      id="modalTitle"
+      data-fa="به‌زودی در دسترس شما"
+      data-en="Coming Soon"
+      data-ar="قريباً متاح لكم">
+      به‌زودی در دسترس شما
+    </h2>
 
-    <p id="modalText">
-      لینک این فروشگاه هنوز ثبت نشده است.
-      پس از آماده شدن، همین کلید فعال خواهد شد.
+    <p
+      class="modalText"
+      id="modalText">
+      این فروشگاه به‌زودی فعال خواهد شد.
     </p>
 
     <button
       class="modalClose"
       id="modalClose"
-    >
+      data-fa="متوجه شدم"
+      data-en="Got it"
+      data-ar="حسناً">
       متوجه شدم
     </button>
 
   </div>
-
 </div>
 
 
 <script>
 
-/*
-========================================================
-CYRUS TOURIST STORE CONFIGURATION
-========================================================
-
-فقط در آینده اگر لینک فروشگاهی تغییر کرد،
-مقدار همان لینک را در این قسمت قرار دهید.
-
-نیازی به تغییر طراحی یا کدهای دیگر نیست.
-
-========================================================
-*/
-
-const STORE_LINKS = {
-
-  googlePlay: "",
-
-  bazaar: "",
-
-  myket: "https://myket.ir/app/cyrustourist.ir.app",
-
-  appStore: "",
-
-  sib: ""
-
-};
-
-
-/* LANGUAGE */
-
-const translations = {
-
-  fa:{
-    brand:"گردشگری سایروس توریست",
-    back:"← بازگشت",
-    title:"فروشگاه‌های اپلیکیشن",
-    description:"اپلیکیشن سایروس توریست را از فروشگاه موردنظر خود دریافت کنید.",
-    status:"🟢 لینک‌های نصب سایروس توریست",
-    coming:"به‌زودی در دسترس",
-    notice:"لینک این فروشگاه هنوز ثبت نشده است. پس از آماده شدن، همین کلید فعال خواهد شد.",
-    close:"متوجه شدم",
-    footer:"© Cyrus Tourist — سایروس توریست"
-  },
-
-  en:{
-    brand:"Cyrus Tourist",
-    back:"← Back",
-    title:"App Stores",
-    description:"Get the Cyrus Tourist application from your preferred store.",
-    status:"🟢 Cyrus Tourist installation links",
-    coming:"Coming Soon",
-    notice:"This store link has not been added yet. The same button will become active when it is ready.",
-    close:"Got it",
-    footer:"© Cyrus Tourist"
-  },
-
-  ar:{
-    brand:"سايروس توريست",
-    back:"← العودة",
-    title:"متاجر التطبيقات",
-    description:"احصل على تطبيق سايروس توريست من المتجر الذي تفضله.",
-    status:"🟢 روابط تثبيت سايروس توريست",
-    coming:"قريباً",
-    notice:"لم تتم إضافة رابط هذا المتجر بعد. سيتم تفعيل الزر نفسه عند توفره.",
-    close:"حسناً",
-    footer:"© Cyrus Tourist — سايروس توريست"
-  }
-
-};
-
-
-/* ELEMENTS */
+/* =========================================================
+   CYRUS TOURIST - STORE PAGE
+   ========================================================= */
 
 const languageSelect =
-  document.getElementById("languageSelect");
+  document.getElementById('languageSelect');
 
-const brandText =
-  document.getElementById("brandText");
-
-const backButton =
-  document.getElementById("backButton");
-
-const pageTitle =
-  document.getElementById("pageTitle");
-
-const pageDescription =
-  document.getElementById("pageDescription");
-
-const globalStatus =
-  document.getElementById("globalStatus");
-
-const footerText =
-  document.getElementById("footerText");
-
-const modal =
-  document.getElementById("comingSoonModal");
-
-const modalTitle =
-  document.getElementById("modalTitle");
+const comingModal =
+  document.getElementById('comingModal');
 
 const modalText =
-  document.getElementById("modalText");
+  document.getElementById('modalText');
 
 const modalClose =
-  document.getElementById("modalClose");
-
-
-/* CURRENT LANGUAGE */
+  document.getElementById('modalClose');
 
 let currentLanguage =
-  localStorage.getItem("cyrusTouristLanguage") || "fa";
+  localStorage.getItem('cyrusLanguage') || 'fa';
 
 
-/* APPLY LANGUAGE */
+/* ---------------------------------------------------------
+   TRANSLATIONS
+--------------------------------------------------------- */
+
+const modalMessages = {
+
+  fa:
+    'فروشگاه «STORE» هنوز فعال نشده است.<br><br>' +
+    'به‌محض آماده شدن لینک رسمی، از همین صفحه در دسترس شما قرار می‌گیرد. ✨',
+
+  en:
+    'The “STORE” is not available yet.<br><br>' +
+    'As soon as the official link is ready, it will be available here. ✨',
+
+  ar:
+    'متجر «STORE» غير متاح حالياً.<br><br>' +
+    'بمجرد توفر الرابط الرسمي، سيكون متاحاً من هنا. ✨'
+
+};
+
+
+/* ---------------------------------------------------------
+   APPLY LANGUAGE
+--------------------------------------------------------- */
 
 function applyLanguage(lang){
 
-  if(!translations[lang]){
-    lang="fa";
+  if(!['fa','en','ar'].includes(lang)){
+    lang='fa';
   }
 
   currentLanguage=lang;
 
-  localStorage.setItem(
-    "cyrusTouristLanguage",
-    lang
-  );
-
   document.documentElement.lang=lang;
 
-  document.documentElement.dir =
-    lang==="fa" || lang==="ar"
-      ? "rtl"
-      : "ltr";
+  document.documentElement.dir=
+    lang==='fa' || lang==='ar'
+      ? 'rtl'
+      : 'ltr';
 
   languageSelect.value=lang;
 
-  brandText.textContent =
-    translations[lang].brand;
-
-  backButton.textContent =
-    translations[lang].back;
-
-  pageTitle.textContent =
-    translations[lang].title;
-
-  pageDescription.textContent =
-    translations[lang].description;
-
-  globalStatus.textContent =
-    translations[lang].status;
-
-  footerText.textContent =
-    translations[lang].footer;
-
-
   document
-    .querySelectorAll("[data-"+lang+"]")
+    .querySelectorAll('[data-fa]')
     .forEach(el=>{
 
-      el.textContent =
-        el.getAttribute("data-"+lang);
+      const value=
+        el.getAttribute('data-'+lang);
+
+      if(value!==null){
+        el.textContent=value;
+      }
 
     });
 
-
-  updateStoreButtons();
-
-}
-
-
-/* UPDATE STORE BUTTONS */
-
-function updateStoreButtons(){
-
-  const cards =
-    document.querySelectorAll(".storeCard");
-
-  cards.forEach((card,index)=>{
-
-    const button =
-      card.querySelector(".storeButton");
-
-    const status =
-      card.querySelector(".storeStatus");
-
-    if(!button)return;
-
-    let key="";
-
-    if(index===0)key="googlePlay";
-    if(index===1)key="bazaar";
-    if(index===2)key="myket";
-    if(index===3)key="appStore";
-    if(index===4)key="sib";
-
-    const link =
-      STORE_LINKS[key] || "";
-
-    const buttonText =
-      button.querySelector("span:last-child");
-
-    if(link.trim()!==""){
-
-      button.href=link;
-
-      button.target="_blank";
-
-      button.rel="noopener noreferrer";
-
-      button.classList.add("active");
-
-      button.classList.remove("disabled");
-
-      if(index===2){
-
-        buttonText.textContent =
-          currentLanguage==="fa"
-            ? "دانلود از مایکت"
-            : currentLanguage==="en"
-              ? "Download from Myket"
-              : "التحميل من مايکت";
-
-      }else{
-
-        buttonText.textContent =
-          currentLanguage==="fa"
-            ? "ورود به فروشگاه"
-            : currentLanguage==="en"
-              ? "Open Store"
-              : "فتح المتجر";
-
-      }
-
-      status.textContent =
-        currentLanguage==="fa"
-          ? "✅ لینک فروشگاه فعال است."
-          : currentLanguage==="en"
-            ? "✅ Store link is active."
-            : "✅ رابط المتجر فعال.";
-
-      button.onclick=null;
-
-    }else{
-
-      button.href="#";
-
-      button.removeAttribute("target");
-
-      button.removeAttribute("rel");
-
-      button.classList.remove("active");
-
-      button.classList.add("disabled");
-
-      buttonText.textContent =
-        translations[currentLanguage].coming;
-
-      status.textContent =
-        currentLanguage==="fa"
-          ? "لینک فروشگاه هنوز ثبت نشده است."
-          : currentLanguage==="en"
-            ? "Store link has not been added yet."
-            : "لم تتم إضافة رابط المتجر بعد.";
-
-      button.onclick=(event)=>{
-
-        event.preventDefault();
-
-        showComingSoon();
-
-      };
-
-    }
-
-  });
-
-}
-
-
-/* COMING SOON */
-
-function showComingSoon(){
-
-  modalTitle.textContent =
-    translations[currentLanguage].coming;
-
-  modalText.textContent =
-    translations[currentLanguage].notice;
-
-  modalClose.textContent =
-    translations[currentLanguage].close;
-
-  modal.classList.add("show");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
+  localStorage.setItem(
+    'cyrusLanguage',
+    lang
   );
 
-  document.body.style.overflow="hidden";
+  updateModalText();
 
 }
 
 
-/* CLOSE MODAL */
+/* ---------------------------------------------------------
+   MODAL
+--------------------------------------------------------- */
+
+function updateModalText(){
+
+  if(!modalText)return;
+
+  const store =
+    modalText.dataset.storeName || 'این فروشگاه';
+
+  let text;
+
+  if(currentLanguage==='en'){
+
+    text =
+      'The “'+store+'” store is not available yet.<br><br>' +
+      'As soon as the official link is ready, it will be available here. ✨';
+
+  }else if(currentLanguage==='ar'){
+
+    text =
+      'متجر «'+store+'» غير متاح حالياً.<br><br>' +
+      'بمجرد توفر الرابط الرسمي، سيكون متاحاً من هنا. ✨';
+
+  }else{
+
+    text =
+      'فروشگاه «'+store+'» هنوز فعال نشده است.<br><br>' +
+      'به‌محض آماده شدن لینک رسمی، از همین صفحه در دسترس شما قرار می‌گیرد. ✨';
+
+  }
+
+  modalText.innerHTML=text;
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN COMING SOON
+--------------------------------------------------------- */
+
+function openComingSoon(store){
+
+  modalText.dataset.storeName=store;
+
+  updateModalText();
+
+  comingModal.classList.add('show');
+
+  document.body.classList.add('modal-open');
+
+}
+
+
+/* ---------------------------------------------------------
+   CLOSE MODAL
+--------------------------------------------------------- */
 
 function closeModal(){
 
-  modal.classList.remove("show");
+  comingModal.classList.remove('show');
 
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-  document.body.style.overflow="";
+  document.body.classList.remove('modal-open');
 
 }
 
 
-/* LANGUAGE CHANGE */
+/* ---------------------------------------------------------
+   EMPTY STORE BUTTONS
+--------------------------------------------------------- */
+
+document
+  .querySelectorAll('.storeButton.coming')
+  .forEach(button=>{
+
+    button.addEventListener('click',()=>{
+
+      const store =
+        button.dataset.store ||
+        'این فروشگاه';
+
+      openComingSoon(store);
+
+    });
+
+  });
+
+
+/* ---------------------------------------------------------
+   LANGUAGE
+--------------------------------------------------------- */
 
 languageSelect.addEventListener(
-  "change",
-  ()=>{
-    applyLanguage(
-      languageSelect.value
-    );
+  'change',
+  function(){
+
+    applyLanguage(this.value);
+
   }
 );
 
 
-/* MODAL EVENTS */
+/* ---------------------------------------------------------
+   MODAL EVENTS
+--------------------------------------------------------- */
 
 modalClose.addEventListener(
-  "click",
+  'click',
   closeModal
 );
 
+comingModal.addEventListener(
+  'click',
+  function(e){
 
-modal.addEventListener(
-  "click",
-  event=>{
+    if(e.target===comingModal){
+      closeModal();
+    }
 
-    if(event.target===modal){
+  }
+);
+
+document.addEventListener(
+  'keydown',
+  function(e){
+
+    if(e.key==='Escape'){
       closeModal();
     }
 
@@ -1408,27 +1038,15 @@ modal.addEventListener(
 );
 
 
-document.addEventListener(
-  "keydown",
-  event=>{
-
-    if(event.key==="Escape"){
-      closeModal();
-    }
-
-  }
-);
-
-
-/* START */
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
+  'DOMContentLoaded',
+  function(){
 
-    applyLanguage(
-      currentLanguage
-    );
+    applyLanguage(currentLanguage);
 
   }
 );
