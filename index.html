@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
@@ -781,6 +782,48 @@ color:var(--gold);
 font-weight:900
 }
 
+/* =========================================================
+   CYRUS TOURIST HERO DOWNLOAD HOTSPOTS
+   نامرئی هستند و ظاهر تصویر هدر را تغییر نمی‌دهند.
+========================================================= */
+
+.cyrusHeroDownloadArea{
+position:relative;
+width:100%;
+max-width:420px;
+margin:auto;
+line-height:0
+}
+
+.cyrusHeroDownloadArea .siteHeroImage{
+margin:0 auto;
+max-width:100%
+}
+
+.cyrusHeroHotspot{
+position:absolute;
+display:block;
+padding:0;
+margin:0;
+border:0;
+background:transparent;
+cursor:pointer;
+z-index:20;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+appearance:none;
+-webkit-appearance:none
+}
+
+.cyrusHeroHotspot:focus{
+outline:none
+}
+
+.cyrusHeroHotspot:focus-visible{
+outline:2px solid rgba(255,211,106,.8);
+outline-offset:2px
+}
+
 /* THANK YOU */
 
 .thanksButton{
@@ -1051,6 +1094,8 @@ alt="Cyrus Tourist"
 </p>
 </div>
 
+<div class="cyrusHeroDownloadArea">
+
 <img
 class="siteHeroImage"
 src="assets/images/cyrustourist-hero-2026.webp.jpg"
@@ -1060,6 +1105,15 @@ height="1920"
 loading="eager"
 fetchpriority="high"
 >
+
+<button class="cyrusHeroHotspot" data-cyrus-download="googlePlay" aria-label="Google Play" style="left:6.5%;top:71.5%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="appStore" aria-label="App Store" style="left:36%;top:71.5%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="myket" aria-label="مایکت" style="left:65%;top:71.5%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="bazaar" aria-label="بازار" style="left:6.5%;top:79.7%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="androidFile" aria-label="Android" style="left:36%;top:79.7%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="iosFile" aria-label="iOS" style="left:65%;top:79.7%;width:27.5%;height:7.8%;"></button>
+
+</div>
 
 </div>
 
@@ -2048,20 +2102,31 @@ crossorigin="">
 
 const CYRUS_CONFIG = {
 
+/* لینک فروشگاه‌ها: اگر آماده نیست، خالی بماند. */
+googlePlay:
+'',
+
+appStore:
+'',
+
+myket:
+'https://myket.ir/app/cyrustourist.ir.app',
+
+bazaar:
+'',
+
+/* فایل مستقیم: اگر فایل واقعی روی هاست نیست، خالی بماند. */
 androidFile:
-'android/cyrustourist.ir.apk',
+'',
+
+iosFile:
+'',
 
 androidPage:
 'android.html',
 
-iosFile:
-'ios/cyrustourist.ir.ipa',
-
 iosPage:
 'ios.html',
-
-myket:
-'https://myket.ir/app/cyrustourist.ir.app',
 
 videos: {
 
@@ -3475,26 +3540,38 @@ Math.round(h/45)%8
 
 function initializeLanguage(){
 
-$('languageSelect')
-.addEventListener(
+const select =
+$('languageSelect');
+
+if(!select){
+return;
+}
+
+select.addEventListener(
 'change',
 function(){
 
-if(this.value!=='fa'){
+const language =
+this.value;
 
-alert(
+if(language==='en'){
 
-this.value==='en'
-?
-'English version is being prepared for Cyrus Tourist.'
-:
-'النسخة العربية قيد الإعداد.'
+document.documentElement.lang='en';
+document.documentElement.dir='ltr';
 
-);
+}else if(language==='ar'){
 
-this.value='fa';
+document.documentElement.lang='ar';
+document.documentElement.dir='rtl';
+
+}else{
+
+document.documentElement.lang='fa';
+document.documentElement.dir='rtl';
 
 }
+
+/* لینک‌های هدر مستقل از زبان هستند و با تغییر زبان از کار نمی‌افتند. */
 
 }
 );
@@ -3683,106 +3760,146 @@ closeResourceModal();
    DOWNLOAD STATUS
 ========================================================= */
 
+function cyrusGetLanguage(){
+
+const lang =
+(document.documentElement.lang || 'fa')
+.toLowerCase()
+.split('-')[0];
+
+if(lang==='en') return 'en';
+if(lang==='ar') return 'ar';
+return 'fa';
+
+}
+
+function cyrusLoadingMessage(){
+
+const lang = cyrusGetLanguage();
+
+if(lang==='en'){
+return {
+title:'Cyrus Tourist',
+text:'<span class="loadingSoon">Loading; coming soon... Thank you</span>'
+};
+}
+
+if(lang==='ar'){
+return {
+title:'سايروس توريست',
+text:'<span class="loadingSoon">جارٍ التحميل؛ قريباً... شكراً لكم</span>'
+};
+}
+
+return {
+title:'سایروس توریست',
+text:'<span class="loadingSoon">در حال بارگذاری؛ بزودی... سپاسگزاریم</span>'
+};
+
+}
+
+function cyrusDownloadTitle(key){
+
+const lang=cyrusGetLanguage();
+
+const titles={
+fa:{googlePlay:'Google Play',appStore:'App Store',myket:'مایکت',bazaar:'بازار',androidFile:'نسخه Android',iosFile:'نسخه iOS'},
+en:{googlePlay:'Google Play',appStore:'App Store',myket:'Myket',bazaar:'Bazaar',androidFile:'Android',iosFile:'iOS'},
+ar:{googlePlay:'Google Play',appStore:'App Store',myket:'مايكت',bazaar:'بازار',androidFile:'Android',iosFile:'iOS'}
+};
+
+return (titles[lang] && titles[lang][key]) || titles.fa[key] || 'Cyrus Tourist';
+
+}
+
+async function cyrusFileExists(url){
+
+if(!url || !url.trim()) return false;
+
+try{
+const response=await fetch(url,{method:'HEAD',cache:'no-store'});
+return response.ok;
+}catch(_){
+return false;
+}
+
+}
+
+async function cyrusHandleDownload(key){
+
+const destination=(CYRUS_CONFIG[key] || '').trim();
+const title=cyrusDownloadTitle(key);
+
+if(!destination){
+const message=cyrusLoadingMessage();
+openResourceModal(message.title,message.text,'#',false);
+return;
+}
+
+if(key==='androidFile' || key==='iosFile'){
+
+const exists=await cyrusFileExists(destination);
+
+if(!exists){
+const message=cyrusLoadingMessage();
+openResourceModal(title,message.text,'#',false);
+return;
+}
+
+const link=document.createElement('a');
+link.href=destination;
+link.download='';
+link.rel='noopener';
+document.body.appendChild(link);
+link.click();
+link.remove();
+return;
+}
+
+window.open(destination,'_blank','noopener,noreferrer');
+
+}
+
+function initializeCyrusHeaderDownloads(){
+
+const buttons=document.querySelectorAll('[data-cyrus-download]');
+
+buttons.forEach(button=>{
+
+button.addEventListener('click',function(event){
+
+event.preventDefault();
+
+const key=this.getAttribute('data-cyrus-download');
+
+if(key){
+void cyrusHandleDownload(key);
+}
+
+});
+
+});
+
+}
+
 function initializeDownloads(){
 
-const androidStatus =
-$('androidStatus');
+initializeCyrusHeaderDownloads();
 
-const iosStatus =
-$('iosStatus');
+const androidStatus=$('androidStatus');
+const iosStatus=$('iosStatus');
 
 if(androidStatus){
-
-androidStatus.innerHTML =
-'نسخه فعلی آماده دریافت است.';
-
+androidStatus.innerHTML = CYRUS_CONFIG.androidFile
+? 'نسخه فعلی آماده دریافت است.'
+: '<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>';
 }
 
 if(iosStatus){
-
-iosStatus.innerHTML =
-'برای دریافت نسخه iOS وارد صفحه iOS شوید.';
-
+iosStatus.innerHTML = CYRUS_CONFIG.iosFile
+? 'نسخه iOS آماده دریافت است.'
+: '<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>';
 }
-
-/* مسیر ثابت Android */
-
-const androidLinks =
-document.querySelectorAll(
-'a[href="android/cyrustourist.ir.apk"]'
-);
-
-androidLinks.forEach(
-link=>{
-
-link.onclick =
-e=>{
-
-/*
-اگر فایل هنوز روی سرور وجود نداشته باشد،
-کاربر به‌جای خطای نامفهوم پیام مناسب می‌بیند.
-*/
-
-if(
-!CYRUS_CONFIG.androidFile
-){
-
-e.preventDefault();
-
-openResourceModal(
-
-'🤖 نسخه اندروید',
-
-'<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>',
-
-'#',
-false
-
-);
-
-}
-
-};
-
-}
-);
-
-/* مسیر ثابت iOS */
-
-const iosLinks =
-document.querySelectorAll(
-'a[href="ios/cyrustourist.ir.ipa"]'
-);
-
-iosLinks.forEach(
-link=>{
-
-link.onclick =
-e=>{
-
-if(
-!CYRUS_CONFIG.iosFile
-){
-
-e.preventDefault();
-
-openResourceModal(
-
-'🍎 نسخه iOS',
-
-'<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>',
-
-'#',
-false
-
-);
-
-}
-
-};
-
-}
-);
 
 }
 
