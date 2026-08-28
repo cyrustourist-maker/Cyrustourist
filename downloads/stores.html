@@ -1,1 +1,759 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06121d">
 
+<meta name="description"
+content="دانلود و دریافت اپلیکیشن سایروس توریست از فروشگاه‌های معتبر">
+
+<title>فروشگاه‌ها | سایروس توریست</title>
+
+<style>
+:root{
+  --bg:#06121d;
+  --bg2:#0b2230;
+  --card:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.15);
+  --text:#f5fbff;
+  --muted:#b9cbd4;
+  --green:#29e0ad;
+  --blue:#42b8ff;
+  --gold:#ffd36a;
+  --shadow:0 25px 70px rgba(0,0,0,.38);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+  line-height:1.9;
+
+  background:
+    radial-gradient(circle at 10% 0%,#124058 0,transparent 30%),
+    radial-gradient(circle at 90% 10%,#16483e 0,transparent 28%),
+    linear-gradient(145deg,var(--bg),var(--bg2));
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font-family:inherit;
+}
+
+.wrap{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:rgba(3,13,22,.94);
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  min-height:78px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:15px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-weight:900;
+  font-size:17px;
+}
+
+.logo{
+  width:52px;
+  height:52px;
+
+  object-fit:contain;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.06);
+  padding:3px;
+}
+
+.back{
+  padding:9px 14px;
+
+  border:1px solid var(--line);
+  border-radius:12px;
+
+  background:rgba(255,255,255,.06);
+
+  font-size:13px;
+
+  transition:.2s;
+}
+
+.back:hover{
+  background:rgba(41,224,173,.13);
+  transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+  padding:65px 0 35px;
+  text-align:center;
+}
+
+.icon{
+  width:88px;
+  height:88px;
+
+  margin:0 auto 18px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:27px;
+
+  font-size:45px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(41,224,173,.25),
+      rgba(66,184,255,.2)
+    );
+
+  border:1px solid rgba(255,255,255,.18);
+
+  box-shadow:var(--shadow);
+}
+
+h1{
+  margin:0;
+
+  font-size:clamp(30px,5vw,52px);
+
+  line-height:1.35;
+
+  font-weight:900;
+}
+
+.subtitle{
+  margin:12px auto 0;
+
+  max-width:680px;
+
+  color:var(--muted);
+
+  font-size:17px;
+}
+
+/* STORES */
+
+.stores{
+  padding:25px 0 70px;
+}
+
+.storeGrid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:18px;
+}
+
+.store{
+  position:relative;
+
+  padding:22px;
+
+  border:1px solid var(--line);
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.035)
+    );
+
+  box-shadow:var(--shadow);
+
+  overflow:hidden;
+
+  transition:
+    transform .25s,
+    border-color .25s,
+    background .25s;
+}
+
+.store:hover{
+  transform:translateY(-6px);
+
+  border-color:
+    rgba(41,224,173,.42);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(41,224,173,.12),
+      rgba(66,184,255,.07)
+    );
+}
+
+.store:last-child{
+  grid-column:1/-1;
+  max-width:520px;
+  width:100%;
+  margin:auto;
+}
+
+.storeTop{
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+}
+
+.storeIcon{
+  width:65px;
+  height:65px;
+
+  flex:none;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:19px;
+
+  font-size:32px;
+
+  background:rgba(0,0,0,.20);
+
+  border:1px solid var(--line);
+}
+
+.storeInfo{
+  min-width:0;
+}
+
+.storeName{
+  margin:0;
+
+  font-size:20px;
+
+  font-weight:900;
+}
+
+.storeDesc{
+  margin:3px 0 0;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.storeButton{
+  display:block;
+
+  width:100%;
+
+  margin-top:18px;
+
+  padding:12px 15px;
+
+  text-align:center;
+
+  border-radius:13px;
+
+  font-weight:900;
+
+  font-size:14px;
+
+  border:1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.06);
+
+  transition:.2s;
+}
+
+.storeButton:hover{
+  transform:translateY(-2px);
+}
+
+.storeButton.active{
+  border:0;
+
+  color:#03202a;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--green),
+      var(--blue)
+    );
+}
+
+.storeButton.soon{
+  cursor:default;
+
+  color:#c5d2d8;
+
+  background:
+    rgba(255,255,255,.04);
+}
+
+.badge{
+  position:absolute;
+
+  top:15px;
+  left:15px;
+
+  padding:4px 8px;
+
+  border-radius:8px;
+
+  color:#06202b;
+
+  background:var(--gold);
+
+  font-size:10px;
+
+  font-weight:900;
+}
+
+/* INFO */
+
+.info{
+  margin-top:25px;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  border:1px solid rgba(66,184,255,.22);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(66,184,255,.09),
+      rgba(41,224,173,.06)
+    );
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:13px;
+}
+
+.info strong{
+  color:var(--text);
+}
+
+/* FOOTER */
+
+footer{
+  padding:25px 0 40px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  border-top:1px solid var(--line);
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .nav{
+    min-height:70px;
+  }
+
+  .brand{
+    font-size:14px;
+  }
+
+  .logo{
+    width:45px;
+    height:45px;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .subtitle{
+    font-size:15px;
+  }
+
+  .storeGrid{
+    grid-template-columns:1fr;
+  }
+
+  .store:last-child{
+    grid-column:auto;
+  }
+
+  .store{
+    padding:18px;
+  }
+
+  .storeIcon{
+    width:58px;
+    height:58px;
+    font-size:28px;
+  }
+
+  .storeName{
+    font-size:18px;
+  }
+}
+
+@media(max-width:430px){
+
+  .wrap{
+    width:94%;
+  }
+
+  .back{
+    padding:7px 10px;
+    font-size:11px;
+  }
+
+  .brand span{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:30px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="wrap nav">
+
+<a class="brand" href="../../index.html">
+
+<img
+class="logo"
+src="../assets/images/logo.png"
+alt="Cyrus Tourist"
+>
+
+<span>
+گردشگری سایروس توریست
+</span>
+
+</a>
+
+<a class="back" href="../../index.html">
+← بازگشت به سایت
+</a>
+
+</div>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+<div class="wrap">
+
+<div class="icon">
+🛍️
+</div>
+
+<h1>
+فروشگاه‌های سایروس توریست
+</h1>
+
+<p class="subtitle">
+اپلیکیشن سایروس توریست را از فروشگاه موردنظر خود دریافت کنید
+و همیشه راهنمای سفر و گردشگری ایران را همراه خود داشته باشید.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="stores">
+
+<div class="wrap">
+
+<div class="storeGrid">
+
+
+<!-- GOOGLE PLAY -->
+
+<div class="store">
+
+<div class="storeTop">
+
+<div class="storeIcon">
+▶️
+</div>
+
+<div class="storeInfo">
+
+<h2 class="storeName">
+Google Play
+</h2>
+
+<p class="storeDesc">
+فروشگاه رسمی برنامه‌های اندروید
+</p>
+
+</div>
+
+</div>
+
+<!--
+لینک Google Play را اینجا قرار دهید.
+مثال:
+https://play.google.com/store/apps/details?id=...
+-->
+
+<a
+class="storeButton soon"
+href="#"
+onclick="return false;"
+>
+به‌زودی
+</a>
+
+</div>
+
+
+<!-- BAZAAR -->
+
+<div class="store">
+
+<div class="storeTop">
+
+<div class="storeIcon">
+🛒
+</div>
+
+<div class="storeInfo">
+
+<h2 class="storeName">
+بازار
+</h2>
+
+<p class="storeDesc">
+دانلود نسخه اندروید از بازار
+</p>
+
+</div>
+
+</div>
+
+<!--
+لینک بازار را اینجا قرار دهید.
+-->
+
+<a
+class="storeButton soon"
+href="#"
+onclick="return false;"
+>
+به‌زودی
+</a>
+
+</div>
+
+
+<!-- MYKET -->
+
+<div class="store">
+
+<div class="badge">
+فعال
+</div>
+
+<div class="storeTop">
+
+<div class="storeIcon">
+📱
+</div>
+
+<div class="storeInfo">
+
+<h2 class="storeName">
+مایکت
+</h2>
+
+<p class="storeDesc">
+نسخه اندروید سایروس توریست
+</p>
+
+</div>
+
+</div>
+
+<a
+class="storeButton active"
+href="https://myket.ir/app/cyrustourist.ir.app"
+target="_blank"
+rel="noopener"
+>
+باز کردن صفحه مایکت
+</a>
+
+</div>
+
+
+<!-- APP STORE -->
+
+<div class="store">
+
+<div class="storeTop">
+
+<div class="storeIcon">
+
+</div>
+
+<div class="storeInfo">
+
+<h2 class="storeName">
+App Store
+</h2>
+
+<p class="storeDesc">
+نسخه رسمی برای iPhone و iPad
+</p>
+
+</div>
+
+</div>
+
+<!--
+لینک App Store را اینجا قرار دهید.
+-->
+
+<a
+class="storeButton soon"
+href="#"
+onclick="return false;"
+>
+به‌زودی
+</a>
+
+</div>
+
+
+<!-- SIB -->
+
+<div class="store">
+
+<div class="storeTop">
+
+<div class="storeIcon">
+🍎
+</div>
+
+<div class="storeInfo">
+
+<h2 class="storeName">
+سیب
+</h2>
+
+<p class="storeDesc">
+نسخه iOS از فروشگاه سیب
+</p>
+
+</div>
+
+</div>
+
+<!--
+لینک فروشگاه سیب را اینجا قرار دهید.
+-->
+
+<a
+class="storeButton soon"
+href="#"
+onclick="return false;"
+>
+به‌زودی
+</a>
+
+</div>
+
+
+</div>
+
+
+<div class="info">
+
+<strong>💚 سایروس توریست</strong>
+
+<br>
+
+لینک فروشگاه‌ها در این صفحه ثابت است.
+هر زمان لینک جدید یک فروشگاه را دریافت کردید،
+فقط همان لینک را جایگزین می‌کنید و نیازی به تغییر ساختار سایت نیست.
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="wrap">
+
+© 2026 Cyrus Tourist — سایروس توریست
+
+</div>
+
+</footer>
+
+
+</body>
+</html>
