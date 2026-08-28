@@ -1,0 +1,63 @@
+{
+  "language": "English",
+  "direction": "ltr",
+
+  "siteTitle": "Cyrus Tourist",
+  "siteSubtitle": "Discover Iran with Cyrus Tourist",
+
+  "headerTourism": "Cyrus Tourist Tourism",
+
+  "home": "Home",
+  "map": "Map",
+  "nearby": "Nearby Attractions",
+  "videos": "Tourism Films",
+  "residence": "Accommodation",
+
+  "iranTourism": "Iran Tourism",
+  "iranTourismSubtitle": "Nature, culture, attractions and travel experiences",
+
+  "tourismMap": "Tourism Map",
+  "nearbyAttractions": "Attractions Near Me",
+  "touristAttractions": "Tourist Attractions",
+  "tourismFilms": "Tourism Films",
+  "travelGuide": "Travel Guide",
+
+  "location": "My Location",
+  "search": "Search",
+  "searchPlace": "Search for a place...",
+
+  "residences": "Accommodations",
+  "hotel": "Hotel",
+  "guestHouse": "Guest House",
+  "ecotourism": "Ecotourism",
+  "camp": "Camp",
+
+  "historical": "Historical",
+  "natural": "Natural",
+  "cultural": "Cultural",
+  "coastal": "Coastal",
+  "natureTourism": "Nature Tourism",
+  "sights": "Sights",
+
+  "travelPlan": "Travel Plan",
+  "navigation": "Navigation",
+  "travelTips": "Travel Tips",
+  "support": "Support",
+
+  "toolbox": "Tourism Toolbox",
+  "nearbySearch": "Nearby Attractions",
+  "weather": "Weather",
+  "emergency": "Emergency",
+  "distance": "Measure Distance",
+  "flashlight": "Flashlight",
+  "compass": "Compass",
+
+  "favorites": "Favorites",
+  "aboutUs": "About Us",
+  "services": "Services",
+
+  "ready": "Ready to use",
+  "back": "Back",
+
+  "language": "Language"
+}
