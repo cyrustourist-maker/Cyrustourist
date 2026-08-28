@@ -1,85 +1,140 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>دانلود اپ اندروید | سایروس توریست</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-          content="دانلود مستقیم اپلیکیشن سایروس توریست برای اندروید">
+    <title>
+        دانلود اپ اندروید | سایروس توریست
+    </title>
+
+    <meta
+        name="description"
+        content="دانلود مستقیم اپلیکیشن سایروس توریست برای اندروید"
+    >
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
+
             margin: 0;
+
             min-height: 100vh;
-            font-family: Tahoma, Arial, sans-serif;
+
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
 
             background:
-                radial-gradient(circle at top right, #146c8c, transparent 40%),
-                linear-gradient(135deg, #061a2a, #073d4d, #063b35);
+                radial-gradient(
+                    circle at top right,
+                    #159957,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom left,
+                    #146c8c,
+                    transparent 40%
+                ),
+                linear-gradient(
+                    135deg,
+                    #061a2a,
+                    #073d4d,
+                    #063b35
+                );
 
             color: #ffffff;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            padding: 25px;
+            padding: 20px;
+
         }
 
         .card {
+
             width: 100%;
+
             max-width: 600px;
 
             text-align: center;
 
             padding: 45px 30px;
 
-            border-radius: 30px;
+            border-radius: 32px;
 
-            background: rgba(255, 255, 255, 0.10);
+            background:
+                rgba(255,255,255,0.10);
 
-            border: 1px solid rgba(255, 255, 255, 0.20);
+            border:
+                1px solid
+                rgba(255,255,255,0.20);
 
-            backdrop-filter: blur(15px);
+            backdrop-filter:
+                blur(18px);
 
             box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.35);
+                0 25px 70px
+                rgba(0,0,0,0.38);
+
         }
 
         .icon {
-            width: 100px;
-            height: 100px;
 
-            margin: 0 auto 25px;
+            width: 105px;
 
-            border-radius: 25px;
+            height: 105px;
+
+            margin:
+                0 auto 25px;
+
+            border-radius: 28px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 55px;
 
-            background: rgba(255, 255, 255, 0.14);
+            background:
+                rgba(255,255,255,0.14);
 
             box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.25);
+                0 15px 35px
+                rgba(0,0,0,0.28);
+
         }
 
         h1 {
-            margin: 0 0 15px;
+
+            margin:
+                0 0 15px;
 
             font-size: 30px;
+
         }
 
         .description {
-            margin: 0 auto 30px;
+
+            margin:
+                0 auto 30px;
 
             max-width: 480px;
 
@@ -88,16 +143,18 @@
             font-size: 16px;
 
             opacity: 0.88;
+
         }
 
         .download-button {
+
             width: 100%;
 
             border: none;
 
-            border-radius: 18px;
+            border-radius: 20px;
 
-            padding: 18px 20px;
+            padding: 19px 20px;
 
             font-family: inherit;
 
@@ -107,50 +164,139 @@
 
             color: #ffffff;
 
-            background: linear-gradient(
-                135deg,
-                #159957,
-                #087f5b
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #18a765,
+                    #087f5b
+                );
 
             cursor: pointer;
 
             box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.28);
+                0 14px 32px
+                rgba(0,0,0,0.30);
 
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
+
         }
 
         .download-button:hover {
-            transform: translateY(-3px);
+
+            transform:
+                translateY(-4px);
 
             box-shadow:
-                0 17px 35px rgba(0, 0, 0, 0.35);
+                0 20px 40px
+                rgba(0,0,0,0.36);
+
         }
 
         .download-button:active {
-            transform: scale(0.98);
+
+            transform:
+                scale(0.97);
+
         }
 
-        .status {
+        .result {
+
             display: none;
 
-            margin-top: 22px;
+            margin-top: 25px;
 
-            padding: 16px;
+            padding: 24px 20px;
 
-            border-radius: 15px;
+            border-radius: 22px;
 
-            background: rgba(0, 0, 0, 0.22);
+            background:
+                rgba(0,0,0,0.24);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            animation:
+                appear 0.4s ease;
+
+        }
+
+        .thank-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            margin:
+                0 auto 14px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            background:
+                rgba(255,255,255,0.14);
+
+            animation:
+                thankPulse 1.4s infinite;
+
+        }
+
+        .result-title {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+        }
+
+        .result-text {
+
+            font-size: 14px;
 
             line-height: 1.9;
 
-            font-size: 14px;
+            opacity: 0.82;
+
+        }
+
+        .loading {
+
+            display: none;
+
+            margin:
+                18px auto 0;
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 50%;
+
+            border:
+                3px solid
+                rgba(255,255,255,0.25);
+
+            border-top-color:
+                #ffffff;
+
+            animation:
+                spin 0.8s linear infinite;
+
         }
 
         .back {
+
             display: inline-block;
 
             margin-top: 25px;
@@ -162,43 +308,111 @@
             font-size: 14px;
 
             opacity: 0.75;
+
         }
 
         .back:hover {
+
             opacity: 1;
+
         }
 
         .footer {
+
             margin-top: 30px;
 
             font-size: 12px;
 
             opacity: 0.55;
+
+        }
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        @keyframes appear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+        @keyframes thankPulse {
+
+            0%,
+            100% {
+
+                transform:
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+                    scale(1.08);
+
+            }
+
         }
 
         @media (max-width: 600px) {
 
             body {
+
                 padding: 15px;
+
             }
 
             .card {
-                padding: 35px 20px;
+
+                padding:
+                    35px 20px;
+
             }
 
             h1 {
+
                 font-size: 25px;
+
             }
 
             .description {
+
                 font-size: 14px;
+
             }
 
             .download-button {
+
                 font-size: 16px;
+
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -214,64 +428,185 @@
         </h1>
 
         <p class="description">
+
             اپلیکیشن سایروس توریست برای اندروید
+
             <br>
+
             سفر، طبیعت، جاذبه‌ها و خدمات گردشگری
+
             <br>
+
             همه در یک اپلیکیشن
+
         </p>
 
         <button
             class="download-button"
-            onclick="showStatus()">
+            onclick="startDownload()"
+        >
 
             📥 دانلود مستقیم اپ اندروید
 
         </button>
 
         <div
-            id="status"
-            class="status">
+            id="result"
+            class="result"
+        >
 
-            ⏳ در حال بارگذاری...
+            <div class="thank-icon">
+                ✨
+            </div>
 
-            <br>
+            <div
+                id="resultTitle"
+                class="result-title"
+            >
+                سپاسگزاریم از انتخاب سایروس توریست ❤️
+            </div>
 
-            لینک دانلود اپلیکیشن اندروید
-            به‌زودی فعال می‌شود.
+            <div
+                id="resultText"
+                class="result-text"
+            >
+                در حال بررسی فایل دانلود...
+            </div>
+
+            <div
+                id="loading"
+                class="loading"
+            ></div>
 
         </div>
 
         <a
             class="back"
-            href="../">
+            href="./"
+        >
 
             ← بازگشت به صفحه دانلود
 
         </a>
 
         <div class="footer">
+
             © Cyrus Tourist
+
         </div>
 
     </main>
 
+
     <script>
 
-        function showStatus() {
+        function startDownload() {
 
-            const status =
-                document.getElementById("status");
+            const result =
+                document.getElementById("result");
 
-            status.style.display = "block";
+            const resultTitle =
+                document.getElementById("resultTitle");
 
-            status.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest"
+            const resultText =
+                document.getElementById("resultText");
+
+            const loading =
+                document.getElementById("loading");
+
+            result.style.display = "block";
+
+            resultTitle.innerHTML =
+                "✨ سپاسگزاریم از انتخاب سایروس توریست ❤️";
+
+            resultText.innerHTML =
+                "در حال بررسی فایل دانلود...";
+
+            loading.style.display = "block";
+
+
+            /*
+             * مسیر ثابت فایل APK
+             */
+
+            const apkPath =
+                "android/cyrustourist.ir.apk";
+
+
+            fetch(
+                apkPath,
+                {
+                    method: "HEAD",
+                    cache: "no-store"
+                }
+            )
+            .then(function(response) {
+
+                loading.style.display =
+                    "none";
+
+
+                if (response.ok) {
+
+                    resultTitle.innerHTML =
+                        "🎉 فایل آماده است";
+
+                    resultText.innerHTML =
+                        "فایل اپلیکیشن سایروس توریست آماده دانلود است.";
+
+                    setTimeout(function() {
+
+                        window.location.href =
+                            apkPath;
+
+                    }, 700);
+
+                }
+
+                else {
+
+                    showComingSoon();
+
+                }
+
+            })
+
+            .catch(function() {
+
+                loading.style.display =
+                    "none";
+
+                showComingSoon();
+
             });
+
+        }
+
+
+        function showComingSoon() {
+
+            const resultTitle =
+                document.getElementById(
+                    "resultTitle"
+                );
+
+            const resultText =
+                document.getElementById(
+                    "resultText"
+                );
+
+
+            resultTitle.innerHTML =
+                "⏳ در حال بارگذاری...";
+
+            resultText.innerHTML =
+                "فایل اپلیکیشن هنوز روی سرور قرار نگرفته است.<br>" +
+                "این بخش به‌زودی فعال می‌شود. 🌿";
+
         }
 
     </script>
 
 </body>
+
 </html>
