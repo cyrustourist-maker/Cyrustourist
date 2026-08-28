@@ -1,1 +1,63 @@
+{
+  "language": "فارسی",
+  "direction": "rtl",
 
+  "siteTitle": "سایروس توریست",
+  "siteSubtitle": "ایران را با سایروس توریست ببینید",
+
+  "headerTourism": "گردشگری سایروس توریست",
+
+  "home": "خانه",
+  "map": "نقشه",
+  "nearby": "جاذبه‌های اطراف",
+  "videos": "فیلم‌ها",
+  "residence": "اقامتگاه",
+
+  "iranTourism": "گردشگری ایران",
+  "iranTourismSubtitle": "طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر",
+
+  "tourismMap": "نقشه گردشگری",
+  "nearbyAttractions": "جاذبه‌های اطراف من",
+  "touristAttractions": "جاذبه‌های گردشگری",
+  "tourismFilms": "فیلم‌های گردشگری",
+  "travelGuide": "راهنمای سفر",
+
+  "location": "موقعیت من",
+  "search": "جستجو",
+  "searchPlace": "جستجوی مکان...",
+
+  "residences": "اقامتگاه‌ها",
+  "hotel": "هتل",
+  "guestHouse": "مهمان‌خانه",
+  "ecotourism": "بوم‌گردی",
+  "camp": "کمپ",
+
+  "historical": "تاریخی",
+  "natural": "طبیعی",
+  "cultural": "فرهنگی",
+  "coastal": "ساحلی",
+  "natureTourism": "طبیعت‌گردی",
+  "sights": "دیدنی‌ها",
+
+  "travelPlan": "برنامه سفر",
+  "navigation": "مسیریابی",
+  "travelTips": "نکات سفر",
+  "support": "پشتیبانی",
+
+  "toolbox": "جعبه ابزار گردشگری",
+  "nearbySearch": "جاذبه‌های اطراف",
+  "weather": "آب‌وهوا",
+  "emergency": "اضطراری",
+  "distance": "اندازه‌گیری فاصله",
+  "flashlight": "چراغ‌قوه",
+  "compass": "قطب‌نما",
+
+  "favorites": "علاقه‌مندی‌ها",
+  "aboutUs": "درباره ما",
+  "services": "خدمات",
+
+  "ready": "آماده استفاده",
+  "back": "بازگشت",
+
+  "language": "زبان"
+}
