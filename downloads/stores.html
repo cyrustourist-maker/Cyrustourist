@@ -14,14 +14,18 @@
   --bg:#06121d;
   --bg2:#0b2230;
   --card:rgba(255,255,255,.075);
-  --card2:rgba(255,255,255,.045);
   --line:rgba(255,255,255,.14);
+
   --text:#f5fbff;
   --muted:#b9cbd4;
+
   --green:#29e0ad;
   --blue:#42b8ff;
+
   --gold:#ffd36a;
   --gold2:#dcae42;
+  --goldGlow:rgba(255,211,106,.22);
+
   --shadow:0 25px 70px rgba(0,0,0,.38);
 }
 
@@ -37,12 +41,29 @@ body{
   margin:0;
   min-height:100vh;
   color:var(--text);
-  font-family:Tahoma,Arial,sans-serif;
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
   line-height:1.9;
+
   background:
-    radial-gradient(circle at 10% 0%,#124058 0,transparent 30%),
-    radial-gradient(circle at 90% 10%,#16483e 0,transparent 28%),
-    linear-gradient(145deg,var(--bg),var(--bg2));
+    radial-gradient(
+      circle at 10% 0%,
+      #124058 0,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      #16483e 0,
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      var(--bg),
+      var(--bg2)
+    );
 }
 
 body.modal-open{
@@ -59,80 +80,143 @@ select{
   font-family:inherit;
 }
 
-/* HEADER */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(3,13,22,.96);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
-}
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .wrap{
   width:min(1150px,92%);
   margin:auto;
 }
 
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:rgba(3,13,22,.96);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border-bottom:1px solid var(--line);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.18);
+}
+
 .nav{
   min-height:82px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:15px;
 }
 
 .brand{
   display:flex;
   align-items:center;
+
   gap:10px;
+
   font-weight:900;
   font-size:18px;
+
   white-space:nowrap;
 }
 
 .brandLogo{
   width:58px;
   height:58px;
+
   object-fit:contain;
+
   border-radius:14px;
+
   background:rgba(255,255,255,.05);
+
   padding:3px;
+
+  box-shadow:
+    0 0 20px rgba(255,211,106,.06);
 }
 
 .links{
   display:flex;
   align-items:center;
   justify-content:flex-end;
+
   flex-wrap:wrap;
+
   gap:7px;
 }
 
 .links a{
   padding:7px 11px;
+
   border:1px solid var(--line);
+
   border-radius:11px;
+
   background:rgba(255,255,255,.05);
+
   font-size:12px;
-  transition:.2s;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
 .links a:hover{
   background:rgba(41,224,173,.14);
-  transform:translateY(-1px);
+
+  border-color:rgba(41,224,173,.28);
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(41,224,173,.08);
 }
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
 .languageBox select{
   appearance:auto;
+
   padding:8px 10px;
+
   border:1px solid var(--line);
+
   border-radius:11px;
+
   background:#102b38;
+
   color:#fff;
+
   outline:none;
+
   cursor:pointer;
+
   font-size:12px;
+
+  transition:.2s;
+}
+
+.languageBox select:hover{
+  border-color:rgba(255,211,106,.45);
+
+  box-shadow:
+    0 0 18px rgba(255,211,106,.08);
 }
 
 .languageBox option{
@@ -140,7 +224,9 @@ header{
   color:#fff;
 }
 
-/* HERO */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
   padding:60px 0 35px;
@@ -148,38 +234,68 @@ header{
 
 .heroBox{
   text-align:center;
+
   max-width:850px;
+
   margin:auto;
 }
 
 .badge{
   display:inline-flex;
+
   align-items:center;
+
   gap:7px;
+
   padding:7px 14px;
+
   border-radius:999px;
-  border:1px solid rgba(255,211,106,.28);
-  background:rgba(255,211,106,.08);
+
+  border:1px solid rgba(255,211,106,.35);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,211,106,.13),
+      rgba(255,211,106,.035)
+    );
+
   color:var(--gold);
+
   font-size:12px;
+
   font-weight:900;
-  box-shadow:0 0 25px rgba(255,211,106,.07);
+
+  box-shadow:
+    0 0 25px rgba(255,211,106,.07),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .hero h1{
   margin:18px 0 10px;
-  font-size:clamp(32px,5vw,55px);
+
+  font-size:
+    clamp(32px,5vw,55px);
+
   line-height:1.3;
+
   font-weight:900;
+
+  text-shadow:
+    0 4px 30px rgba(0,0,0,.3);
 }
 
 .hero p{
   margin:0 auto;
+
   color:var(--muted);
+
   font-size:17px;
 }
 
-/* STORE GRID */
+/* =========================================================
+   STORE SECTION
+========================================================= */
 
 .storesSection{
   padding:20px 0 70px;
@@ -187,147 +303,394 @@ header{
 
 .storeGrid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+
+  grid-template-columns:
+    repeat(5,1fr);
+
   gap:16px;
 }
 
+/* =========================================================
+   STORE CARD
+========================================================= */
+
 .storeCard{
   position:relative;
-  min-height:270px;
+
+  min-height:285px;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
+
   padding:24px 15px;
+
   border:1px solid var(--line);
+
   border-radius:25px;
+
   background:
-    linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.025));
-  box-shadow:var(--shadow);
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.095),
+      rgba(255,255,255,.025)
+    );
+
+  box-shadow:
+    var(--shadow);
+
   overflow:hidden;
+
   transition:
-    transform .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
 }
 
 .storeCard::before{
   content:"";
+
   position:absolute;
+
   inset:-70px;
-  background:radial-gradient(
-    circle,
-    rgba(255,211,106,.12),
-    transparent 60%
-  );
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,211,106,.18),
+      transparent 60%
+    );
+
   opacity:0;
-  transition:.3s;
+
+  transition:.35s;
+
+  pointer-events:none;
+}
+
+.storeCard::after{
+  content:"";
+
+  position:absolute;
+
+  left:15%;
+  right:15%;
+  bottom:0;
+
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,211,106,.55),
+      transparent
+    );
+
+  opacity:.35;
 }
 
 .storeCard:hover{
-  transform:translateY(-7px);
-  border-color:rgba(255,211,106,.45);
+  transform:translateY(-8px);
+
+  border-color:
+    rgba(255,211,106,.48);
+
   box-shadow:
     0 25px 70px rgba(0,0,0,.42),
-    0 0 35px rgba(255,211,106,.08);
+    0 0 40px rgba(255,211,106,.10);
 }
 
 .storeCard:hover::before{
   opacity:1;
 }
 
+/* =========================================================
+   STORE ICON
+========================================================= */
+
 .storeIcon{
   position:relative;
+
   z-index:1;
+
   width:82px;
   height:82px;
+
   display:grid;
+
   place-items:center;
+
   border-radius:23px;
+
   font-size:43px;
+
   margin-bottom:15px;
+
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,.04)
+      rgba(255,255,255,.14),
+      rgba(255,255,255,.035)
     );
-  border:1px solid rgba(255,255,255,.14);
+
+  border:1px solid
+    rgba(255,255,255,.14);
+
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.1),
-    0 12px 30px rgba(0,0,0,.25);
+    inset 0 1px 0
+      rgba(255,255,255,.12),
+
+    0 12px 30px
+      rgba(0,0,0,.25),
+
+    0 0 25px
+      rgba(255,211,106,.045);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
+
+.storeCard:hover .storeIcon{
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255,255,255,.12),
+
+    0 15px 35px
+      rgba(0,0,0,.28),
+
+    0 0 30px
+      rgba(255,211,106,.12);
+}
+
+/* =========================================================
+   STORE TEXT
+========================================================= */
 
 .storeName{
   position:relative;
+
   z-index:1;
+
   font-size:18px;
+
   font-weight:900;
+
   text-align:center;
 }
 
 .storeDescription{
   position:relative;
+
   z-index:1;
+
   margin-top:5px;
+
   color:var(--muted);
+
   font-size:11px;
+
   text-align:center;
 }
 
+/* =========================================================
+   PROFESSIONAL BUTTON
+========================================================= */
+
 .storeButton{
   position:relative;
+
   z-index:1;
+
   margin-top:17px;
+
   width:100%;
+
+  min-height:43px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
   padding:10px 12px;
+
   border-radius:13px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.07);
+
+  border:1px solid
+    rgba(255,255,255,.14);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.035)
+    );
+
   color:#fff;
+
   cursor:pointer;
+
   font-size:12px;
+
   font-weight:900;
-  transition:.2s;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease,
+    background .2s ease;
 }
 
 .storeButton:hover{
   transform:translateY(-2px);
+
+  border-color:
+    rgba(255,211,106,.32);
+
+  box-shadow:
+    0 10px 25px
+      rgba(0,0,0,.20);
 }
+
+.storeButton:active{
+  transform:
+    translateY(0)
+    scale(.98);
+}
+
+/* ACTIVE */
 
 .storeButton.active{
   border:0;
-  background:linear-gradient(135deg,var(--green),var(--blue));
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--green),
+      var(--blue)
+    );
+
   color:#03202a;
-  box-shadow:0 10px 25px rgba(41,224,173,.16);
+
+  box-shadow:
+    0 10px 25px
+      rgba(41,224,173,.18);
+
+  position:relative;
+
+  overflow:hidden;
 }
+
+.storeButton.active::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-120%;
+
+  width:80%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  transition:.6s;
+}
+
+.storeButton.active:hover::before{
+  left:140%;
+}
+
+/* COMING */
 
 .storeButton.coming{
-  border-color:rgba(255,211,106,.25);
+  border-color:
+    rgba(255,211,106,.25);
+
   color:var(--gold);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,211,106,.08),
+      rgba(255,211,106,.025)
+    );
 }
 
-/* FOOTER */
+.storeButton.coming:hover{
+  border-color:
+    rgba(255,211,106,.48);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,211,106,.14),
+      rgba(255,211,106,.045)
+    );
+
+  box-shadow:
+    0 10px 30px
+      rgba(255,211,106,.08);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
   padding:25px 0 40px;
+
   text-align:center;
+
   color:var(--muted);
+
   font-size:12px;
 }
 
-/* MODAL */
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal{
   position:fixed;
+
   inset:0;
+
   z-index:99999;
+
   display:none;
+
   align-items:center;
+
   justify-content:center;
+
   padding:18px;
-  background:rgba(0,0,0,.78);
+
+  background:
+    rgba(0,0,0,.78);
+
   backdrop-filter:blur(10px);
+
+  -webkit-backdrop-filter:blur(10px);
 }
 
 .modal.show{
@@ -336,76 +699,142 @@ footer{
 
 .modalBox{
   width:min(450px,100%);
+
   padding:28px 22px;
+
   border-radius:27px;
-  border:1px solid rgba(255,211,106,.3);
+
+  border:1px solid
+    rgba(255,211,106,.34);
+
   background:
     linear-gradient(
       145deg,
       rgba(24,50,61,.98),
       rgba(5,19,29,.98)
     );
+
   box-shadow:
-    0 30px 100px rgba(0,0,0,.6),
-    0 0 45px rgba(255,211,106,.08);
+    0 30px 100px
+      rgba(0,0,0,.6),
+
+    0 0 45px
+      rgba(255,211,106,.09);
+
   text-align:center;
-  animation:modalIn .25s ease;
+
+  animation:
+    modalIn .25s ease;
 }
 
 @keyframes modalIn{
+
   from{
     opacity:0;
-    transform:translateY(15px) scale(.96);
+
+    transform:
+      translateY(15px)
+      scale(.96);
   }
+
   to{
     opacity:1;
-    transform:translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 }
 
 .modalIcon{
   width:75px;
   height:75px;
+
   margin:0 auto 14px;
+
   display:grid;
+
   place-items:center;
+
   border-radius:50%;
-  border:1px solid rgba(255,211,106,.35);
-  background:rgba(255,211,106,.09);
+
+  border:1px solid
+    rgba(255,211,106,.35);
+
+  background:
+    rgba(255,211,106,.09);
+
   color:var(--gold);
+
   font-size:35px;
-  box-shadow:0 0 35px rgba(255,211,106,.1);
+
+  box-shadow:
+    0 0 35px
+      rgba(255,211,106,.1);
 }
 
 .modalTitle{
   margin:0 0 8px;
+
   font-size:22px;
+
   font-weight:900;
 }
 
 .modalText{
   margin:0;
+
   color:var(--muted);
+
   font-size:14px;
 }
 
 .modalClose{
   margin-top:20px;
+
   width:100%;
+
   padding:11px;
+
   border:0;
+
   border-radius:13px;
-  background:linear-gradient(135deg,var(--green),var(--blue));
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--green),
+      var(--blue)
+    );
+
   color:#03202a;
+
   font-weight:900;
+
   cursor:pointer;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
-/* RESPONSIVE */
+.modalClose:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 25px
+      rgba(41,224,173,.16);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1000px){
+
   .storeGrid{
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+      repeat(3,1fr);
   }
 }
 
@@ -413,7 +842,9 @@ footer{
 
   .nav{
     min-height:75px;
+
     flex-wrap:wrap;
+
     padding:7px 0;
   }
 
@@ -428,29 +859,37 @@ footer{
 
   .links{
     width:100%;
+
     justify-content:center;
   }
 
   .links a{
     font-size:11px;
+
     padding:6px 8px;
   }
 
   .storeGrid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
+
     gap:12px;
   }
 
   .storeCard{
-    min-height:245px;
+    min-height:250px;
+
     padding:18px 12px;
+
     border-radius:21px;
   }
 
   .storeIcon{
     width:68px;
     height:68px;
+
     font-size:34px;
+
     border-radius:19px;
   }
 
@@ -460,6 +899,12 @@ footer{
 
   .storeDescription{
     font-size:10px;
+  }
+
+  .storeButton{
+    font-size:11px;
+
+    min-height:41px;
   }
 
   .hero{
@@ -481,25 +926,48 @@ footer{
     min-height:225px;
   }
 }
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible{
+  outline:2px solid var(--gold);
+
+  outline-offset:3px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
 <header>
+
   <div class="wrap nav">
 
-    <a class="brand" href="../index.html" aria-label="Cyrus Tourist">
+    <a
+      class="brand"
+      href="../index.html"
+      aria-label="Cyrus Tourist">
+
       <img
         class="brandLogo"
         src="../assets/images/logo.png"
-        alt="Cyrus Tourist"
-      >
-      <span data-fa="گردشگری سایروس توریست"
-            data-en="Cyrus Tourist"
-            data-ar="سياحة سايروس">
+        alt="Cyrus Tourist">
+
+      <span
+        data-fa="گردشگری سایروس توریست"
+        data-en="Cyrus Tourist"
+        data-ar="سياحة سايروس">
         گردشگری سایروس توریست
       </span>
+
     </a>
 
     <nav class="links">
@@ -529,32 +997,47 @@ footer{
       </a>
 
       <div class="languageBox">
-        <select id="languageSelect" aria-label="Language">
+
+        <select
+          id="languageSelect"
+          aria-label="Language">
+
           <option value="fa">فارسی</option>
           <option value="en">English</option>
           <option value="ar">العربية</option>
+
         </select>
+
       </div>
 
     </nav>
 
   </div>
+
 </header>
 
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
 
 <main>
 
 <section class="hero">
+
   <div class="wrap heroBox">
 
     <div class="badge">
+
       ✨
+
       <span
         data-fa="دانلود و نصب اپلیکیشن"
         data-en="Download & Install"
         data-ar="تحميل وتثبيت التطبيق">
         دانلود و نصب اپلیکیشن
       </span>
+
     </div>
 
     <h1
@@ -572,10 +1055,12 @@ footer{
     </p>
 
   </div>
+
 </section>
 
 
 <section class="storesSection">
+
   <div class="wrap">
 
     <div class="storeGrid">
@@ -584,7 +1069,9 @@ footer{
 
       <div class="storeCard">
 
-        <div class="storeIcon">▶️</div>
+        <div class="storeIcon">
+          ▶️
+        </div>
 
         <div
           class="storeName"
@@ -603,12 +1090,19 @@ footer{
         </div>
 
         <button
+          type="button"
           class="storeButton coming"
-          data-store="Google Play"
-          data-fa="به‌زودی"
-          data-en="Coming Soon"
-          data-ar="قريباً">
-          به‌زودی
+          data-store-fa="گوگل پلی"
+          data-store-en="Google Play"
+          data-store-ar="Google Play">
+
+          <span
+            data-fa="به‌زودی"
+            data-en="Coming Soon"
+            data-ar="قريباً">
+            به‌زودی
+          </span>
+
         </button>
 
       </div>
@@ -618,7 +1112,9 @@ footer{
 
       <div class="storeCard">
 
-        <div class="storeIcon">🛍️</div>
+        <div class="storeIcon">
+          🛍️
+        </div>
 
         <div
           class="storeName"
@@ -637,12 +1133,19 @@ footer{
         </div>
 
         <button
+          type="button"
           class="storeButton coming"
-          data-store="بازار"
-          data-fa="به‌زودی"
-          data-en="Coming Soon"
-          data-ar="قريباً">
-          به‌زودی
+          data-store-fa="بازار"
+          data-store-en="Bazaar"
+          data-store-ar="بازار">
+
+          <span
+            data-fa="به‌زودی"
+            data-en="Coming Soon"
+            data-ar="قريباً">
+            به‌زودی
+          </span>
+
         </button>
 
       </div>
@@ -652,7 +1155,9 @@ footer{
 
       <div class="storeCard">
 
-        <div class="storeIcon">📱</div>
+        <div class="storeIcon">
+          📱
+        </div>
 
         <div
           class="storeName"
@@ -674,11 +1179,15 @@ footer{
           class="storeButton active"
           href="https://myket.ir/app/cyrustourist.ir.app"
           target="_blank"
-          rel="noopener noreferrer"
-          data-fa="نصب از مایکت"
-          data-en="Install from Myket"
-          data-ar="التثبيت من مایکت">
-          نصب از مایکت
+          rel="noopener noreferrer">
+
+          <span
+            data-fa="نصب از مایکت"
+            data-en="Install from Myket"
+            data-ar="التثبيت من مایکت">
+            نصب از مایکت
+          </span>
+
         </a>
 
       </div>
@@ -688,7 +1197,9 @@ footer{
 
       <div class="storeCard">
 
-        <div class="storeIcon">🍎</div>
+        <div class="storeIcon">
+          🍎
+        </div>
 
         <div
           class="storeName"
@@ -707,12 +1218,19 @@ footer{
         </div>
 
         <button
+          type="button"
           class="storeButton coming"
-          data-store="App Store"
-          data-fa="به‌زودی"
-          data-en="Coming Soon"
-          data-ar="قريباً">
-          به‌زودی
+          data-store-fa="App Store"
+          data-store-en="App Store"
+          data-store-ar="App Store">
+
+          <span
+            data-fa="به‌زودی"
+            data-en="Coming Soon"
+            data-ar="قريباً">
+            به‌زودی
+          </span>
+
         </button>
 
       </div>
@@ -722,7 +1240,9 @@ footer{
 
       <div class="storeCard">
 
-        <div class="storeIcon">🍏</div>
+        <div class="storeIcon">
+          🍏
+        </div>
 
         <div
           class="storeName"
@@ -741,12 +1261,19 @@ footer{
         </div>
 
         <button
+          type="button"
           class="storeButton coming"
-          data-store="سیب"
-          data-fa="به‌زودی"
-          data-en="Coming Soon"
-          data-ar="قريباً">
-          به‌زودی
+          data-store-fa="سیب"
+          data-store-en="Sib"
+          data-store-ar="سیب">
+
+          <span
+            data-fa="به‌زودی"
+            data-en="Coming Soon"
+            data-ar="قريباً">
+            به‌زودی
+          </span>
+
         </button>
 
       </div>
@@ -754,12 +1281,18 @@ footer{
     </div>
 
   </div>
+
 </section>
 
 </main>
 
 
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
+
   <div class="wrap">
 
     <span
@@ -770,10 +1303,13 @@ footer{
     </span>
 
   </div>
+
 </footer>
 
 
-<!-- COMING SOON MODAL -->
+<!-- =======================================================
+     COMING SOON MODAL
+======================================================= -->
 
 <div
   class="modal"
@@ -800,10 +1336,10 @@ footer{
     <p
       class="modalText"
       id="modalText">
-      این فروشگاه به‌زودی فعال خواهد شد.
     </p>
 
     <button
+      type="button"
       class="modalClose"
       id="modalClose"
       data-fa="متوجه شدم"
@@ -813,243 +1349,466 @@ footer{
     </button>
 
   </div>
+
 </div>
 
 
 <script>
 
 /* =========================================================
-   CYRUS TOURIST - STORE PAGE
-   ========================================================= */
+   CYRUS TOURIST
+   STORE PAGE - FINAL
+========================================================= */
+
+(function(){
+
+'use strict';
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const languageSelect =
-  document.getElementById('languageSelect');
+  document.getElementById(
+    'languageSelect'
+  );
 
 const comingModal =
-  document.getElementById('comingModal');
+  document.getElementById(
+    'comingModal'
+  );
 
 const modalText =
-  document.getElementById('modalText');
+  document.getElementById(
+    'modalText'
+  );
 
 const modalClose =
-  document.getElementById('modalClose');
+  document.getElementById(
+    'modalClose'
+  );
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const supportedLanguages =
+  ['fa','en','ar'];
 
 let currentLanguage =
-  localStorage.getItem('cyrusLanguage') || 'fa';
+  localStorage.getItem(
+    'cyrusLanguage'
+  ) || 'fa';
 
 
-/* ---------------------------------------------------------
-   TRANSLATIONS
---------------------------------------------------------- */
+/* =========================================================
+   STORE NAMES
+========================================================= */
 
-const modalMessages = {
+const storeNames = {
 
-  fa:
-    'فروشگاه «STORE» هنوز فعال نشده است.<br><br>' +
-    'به‌محض آماده شدن لینک رسمی، از همین صفحه در دسترس شما قرار می‌گیرد. ✨',
+  fa:{
+    default:'این فروشگاه'
+  },
 
-  en:
-    'The “STORE” is not available yet.<br><br>' +
-    'As soon as the official link is ready, it will be available here. ✨',
+  en:{
+    default:'This store'
+  },
 
-  ar:
-    'متجر «STORE» غير متاح حالياً.<br><br>' +
-    'بمجرد توفر الرابط الرسمي، سيكون متاحاً من هنا. ✨'
+  ar:{
+    default:'هذا المتجر'
+  }
 
 };
 
 
-/* ---------------------------------------------------------
+/* =========================================================
+   GET STORE NAME
+========================================================= */
+
+function getStoreName(button){
+
+  if(!button){
+    return storeNames[
+      currentLanguage
+    ].default;
+  }
+
+  const value =
+    button.getAttribute(
+      'data-store-' +
+      currentLanguage
+    );
+
+  return value ||
+    storeNames[
+      currentLanguage
+    ].default;
+}
+
+
+/* =========================================================
    APPLY LANGUAGE
---------------------------------------------------------- */
+========================================================= */
 
 function applyLanguage(lang){
 
-  if(!['fa','en','ar'].includes(lang)){
+  if(
+    !supportedLanguages.includes(lang)
+  ){
     lang='fa';
   }
 
   currentLanguage=lang;
 
-  document.documentElement.lang=lang;
+  document.documentElement.lang=
+    lang;
 
   document.documentElement.dir=
-    lang==='fa' || lang==='ar'
-      ? 'rtl'
-      : 'ltr';
+    lang==='en'
+      ? 'ltr'
+      : 'rtl';
 
-  languageSelect.value=lang;
+  if(languageSelect){
+    languageSelect.value=lang;
+  }
+
+
+  /*
+     ترجمه تمام عناصر
+  */
 
   document
-    .querySelectorAll('[data-fa]')
-    .forEach(el=>{
+    .querySelectorAll(
+      '[data-fa]'
+    )
+    .forEach(function(el){
 
-      const value=
-        el.getAttribute('data-'+lang);
+      const value =
+        el.getAttribute(
+          'data-' + lang
+        );
 
-      if(value!==null){
-        el.textContent=value;
+      if(value !== null){
+
+        /*
+           برای جلوگیری از خراب شدن
+           HTML داخلی مودال و عناصر
+           ترجمه فقط textContent است.
+        */
+
+        if(
+          el.tagName !== 'INPUT' &&
+          el.tagName !== 'TEXTAREA'
+        ){
+
+          el.textContent=value;
+
+        }
+
       }
 
     });
+
+
+  /*
+     عنوان صفحه
+  */
+
+  const titles={
+
+    fa:'فروشگاه‌ها | سایروس توریست',
+
+    en:'Stores | Cyrus Tourist',
+
+    ar:'المتاجر | سايروس توريست'
+
+  };
+
+  document.title=
+    titles[lang];
+
+
+  /*
+     ذخیره زبان
+  */
 
   localStorage.setItem(
     'cyrusLanguage',
     lang
   );
 
+
+  /*
+     بروزرسانی مودال
+  */
+
   updateModalText();
 
 }
 
 
-/* ---------------------------------------------------------
-   MODAL
---------------------------------------------------------- */
+/* =========================================================
+   MODAL TEXT
+========================================================= */
 
 function updateModalText(){
 
-  if(!modalText)return;
+  if(!modalText){
+    return;
+  }
 
   const store =
-    modalText.dataset.storeName || 'این فروشگاه';
+    modalText.dataset.storeName ||
+    storeNames[
+      currentLanguage
+    ].default;
 
-  let text;
 
   if(currentLanguage==='en'){
 
-    text =
-      'The “'+store+'” store is not available yet.<br><br>' +
-      'As soon as the official link is ready, it will be available here. ✨';
+    modalText.innerHTML =
+      'The <strong>“' +
+      escapeHtml(store) +
+      '”</strong> store is not available yet.<br><br>' +
 
-  }else if(currentLanguage==='ar'){
+      'As soon as the official link is ready, ' +
+      'it will be available here. ✨';
 
-    text =
-      'متجر «'+store+'» غير متاح حالياً.<br><br>' +
-      'بمجرد توفر الرابط الرسمي، سيكون متاحاً من هنا. ✨';
-
-  }else{
-
-    text =
-      'فروشگاه «'+store+'» هنوز فعال نشده است.<br><br>' +
-      'به‌محض آماده شدن لینک رسمی، از همین صفحه در دسترس شما قرار می‌گیرد. ✨';
-
+    return;
   }
 
-  modalText.innerHTML=text;
+
+  if(currentLanguage==='ar'){
+
+    modalText.innerHTML =
+      'متجر <strong>«' +
+      escapeHtml(store) +
+      '»</strong> غير متاح حالياً.<br><br>' +
+
+      'بمجرد توفر الرابط الرسمي، ' +
+      'سيكون متاحاً من هنا. ✨';
+
+    return;
+  }
+
+
+  modalText.innerHTML =
+    'فروشگاه <strong>«' +
+    escapeHtml(store) +
+    '»</strong> هنوز فعال نشده است.<br><br>' +
+
+    'به‌محض آماده شدن لینک رسمی، ' +
+    'از همین صفحه در دسترس شما قرار می‌گیرد. ✨';
 
 }
 
 
-/* ---------------------------------------------------------
-   OPEN COMING SOON
---------------------------------------------------------- */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-function openComingSoon(store){
+function escapeHtml(value){
 
-  modalText.dataset.storeName=store;
+  return String(value)
+
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+
+    .replace(
+      /</g,
+      '&lt;'
+    )
+
+    .replace(
+      />/g,
+      '&gt;'
+    )
+
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+
+    .replace(
+      /'/g,
+      '&#039;'
+    );
+
+}
+
+
+/* =========================================================
+   OPEN MODAL
+========================================================= */
+
+function openComingSoon(button){
+
+  const store =
+    getStoreName(button);
+
+  modalText.dataset.storeName=
+    store;
 
   updateModalText();
 
-  comingModal.classList.add('show');
+  comingModal.classList.add(
+    'show'
+  );
 
-  document.body.classList.add('modal-open');
+  document.body.classList.add(
+    'modal-open'
+  );
+
+  if(modalClose){
+
+    setTimeout(function(){
+
+      modalClose.focus();
+
+    },50);
+
+  }
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    CLOSE MODAL
---------------------------------------------------------- */
+========================================================= */
 
 function closeModal(){
 
-  comingModal.classList.remove('show');
+  comingModal.classList.remove(
+    'show'
+  );
 
-  document.body.classList.remove('modal-open');
+  document.body.classList.remove(
+    'modal-open'
+  );
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    EMPTY STORE BUTTONS
---------------------------------------------------------- */
+========================================================= */
 
 document
-  .querySelectorAll('.storeButton.coming')
-  .forEach(button=>{
+  .querySelectorAll(
+    '.storeButton.coming'
+  )
+  .forEach(function(button){
 
-    button.addEventListener('click',()=>{
+    button.addEventListener(
+      'click',
+      function(){
 
-      const store =
-        button.dataset.store ||
-        'این فروشگاه';
+        openComingSoon(
+          button
+        );
 
-      openComingSoon(store);
-
-    });
+      }
+    );
 
   });
 
 
-/* ---------------------------------------------------------
-   LANGUAGE
---------------------------------------------------------- */
+/* =========================================================
+   LANGUAGE SELECT
+========================================================= */
 
-languageSelect.addEventListener(
-  'change',
-  function(){
+if(languageSelect){
 
-    applyLanguage(this.value);
+  languageSelect.addEventListener(
+    'change',
+    function(){
 
-  }
-);
+      applyLanguage(
+        this.value
+      );
 
-
-/* ---------------------------------------------------------
-   MODAL EVENTS
---------------------------------------------------------- */
-
-modalClose.addEventListener(
-  'click',
-  closeModal
-);
-
-comingModal.addEventListener(
-  'click',
-  function(e){
-
-    if(e.target===comingModal){
-      closeModal();
     }
+  );
 
-  }
-);
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+if(modalClose){
+
+  modalClose.addEventListener(
+    'click',
+    closeModal
+  );
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE
+========================================================= */
+
+if(comingModal){
+
+  comingModal.addEventListener(
+    'click',
+    function(event){
+
+      if(
+        event.target ===
+        comingModal
+      ){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
 
 document.addEventListener(
   'keydown',
-  function(e){
+  function(event){
 
-    if(e.key==='Escape'){
+    if(
+      event.key === 'Escape' &&
+      comingModal.classList.contains(
+        'show'
+      )
+    ){
+
       closeModal();
+
     }
 
   }
 );
 
 
-/* ---------------------------------------------------------
-   START
---------------------------------------------------------- */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function(){
-
-    applyLanguage(currentLanguage);
-
-  }
+applyLanguage(
+  currentLanguage
 );
+
+})();
 
 </script>
 
