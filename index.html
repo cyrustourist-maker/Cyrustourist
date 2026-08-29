@@ -405,33 +405,6 @@ color:#8deed5;
 font-size:13px
 }
 
-.mapTouchWrap{
-position:relative
-}
-
-.mapTouchOverlay{
-position:absolute;
-inset:0;
-z-index:401;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:14px;
-background:rgba(6,18,27,.32);
-color:#fff;
-font-size:13px;
-font-weight:700;
-cursor:pointer;
-touch-action:pan-y;
-transition:opacity .25s;
-}
-
-.mapTouchOverlay.hide{
-opacity:0;
-pointer-events:none
-}
-
 #touristMap{
 width:100%;
 height:470px;
@@ -1136,17 +1109,17 @@ class="brandLogo"
 src="assets/images/logo.png"
 alt="Cyrus Tourist"
 >
-<span>گردشگری سایروس توریست</span>
+<span data-i18n="brand">گردشگری سایروس توریست</span>
 </a>
 
 <nav class="links" aria-label="منوی اصلی">
 
-<a href="#top">خانه</a>
-<a href="#map">نقشه</a>
-<a href="#nearby">جاذبه‌های اطراف</a>
-<a href="#videos">فیلم‌ها</a>
-<a href="#residence">اقامتگاه</a>
-<a href="#downloads">دانلود اپلیکیشن</a>
+<a href="#top" data-i18n="navHome">خانه</a>
+<a href="#map" data-i18n="navMap">نقشه</a>
+<a href="#nearby" data-i18n="navNearby">جاذبه‌های اطراف</a>
+<a href="#videos" data-i18n="navVideos">فیلم‌ها</a>
+<a href="#residence" data-i18n="navResidence">اقامتگاه</a>
+<a href="#downloads" data-i18n="navDownloads">دانلود اپلیکیشن</a>
 
 <div class="languageBox">
 <select id="languageSelect" aria-label="انتخاب زبان">
@@ -1171,11 +1144,11 @@ alt="Cyrus Tourist"
 <div class="siteHero">
 
 <div>
-<h1 class="siteHeroTitle">
+<h1 class="siteHeroTitle" data-i18n="heroTitle">
 گردشگری سایروس توریست
 </h1>
 
-<p class="siteHeroSub">
+<p class="siteHeroSub" data-i18n="heroSub">
 ایران را با سایروس توریست ببینید
 </p>
 </div>
@@ -1213,8 +1186,8 @@ fetchpriority="high"
 
 <div class="title">
 <div>
-<h2>گردشگری ایران</h2>
-<p>طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر</p>
+<h2 data-i18n="mainTitle">گردشگری ایران</h2>
+<p data-i18n="mainSub">طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر</p>
 </div>
 </div>
 
@@ -1222,32 +1195,32 @@ fetchpriority="high"
 
 <a class="cat" href="#map">
 <b>🗺️</b>
-نقشه گردشگری
+<span data-i18n="catMap">نقشه گردشگری</span>
 </a>
 
 <a class="cat" href="#nearby">
 <b>📍</b>
-جاذبه‌های اطراف من
+<span data-i18n="catNearby">جاذبه‌های اطراف من</span>
 </a>
 
 <a class="cat" href="#attractions">
 <b>🏛️</b>
-جاذبه‌های گردشگری
+<span data-i18n="catAttractions">جاذبه‌های گردشگری</span>
 </a>
 
 <a class="cat" href="#videos">
 <b>🎬</b>
-فیلم‌های گردشگری
+<span data-i18n="catVideos">فیلم‌های گردشگری</span>
 </a>
 
 <a class="cat" href="#residence">
 <b>🏡</b>
-اقامتگاه
+<span data-i18n="catResidence">اقامتگاه</span>
 </a>
 
 <a class="cat" href="#guide">
 <b>🧭</b>
-راهنمای سفر
+<span data-i18n="catGuide">راهنمای سفر</span>
 </a>
 
 </div>
@@ -1262,8 +1235,8 @@ fetchpriority="high"
 
 <div class="title">
 <div>
-<h2>نقشه گردشگری</h2>
-<p>موقعیت خود را پیدا کنید و جاذبه‌های اطراف را ببینید.</p>
+<h2 data-i18n="mapTitle">نقشه گردشگری</h2>
+<p data-i18n="mapSub">موقعیت خود را پیدا کنید و جاذبه‌های اطراف را ببینید.</p>
 </div>
 </div>
 
@@ -1277,10 +1250,11 @@ fetchpriority="high"
 id="mapSearchInput"
 type="search"
 placeholder="جستجوی مکان..."
+data-i18n-placeholder="mapSearchPlaceholder"
 autocomplete="off"
 >
 
-<button class="btn primary" id="mapSearchButton">
+<button class="btn primary" id="mapSearchButton" data-i18n="mapSearchBtn">
 جستجو
 </button>
 
@@ -1290,24 +1264,21 @@ autocomplete="off"
 
 </div>
 
-<div class="mapTouchWrap">
 <div id="touristMap"></div>
-<div class="mapTouchOverlay" id="mapTouchOverlay">برای جابه‌جایی نقشه لمس کنید</div>
-</div>
 
 <div class="mapButtons">
 
-<button class="btn primary" id="myLocationButton">
+<button class="btn primary" id="myLocationButton" data-i18n="myLocationBtn">
 📍 موقعیت من
 </button>
 
-<button class="btn" id="mapNearbyButton">
+<button class="btn" id="mapNearbyButton" data-i18n="catNearby2">
 جاذبه‌های اطراف
 </button>
 
 </div>
 
-<div class="mapInfo">
+<div class="mapInfo" data-i18n="mapInfo">
 برای استفاده از موقعیت مکانی، اجازه دسترسی به موقعیت را در مرورگر تأیید کنید.
 </div>
 
@@ -1320,16 +1291,16 @@ autocomplete="off"
 <div class="toolboxHead">
 
 <div>
-<div class="toolboxTitle">
+<div class="toolboxTitle" data-i18n="toolboxTitle">
 🧰 جعبه ابزار گردشگری
 </div>
 
-<div class="toolboxSub">
+<div class="toolboxSub" data-i18n="toolboxSub">
 ابزارهای کاربردی برای سفر
 </div>
 </div>
 
-<button class="btn" id="toolReset">
+<button class="btn" id="toolReset" data-i18n="toolReset">
 بازنشانی
 </button>
 
@@ -1339,42 +1310,42 @@ autocomplete="off"
 
 <button class="tool" id="mapTool">
 <span class="toolIcon">🗺️</span>
-<span class="toolLabel">نقشه</span>
+<span class="toolLabel" data-i18n="toolMap">نقشه</span>
 </button>
 
 <button class="tool" id="nearbyTool">
 <span class="toolIcon">📍</span>
-<span class="toolLabel">جاذبه‌های اطراف</span>
+<span class="toolLabel" data-i18n="catNearby2">جاذبه‌های اطراف</span>
 </button>
 
 <button class="tool" id="locationTool">
 <span class="toolIcon">📌</span>
-<span class="toolLabel">موقعیت من</span>
+<span class="toolLabel" data-i18n="toolLocation">موقعیت من</span>
 </button>
 
 <button class="tool" id="weatherTool">
 <span class="toolIcon">🌤️</span>
-<span class="toolLabel">آب‌وهوا</span>
+<span class="toolLabel" data-i18n="toolWeather">آب‌وهوا</span>
 </button>
 
 <button class="tool" id="emergencyTool">
 <span class="toolIcon">🆘</span>
-<span class="toolLabel">اضطراری</span>
+<span class="toolLabel" data-i18n="toolEmergency">اضطراری</span>
 </button>
 
 <button class="tool" id="distanceTool">
 <span class="toolIcon">📏</span>
-<span class="toolLabel">اندازه‌گیری فاصله</span>
+<span class="toolLabel" data-i18n="toolDistance">اندازه‌گیری فاصله</span>
 </button>
 
 <button class="tool" id="flashTool">
 <span class="toolIcon">🔦</span>
-<span class="toolLabel">چراغ‌قوه</span>
+<span class="toolLabel" data-i18n="toolFlash">چراغ‌قوه</span>
 </button>
 
 <button class="tool" id="compassTool">
 <span class="toolIcon">🧭</span>
-<span class="toolLabel">قطب‌نما</span>
+<span class="toolLabel" data-i18n="toolCompass">قطب‌نما</span>
 </button>
 
 </div>
@@ -1414,9 +1385,9 @@ autocomplete="off"
 <div class="nearbyTop">
 
 <div>
-<h2>📍 جاذبه‌های اطراف من</h2>
+<h2 data-i18n="nearbyTitle">📍 جاذبه‌های اطراف من</h2>
 
-<p class="muted">
+<p class="muted" data-i18n="nearbySub">
 جاذبه‌های گردشگری، تاریخی و طبیعی نزدیک شما
 </p>
 </div>
@@ -1475,8 +1446,8 @@ autocomplete="off"
 
 <div class="title">
 <div>
-<h2>جاذبه‌های گردشگری</h2>
-<p>مکان‌های دیدنی ایران</p>
+<h2 data-i18n="attractionsTitle">جاذبه‌های گردشگری</h2>
+<p data-i18n="attractionsSub">مکان‌های دیدنی ایران</p>
 </div>
 </div>
 
@@ -1484,32 +1455,32 @@ autocomplete="off"
 
 <div class="cat">
 <b>🏛️</b>
-تاریخی
+<span data-i18n="catHistoric">تاریخی</span>
 </div>
 
 <div class="cat">
 <b>🌄</b>
-طبیعی
+<span data-i18n="catNature">طبیعی</span>
 </div>
 
 <div class="cat">
 <b>🏺</b>
-فرهنگی
+<span data-i18n="catCultural">فرهنگی</span>
 </div>
 
 <div class="cat">
 <b>🌊</b>
-ساحلی
+<span data-i18n="catCoastal">ساحلی</span>
 </div>
 
 <div class="cat">
 <b>🌲</b>
-طبیعت‌گردی
+<span data-i18n="catEcotour">طبیعت‌گردی</span>
 </div>
 
 <div class="cat">
 <b>📸</b>
-دیدنی‌ها
+<span data-i18n="catSights">دیدنی‌ها</span>
 </div>
 
 </div>
@@ -1524,8 +1495,8 @@ autocomplete="off"
 
 <div class="title">
 <div>
-<h2>🎬 فیلم‌های گردشگری</h2>
-<p>۲۷ فیلم گردشگری</p>
+<h2 data-i18n="videosTitle">🎬 فیلم‌های گردشگری</h2>
+<p data-i18n="videosCount">۲۷ فیلم گردشگری</p>
 </div>
 </div>
 
@@ -2542,8 +2513,8 @@ data-video-id="27">
 
 <div class="title">
 <div>
-<h2>🏡 اقامتگاه</h2>
-<p>اقامتگاه‌های گردشگری</p>
+<h2 data-i18n="residenceTitle">🏡 اقامتگاه</h2>
+<p data-i18n="residenceSub">اقامتگاه‌های گردشگری</p>
 </div>
 </div>
 
@@ -2551,22 +2522,22 @@ data-video-id="27">
 
 <div class="cat">
 <b>🏨</b>
-هتل
+<span data-i18n="catHotel">هتل</span>
 </div>
 
 <div class="cat">
 <b>🏠</b>
-مهمان‌خانه
+<span data-i18n="catGuesthouse">مهمان‌خانه</span>
 </div>
 
 <div class="cat">
 <b>🌳</b>
-بوم‌گردی
+<span data-i18n="catEcolodge">بوم‌گردی</span>
 </div>
 
 <div class="cat">
 <b>⛺</b>
-کمپ
+<span data-i18n="catCamp">کمپ</span>
 </div>
 
 </div>
@@ -2581,8 +2552,8 @@ data-video-id="27">
 
 <div class="title">
 <div>
-<h2>🧭 راهنمای سفر</h2>
-<p>راهنمای گردشگری سایروس توریست</p>
+<h2 data-i18n="guideTitle">🧭 راهنمای سفر</h2>
+<p data-i18n="guideSub">راهنمای گردشگری سایروس توریست</p>
 </div>
 </div>
 
@@ -2590,22 +2561,22 @@ data-video-id="27">
 
 <div class="cat">
 <b>🗺️</b>
-برنامه سفر
+<span data-i18n="catItinerary">برنامه سفر</span>
 </div>
 
 <div class="cat">
 <b>🚗</b>
-مسیریابی
+<span data-i18n="catNavigation">مسیریابی</span>
 </div>
 
 <div class="cat">
 <b>💡</b>
-نکات سفر
+<span data-i18n="catTips">نکات سفر</span>
 </div>
 
 <div class="cat">
 <b>☎️</b>
-پشتیبانی
+<span data-i18n="catSupport">پشتیبانی</span>
 </div>
 
 </div>
@@ -2620,8 +2591,8 @@ data-video-id="27">
 
 <div class="title">
 <div>
-<h2>📱 دانلود اپلیکیشن سایروس توریست</h2>
-<p>
+<h2 data-i18n="downloadsTitle">📱 دانلود اپلیکیشن سایروس توریست</h2>
+<p data-i18n="downloadsSub">
 نسخه‌های جدید برنامه را از همین مسیر دریافت کنید.
 </p>
 </div>
@@ -3093,28 +3064,6 @@ attribution:'© OpenStreetMap'
 }
 
 ).addTo(touristMap);
-
-const mapTouchOverlay=$('mapTouchOverlay');
-const mapEl=$('touristMap');
-
-if(mapTouchOverlay && mapEl){
-
-mapTouchOverlay.addEventListener('click',function activateMapTouch(){
-
-mapEl.style.touchAction='none';
-mapTouchOverlay.classList.add('hide');
-
-setTimeout(()=>{
-
-if(mapTouchOverlay.parentNode){
-mapTouchOverlay.remove();
-}
-
-},300);
-
-});
-
-}
 
 setTimeout(
 invalidate,
@@ -4334,12 +4283,127 @@ document.documentElement.dir='rtl';
 
 }
 
-/* لینک‌های هدر مستقل از زبان هستند و با تغییر زبان از کار نمی‌افتند. */
-
+updateSiteLanguage(language);
 updateVideoCaptionsLanguage(language);
 
 }
 );
+
+}
+
+/* =========================================================
+   SITE-WIDE TEXT TRANSLATIONS
+   عنوان‌ها، دکمه‌ها و منوهای اصلی سایت بر اساس زبان انتخابی
+========================================================= */
+
+const CYRUS_I18N = {
+
+brand:{fa:'گردشگری سایروس توریست',en:'Cyrus Tourist',ar:'سايروس توريست للسياحة'},
+navHome:{fa:'خانه',en:'Home',ar:'الرئيسية'},
+navMap:{fa:'نقشه',en:'Map',ar:'الخريطة'},
+navNearby:{fa:'جاذبه‌های اطراف',en:'Nearby',ar:'الأماكن القريبة'},
+navVideos:{fa:'فیلم‌ها',en:'Videos',ar:'الفيديوهات'},
+navResidence:{fa:'اقامتگاه',en:'Stays',ar:'الإقامة'},
+navDownloads:{fa:'دانلود اپلیکیشن',en:'Download App',ar:'تحميل التطبيق'},
+
+heroTitle:{fa:'گردشگری سایروس توریست',en:'Cyrus Tourist',ar:'سايروس توريست للسياحة'},
+heroSub:{fa:'ایران را با سایروس توریست ببینید',en:'Discover Iran with Cyrus Tourist',ar:'اكتشف إيران مع سايروس توريست'},
+
+mainTitle:{fa:'گردشگری ایران',en:'Tourism in Iran',ar:'السياحة في إيران'},
+mainSub:{fa:'طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر',en:'Nature, culture, attractions and travel experiences',ar:'الطبيعة والثقافة والمعالم وتجارب السفر'},
+
+catMap:{fa:'نقشه گردشگری',en:'Tourist Map',ar:'خريطة سياحية'},
+catNearby:{fa:'جاذبه‌های اطراف من',en:'Attractions Near Me',ar:'المعالم القريبة مني'},
+catAttractions:{fa:'جاذبه‌های گردشگری',en:'Tourist Attractions',ar:'المعالم السياحية'},
+catVideos:{fa:'فیلم‌های گردشگری',en:'Tourism Videos',ar:'فيديوهات سياحية'},
+catResidence:{fa:'اقامتگاه',en:'Stays',ar:'الإقامة'},
+catGuide:{fa:'راهنمای سفر',en:'Travel Guide',ar:'دليل السفر'},
+
+mapTitle:{fa:'نقشه گردشگری',en:'Tourist Map',ar:'خريطة سياحية'},
+mapSub:{fa:'موقعیت خود را پیدا کنید و جاذبه‌های اطراف را ببینید.',en:'Find your location and see nearby attractions.',ar:'حدد موقعك وشاهد المعالم القريبة.'},
+mapSearchPlaceholder:{fa:'جستجوی مکان...',en:'Search a place...',ar:'ابحث عن مكان...'},
+mapSearchBtn:{fa:'جستجو',en:'Search',ar:'بحث'},
+myLocationBtn:{fa:'📍 موقعیت من',en:'📍 My Location',ar:'📍 موقعي'},
+catNearby2:{fa:'جاذبه‌های اطراف',en:'Nearby Attractions',ar:'المعالم القريبة'},
+mapInfo:{fa:'برای استفاده از موقعیت مکانی، اجازه دسترسی به موقعیت را در مرورگر تأیید کنید.',en:'To use your location, please allow location access in your browser.',ar:'لاستخدام موقعك، يرجى السماح بالوصول إلى الموقع في المتصفح.'},
+
+toolboxTitle:{fa:'🧰 جعبه ابزار گردشگری',en:'🧰 Traveler Toolbox',ar:'🧰 أدوات السائح'},
+toolboxSub:{fa:'ابزارهای کاربردی برای سفر',en:'Handy tools for your trip',ar:'أدوات مفيدة لرحلتك'},
+toolReset:{fa:'بازنشانی',en:'Reset',ar:'إعادة تعيين'},
+toolMap:{fa:'نقشه',en:'Map',ar:'الخريطة'},
+toolLocation:{fa:'موقعیت من',en:'My Location',ar:'موقعي'},
+toolWeather:{fa:'آب‌وهوا',en:'Weather',ar:'الطقس'},
+toolEmergency:{fa:'اضطراری',en:'Emergency',ar:'الطوارئ'},
+toolDistance:{fa:'اندازه‌گیری فاصله',en:'Measure Distance',ar:'قياس المسافة'},
+toolFlash:{fa:'چراغ‌قوه',en:'Flashlight',ar:'المصباح'},
+toolCompass:{fa:'قطب‌نما',en:'Compass',ar:'البوصلة'},
+
+nearbyTitle:{fa:'📍 جاذبه‌های اطراف من',en:'📍 Attractions Near Me',ar:'📍 المعالم القريبة مني'},
+nearbySub:{fa:'جاذبه‌های گردشگری، تاریخی و طبیعی نزدیک شما',en:'Tourist, historical and natural attractions near you',ar:'معالم سياحية وتاريخية وطبيعية بالقرب منك'},
+
+attractionsTitle:{fa:'جاذبه‌های گردشگری',en:'Tourist Attractions',ar:'المعالم السياحية'},
+attractionsSub:{fa:'مکان‌های دیدنی ایران',en:"Iran's must-see places",ar:'أماكن يجب زيارتها في إيران'},
+catHistoric:{fa:'تاریخی',en:'Historic',ar:'تاريخي'},
+catNature:{fa:'طبیعی',en:'Nature',ar:'طبيعي'},
+catCultural:{fa:'فرهنگی',en:'Cultural',ar:'ثقافي'},
+catCoastal:{fa:'ساحلی',en:'Coastal',ar:'ساحلي'},
+catEcotour:{fa:'طبیعت‌گردی',en:'Ecotourism',ar:'سياحة بيئية'},
+catSights:{fa:'دیدنی‌ها',en:'Sightseeing',ar:'معالم'},
+
+videosTitle:{fa:'🎬 فیلم‌های گردشگری',en:'🎬 Tourism Videos',ar:'🎬 فيديوهات سياحية'},
+videosCount:{fa:'۲۷ فیلم گردشگری',en:'27 tourism videos',ar:'27 فيديو سياحي'},
+
+residenceTitle:{fa:'🏡 اقامتگاه',en:'🏡 Stays',ar:'🏡 الإقامة'},
+residenceSub:{fa:'اقامتگاه‌های گردشگری',en:'Tourist accommodations',ar:'أماكن الإقامة السياحية'},
+catHotel:{fa:'هتل',en:'Hotel',ar:'فندق'},
+catGuesthouse:{fa:'مهمان‌خانه',en:'Guesthouse',ar:'بيت ضيافة'},
+catEcolodge:{fa:'بوم‌گردی',en:'Eco-lodge',ar:'نزل بيئي'},
+catCamp:{fa:'کمپ',en:'Camp',ar:'مخيم'},
+
+guideTitle:{fa:'🧭 راهنمای سفر',en:'🧭 Travel Guide',ar:'🧭 دليل السفر'},
+guideSub:{fa:'راهنمای گردشگری سایروس توریست',en:'Cyrus Tourist travel guide',ar:'دليل سايروس توريست السياحي'},
+catItinerary:{fa:'برنامه سفر',en:'Itinerary',ar:'برنامج الرحلة'},
+catNavigation:{fa:'مسیریابی',en:'Navigation',ar:'الملاحة'},
+catTips:{fa:'نکات سفر',en:'Travel Tips',ar:'نصائح السفر'},
+catSupport:{fa:'پشتیبانی',en:'Support',ar:'الدعم'},
+
+downloadsTitle:{fa:'📱 دانلود اپلیکیشن سایروس توریست',en:'📱 Download the Cyrus Tourist App',ar:'📱 تحميل تطبيق سايروس توريست'},
+downloadsSub:{fa:'نسخه‌های جدید برنامه را از همین مسیر دریافت کنید.',en:'Get the latest app versions right here.',ar:'احصل على أحدث إصدارات التطبيق من هنا.'}
+
+};
+
+function updateSiteLanguage(language){
+
+const lang =
+(language==='en'||language==='ar') ? language : 'fa';
+
+document.querySelectorAll('[data-i18n]').forEach(el=>{
+
+const key =
+el.getAttribute('data-i18n');
+
+const entry =
+CYRUS_I18N[key];
+
+if(entry && entry[lang]!==undefined){
+el.textContent = entry[lang];
+}
+
+});
+
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+
+const key =
+el.getAttribute('data-i18n-placeholder');
+
+const entry =
+CYRUS_I18N[key];
+
+if(entry && entry[lang]!==undefined){
+el.setAttribute('placeholder', entry[lang]);
+}
+
+});
 
 }
 
