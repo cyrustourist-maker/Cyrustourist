@@ -405,12 +405,39 @@ color:#8deed5;
 font-size:13px
 }
 
+.mapTouchWrap{
+position:relative
+}
+
+.mapTouchOverlay{
+position:absolute;
+inset:0;
+z-index:401;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:14px;
+background:rgba(6,18,27,.32);
+color:#fff;
+font-size:13px;
+font-weight:700;
+cursor:pointer;
+touch-action:pan-y;
+transition:opacity .25s;
+}
+
+.mapTouchOverlay.hide{
+opacity:0;
+pointer-events:none
+}
+
 #touristMap{
 width:100%;
 height:470px;
 direction:ltr;
 background:#dbe8ec;
-touch-action:none;
+touch-action:pan-y;
 overscroll-behavior:none;
 user-select:none;
 -webkit-user-select:none;
@@ -985,26 +1012,18 @@ background:#06131b
 
 .cyrusUnavailableBack{
 position:absolute;
-left:50%;
-bottom:18px;
-transform:translateX(-50%);
+left:16%;
+top:68%;
+width:68%;
+height:16%;
 z-index:2;
-min-width:120px;
-padding:11px 24px;
-border:1px solid rgba(255,211,106,.9);
-border-radius:14px;
-background:linear-gradient(145deg,#102d3b,#071923);
-color:#ffd36a;
-font-weight:800;
-font-size:15px;
+padding:0;
+margin:0;
+border:0;
+background:transparent;
+color:transparent;
 cursor:pointer;
-box-shadow:0 8px 24px rgba(0,0,0,.45),0 0 18px rgba(255,211,106,.18);
-transition:.2s
-}
-
-.cyrusUnavailableBack:hover{
-transform:translateX(-50%) translateY(-2px);
-box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 25px rgba(255,211,106,.3)
+-webkit-tap-highlight-color:transparent
 }
 
 .cyrusDownloadPressed{
@@ -1271,7 +1290,10 @@ autocomplete="off"
 
 </div>
 
+<div class="mapTouchWrap">
 <div id="touristMap"></div>
+<div class="mapTouchOverlay" id="mapTouchOverlay">برای جابه‌جایی نقشه لمس کنید</div>
+</div>
 
 <div class="mapButtons">
 
@@ -2511,7 +2533,6 @@ data-video-id="27">
 </div>
 </div>
 
-</div>
 </section>
 
 <!-- RESIDENCE -->
@@ -3072,6 +3093,28 @@ attribution:'© OpenStreetMap'
 }
 
 ).addTo(touristMap);
+
+const mapTouchOverlay=$('mapTouchOverlay');
+const mapEl=$('touristMap');
+
+if(mapTouchOverlay && mapEl){
+
+mapTouchOverlay.addEventListener('click',function activateMapTouch(){
+
+mapEl.style.touchAction='none';
+mapTouchOverlay.classList.add('hide');
+
+setTimeout(()=>{
+
+if(mapTouchOverlay.parentNode){
+mapTouchOverlay.remove();
+}
+
+},300);
+
+});
+
+}
 
 setTimeout(
 invalidate,
@@ -4645,6 +4688,13 @@ event.preventDefault();
 
 this.classList.add('cyrusDownloadPressed');
 
+const pressedButton=this;
+
+setTimeout(()=>{
+pressedButton.classList.remove('cyrusDownloadPressed');
+pressedButton.blur();
+},350);
+
 const key=this.getAttribute('data-cyrus-download');
 
 if(key){
@@ -4658,14 +4708,32 @@ void cyrusHandleDownload(key);
 const unavailableModal=$('cyrusUnavailableModal');
 const unavailableBack=$('cyrusUnavailableBack');
 
+function clearCyrusDownloadHighlight(){
+
+document.querySelectorAll('.cyrusDownloadPressed').forEach(el=>{
+el.classList.remove('cyrusDownloadPressed');
+el.blur();
+});
+
+if(document.activeElement && document.activeElement.classList &&
+document.activeElement.classList.contains('cyrusHeroHotspot')){
+document.activeElement.blur();
+}
+
+}
+
 if(unavailableBack){
-unavailableBack.onclick=closeCyrusUnavailableDownload;
+unavailableBack.onclick=()=>{
+closeCyrusUnavailableDownload();
+clearCyrusDownloadHighlight();
+};
 }
 
 if(unavailableModal){
 unavailableModal.addEventListener('click',e=>{
 if(e.target===unavailableModal){
 closeCyrusUnavailableDownload();
+clearCyrusDownloadHighlight();
 }
 });
 }
