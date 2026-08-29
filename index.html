@@ -593,6 +593,76 @@ flex-wrap:wrap;
 align-items:center
 }
 
+.nearbyCategoryRow{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:14px
+}
+
+.nearbyCatBtn{
+border:0;
+border-radius:16px;
+padding:12px 18px;
+font-size:14px;
+font-weight:800;
+color:#fff;
+cursor:pointer;
+background:linear-gradient(160deg,#2dd4bf,#0ea5e9);
+box-shadow:0 6px 0 #0b7285,0 10px 18px rgba(0,0,0,.35);
+transform:translateY(0);
+transition:transform .12s,box-shadow .12s
+}
+
+.nearbyCatBtn:active{
+transform:translateY(4px);
+box-shadow:0 2px 0 #0b7285,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.health{
+background:linear-gradient(160deg,#f87171,#dc2626);
+box-shadow:0 6px 0 #7f1d1d,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.health:active{
+box-shadow:0 2px 0 #7f1d1d,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.lodging{
+background:linear-gradient(160deg,#fbbf24,#d97706);
+box-shadow:0 6px 0 #92400e,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.lodging:active{
+box-shadow:0 2px 0 #92400e,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.reset{
+background:linear-gradient(160deg,#94a3b8,#475569);
+box-shadow:0 6px 0 #1e293b,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.reset:active{
+box-shadow:0 2px 0 #1e293b,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.active{
+outline:2px solid #fff
+}
+
+.nearbyRetry{
+margin-top:10px;
+display:inline-block;
+border:0;
+border-radius:12px;
+padding:8px 16px;
+font-weight:700;
+color:#fff;
+background:linear-gradient(160deg,#2dd4bf,#0ea5e9);
+box-shadow:0 4px 0 #0b7285;
+cursor:pointer
+}
+
 .locationStatus{
 margin-top:12px;
 color:var(--muted)
@@ -1419,6 +1489,26 @@ autocomplete="off"
 </button>
 
 </div>
+
+</div>
+
+<div class="nearbyCategoryRow">
+
+<button type="button" class="nearbyCatBtn active" id="nearbyCatAttractions" data-category="attractions">
+🏛️ جاذبه‌ها
+</button>
+
+<button type="button" class="nearbyCatBtn health" id="nearbyCatHealth" data-category="health">
+🏥 گردشگری سلامت
+</button>
+
+<button type="button" class="nearbyCatBtn lodging" id="nearbyCatLodging" data-category="lodging">
+🏨 اقامتگاه‌های اطراف
+</button>
+
+<button type="button" class="nearbyCatBtn reset" id="nearbyResetBtn">
+↩️ بازگشت
+</button>
 
 </div>
 
@@ -2871,6 +2961,7 @@ let nearbyMarkers = [];
 let measureStart = null;
 let measureLine = null;
 let compassListening = false;
+let nearbyCategory = 'attractions';
 
 function setStatus(t){
 
@@ -3329,6 +3420,36 @@ cape:'دماغه'
 
 }
 
+function translateHealth(v){
+
+return {
+
+hospital:'بیمارستان',
+clinic:'کلینیک درمانی',
+doctors:'مطب پزشک',
+pharmacy:'داروخانه',
+dentist:'دندان‌پزشکی',
+health_center:'مرکز بهداشت'
+
+}[v]||'مرکز درمانی';
+
+}
+
+function translateLodging(v){
+
+return {
+
+hotel:'هتل',
+guest_house:'مهمان‌خانه',
+hostel:'هاستل',
+motel:'متل',
+apartment:'اقامتگاه آپارتمانی',
+camp_site:'کمپ'
+
+}[v]||'اقامتگاه';
+
+}
+
 /* =========================================================
    NEARBY
 ========================================================= */
@@ -3348,6 +3469,72 @@ touristMap.removeLayer(m);
 );
 
 nearbyMarkers=[];
+
+}
+
+function initializeNearbyCategories(){
+
+const buttons =
+document.querySelectorAll('.nearbyCatBtn[data-category]');
+
+const resetBtn =
+$('nearbyResetBtn');
+
+buttons.forEach(btn=>{
+
+btn.onclick=()=>{
+
+buttons.forEach(b=>
+b.classList.remove('active')
+);
+
+btn.classList.add('active');
+
+nearbyCategory =
+btn.getAttribute('data-category');
+
+if(userLat!=null && userLon!=null){
+
+loadNearbyAttractions();
+
+}else{
+
+getNearbyAttractions();
+
+}
+
+};
+
+});
+
+if(resetBtn){
+
+resetBtn.onclick=()=>{
+
+clearNearbyMarkers();
+
+nearbyCategory='attractions';
+
+buttons.forEach(b=>
+b.classList.remove('active')
+);
+
+const attractionsBtn=
+$('nearbyCatAttractions');
+
+if(attractionsBtn){
+attractionsBtn.classList.add('active');
+}
+
+$('locationStatus').textContent=
+'موقعیت شما هنوز دریافت نشده است.';
+
+$('nearbyResults').innerHTML=
+'<div class="empty">برای نمایش جاذبه‌ها، روی «پیدا کن» بزنید.</div>';
+
+};
+
+}
 
 }
 
@@ -3377,7 +3564,20 @@ status.textContent =
 results.innerHTML =
 '<div class="empty">'+
 escapeHtml(err)+
+'<br>'+
+'<button type="button" class="smallBtn nearbyRetry" id="nearbyRetryBtn2">🔄 تلاش دوباره</button>'+
 '</div>';
+
+const retryBtn2=
+$('nearbyRetryBtn2');
+
+if(retryBtn2){
+
+retryBtn2.onclick=()=>{
+getNearbyAttractions();
+};
+
+}
 
 return;
 
@@ -3429,6 +3629,28 @@ $('radius').value,
 )||10000;
 
 const query =
+
+nearbyCategory==='health' ?
+
+`[out:json][timeout:25];
+(
+node["amenity"~"^(hospital|clinic|pharmacy|doctors|dentist)$"](around:${radius},${userLat},${userLon});
+way["amenity"~"^(hospital|clinic|pharmacy|doctors|dentist)$"](around:${radius},${userLat},${userLon});
+relation["amenity"~"^(hospital|clinic|pharmacy|doctors|dentist)$"](around:${radius},${userLat},${userLon});
+node["healthcare"](around:${radius},${userLat},${userLon});
+way["healthcare"](around:${radius},${userLat},${userLon});
+);
+out center tags;` :
+
+nearbyCategory==='lodging' ?
+
+`[out:json][timeout:25];
+(
+node["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](around:${radius},${userLat},${userLon});
+way["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](around:${radius},${userLat},${userLon});
+relation["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](around:${radius},${userLat},${userLon});
+);
+out center tags;` :
 
 `[out:json][timeout:25];
 (
@@ -3535,7 +3757,21 @@ userLon,
 let type =
 'جاذبه گردشگری';
 
-if(t.tourism){
+if(nearbyCategory==='health'){
+
+type =
+translateHealth(
+t.amenity||t.healthcare
+);
+
+}else if(nearbyCategory==='lodging'){
+
+type =
+translateLodging(
+t.tourism
+);
+
+}else if(t.tourism){
 
 type =
 translateTourism(
@@ -3596,14 +3832,24 @@ places.slice(0,30);
 
 clearNearbyMarkers();
 
+const categoryNoun =
+nearbyCategory==='health' ? 'مرکز درمانی' :
+nearbyCategory==='lodging' ? 'اقامتگاه' :
+'جاذبه';
+
+const categoryIcon =
+nearbyCategory==='health' ? '🏥' :
+nearbyCategory==='lodging' ? '🏨' :
+'📍';
+
 if(!list.length){
 
 status.textContent =
-'⚠️ جاذبه‌ای پیدا نشد. شعاع جستجو را بیشتر کنید.';
+'⚠️ '+categoryNoun+'ی پیدا نشد. شعاع جستجو را بیشتر کنید.';
 
 results.innerHTML =
 '<div class="empty">'+
-'جاذبه‌ای در این محدوده پیدا نشد.'+
+categoryNoun+'ی در این محدوده پیدا نشد.'+
 '</div>';
 
 return;
@@ -3624,7 +3870,7 @@ L.marker(
 .addTo(touristMap)
 .bindPopup(
 
-'<strong>📍 '+
+'<strong>'+categoryIcon+' '+
 escapeHtml(p.name)+
 '</strong><br>'+
 escapeHtml(p.type)+
@@ -3667,7 +3913,7 @@ card.className =
 
 card.innerHTML =
 
-'<h3>📍 '+
+'<h3>'+categoryIcon+' '+
 escapeHtml(p.name)+
 '</h3>'+
 '<div class="placeMeta">🏷️ '+
@@ -3711,7 +3957,7 @@ maxZoom:14
 status.textContent =
 '✅ '+
 list.length+
-' جاذبه نزدیک شما پیدا شد.';
+' '+categoryNoun+' نزدیک شما پیدا شد.';
 
 invalidate();
 
@@ -3720,12 +3966,25 @@ invalidate();
 console.error(e);
 
 status.textContent =
-'❌ دریافت جاذبه‌ها با خطا روبه‌رو شد.';
+'❌ دریافت اطلاعات با خطا روبه‌رو شد.';
 
 results.innerHTML =
 '<div class="empty">'+
-'ارتباط با سرویس نقشه برقرار نشد. چند لحظه بعد دوباره امتحان کنید.'+
+'ارتباط با سرویس نقشه برقرار نشد.'+
+'<br>'+
+'<button type="button" class="smallBtn nearbyRetry" id="nearbyRetryBtn">🔄 تلاش دوباره</button>'+
 '</div>';
+
+const retryBtn=
+$('nearbyRetryBtn');
+
+if(retryBtn){
+
+retryBtn.onclick=()=>{
+loadNearbyAttractions();
+};
+
+}
 
 }
 
@@ -4944,6 +5203,8 @@ getNearbyAttractions,
 );
 
 };
+
+initializeNearbyCategories();
 
 initializeRegister();
 
