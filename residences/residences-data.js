@@ -1,666 +1,947 @@
-/*
- * Cyrus Tourist
- * Residences Data
- *
- * این فایل منبع داده بخش اقامتگاه‌هاست.
- *
- * نکته مهم:
- * - برای اضافه کردن اقامتگاه جدید، فقط یک رکورد جدید اضافه می‌شود.
- * - HTML اصلی نیاز به تغییر ندارد.
- * - دسته‌بندی‌ها از همین فایل خوانده می‌شوند.
- * - در آینده همین ساختار می‌تواند مستقیماً از API / Cloudflare D1 تغذیه شود.
- */
+/* =========================================================
+   Cyrus Tourist — Residence Data
+   اقامتگاه‌های سایروس توریست
+   Version: 1.1.0
+   ========================================================= */
 
-const RESIDENCE_TYPES = {
+(function () {
+  "use strict";
 
-  hotelApartment: {
-    id: "hotel-apartment",
-    icon: "🏨",
-    name: {
-      fa: "هتل / آپارتمان",
-      en: "Hotel / Apartment",
-      ar: "فندق / شقة"
-    },
-    order: 1,
-    featured: true
-  },
+  /* =========================================================
+     TYPES
+     ========================================================= */
 
-  ecotourism: {
-    id: "ecotourism",
-    icon: "🌿",
-    name: {
-      fa: "بوم‌گردی",
-      en: "Eco-lodge",
-      ar: "نزل بيئي"
-    },
-    order: 2,
-    featured: true
-  },
-
-  forestCabin: {
-    id: "forest-cabin",
-    icon: "🛖",
-    name: {
-      fa: "کلبه جنگلی",
-      en: "Forest Cabin",
-      ar: "كوخ غابي"
-    },
-    order: 3,
-    featured: true
-  },
-
-  camping: {
-    id: "camping",
-    icon: "🏕️",
-    name: {
-      fa: "کمپ و طبیعت‌گردی",
-      en: "Camping & Nature Stay",
-      ar: "تخييم وإقامة طبيعية"
-    },
-    order: 4,
-    featured: true
-  },
-
-  villaLocalHouse: {
-    id: "villa-local-house",
-    icon: "🏡",
-    name: {
-      fa: "ویلا / خانه محلی",
-      en: "Villa / Local House",
-      ar: "فيلا / منزل محلي"
-    },
-    order: 5,
-    featured: true
-  },
-
-  beach: {
-    id: "beach",
-    icon: "🌊",
-    name: {
-      fa: "اقامتگاه ساحلی",
-      en: "Beach Accommodation",
-      ar: "إقامة ساحلية"
-    },
-    order: 6,
-    featured: false
-  },
-
-  mountain: {
-    id: "mountain",
-    icon: "⛰️",
-    name: {
-      fa: "اقامتگاه کوهستانی",
-      en: "Mountain Accommodation",
-      ar: "إقامة جبلية"
-    },
-    order: 7,
-    featured: false
-  },
-
-  guesthouse: {
-    id: "guesthouse",
-    icon: "🏠",
-    name: {
-      fa: "مهمان‌پذیر",
-      en: "Guesthouse",
-      ar: "دار ضيافة"
-    },
-    order: 8,
-    featured: false
-  },
-
-  suite: {
-    id: "suite",
-    icon: "🏘️",
-    name: {
-      fa: "سوئیت",
-      en: "Suite",
-      ar: "جناح"
-    },
-    order: 9,
-    featured: false
-  },
-
-  forest: {
-    id: "forest",
-    icon: "🌳",
-    name: {
-      fa: "اقامتگاه جنگلی",
-      en: "Forest Accommodation",
-      ar: "إقامة غابية"
-    },
-    order: 10,
-    featured: false
-  },
-
-  desert: {
-    id: "desert",
-    icon: "🏜️",
-    name: {
-      fa: "اقامتگاه کویری",
-      en: "Desert Accommodation",
-      ar: "إقامة صحراوية"
-    },
-    order: 11,
-    featured: false
-  },
-
-  other: {
-    id: "other",
-    icon: "➕",
-    name: {
-      fa: "سایر",
-      en: "Other",
-      ar: "أخرى"
-    },
-    order: 99,
-    featured: false
-  }
-};
-
-
-/*
- * اطلاعات نمونه اقامتگاه‌ها
- *
- * برای اضافه کردن اقامتگاه جدید:
- *
- * {
- *   id: "RES-0002",
- *   type: "ecotourism",
- *   ...
- * }
- *
- * هیچ محدودیت عددی در این آرایه تعریف نشده است.
- */
-
-const RESIDENCES_DATA = [
-
-  {
-    id: "RES-0001",
-
-    name: {
-      fa: "نمونه اقامتگاه سایروس توریست",
-      en: "Cyrus Tourist Sample Residence",
-      ar: "نموذج إقامة سايروس توريست"
-    },
-
-    type: "ecotourism",
-
-    province: {
-      fa: "خراسان رضوی",
-      en: "Razavi Khorasan",
-      ar: "خراسان الرضوية"
-    },
-
-    city: {
-      fa: "مشهد",
-      en: "Mashhad",
-      ar: "مشهد"
-    },
-
-    region: {
-      fa: "حومه مشهد",
-      en: "Mashhad Area",
-      ar: "منطقة مشهد"
-    },
-
-    address: {
-      fa: "آدرس نمونه؛ بعداً اطلاعات واقعی اقامتگاه وارد می‌شود.",
-      en: "Sample address; real accommodation information can be added later.",
-      ar: "عنوان تجريبي؛ يمكن إضافة معلومات الإقامة الحقيقية لاحقاً."
-    },
-
-    phone: "09150000000",
-
-    latitude: 36.2972,
-    longitude: 59.6067,
-
-    description: {
-      fa: "این رکورد نمونه برای آزمایش سیستم اقامتگاه سایروس توریست ایجاد شده است.",
-      en: "This sample record is used to test the Cyrus Tourist accommodation system.",
-      ar: "تم إنشاء هذا السجل التجريبي لاختبار نظام أماكن الإقامة في سايروس توريست."
-    },
-
-    imageUrl: "",
-
-    videoUrl: "",
-    videoSource: "",
-
-    instagram: "",
-    website: "",
-
-    rating: 4.8,
-    ratingCount: 0,
-
-    status: "active",
-
-    membership: {
-      type: "annual",
-      startDate: "",
-      endDate: ""
-    },
-
-    display: {
+  const RESIDENCE_TYPES = [
+    {
+      id: "hotel-apartment",
+      icon: "🏨",
+      order: 1,
       featured: true,
-      showVideo: true,
-      showPhone: true,
-      showInstagram: true,
-      showWebsite: true,
-      showRating: true
+      name: {
+        fa: "هتل / آپارتمان",
+        en: "Hotel / Apartment",
+        ar: "فندق / شقة"
+      }
     },
 
-    createdAt: "",
-    updatedAt: ""
-  }
+    {
+      id: "ecotourism",
+      icon: "🌿",
+      order: 2,
+      featured: true,
+      name: {
+        fa: "بوم‌گردی",
+        en: "Eco Tourism",
+        ar: "السياحة البيئية"
+      }
+    },
 
-];
+    {
+      id: "forest-cabin",
+      icon: "🛖",
+      order: 3,
+      featured: true,
+      name: {
+        fa: "کلبه جنگلی",
+        en: "Forest Cabin",
+        ar: "كوخ غابي"
+      }
+    },
 
+    {
+      id: "camping",
+      icon: "🏕️",
+      order: 4,
+      featured: true,
+      name: {
+        fa: "کمپ و طبیعت‌گردی",
+        en: "Camping & Nature",
+        ar: "التخييم والطبيعة"
+      }
+    },
 
-/*
- * وضعیت‌های رسمی اقامتگاه
- */
+    {
+      id: "villa-local-house",
+      icon: "🏡",
+      order: 5,
+      featured: true,
+      name: {
+        fa: "ویلا / خانه محلی",
+        en: "Villa / Local House",
+        ar: "فيلا / منزل محلي"
+      }
+    },
 
-const RESIDENCE_STATUS = {
+    {
+      id: "beach",
+      icon: "🌊",
+      order: 6,
+      featured: false,
+      name: {
+        fa: "اقامتگاه ساحلی",
+        en: "Beach Residence",
+        ar: "إقامة ساحلية"
+      }
+    },
 
-  active: {
-    id: "active",
-    icon: "🟢",
-    name: {
-      fa: "فعال",
-      en: "Active",
-      ar: "نشط"
+    {
+      id: "mountain",
+      icon: "⛰️",
+      order: 7,
+      featured: false,
+      name: {
+        fa: "اقامتگاه کوهستانی",
+        en: "Mountain Residence",
+        ar: "إقامة جبلية"
+      }
+    },
+
+    {
+      id: "guesthouse",
+      icon: "🏠",
+      order: 8,
+      featured: false,
+      name: {
+        fa: "مهمان‌پذیر",
+        en: "Guesthouse",
+        ar: "بيت ضيافة"
+      }
+    },
+
+    {
+      id: "suite",
+      icon: "🏘️",
+      order: 9,
+      featured: false,
+      name: {
+        fa: "سوئیت",
+        en: "Suite",
+        ar: "جناح"
+      }
+    },
+
+    {
+      id: "forest",
+      icon: "🌳",
+      order: 10,
+      featured: false,
+      name: {
+        fa: "اقامتگاه جنگلی",
+        en: "Forest Residence",
+        ar: "إقامة غابية"
+      }
+    },
+
+    {
+      id: "desert",
+      icon: "🏜️",
+      order: 11,
+      featured: false,
+      name: {
+        fa: "اقامتگاه کویری",
+        en: "Desert Residence",
+        ar: "إقامة صحراوية"
+      }
+    },
+
+    {
+      id: "other",
+      icon: "➕",
+      order: 99,
+      featured: false,
+      name: {
+        fa: "سایر",
+        en: "Other",
+        ar: "أخرى"
+      }
     }
-  },
+  ];
 
-  pending: {
-    id: "pending",
-    icon: "🟡",
-    name: {
-      fa: "در انتظار بررسی",
-      en: "Under Review",
-      ar: "قيد المراجعة"
+
+  /* =========================================================
+     STATUS
+     ========================================================= */
+
+  const RESIDENCE_STATUS = {
+    active: {
+      fa: "🟢 فعال",
+      en: "🟢 Active",
+      ar: "🟢 نشط"
+    },
+
+    pending: {
+      fa: "🟡 در انتظار بررسی",
+      en: "🟡 Pending Review",
+      ar: "🟡 قيد المراجعة"
+    },
+
+    inactive: {
+      fa: "🔵 غیرفعال موقت",
+      en: "🔵 Temporarily Inactive",
+      ar: "🔵 غير نشط مؤقتاً"
+    },
+
+    expired: {
+      fa: "🔴 اعتبار پایان یافته",
+      en: "🔴 Membership Expired",
+      ar: "🔴 انتهت الصلاحية"
+    },
+
+    suspended: {
+      fa: "⚫ تعلیق مدیریتی",
+      en: "⚫ Administratively Suspended",
+      ar: "⚫ موقوف إدارياً"
+    },
+
+    archived: {
+      fa: "🗃️ آرشیو",
+      en: "🗃️ Archived",
+      ar: "🗃️ مؤرشف"
     }
-  },
-
-  inactive: {
-    id: "inactive",
-    icon: "🔵",
-    name: {
-      fa: "غیرفعال موقت",
-      en: "Temporarily Inactive",
-      ar: "غير نشط مؤقتاً"
-    }
-  },
-
-  expired: {
-    id: "expired",
-    icon: "🔴",
-    name: {
-      fa: "اعتبار پایان یافته",
-      en: "Expired",
-      ar: "انتهت الصلاحية"
-    }
-  },
-
-  suspended: {
-    id: "suspended",
-    icon: "⚫",
-    name: {
-      fa: "تعلیق مدیریتی",
-      en: "Administratively Suspended",
-      ar: "موقوف إدارياً"
-    }
-  },
-
-  archived: {
-    id: "archived",
-    icon: "🗃️",
-    name: {
-      fa: "آرشیو",
-      en: "Archived",
-      ar: "مؤرشف"
-    }
-  }
-
-};
-
-
-/*
- * انواع منابع ویدئو
- *
- * فایل ویدئو روی هاست سایروس توریست ذخیره نمی‌شود.
- * فقط آدرس و منبع ویدئو نگهداری می‌شود.
- */
-
-const RESIDENCE_VIDEO_SOURCES = {
-
-  aparat: {
-    id: "aparat",
-    name: {
-      fa: "آپارات",
-      en: "Aparat",
-      ar: "أبارات"
-    }
-  },
-
-  youtube: {
-    id: "youtube",
-    name: {
-      fa: "یوتیوب",
-      en: "YouTube",
-      ar: "يوتيوب"
-    }
-  },
-
-  vimeo: {
-    id: "vimeo",
-    name: {
-      fa: "Vimeo",
-      en: "Vimeo",
-      ar: "Vimeo"
-    }
-  },
-
-  instagram: {
-    id: "instagram",
-    name: {
-      fa: "اینستاگرام",
-      en: "Instagram",
-      ar: "إنستغرام"
-    }
-  },
-
-  tiktok: {
-    id: "tiktok",
-    name: {
-      fa: "تیک‌تاک",
-      en: "TikTok",
-      ar: "تيك توك"
-    }
-  },
-
-  other: {
-    id: "other",
-    name: {
-      fa: "سایر",
-      en: "Other",
-      ar: "أخرى"
-    }
-  }
-
-};
-
-
-/*
- * فیلدهای قابل جستجو
- *
- * فایل جستجو در مرحله بعد از این ساختار استفاده خواهد کرد.
- */
-
-const RESIDENCE_SEARCH_FIELDS = [
-  "name",
-  "province",
-  "city",
-  "region",
-  "address",
-  "type"
-];
-
-
-/*
- * گرفتن نام نوع اقامتگاه
- */
-
-function getResidenceType(typeId, language = "fa") {
-
-  const type = Object.values(RESIDENCE_TYPES)
-    .find(item => item.id === typeId);
-
-  if (!type) {
-    return "";
-  }
-
-  return (
-    type.name[language] ||
-    type.name.fa ||
-    ""
-  );
-}
-
-
-/*
- * گرفتن وضعیت اقامتگاه
- */
-
-function getResidenceStatus(statusId, language = "fa") {
-
-  const status = RESIDENCE_STATUS[statusId];
-
-  if (!status) {
-    return "";
-  }
-
-  return (
-    status.name[language] ||
-    status.name.fa ||
-    ""
-  );
-}
-
-
-/*
- * دریافت فقط اقامتگاه‌های فعال
- */
-
-function getActiveResidences() {
-
-  return RESIDENCES_DATA.filter(
-    residence => residence.status === "active"
-  );
-
-}
-
-
-/*
- * دریافت دسته‌بندی‌ها بر اساس ترتیب
- */
-
-function getResidenceTypes() {
-
-  return Object.values(RESIDENCE_TYPES)
-    .sort((a, b) => a.order - b.order);
-
-}
-
-
-/*
- * دریافت دسته‌بندی‌های اصلی
- */
-
-function getFeaturedResidenceTypes() {
-
-  return getResidenceTypes()
-    .filter(type => type.featured);
-
-}
-
-
-/*
- * استخراج استان‌های موجود
- *
- * استان‌ها از اطلاعات واقعی اقامتگاه‌ها استخراج می‌شوند
- * و در HTML به‌صورت دستی نوشته نمی‌شوند.
- */
-
-function getResidenceProvinces(language = "fa") {
-
-  const values = RESIDENCES_DATA
-    .map(residence => residence.province?.[language])
-    .filter(Boolean);
-
-  return [...new Set(values)].sort((a, b) =>
-    a.localeCompare(b, language)
-  );
-
-}
-
-
-/*
- * استخراج شهرهای موجود
- */
-
-function getResidenceCities(language = "fa") {
-
-  const values = RESIDENCES_DATA
-    .map(residence => residence.city?.[language])
-    .filter(Boolean);
-
-  return [...new Set(values)].sort((a, b) =>
-    a.localeCompare(b, language)
-  );
-
-}
-
-
-/*
- * استخراج مناطق موجود
- */
-
-function getResidenceRegions(language = "fa") {
-
-  const values = RESIDENCES_DATA
-    .map(residence => residence.region?.[language])
-    .filter(Boolean);
-
-  return [...new Set(values)].sort((a, b) =>
-    a.localeCompare(b, language)
-  );
-
-}
-
-
-/*
- * ساخت شناسه جدید برای آینده
- *
- * فعلاً برای حالت دستی.
- * در نسخه API / D1 شناسه اصلی از سرور دریافت خواهد شد.
- */
-
-function createResidenceId() {
-
-  const number =
-    RESIDENCES_DATA.length + 1;
-
-  return (
-    "RES-" +
-    String(number).padStart(4, "0")
-  );
-
-}
-
-
-/*
- * بررسی صحت حداقل اطلاعات اقامتگاه
- */
-
-function validateResidence(residence) {
-
-  if (!residence) {
-    return false;
-  }
-
-  if (!residence.id) {
-    return false;
-  }
-
-  if (!residence.name) {
-    return false;
-  }
-
-  if (!residence.type) {
-    return false;
-  }
-
-  if (!residence.province) {
-    return false;
-  }
-
-  if (!residence.city) {
-    return false;
-  }
-
-  if (
-    typeof residence.latitude !== "number" ||
-    typeof residence.longitude !== "number"
-  ) {
-    return false;
-  }
-
-  if (!residence.status) {
-    return false;
-  }
-
-  return true;
-
-}
-
-
-/*
- * بررسی تمام رکوردهای موجود
- */
-
-function validateAllResidences() {
-
-  return RESIDENCES_DATA.every(
-    residence => validateResidence(residence)
-  );
-
-}
-
-
-/*
- * آمار اولیه داده‌ها
- */
-
-function getResidenceStatistics() {
-
-  const total = RESIDENCES_DATA.length;
-
-  const active = RESIDENCES_DATA.filter(
-    item => item.status === "active"
-  ).length;
-
-  const withVideo = RESIDENCES_DATA.filter(
-    item => item.videoUrl
-  ).length;
-
-  return {
-    total,
-    active,
-    withVideo
   };
 
-}
+
+  /* =========================================================
+     VIDEO SOURCES
+     ========================================================= */
+
+  const RESIDENCE_VIDEO_SOURCES = {
+    aparat: {
+      id: "aparat",
+      name: "Aparat"
+    },
+
+    youtube: {
+      id: "youtube",
+      name: "YouTube"
+    },
+
+    vimeo: {
+      id: "vimeo",
+      name: "Vimeo"
+    },
+
+    instagram: {
+      id: "instagram",
+      name: "Instagram"
+    },
+
+    tiktok: {
+      id: "tiktok",
+      name: "TikTok"
+    },
+
+    other: {
+      id: "other",
+      name: "Other"
+    }
+  };
 
 
-/*
- * اطلاعات قابل استفاده برای اتصال آینده به API
- */
+  /* =========================================================
+     SAMPLE RESIDENCE
+     =========================================================
+     این رکورد فقط برای تست سیستم است.
+     اطلاعات واقعی اقامتگاه‌ها بعداً جایگزین می‌شوند.
+     ========================================================= */
 
-const RESIDENCE_DATA_CONFIG = {
+  const RESIDENCES_DATA = [
 
-  version: "1.0.0",
+    {
+      id: "RES-0001",
 
-  dataSource: "local",
+      name: {
+        fa: "نمونه اقامتگاه سایروس توریست",
+        en: "Cyrus Tourist Sample Residence",
+        ar: "نموذج إقامة سايروس توريست"
+      },
 
-  futureDataSource: "api",
+      type: "ecotourism",
 
-  apiReady: true,
+      province: {
+        fa: "خراسان رضوی",
+        en: "Razavi Khorasan",
+        ar: "خراسان الرضوية"
+      },
 
-  databaseReady: true,
+      city: {
+        fa: "مشهد",
+        en: "Mashhad",
+        ar: "مشهد"
+      },
 
-  databaseName: "cyrus-tourist-db",
+      region: {
+        fa: "حومه مشهد",
+        en: "Mashhad Area",
+        ar: "منطقة مشهد"
+      },
 
-  apiName: "cyrus-tourist-api"
+      address: {
+        fa: "آدرس نمونه؛ بعداً اطلاعات واقعی اقامتگاه وارد می‌شود.",
+        en: "Sample address; real accommodation information can be added later.",
+        ar: "عنوان تجريبي؛ يمكن إضافة معلومات الإقامة الحقيقية لاحقاً."
+      },
 
-};
+
+      /* =====================================================
+         CONTACT NUMBERS
+         ===================================================== */
+
+      phoneMobile: "09150000000",
+
+      phoneLandline: "",
+
+      phoneSupport: "",
+
+
+      /* =====================================================
+         SOCIAL / WEBSITE
+         ===================================================== */
+
+      instagram: "",
+
+      website: "",
+
+
+      /* =====================================================
+         LOCATION
+         ===================================================== */
+
+      latitude: 36.2972,
+
+      longitude: 59.6067,
+
+
+      /* =====================================================
+         DESCRIPTION
+         ===================================================== */
+
+      description: {
+        fa: "این رکورد نمونه برای آزمایش سیستم اقامتگاه سایروس توریست ایجاد شده است.",
+        en: "This sample record is used to test the Cyrus Tourist accommodation system.",
+        ar: "تم إنشاء هذا السجل التجريبي لاختبار نظام أماكن الإقامة في سايروس توريست."
+      },
+
+
+      /* =====================================================
+         MEDIA
+         ===================================================== */
+
+      imageUrl: "",
+
+      videoUrl: "",
+
+      videoSource: "",
+
+
+      /* =====================================================
+         RATING
+         ===================================================== */
+
+      rating: 4.8,
+
+      ratingCount: 0,
+
+
+      /* =====================================================
+         STATUS
+         ===================================================== */
+
+      status: "active",
+
+
+      /* =====================================================
+         MEMBERSHIP
+         ===================================================== */
+
+      membership: {
+        type: "annual",
+        startDate: "",
+        endDate: ""
+      },
+
+
+      /* =====================================================
+         DISPLAY OPTIONS
+         ===================================================== */
+
+      display: {
+
+        featured: true,
+
+        showVideo: true,
+
+        showPhoneMobile: true,
+
+        showPhoneLandline: true,
+
+        showPhoneSupport: true,
+
+        showInstagram: true,
+
+        showWebsite: true,
+
+        showRating: true,
+
+        showRoute: true
+      },
+
+
+      /* =====================================================
+         SYSTEM DATES
+         ===================================================== */
+
+      createdAt: "",
+
+      updatedAt: ""
+    }
+
+  ];
+
+
+  /* =========================================================
+     SEARCH FIELDS
+     ========================================================= */
+
+  const RESIDENCE_SEARCH_FIELDS = [
+    "name",
+    "province",
+    "city",
+    "region",
+    "address",
+    "type"
+  ];
+
+
+  /* =========================================================
+     HELPERS
+     ========================================================= */
+
+  function getResidenceType(typeId) {
+
+    return (
+      RESIDENCE_TYPES.find(
+        function (item) {
+          return item.id === typeId;
+        }
+      ) || null
+    );
+
+  }
+
+
+  function getResidenceStatus(statusId) {
+
+    return (
+      RESIDENCE_STATUS[statusId] || null
+    );
+
+  }
+
+
+  function getActiveResidences() {
+
+    return RESIDENCES_DATA.filter(
+      function (residence) {
+        return residence.status === "active";
+      }
+    );
+
+  }
+
+
+  function getResidenceTypes() {
+
+    return RESIDENCE_TYPES.slice()
+      .sort(function (a, b) {
+        return a.order - b.order;
+      });
+
+  }
+
+
+  function getFeaturedResidenceTypes() {
+
+    return getResidenceTypes().filter(
+      function (item) {
+        return item.featured;
+      }
+    );
+
+  }
+
+
+  function getResidenceProvinces() {
+
+    const values = {};
+
+    RESIDENCES_DATA.forEach(
+      function (residence) {
+
+        const key =
+          residence.province &&
+          residence.province.fa
+            ? residence.province.fa
+            : "";
+
+        if (key) {
+          values[key] = residence.province;
+        }
+
+      }
+    );
+
+    return Object.values(values);
+
+  }
+
+
+  function getResidenceCities(provinceFa) {
+
+    const values = {};
+
+    RESIDENCES_DATA.forEach(
+      function (residence) {
+
+        const province =
+          residence.province &&
+          residence.province.fa
+            ? residence.province.fa
+            : "";
+
+        if (
+          !provinceFa ||
+          province === provinceFa
+        ) {
+
+          const city =
+            residence.city &&
+            residence.city.fa
+              ? residence.city.fa
+              : "";
+
+          if (city) {
+            values[city] = residence.city;
+          }
+
+        }
+
+      }
+    );
+
+    return Object.values(values);
+
+  }
+
+
+  function getResidenceRegions() {
+
+    const values = {};
+
+    RESIDENCES_DATA.forEach(
+      function (residence) {
+
+        const region =
+          residence.region &&
+          residence.region.fa
+            ? residence.region.fa
+            : "";
+
+        if (region) {
+          values[region] = residence.region;
+        }
+
+      }
+    );
+
+    return Object.values(values);
+
+  }
+
+
+  /* =========================================================
+     ID GENERATOR
+     ========================================================= */
+
+  function createResidenceId() {
+
+    const numbers =
+      RESIDENCES_DATA
+        .map(function (item) {
+
+          const match =
+            String(item.id || "")
+              .match(/^RES-(\d+)$/);
+
+          return match
+            ? Number(match[1])
+            : 0;
+
+        });
+
+    const max =
+      numbers.length
+        ? Math.max.apply(null, numbers)
+        : 0;
+
+    return (
+      "RES-" +
+      String(max + 1).padStart(4, "0")
+    );
+
+  }
+
+
+  /* =========================================================
+     VALIDATION
+     ========================================================= */
+
+  function validateResidence(residence) {
+
+    const errors = [];
+
+    if (!residence) {
+      errors.push("Residence object is required.");
+      return {
+        valid: false,
+        errors: errors
+      };
+    }
+
+    if (!residence.id) {
+      errors.push("Missing residence id.");
+    }
+
+    if (!residence.name) {
+      errors.push("Missing residence name.");
+    }
+
+    if (!residence.type) {
+      errors.push("Missing residence type.");
+    }
+
+    if (!RESIDENCE_TYPES.some(
+      function (type) {
+        return type.id === residence.type;
+      }
+    )) {
+      errors.push("Invalid residence type.");
+    }
+
+    if (
+      residence.status &&
+      !RESIDENCE_STATUS[residence.status]
+    ) {
+      errors.push("Invalid residence status.");
+    }
+
+
+    /* شماره‌ها اختیاری هستند،
+       اما اگر وجود داشته باشند باید رشته باشند. */
+
+    const phoneFields = [
+      "phoneMobile",
+      "phoneLandline",
+      "phoneSupport"
+    ];
+
+    phoneFields.forEach(
+      function (field) {
+
+        if (
+          residence[field] !== undefined &&
+          residence[field] !== null &&
+          typeof residence[field] !== "string"
+        ) {
+          errors.push(
+            field + " must be a string."
+          );
+        }
+
+      }
+    );
+
+
+    return {
+      valid: errors.length === 0,
+      errors: errors
+    };
+
+  }
+
+
+  function validateAllResidences() {
+
+    return RESIDENCES_DATA.map(
+      function (residence) {
+
+        return {
+          id: residence.id,
+          result: validateResidence(residence)
+        };
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     STATISTICS
+     ========================================================= */
+
+  function getResidenceStatistics() {
+
+    const active =
+      RESIDENCES_DATA.filter(
+        function (item) {
+          return item.status === "active";
+        }
+      ).length;
+
+    const pending =
+      RESIDENCES_DATA.filter(
+        function (item) {
+          return item.status === "pending";
+        }
+      ).length;
+
+    const expired =
+      RESIDENCES_DATA.filter(
+        function (item) {
+          return item.status === "expired";
+        }
+      ).length;
+
+    return {
+
+      total: RESIDENCES_DATA.length,
+
+      active: active,
+
+      pending: pending,
+
+      expired: expired,
+
+      other:
+        RESIDENCES_DATA.length -
+        active -
+        pending -
+        expired
+
+    };
+
+  }
+
+
+  /* =========================================================
+     CONTACT HELPERS
+     ========================================================= */
+
+  function getResidencePhoneFields(residence) {
+
+    if (!residence) {
+      return [];
+    }
+
+    const result = [];
+
+
+    if (
+      residence.phoneMobile &&
+      residence.display &&
+      residence.display.showPhoneMobile !== false
+    ) {
+
+      result.push({
+        type: "mobile",
+        label: {
+          fa: "📱 تماس همراه",
+          en: "📱 Mobile",
+          ar: "📱 هاتف محمول"
+        },
+        value: residence.phoneMobile
+      });
+
+    }
+
+
+    if (
+      residence.phoneLandline &&
+      residence.display &&
+      residence.display.showPhoneLandline !== false
+    ) {
+
+      result.push({
+        type: "landline",
+        label: {
+          fa: "☎️ تماس ثابت",
+          en: "☎️ Landline",
+          ar: "☎️ هاتف ثابت"
+        },
+        value: residence.phoneLandline
+      });
+
+    }
+
+
+    if (
+      residence.phoneSupport &&
+      residence.display &&
+      residence.display.showPhoneSupport !== false
+    ) {
+
+      result.push({
+        type: "support",
+        label: {
+          fa: "📞 تماس پشتیبان",
+          en: "📞 Support",
+          ar: "📞 هاتف الدعم"
+        },
+        value: residence.phoneSupport
+      });
+
+    }
+
+
+    return result;
+
+  }
+
+
+  /* =========================================================
+     PUBLIC CONFIG
+     ========================================================= */
+
+  const RESIDENCE_DATA_CONFIG = {
+
+    version: "1.1.0",
+
+    dataSource: "local",
+
+    futureDataSource: "api",
+
+    apiReady: true,
+
+    databaseReady: true,
+
+    databaseName: "cyrus-tourist-db",
+
+    apiName: "cyrus-tourist-api",
+
+    dynamicRecords: true,
+
+    unlimitedRecords: true,
+
+    supportedLanguages: [
+      "fa",
+      "en",
+      "ar"
+    ],
+
+    contactFields: [
+      "phoneMobile",
+      "phoneLandline",
+      "phoneSupport",
+      "instagram",
+      "website"
+    ]
+
+  };
+
+
+  /* =========================================================
+     GLOBAL EXPORT
+     ========================================================= */
+
+  window.RESIDENCE_TYPES =
+    RESIDENCE_TYPES;
+
+  window.RESIDENCE_STATUS =
+    RESIDENCE_STATUS;
+
+  window.RESIDENCE_VIDEO_SOURCES =
+    RESIDENCE_VIDEO_SOURCES;
+
+  window.RESIDENCES_DATA =
+    RESIDENCES_DATA;
+
+  window.RESIDENCE_SEARCH_FIELDS =
+    RESIDENCE_SEARCH_FIELDS;
+
+  window.RESIDENCE_DATA_CONFIG =
+    RESIDENCE_DATA_CONFIG;
+
+
+  window.getResidenceType =
+    getResidenceType;
+
+  window.getResidenceStatus =
+    getResidenceStatus;
+
+  window.getActiveResidences =
+    getActiveResidences;
+
+  window.getResidenceTypes =
+    getResidenceTypes;
+
+  window.getFeaturedResidenceTypes =
+    getFeaturedResidenceTypes;
+
+  window.getResidenceProvinces =
+    getResidenceProvinces;
+
+  window.getResidenceCities =
+    getResidenceCities;
+
+  window.getResidenceRegions =
+    getResidenceRegions;
+
+  window.createResidenceId =
+    createResidenceId;
+
+  window.validateResidence =
+    validateResidence;
+
+  window.validateAllResidences =
+    validateAllResidences;
+
+  window.getResidenceStatistics =
+    getResidenceStatistics;
+
+  window.getResidencePhoneFields =
+    getResidencePhoneFields;
+
+
+  /* =========================================================
+     DEBUG
+     ========================================================= */
+
+  window.CyrusResidenceData = {
+
+    config: RESIDENCE_DATA_CONFIG,
+
+    types: RESIDENCE_TYPES,
+
+    status: RESIDENCE_STATUS,
+
+    videoSources: RESIDENCE_VIDEO_SOURCES,
+
+    residences: RESIDENCES_DATA,
+
+    getPhoneFields:
+      getResidencePhoneFields,
+
+    statistics:
+      getResidenceStatistics,
+
+    validate:
+      validateResidence,
+
+    validateAll:
+      validateAllResidences
+
+  };
+
+
+})();
