@@ -1,0 +1,726 @@
+فایل: "residences.html"
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ثبت اقامتگاه | سایروس توریست</title>
+
+  <meta name="description"
+        content="ثبت و معرفی اقامتگاه در پلتفرم گردشگری سایروس توریست">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f3f7f8;
+      color: #263238;
+      line-height: 1.9;
+    }
+
+    .container {
+      width: min(94%, 850px);
+      margin: 0 auto;
+      padding: 20px 0 40px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #00695c, #00897b);
+      color: white;
+      border-radius: 0 0 24px 24px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 5px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: .95;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      margin-top: 20px;
+      padding: 22px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      color: #00695c;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .feature {
+      background: #eef8f6;
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .main-button,
+    .support-button {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 18px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .main-button {
+      background: #00897b;
+      color: white;
+    }
+
+    .main-button:hover {
+      background: #00695c;
+    }
+
+    .rules {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 15px;
+      padding: 16px;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    .rules h3 {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .rules h3:first-child {
+      margin-top: 0;
+    }
+
+    .rules p {
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .accept-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 15px;
+      background: #fff8e1;
+      border-radius: 14px;
+      border: 1px solid #ffe082;
+      cursor: pointer;
+    }
+
+    .accept-box input {
+      width: 20px;
+      height: 20px;
+      margin-top: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .accept-box span {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .continue-button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #bdbdbd;
+      color: white;
+    }
+
+    .continue-button.active {
+      background: #00897b;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .success {
+      text-align: center;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+
+    .support-title {
+      text-align: center;
+    }
+
+    .support-intro {
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .phone {
+      background: #e8f5e9;
+      color: #1b5e20;
+      font-size: 22px;
+      font-weight: bold;
+      direction: ltr;
+    }
+
+    .telegram {
+      background: #e3f2fd;
+      color: #0d47a1;
+    }
+
+    .whatsapp {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .back-button {
+      background: #eeeeee;
+      color: #424242;
+    }
+
+    .footer {
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        padding: 24px 15px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="header">
+    <div class="logo">سایروس توریست</div>
+    <div class="subtitle">گردشگری هوشمند، معرفی اقامتگاه‌ها</div>
+  </header>
+
+
+  <main class="container">
+
+    <!-- =========================
+         صفحه اصلی ثبت اقامتگاه
+    ========================== -->
+
+    <section id="registrationPage" class="card">
+
+      <h1>🏡 ثبت اقامتگاه</h1>
+
+      <p class="intro">
+        اقامتگاه خود را در شبکه گردشگری سایروس توریست معرفی کنید
+        و فرصت دیده‌شدن در میان گردشگران را افزایش دهید.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          📍 معرفی اقامتگاه
+        </div>
+
+        <div class="feature">
+          🗺️ نمایش موقعیت
+        </div>
+
+        <div class="feature">
+          🔎 جستجوی هوشمند
+        </div>
+
+        <div class="feature">
+          🎬 معرفی با فیلم
+        </div>
+
+        <div class="feature">
+          ⭐ دریافت امتیاز کاربران
+        </div>
+
+        <div class="feature">
+          📞 نمایش اطلاعات تماس
+        </div>
+
+      </div>
+
+      <button
+        class="main-button"
+        onclick="showRules()">
+        🚀 شروع ثبت اقامتگاه
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+         صفحه قوانین
+    ========================== -->
+
+    <section id="rulesPage" class="card hidden">
+
+      <h2>📋 قوانین و شرایط ثبت اقامتگاه</h2>
+
+      <div class="rules">
+
+        <h3>۱. موضوع خدمات سایروس توریست</h3>
+
+        <p>
+          سایروس توریست یک پلتفرم گردشگری برای معرفی،
+          تبلیغات دیجیتال، جستجوی هوشمند و نمایش اطلاعات
+          اقامتگاه‌ها و مکان‌های گردشگری است.
+        </p>
+
+        <p>
+          ثبت اقامتگاه به معنی تضمین تعداد مشتری،
+          فروش، رزرو یا درآمد مشخص نیست.
+        </p>
+
+
+        <h3>۲. اطلاعات اقامتگاه</h3>
+
+        <p>
+          اطلاعات ارائه‌شده درباره اقامتگاه باید صحیح،
+          دقیق و به‌روز باشد. مسئولیت صحت اطلاعات
+          بر عهده مالک، مدیر یا نماینده ثبت‌کننده است.
+        </p>
+
+
+        <h3>۳. عضویت و اعتبار</h3>
+
+        <p>
+          عضویت اقامتگاه در نسخه فعلی به‌صورت یک‌ساله
+          ارائه می‌شود. پس از پایان اعتبار، اطلاعات
+          اقامتگاه حذف نمی‌شود و نمایش عمومی آن متوقف
+          خواهد شد.
+        </p>
+
+
+        <h3>۴. پرداخت و فعال‌سازی</h3>
+
+        <p>
+          پرداخت طبق روش اعلام‌شده توسط سایروس توریست
+          انجام می‌شود و فعال‌سازی پس از بررسی و تأیید
+          پشتیبانی صورت خواهد گرفت.
+        </p>
+
+
+        <h3>۵. معرفی و تبلیغات</h3>
+
+        <p>
+          خدمات سایروس توریست در این بخش شامل معرفی،
+          تبلیغات دیجیتال، نمایش اطلاعات، نمایش روی نقشه،
+          جستجوی هوشمند و امکان نمایش فیلم معرفی اقامتگاه است.
+        </p>
+
+
+        <h3>۶. امتیاز کاربران</h3>
+
+        <p>
+          اقامتگاه‌های فعال می‌توانند توسط کاربران از
+          ۱ تا ۵ ستاره امتیاز دریافت کنند. امتیاز کاربران
+          با هدف افزایش اعتماد و کمک به انتخاب بهتر
+          گردشگران نمایش داده می‌شود.
+        </p>
+
+
+        <h3>۷. محتوای اقامتگاه</h3>
+
+        <p>
+          مسئول ثبت اقامتگاه باید حق استفاده از تصاویر،
+          فیلم‌ها و مطالب ارسال‌شده را داشته باشد.
+          انتشار اطلاعات جعلی، گمراه‌کننده، توهین‌آمیز
+          یا مغایر با قوانین مجاز نیست.
+        </p>
+
+
+        <h3>۸. تعلیق و غیرفعال‌سازی</h3>
+
+        <p>
+          در صورت پایان اعتبار، اطلاعات نادرست یا تخلف
+          از قوانین، سایروس توریست می‌تواند نمایش
+          اقامتگاه را متوقف یا آن را تعلیق کند.
+        </p>
+
+
+        <h3>۹. مسئولیت خدمات اقامتگاه</h3>
+
+        <p>
+          سایروس توریست یک پلتفرم معرفی و تبلیغات دیجیتال
+          است. مسئولیت کیفیت اقامتگاه، قیمت‌گذاری،
+          نحوه ارائه خدمات، رزرو و توافق مالی میان
+          اقامتگاه و مسافر بر عهده طرفین است؛ مگر در
+          مواردی که سایروس توریست رسماً مسئولیت یک
+          خدمت مشخص را پذیرفته باشد.
+        </p>
+
+
+        <h3>۱۰. اختلالات فنی</h3>
+
+        <p>
+          در صورت قطعی یا اختلال اینترنت، مخابرات،
+          نقشه، سرویس‌های ویدئویی، پرداخت یا سایر
+          سرویس‌های شخص ثالث که خارج از کنترل سایروس
+          توریست باشد، مسئولیت مستقیم اختلال متوجه
+          سایروس توریست نخواهد بود.
+        </p>
+
+
+        <h3>۱۱. حفظ سوابق</h3>
+
+        <p>
+          اطلاعات و سوابق مربوط به ثبت، عضویت، تمدید،
+          پرداخت و فعالیت اقامتگاه می‌تواند برای مدیریت
+          بهتر سیستم نگهداری شود.
+        </p>
+
+
+        <h3>۱۲. تغییر قوانین</h3>
+
+        <p>
+          سایروس توریست می‌تواند برای بهبود خدمات،
+          قوانین و شرایط را به‌روزرسانی کند.
+        </p>
+
+
+        <h3>📞 پشتیبانی</h3>
+
+        <p>
+          تلفن: 09153448818
+          <br>
+          تلگرام و واتساپ: @cytustourist
+        </p>
+
+      </div>
+
+
+      <!-- پذیرش قوانین -->
+
+      <label class="accept-box">
+
+        <input
+          type="checkbox"
+          id="acceptRules"
+          onchange="toggleContinue()">
+
+        <span>
+          قوانین و شرایط خدمات سایروس توریست را
+          مطالعه کرده‌ام و می‌پذیرم.
+        </span>
+
+      </label>
+
+
+      <button
+        id="continueButton"
+        class="continue-button"
+        disabled
+        onclick="openSupport()">
+
+        🔒 ادامه و ارتباط با پشتیبانی
+
+      </button>
+
+
+      <button
+        class="continue-button back-button"
+        onclick="backToRegistration()">
+
+        ↩ بازگشت
+
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+         صفحه پشتیبانی
+    ========================== -->
+
+    <section id="supportPage" class="card hidden">
+
+      <h2 class="support-title">
+        🤝 هماهنگی با پشتیبانی
+      </h2>
+
+      <p class="support-intro">
+
+        قوانین و شرایط خدمات را پذیرفتید.
+        <br>
+
+        برای تکمیل مراحل ثبت و هماهنگی معرفی
+        اقامتگاه، با پشتیبانی سایروس توریست
+        در ارتباط باشید.
+
+      </p>
+
+
+      <!-- تماس تلفنی -->
+
+      <a
+        class="support-button phone"
+        href="tel:09153448818">
+
+        📞 تماس با پشتیبانی
+        <br>
+        09153448818
+
+      </a>
+
+
+      <!-- تلگرام -->
+
+      <a
+        class="support-button telegram"
+        href="https://t.me/cytustourist"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        ✈️ پشتیبانی تلگرام
+        <br>
+        @cytustourist
+
+      </a>
+
+
+      <!-- واتساپ -->
+
+      <a
+        class="support-button whatsapp"
+        href="https://wa.me/989153448818"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        💬 پشتیبانی واتساپ
+        <br>
+        @cytustourist
+
+      </a>
+
+
+      <div class="success">
+
+        <strong>🏡 مرحله اول با موفقیت انجام شد.</strong>
+
+        <p>
+          برای ادامه مراحل ثبت اقامتگاه،
+          با پشتیبانی سایروس توریست هماهنگ کنید.
+        </p>
+
+      </div>
+
+
+      <button
+        class="continue-button back-button"
+        onclick="backToRules()">
+
+        ↩ بازگشت به قوانین
+
+      </button>
+
+    </section>
+
+
+    <div class="footer">
+      سایروس توریست | پلتفرم گردشگری ایران و جهان
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    function showRules() {
+
+      document
+        .getElementById("registrationPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("rulesPage")
+        .classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function toggleContinue() {
+
+      const checkbox =
+        document.getElementById("acceptRules");
+
+      const button =
+        document.getElementById("continueButton");
+
+
+      if (checkbox.checked) {
+
+        button.disabled = false;
+
+        button.classList.add("active");
+
+        button.innerHTML =
+          "✅ ادامه و ارتباط با پشتیبانی";
+
+      } else {
+
+        button.disabled = true;
+
+        button.classList.remove("active");
+
+        button.innerHTML =
+          "🔒 ادامه و ارتباط با پشتیبانی";
+
+      }
+
+    }
+
+
+    function openSupport() {
+
+      const checkbox =
+        document.getElementById("acceptRules");
+
+      if (!checkbox.checked) {
+        return;
+      }
+
+
+      document
+        .getElementById("rulesPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("supportPage")
+        .classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function backToRegistration() {
+
+      document
+        .getElementById("rulesPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("registrationPage")
+        .classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function backToRules() {
+
+      document
+        .getElementById("supportPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("rulesPage")
+        .classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
+
+مسیر این فایل
+
+residences.html
+      ↓
+🏡 ثبت اقامتگاه
+      ↓
+📋 قوانین و شرایط
+      ↓
+☐ پذیرش قوانین
+      ↓
+✅ ادامه
+      ↓
+🤝 هماهنگی با پشتیبانی
+      ↓
+📞 09153448818
+💬 Telegram @cytustourist
+💬 WhatsApp @cytustourist
+
+فعلاً عمداً هیچ Firebase، دیتابیس، فرم اطلاعات اقامتگاه یا پرداختی داخل این فایل قرار نگرفته است. این نسخه را می‌توانیم اول مستقل تست کنیم؛ بعد مرحله بعدی را روی همین فایل اضافه کنیم.
