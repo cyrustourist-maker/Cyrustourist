@@ -1,1 +1,736 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="سایروس توریست؛ معرفی و جستجوی اقامتگاه‌های گردشگری، هتل، آپارتمان، بوم‌گردی، کلبه جنگلی و اقامتگاه‌های طبیعت‌گردی.">
+
+  <meta name="theme-color" content="#0b6e69">
+
+  <title>اقامتگاه‌های گردشگری | سایروس توریست</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+      background: #f4f8f7;
+      color: #172b2b;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .residence-page {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .residence-header {
+      position: relative;
+      width: 100%;
+      padding: 28px 18px 32px;
+      background:
+        linear-gradient(
+          135deg,
+          #075f5a 0%,
+          #0b8179 48%,
+          #13a094 100%
+        );
+      color: #fff;
+      box-shadow: 0 8px 25px rgba(0, 70, 65, 0.18);
+    }
+
+    .header-inner {
+      width: min(1200px, 100%);
+      margin: auto;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: clamp(25px, 4vw, 42px);
+      font-weight: 900;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800;
+    }
+
+    .page-subtitle {
+      max-width: 850px;
+      margin: 12px auto 0;
+      line-height: 1.9;
+      font-size: 15px;
+      opacity: .94;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .residence-main {
+      width: min(1200px, calc(100% - 28px));
+      margin: 24px auto 40px;
+    }
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    .search-panel {
+      background: #fff;
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .07);
+      border: 1px solid #e4eeee;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 10px;
+    }
+
+    .search-input,
+    .filter-select {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid #d6e5e3;
+      border-radius: 14px;
+      background: #f9fcfc;
+      padding: 0 15px;
+      outline: none;
+      font-size: 14px;
+      color: #183333;
+      transition: .2s;
+    }
+
+    .search-input:focus,
+    .filter-select:focus {
+      border-color: #0b8179;
+      box-shadow: 0 0 0 3px rgba(11, 129, 121, .10);
+      background: #fff;
+    }
+
+    .location-btn {
+      min-height: 50px;
+      border: 0;
+      border-radius: 14px;
+      padding: 0 18px;
+      background: #0b8179;
+      color: #fff;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .location-btn:hover {
+      transform: translateY(-2px);
+      background: #096c66;
+    }
+
+    .location-btn:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    /* =========================
+       CATEGORIES
+    ========================= */
+
+    .categories-section {
+      margin-top: 20px;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .category-btn {
+      border: 1px solid #d8e8e6;
+      background: #fff;
+      color: #24504d;
+      padding: 11px 15px;
+      border-radius: 13px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .category-btn:hover {
+      transform: translateY(-2px);
+      border-color: #0b8179;
+    }
+
+    .category-btn.active {
+      background: #0b8179;
+      color: #fff;
+      border-color: #0b8179;
+      box-shadow: 0 5px 14px rgba(11, 129, 121, .20);
+    }
+
+    /* =========================
+       RESULT BAR
+    ========================= */
+
+    .result-bar {
+      margin: 22px 0 14px;
+      min-height: 48px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: #eaf5f3;
+      color: #17514d;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .residence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .residence-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e2eceb;
+      border-radius: 20px;
+      box-shadow: 0 7px 24px rgba(0, 0, 0, .06);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .residence-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .10);
+    }
+
+    .residence-image {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      background:
+        linear-gradient(
+          135deg,
+          #d8eeeb,
+          #eef7f6
+        );
+    }
+
+    .residence-image-placeholder {
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      font-size: 45px;
+      background:
+        linear-gradient(
+          135deg,
+          #d9efec,
+          #f4fbfa
+        );
+    }
+
+    .residence-card-body {
+      padding: 17px;
+    }
+
+    .residence-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #edf7f5;
+      color: #14756e;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .residence-name {
+      margin: 0 0 8px;
+      font-size: 19px;
+      line-height: 1.5;
+      font-weight: 900;
+      color: #173b39;
+    }
+
+    .residence-location {
+      color: #54706d;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+
+    .residence-rating {
+      color: #a36b00;
+      font-size: 13px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .residence-description {
+      color: #5c6d6c;
+      font-size: 13px;
+      line-height: 1.9;
+      margin: 8px 0;
+    }
+
+    .residence-address {
+      color: #657775;
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 8px;
+    }
+
+    .residence-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .residence-action {
+      min-height: 42px;
+      border-radius: 11px;
+      border: 1px solid #d9e8e6;
+      background: #f8fbfb;
+      color: #24504d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .residence-action:hover {
+      background: #eaf5f3;
+      border-color: #0b8179;
+    }
+
+    .residence-action.primary {
+      background: #0b8179;
+      border-color: #0b8179;
+      color: #fff;
+    }
+
+    .residence-action.video {
+      background: #fff5df;
+      border-color: #efd9a4;
+      color: #8b5b00;
+    }
+
+    /* =========================
+       EMPTY / LOADING
+    ========================= */
+
+    .residence-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: #fff;
+      border: 1px solid #e2eceb;
+      border-radius: 20px;
+      padding: 45px 20px;
+      color: #5c6d6c;
+      line-height: 2;
+    }
+
+    .residence-state-icon {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    /* =========================
+       REGISTRATION
+    ========================= */
+
+    .registration-box {
+      margin-top: 28px;
+      padding: 25px;
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          135deg,
+          #fff8e8,
+          #fffdf7
+        );
+      border: 1px solid #f1dfb6;
+      box-shadow: 0 8px 25px rgba(130, 90, 0, .06);
+      text-align: center;
+    }
+
+    .registration-title {
+      margin: 0 0 9px;
+      font-size: 22px;
+      font-weight: 900;
+      color: #765000;
+    }
+
+    .registration-description {
+      max-width: 800px;
+      margin: 0 auto 17px;
+      color: #6c624d;
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .register-residence-btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 24px;
+      background: #c88a14;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 7px 18px rgba(200, 138, 20, .20);
+      transition: .2s;
+    }
+
+    .register-residence-btn:hover {
+      transform: translateY(-2px);
+      background: #aa7208;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .residence-footer {
+      width: 100%;
+      padding: 25px 18px;
+      background: #113b39;
+      color: #d9eeeb;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .search-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .search-row .search-input {
+        grid-column: 1 / -1;
+      }
+
+      .residence-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .residence-header {
+        padding: 22px 14px 27px;
+      }
+
+      .residence-main {
+        width: min(100% - 18px, 1200px);
+        margin-top: 14px;
+      }
+
+      .search-panel {
+        padding: 13px;
+        border-radius: 17px;
+      }
+
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+
+      .search-row .search-input {
+        grid-column: auto;
+      }
+
+      .location-btn {
+        width: 100%;
+      }
+
+      .category-buttons {
+        gap: 7px;
+      }
+
+      .category-btn {
+        flex: 1 1 calc(50% - 7px);
+        min-width: 135px;
+      }
+
+      .residence-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .residence-image,
+      .residence-image-placeholder {
+        height: 220px;
+      }
+
+      .registration-box {
+        padding: 20px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="residence-page">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="residence-header">
+      <div class="header-inner">
+
+        <div class="brand">
+          سایروس توریست
+        </div>
+
+        <h1 class="page-title">
+          اقامتگاه‌های گردشگری
+        </h1>
+
+        <p class="page-subtitle">
+          هتل، آپارتمان، بوم‌گردی، کلبه جنگلی و دیگر اقامتگاه‌های گردشگری
+          را جستجو کنید و اطلاعات اقامتگاه، فیلم، مسیر، تماس و خدمات آن را ببینید.
+        </p>
+
+      </div>
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="residence-main">
+
+      <!-- SEARCH PANEL -->
+
+      <section class="search-panel">
+
+        <div class="search-row">
+
+          <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            autocomplete="off"
+            placeholder="🔎 جستجوی نام اقامتگاه، شهر، استان یا منطقه..."
+            aria-label="جستجوی اقامتگاه"
+          >
+
+          <select
+            id="provinceSelect"
+            class="filter-select"
+            aria-label="انتخاب استان"
+          >
+            <option value="">
+              🌍 همه استان‌ها
+            </option>
+          </select>
+
+          <select
+            id="citySelect"
+            class="filter-select"
+            aria-label="انتخاب شهر"
+          >
+            <option value="">
+              🏙️ همه شهرها
+            </option>
+          </select>
+
+          <button
+            id="myLocationBtn"
+            class="location-btn"
+            type="button"
+          >
+            📍 مکان من
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           CATEGORIES
+      ========================== -->
+
+      <section class="categories-section">
+
+        <h2 class="section-title">
+          دسته‌بندی اقامتگاه‌ها
+        </h2>
+
+        <div
+          id="categoryButtons"
+          class="category-buttons"
+          aria-label="دسته‌بندی اقامتگاه‌ها"
+        >
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           RESULT BAR
+      ========================== -->
+
+      <div
+        id="resultBar"
+        class="result-bar"
+      >
+        <span id="resultCount">
+          در حال بارگذاری اطلاعات اقامتگاه‌ها...
+        </span>
+      </div>
+
+
+      <!-- =========================
+           RESIDENCE GRID
+      ========================== -->
+
+      <section
+        id="residenceGrid"
+        class="residence-grid"
+        aria-live="polite"
+      >
+
+        <div class="residence-state">
+
+          <div class="residence-state-icon">
+            🏡
+          </div>
+
+          <div>
+            در حال بارگذاری اطلاعات اقامتگاه‌ها...
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           REGISTRATION BOX
+      ========================== -->
+
+      <section class="registration-box">
+
+        <h2 class="registration-title">
+          ➕ ثبت اقامتگاه در سایروس توریست
+        </h2>
+
+        <p class="registration-description">
+          اقامتگاه خود را معرفی کنید و از خدمات معرفی، نمایش فیلم،
+          مسیریابی، تماس مستقیم و امتیاز گردشگران بهره‌مند شوید.
+        </p>
+
+        <button
+          id="registerResidenceBtn"
+          class="register-residence-btn"
+          type="button"
+          data-residence-register
+        >
+          ➕ ثبت اقامتگاه
+        </button>
+
+      </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="residence-footer">
+      © سایروس توریست — سامانه معرفی و گردشگری اقامتگاه‌ها
+    </footer>
+
+  </div>
+
+
+  <!-- =====================================================
+       RESIDENCE MODULE FILES
+       ===================================================== -->
+
+  <script src="residences-i18n.js"></script>
+
+  <script src="residences-data.js"></script>
+
+  <script src="residences-search.js"></script>
+
+  <script src="residences-location.js"></script>
+
+  <script src="residences-rating.js"></script>
+
+  <script src="residences-registration.js"></script>
+
+  <script src="residences.js"></script>
+
+</body>
+</html>
