@@ -19,9 +19,10 @@
  * - نزدیک‌ترین اقامتگاه‌ها
  * - فیلم
  * - مسیریابی
- * - تماس
+ * - سه شماره تماس
  * - اینستاگرام
  * - وب‌سایت
+ * - طراحی Premium
  * - طراحی واکنش‌گرا
  *
  * بدون Firebase
@@ -182,10 +183,7 @@
         ) {
 
             const language =
-                typeof getResidenceLanguage ===
-                "function"
-                    ? getResidenceLanguage()
-                    : "fa";
+                currentLanguage();
 
 
             return (
@@ -205,7 +203,7 @@
 
 
     /* =========================================================
-       گرفتن زبان فعلی
+       زبان فعلی
        ========================================================= */
 
     function currentLanguage() {
@@ -225,7 +223,7 @@
 
 
     /* =========================================================
-       گرفتن داده اقامتگاه‌ها
+       داده اقامتگاه‌ها
        ========================================================= */
 
     function getResidenceData() {
@@ -250,13 +248,6 @@
 
     /* =========================================================
        بارگذاری وابستگی‌ها
-       =========================================================
-       این بخش عمداً اضافه شده تا اگر در
-       residences.html نام فایل‌های قدیمی
-       residence-search.js و ...
-       وجود داشته باشد، نسخه جدید
-       residences-*.js نیز به‌صورت خودکار
-       بارگذاری شود.
        ========================================================= */
 
     function loadScript(
@@ -265,8 +256,7 @@
 
         return new Promise(
             function (
-                resolve,
-                reject
+                resolve
             ) {
 
                 const existing =
@@ -279,15 +269,8 @@
 
                 if (existing) {
 
-                    /*
-                     * اگر قبلاً بارگذاری شده،
-                     * چند لحظه فرصت می‌دهیم.
-                     */
-
                     setTimeout(
-                        function () {
-                            resolve();
-                        },
+                        resolve,
                         0
                     );
 
@@ -306,7 +289,8 @@
                     filename;
 
 
-                script.async = false;
+                script.async =
+                    false;
 
 
                 script.onload =
@@ -363,7 +347,7 @@
 
 
     /* =========================================================
-       تزریق استایل‌های تکمیلی
+       استایل Premium
        ========================================================= */
 
     function injectResidenceStyles() {
@@ -373,7 +357,9 @@
                 "cyrusResidenceDynamicStyle"
             )
         ) {
+
             return;
+
         }
 
 
@@ -389,293 +375,600 @@
 
         style.textContent = `
 
+        /* =====================================================
+           CATEGORY
+           ===================================================== */
+
         .ct-residence-category-row {
             display:flex;
             flex-wrap:wrap;
             gap:10px;
             align-items:center;
             justify-content:center;
-            margin:18px 0;
+            margin:20px 0;
         }
 
         .ct-residence-category {
-            border:0;
-            border-radius:16px;
-            padding:11px 16px;
+            position:relative;
+            overflow:hidden;
+            border:1px solid rgba(17,153,142,.12);
+            border-radius:18px;
+            padding:12px 17px;
             cursor:pointer;
-            font-size:14px;
-            font-weight:700;
-            background:linear-gradient(
-                135deg,
-                #ffffff,
-                #eef6ff
-            );
+            font-size:13px;
+            font-weight:900;
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #eefaf7
+                );
+            color:#20313a;
             box-shadow:
-                0 5px 18px rgba(0,0,0,.08);
+                0 7px 20px rgba(20,90,90,.09);
             transition:
-                transform .2s ease,
-                box-shadow .2s ease,
-                background .2s ease;
+                transform .22s ease,
+                box-shadow .22s ease,
+                background .22s ease,
+                color .22s ease;
+        }
+
+        .ct-residence-category::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent,
+                    rgba(255,255,255,.65),
+                    transparent
+                );
+            transform:
+                translateX(-120%);
+            transition:
+                transform .5s ease;
+        }
+
+        .ct-residence-category:hover::after {
+            transform:
+                translateX(120%);
         }
 
         .ct-residence-category:hover {
-            transform:translateY(-2px);
+            transform:
+                translateY(-3px);
             box-shadow:
-                0 8px 22px rgba(0,0,0,.13);
+                0 11px 27px rgba(20,90,90,.15);
+        }
+
+        .ct-residence-category:active {
+            transform:
+                scale(.96);
         }
 
         .ct-residence-category.active {
+            color:#fff;
+            border-color:transparent;
             background:
                 linear-gradient(
                     135deg,
-                    #f7b733,
-                    #fc4a1a
+                    #007f78,
+                    #16a085,
+                    #38c99b
                 );
-            color:#fff;
             box-shadow:
-                0 8px 24px rgba(252,74,26,.28);
+                0 10px 28px rgba(0,127,120,.30);
         }
+
+
+        /* =====================================================
+           MORE
+           ===================================================== */
 
         .ct-residence-more {
             border:0;
-            border-radius:16px;
-            padding:11px 17px;
+            border-radius:18px;
+            padding:12px 18px;
             cursor:pointer;
-            font-weight:800;
+            font-weight:900;
+            color:#fff;
             background:
                 linear-gradient(
                     135deg,
-                    #7f53ac,
-                    #647dee
+                    #087f8c,
+                    #3859c9
                 );
-            color:#fff;
             box-shadow:
-                0 7px 20px rgba(100,125,222,.25);
+                0 9px 25px rgba(56,89,201,.25);
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease;
         }
+
+        .ct-residence-more:hover {
+            transform:
+                translateY(-3px);
+            box-shadow:
+                0 13px 30px rgba(56,89,201,.34);
+        }
+
+        .ct-residence-more:active {
+            transform:
+                scale(.96);
+        }
+
+
+        /* =====================================================
+           CARD
+           ===================================================== */
 
         .ct-residence-card {
             position:relative;
             overflow:hidden;
-            background:#fff;
-            border-radius:22px;
-            box-shadow:
-                0 8px 30px rgba(0,0,0,.09);
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
             height:100%;
             display:flex;
             flex-direction:column;
+            border:1px solid rgba(19,103,96,.10);
+            border-radius:26px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f7fcfa
+                );
+            box-shadow:
+                0 10px 35px rgba(22,76,74,.10);
+            transition:
+                transform .28s ease,
+                box-shadow .28s ease,
+                border-color .28s ease;
+        }
+
+        .ct-residence-card::before {
+            content:"";
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            height:4px;
+            z-index:3;
+            background:
+                linear-gradient(
+                    90deg,
+                    #007f78,
+                    #38c99b,
+                    #f3b33d
+                );
         }
 
         .ct-residence-card:hover {
-            transform:translateY(-5px);
+            transform:
+                translateY(-7px);
+            border-color:
+                rgba(0,127,120,.20);
             box-shadow:
-                0 14px 38px rgba(0,0,0,.15);
+                0 20px 48px rgba(22,76,74,.17);
         }
+
+
+        /* =====================================================
+           IMAGE
+           ===================================================== */
 
         .ct-residence-image {
             width:100%;
-            height:210px;
+            height:215px;
             object-fit:cover;
             display:block;
             background:
                 linear-gradient(
                     135deg,
-                    #dff3ff,
-                    #f8e8c8
+                    #d9f3ed,
+                    #fff1cf
                 );
+            transition:
+                transform .45s ease;
+        }
+
+        .ct-residence-card:hover
+        .ct-residence-image {
+            transform:
+                scale(1.035);
         }
 
         .ct-residence-image-placeholder {
             width:100%;
-            height:210px;
+            height:215px;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size:58px;
+            font-size:62px;
             background:
                 linear-gradient(
                     135deg,
-                    #dff3ff,
-                    #fff1cf,
-                    #e5ddff
+                    #d9f3ed,
+                    #fff0c9,
+                    #e6e0ff
                 );
         }
 
+
+        /* =====================================================
+           STATUS
+           ===================================================== */
+
+        .ct-residence-status {
+            position:absolute;
+            top:14px;
+            right:14px;
+            z-index:5;
+            border-radius:14px;
+            padding:7px 10px;
+            color:#14564f;
+            background:
+                rgba(255,255,255,.90);
+            backdrop-filter:
+                blur(10px);
+            -webkit-backdrop-filter:
+                blur(10px);
+            border:1px solid
+                rgba(255,255,255,.65);
+            box-shadow:
+                0 7px 20px rgba(0,0,0,.10);
+            font-size:11px;
+            font-weight:900;
+        }
+
+
+        /* =====================================================
+           BODY
+           ===================================================== */
+
         .ct-residence-body {
-            padding:17px;
+            padding:18px;
             display:flex;
             flex-direction:column;
             flex:1;
         }
 
         .ct-residence-title {
-            margin:0 0 8px;
+            margin:
+                0 0 8px;
             font-size:19px;
-            font-weight:900;
-            line-height:1.5;
-            color:#18202a;
+            font-weight:950;
+            line-height:1.55;
+            color:#17252d;
         }
 
         .ct-residence-location {
-            color:#596574;
+            color:#5d6b73;
             font-size:13px;
-            line-height:1.8;
+            line-height:1.85;
             margin-bottom:9px;
         }
 
         .ct-residence-description {
-            color:#68727e;
+            color:#68777e;
             font-size:13px;
-            line-height:1.9;
-            margin:5px 0 12px;
+            line-height:1.95;
+            margin:
+                5px 0 13px;
         }
+
+
+        /* =====================================================
+           META
+           ===================================================== */
 
         .ct-residence-meta {
             display:flex;
             flex-wrap:wrap;
             gap:7px;
-            margin:5px 0 12px;
+            margin:
+                5px 0 12px;
         }
 
         .ct-residence-badge {
             display:inline-flex;
             align-items:center;
-            gap:4px;
-            border-radius:12px;
-            padding:6px 9px;
-            background:#f3f6fa;
-            font-size:12px;
-            font-weight:700;
-            color:#46515d;
+            gap:5px;
+            border-radius:13px;
+            padding:7px 10px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8f5,
+                    #f7fbfa
+                );
+            border:1px solid
+                rgba(0,127,120,.08);
+            font-size:11px;
+            font-weight:900;
+            color:#42545a;
         }
 
-        .ct-residence-rating {
-            font-size:14px;
-            font-weight:800;
-            margin-bottom:10px;
+        .ct-residence-distance {
+            color:#007f78;
+            background:
+                linear-gradient(
+                    135deg,
+                    #e7faf4,
+                    #f3fffb
+                );
         }
+
+
+        /* =====================================================
+           RATING
+           ===================================================== */
+
+        .ct-residence-rating {
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:6px;
+            margin-bottom:11px;
+            padding:
+                8px 10px;
+            border-radius:13px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff9e8,
+                    #fffdf5
+                );
+            border:1px solid
+                rgba(243,179,61,.15);
+            color:#7a5a16;
+            font-size:13px;
+            font-weight:900;
+        }
+
+        .ct-residence-rating small {
+            color:#8a806c;
+            font-size:10px;
+            font-weight:700;
+        }
+
+
+        /* =====================================================
+           ACTION AREA
+           ===================================================== */
 
         .ct-residence-actions {
             display:grid;
             grid-template-columns:
-                repeat(2, minmax(0,1fr));
+                repeat(2,minmax(0,1fr));
             gap:8px;
             margin-top:auto;
+            padding-top:12px;
         }
 
         .ct-residence-action {
+            position:relative;
+            overflow:hidden;
             display:flex;
             align-items:center;
             justify-content:center;
-            min-height:42px;
-            padding:8px 10px;
-            border-radius:13px;
-            text-decoration:none;
+            min-height:44px;
+            padding:
+                9px 10px;
             border:0;
+            border-radius:14px;
+            text-decoration:none;
             cursor:pointer;
             font-size:12px;
-            font-weight:800;
-            background:#f2f5f8;
-            color:#26313d;
+            font-weight:900;
+            color:#26343b;
+            background:
+                linear-gradient(
+                    145deg,
+                    #f2f7f6,
+                    #eaf1ef
+                );
+            box-shadow:
+                0 5px 15px rgba(35,70,70,.08);
             transition:
                 transform .2s ease,
+                box-shadow .2s ease,
                 filter .2s ease;
         }
 
-        .ct-residence-action:hover {
-            transform:translateY(-2px);
-            filter:brightness(.97);
+        .ct-residence-action::after {
+            content:"";
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:-70%;
+            width:45%;
+            background:
+                rgba(255,255,255,.40);
+            transform:
+                skewX(-20deg);
+            transition:
+                left .45s ease;
         }
 
-        .ct-residence-action.primary {
+        .ct-residence-action:hover::after {
+            left:130%;
+        }
+
+        .ct-residence-action:hover {
+            transform:
+                translateY(-2px);
+            box-shadow:
+                0 9px 20px rgba(35,70,70,.13);
+            filter:
+                brightness(1.02);
+        }
+
+        .ct-residence-action:active {
+            transform:
+                scale(.96);
+        }
+
+
+        /* =====================================================
+           PHONE BUTTONS
+           ===================================================== */
+
+        .ct-residence-action.phone-mobile {
+            color:#fff;
             background:
                 linear-gradient(
                     135deg,
-                    #2193b0,
-                    #6dd5ed
+                    #008f83,
+                    #18b98f
                 );
-            color:#fff;
+            box-shadow:
+                0 8px 21px rgba(0,143,131,.25);
         }
 
+        .ct-residence-action.phone-landline {
+            color:#fff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #2674d9,
+                    #4c9bea
+                );
+            box-shadow:
+                0 8px 21px rgba(38,116,217,.23);
+        }
+
+        .ct-residence-action.phone-support {
+            color:#fff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #7b4fd4,
+                    #a067e8
+                );
+            box-shadow:
+                0 8px 21px rgba(123,79,212,.23);
+        }
+
+
+        /* =====================================================
+           VIDEO / ROUTE
+           ===================================================== */
+
         .ct-residence-action.video {
+            color:#fff;
             background:
                 linear-gradient(
                     135deg,
                     #ff512f,
                     #dd2476
                 );
-            color:#fff;
+            box-shadow:
+                0 8px 21px rgba(221,36,118,.23);
         }
 
         .ct-residence-action.route {
-            background:
-                linear-gradient(
-                    135deg,
-                    #11998e,
-                    #38ef7d
-                );
             color:#fff;
-        }
-
-        .ct-residence-distance {
-            color:#0b7a75;
-            font-weight:900;
-        }
-
-        .ct-residence-empty {
-            padding:45px 20px;
-            text-align:center;
-            border-radius:20px;
             background:
                 linear-gradient(
                     135deg,
-                    #f8fbff,
-                    #fff8ed
+                    #007f78,
+                    #32c79a
                 );
             box-shadow:
-                0 7px 25px rgba(0,0,0,.06);
+                0 8px 21px rgba(0,127,120,.23);
+        }
+
+
+        /* =====================================================
+           INSTAGRAM / WEBSITE
+           ===================================================== */
+
+        .ct-residence-action.instagram {
+            color:#fff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #833ab4,
+                    #fd1d1d,
+                    #fcb045
+                );
+            box-shadow:
+                0 8px 21px rgba(131,58,180,.22);
+        }
+
+        .ct-residence-action.website {
+            color:#fff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #0066cc,
+                    #00a6d6
+                );
+            box-shadow:
+                0 8px 21px rgba(0,102,204,.22);
+        }
+
+
+        /* =====================================================
+           EMPTY
+           ===================================================== */
+
+        .ct-residence-empty {
+            padding:50px 20px;
+            text-align:center;
+            border-radius:24px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #eefaf7,
+                    #fff9ed
+                );
+            border:1px solid
+                rgba(0,127,120,.08);
+            box-shadow:
+                0 10px 30px rgba(20,80,75,.08);
         }
 
         .ct-residence-empty-icon {
-            font-size:52px;
+            font-size:55px;
             margin-bottom:10px;
         }
 
         .ct-residence-empty-title {
             font-size:18px;
-            font-weight:900;
-            margin-bottom:15px;
+            font-weight:950;
+            margin-bottom:17px;
+            color:#25363c;
         }
 
         .ct-residence-retry {
             border:0;
-            border-radius:13px;
-            padding:11px 18px;
+            border-radius:15px;
+            padding:12px 20px;
+            color:#fff;
             background:
                 linear-gradient(
                     135deg,
-                    #667eea,
-                    #764ba2
+                    #007f78,
+                    #38c99b
                 );
-            color:#fff;
-            font-weight:800;
+            box-shadow:
+                0 8px 22px rgba(0,127,120,.25);
+            font-weight:900;
             cursor:pointer;
+            transition:
+                transform .2s ease;
         }
 
-        .ct-residence-status {
-            position:absolute;
-            top:12px;
-            right:12px;
-            z-index:2;
-            border-radius:12px;
-            padding:6px 9px;
-            background:rgba(255,255,255,.93);
-            backdrop-filter:blur(5px);
-            font-size:11px;
-            font-weight:900;
+        .ct-residence-retry:hover {
+            transform:
+                translateY(-2px);
         }
+
+
+        /* =====================================================
+           MORE CATEGORIES
+           ===================================================== */
 
         .ct-residence-more-categories {
             display:none;
@@ -689,13 +982,19 @@
             display:flex;
         }
 
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
         @media (max-width:700px) {
 
             .ct-residence-category-row {
                 justify-content:flex-start;
                 flex-wrap:nowrap;
                 overflow-x:auto;
-                padding:4px 3px 10px;
+                padding:
+                    5px 3px 12px;
                 scrollbar-width:none;
             }
 
@@ -706,23 +1005,77 @@
             .ct-residence-category {
                 white-space:nowrap;
                 flex:0 0 auto;
+                min-height:45px;
             }
 
             .ct-residence-more-categories {
                 flex-wrap:nowrap;
                 overflow-x:auto;
                 justify-content:flex-start;
+                scrollbar-width:none;
+                padding-bottom:5px;
+            }
+
+            .ct-residence-more-categories::-webkit-scrollbar {
+                display:none;
             }
 
             .ct-residence-card {
-                border-radius:18px;
+                border-radius:21px;
             }
 
             .ct-residence-image,
             .ct-residence-image-placeholder {
-                height:190px;
+                height:195px;
             }
 
+            .ct-residence-body {
+                padding:16px;
+            }
+
+            .ct-residence-title {
+                font-size:18px;
+            }
+
+            .ct-residence-action {
+                min-height:46px;
+                font-size:11px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+           ===================================================== */
+
+        @media (max-width:420px) {
+
+            .ct-residence-actions {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .ct-residence-action {
+                min-height:47px;
+                font-size:12px;
+            }
+
+        }
+
+
+        /* =====================================================
+           ACCESSIBILITY
+           ===================================================== */
+
+        .ct-residence-action:focus-visible,
+        .ct-residence-category:focus-visible,
+        .ct-residence-more:focus-visible,
+        .ct-residence-retry:focus-visible {
+            outline:
+                3px solid rgba(243,179,61,.75);
+            outline-offset:
+                3px;
         }
 
         `;
@@ -736,7 +1089,7 @@
 
 
     /* =========================================================
-       نمایش دسته‌بندی‌ها
+       دسته‌بندی‌ها
        ========================================================= */
 
     function renderCategories() {
@@ -770,10 +1123,12 @@
             )
             .sort(
                 function (a, b) {
+
                     return (
                         Number(a.order || 99) -
                         Number(b.order || 99)
                     );
+
                 }
             );
 
@@ -781,7 +1136,11 @@
         const featured =
             types.filter(
                 function (item) {
-                    return item.featured === true;
+
+                    return (
+                        item.featured === true
+                    );
+
                 }
             );
 
@@ -789,12 +1148,17 @@
         const additional =
             types.filter(
                 function (item) {
-                    return item.featured !== true;
+
+                    return (
+                        item.featured !== true
+                    );
+
                 }
             );
 
 
-        container.innerHTML = "";
+        container.innerHTML =
+            "";
 
 
         const wrapper =
@@ -864,10 +1228,6 @@
         }
 
 
-        /*
-         * دکمه همه
-         */
-
         const allButton =
             document.createElement(
                 "button"
@@ -890,7 +1250,9 @@
         allButton.textContent =
             typeof residenceText ===
             "function"
-                ? residenceText("all")
+                ? residenceText(
+                    "all"
+                )
                 : "🌍 همه";
 
 
@@ -909,10 +1271,6 @@
         );
 
 
-        /*
-         * دسته‌های اصلی
-         */
-
         featured.forEach(
             function (type) {
 
@@ -927,10 +1285,6 @@
             }
         );
 
-
-        /*
-         * دکمه بیشتر
-         */
 
         if (
             additional.length > 0
@@ -953,7 +1307,9 @@
             moreButton.textContent =
                 typeof residenceText ===
                 "function"
-                    ? residenceText("more")
+                    ? residenceText(
+                        "more"
+                    )
                     : "⋮ بیشتر";
 
 
@@ -984,10 +1340,6 @@
             wrapper
         );
 
-
-        /*
-         * دسته‌های بیشتر
-         */
 
         if (
             ResidenceAppState
@@ -1043,7 +1395,9 @@
 
         if (
             typeof ResidenceSearch !==
-            "undefined"
+            "undefined" &&
+            typeof ResidenceSearch.setType ===
+            "function"
         ) {
 
             ResidenceSearch.setType(
@@ -1060,13 +1414,14 @@
 
 
         renderCategories();
+
         applyFilters();
 
     }
 
 
     /* =========================================================
-       پر کردن استان‌ها
+       استان‌ها
        ========================================================= */
 
     function populateProvinces() {
@@ -1095,7 +1450,9 @@
 
         if (
             typeof ResidenceSearch !==
-            "undefined"
+            "undefined" &&
+            typeof ResidenceSearch.buildProvinceList ===
+            "function"
         ) {
 
             provinces =
@@ -1112,22 +1469,27 @@
         ) {
 
             provinces =
-                [...new Set(
-                    residences
-                        .map(
-                            function (item) {
-                                return getText(
-                                    item.province
-                                );
-                            }
-                        )
-                        .filter(Boolean)
-                )];
+                [
+                    ...new Set(
+                        residences
+                            .map(
+                                function (item) {
+
+                                    return getText(
+                                        item.province
+                                    );
+
+                                }
+                            )
+                            .filter(Boolean)
+                    )
+                ];
 
         }
 
 
-        select.innerHTML = "";
+        select.innerHTML =
+            "";
 
 
         const all =
@@ -1136,7 +1498,8 @@
             );
 
 
-        all.value = "";
+        all.value =
+            "";
 
 
         all.textContent =
@@ -1186,7 +1549,7 @@
 
 
     /* =========================================================
-       پر کردن شهرها
+       شهرها
        ========================================================= */
 
     function populateCities() {
@@ -1211,7 +1574,9 @@
 
         if (
             typeof ResidenceSearch !==
-            "undefined"
+            "undefined" &&
+            typeof ResidenceSearch.buildCityList ===
+            "function"
         ) {
 
             cities =
@@ -1224,7 +1589,55 @@
         }
 
 
-        select.innerHTML = "";
+        if (
+            cities.length === 0
+        ) {
+
+            cities =
+                ResidenceAppState
+                    .residences
+                    .filter(
+                        function (item) {
+
+                            if (
+                                !ResidenceAppState
+                                    .currentProvince
+                            ) {
+
+                                return true;
+
+                            }
+
+                            return (
+                                getText(
+                                    item.province
+                                ) ===
+                                ResidenceAppState
+                                    .currentProvince
+                            );
+
+                        }
+                    )
+                    .map(
+                        function (item) {
+
+                            return getText(
+                                item.city
+                            );
+
+                        }
+                    )
+                    .filter(Boolean);
+
+
+            cities =
+                [...new Set(cities)];
+
+        }
+
+
+        select.innerHTML =
+            "";
 
 
         const all =
@@ -1233,7 +1646,8 @@
             );
 
 
-        all.value = "";
+        all.value =
+            "";
 
 
         all.textContent =
@@ -1275,11 +1689,6 @@
         );
 
 
-        /*
-         * اگر شهر قبلی در استان جدید وجود ندارد،
-         * پاک می‌شود.
-         */
-
         const exists =
             cities.includes(
                 ResidenceAppState.currentCity
@@ -1296,7 +1705,8 @@
             ResidenceAppState.currentCity =
                 "";
 
-            select.value = "";
+            select.value =
+                "";
 
         }
 
@@ -1304,7 +1714,7 @@
 
 
     /* =========================================================
-       دریافت وضعیت اقامتگاه
+       وضعیت
        ========================================================= */
 
     function getStatusText(
@@ -1329,13 +1739,28 @@
 
             if (item) {
 
-                return (
-                    item.name?.[
-                        currentLanguage()
-                    ] ||
-                    item.name?.fa ||
-                    status
-                );
+                /*
+                 * نسخه جدید data از ساختار:
+                 * {fa:"...",en:"...",ar:"..."}
+                 * استفاده می‌کند.
+                 */
+
+                if (
+                    typeof item ===
+                    "object"
+                ) {
+
+                    return (
+                        item[
+                            currentLanguage()
+                        ] ||
+                        item.fa ||
+                        item.en ||
+                        item.ar ||
+                        status
+                    );
+
+                }
 
             }
 
@@ -1377,7 +1802,8 @@
                 name:
                     residence.type || "",
 
-                icon: "🏡"
+                icon:
+                    "🏡"
 
             };
 
@@ -1387,12 +1813,15 @@
         const item =
             Object.values(
                 RESIDENCE_TYPES
-            ).find(
+            )
+            .find(
                 function (type) {
+
                     return (
                         type.id ===
                         residence.type
                     );
+
                 }
             );
 
@@ -1404,7 +1833,8 @@
                 name:
                     residence.type || "",
 
-                icon: "🏡"
+                icon:
+                    "🏡"
 
             };
 
@@ -1425,7 +1855,8 @@
                 item.id,
 
             icon:
-                item.icon || "🏡"
+                item.icon ||
+                "🏡"
 
         };
 
@@ -1468,7 +1899,78 @@
 
 
     /* =========================================================
-       ساخت لینک مسیریابی
+       پاک‌سازی URL
+       ========================================================= */
+
+    function safeUrl(
+        value
+    ) {
+
+        if (
+            !value
+        ) {
+
+            return "";
+
+        }
+
+
+        const raw =
+            String(
+                value
+            ).trim();
+
+
+        if (
+            !raw
+        ) {
+
+            return "";
+
+        }
+
+
+        /*
+         * اجازه URLهای معمول وب
+         */
+
+        if (
+            /^https?:\/\//i.test(
+                raw
+            )
+        ) {
+
+            return raw;
+
+        }
+
+
+        /*
+         * برای اینستاگرام و سایت‌هایی که
+         * بدون https وارد شده‌اند.
+         */
+
+        if (
+            /^www\./i.test(
+                raw
+            )
+        ) {
+
+            return (
+                "https://" +
+                raw
+            );
+
+        }
+
+
+        return raw;
+
+    }
+
+
+    /* =========================================================
+       لینک مسیریابی
        ========================================================= */
 
     function buildRouteUrl(
@@ -1479,6 +1981,7 @@
             Number(
                 residence.latitude
             );
+
 
         const lng =
             Number(
@@ -1496,26 +1999,51 @@
         }
 
 
-        /*
-         * OpenStreetMap
-         * مناسب با ساختار سایروس توریست
-         */
+        let from = "";
+
+
+        if (
+            ResidenceLocationAvailable()
+        ) {
+
+            const userLat =
+                getLocationLatitude();
+
+
+            const userLng =
+                getLocationLongitude();
+
+
+            if (
+                Number.isFinite(
+                    Number(userLat)
+                ) &&
+                Number.isFinite(
+                    Number(userLng)
+                )
+            ) {
+
+                from =
+                    userLat +
+                    "," +
+                    userLng;
+
+            }
+
+        }
+
 
         return (
             "https://www.openstreetmap.org/directions" +
             "?from=" +
             encodeURIComponent(
-                ResidenceLocationAvailable()
-                    ? (
-                        getLocationLatitude() +
-                        "," +
-                        getLocationLongitude()
-                    )
-                    : ""
+                from
             ) +
             "&to=" +
             encodeURIComponent(
-                lat + "," + lng
+                lat +
+                "," +
+                lng
             )
         );
 
@@ -1540,13 +2068,15 @@
             ResidenceLocationAvailable()
         ) {
 
-            return ResidenceLocation
-                .state
-                .latitude;
+            return Number(
+                ResidenceLocation
+                    .state
+                    .latitude
+            );
 
         }
 
-        return "";
+        return NaN;
 
     }
 
@@ -1557,19 +2087,21 @@
             ResidenceLocationAvailable()
         ) {
 
-            return ResidenceLocation
-                .state
-                .longitude;
+            return Number(
+                ResidenceLocation
+                    .state
+                    .longitude
+            );
 
         }
 
-        return "";
+        return NaN;
 
     }
 
 
     /* =========================================================
-       لینک فیلم
+       فیلم
        ========================================================= */
 
     function buildVideoUrl(
@@ -1579,11 +2111,13 @@
         if (
             !residence.videoUrl
         ) {
+
             return "";
+
         }
 
 
-        return String(
+        return safeUrl(
             residence.videoUrl
         );
 
@@ -1591,7 +2125,304 @@
 
 
     /* =========================================================
-       ساخت کارت اقامتگاه
+       شماره‌های تماس
+       ========================================================= */
+
+    function getPhoneFields(
+        residence
+    ) {
+
+        if (
+            typeof getResidencePhoneFields ===
+            "function"
+        ) {
+
+            return getResidencePhoneFields(
+                residence
+            );
+
+        }
+
+
+        /*
+         * fallback برای سازگاری با داده‌های
+         * قدیمی‌تر
+         */
+
+        const result = [];
+
+
+        if (
+            residence.phone
+        ) {
+
+            result.push({
+
+                type:
+                    "mobile",
+
+                label:
+                    {
+                        fa:
+                            "📞 تماس",
+                        en:
+                            "📞 Call",
+                        ar:
+                            "📞 اتصال"
+                    },
+
+                value:
+                    residence.phone
+
+            });
+
+        }
+
+
+        return result;
+
+    }
+
+
+    /* =========================================================
+       نمایش شماره تماس
+       ========================================================= */
+
+    function renderPhoneButtons(
+        residence
+    ) {
+
+        const phones =
+            getPhoneFields(
+                residence
+            );
+
+
+        if (
+            !phones.length
+        ) {
+
+            return "";
+
+        }
+
+
+        return phones
+            .map(
+                function (phone) {
+
+                    const value =
+                        String(
+                            phone.value ||
+                            ""
+                        ).trim();
+
+
+                    if (
+                        !value
+                    ) {
+
+                        return "";
+
+                    }
+
+
+                    let className =
+                        "phone-mobile";
+
+
+                    let icon =
+                        "📱";
+
+
+                    if (
+                        phone.type ===
+                        "landline"
+                    ) {
+
+                        className =
+                            "phone-landline";
+
+                        icon =
+                            "☎️";
+
+                    }
+
+
+                    if (
+                        phone.type ===
+                        "support"
+                    ) {
+
+                        className =
+                            "phone-support";
+
+                        icon =
+                            "📞";
+
+                    }
+
+
+                    const label =
+                        phone.label
+                            ? getText(
+                                phone.label
+                            )
+                            : "تماس";
+
+
+                    return `
+                        <a
+                            class="
+                                ct-residence-action
+                                ${className}
+                            "
+                            href="tel:${escapeHTML(
+                                value
+                            )}"
+                            aria-label="${escapeHTML(
+                                label
+                            )}"
+                        >
+                            ${icon}
+                            ${escapeHTML(
+                                label.replace(
+                                    /^[^\p{L}\p{N}]*/u,
+                                    ""
+                                )
+                            )}
+                        </a>
+                    `;
+
+                }
+            )
+            .join("");
+
+    }
+
+
+    /* =========================================================
+       اینستاگرام
+       ========================================================= */
+
+    function buildInstagramButton(
+        residence
+    ) {
+
+        if (
+            !residence.instagram
+        ) {
+
+            return "";
+
+        }
+
+
+        if (
+            residence.display &&
+            residence.display.showInstagram ===
+            false
+        ) {
+
+            return "";
+
+        }
+
+
+        const url =
+            safeUrl(
+                residence.instagram
+            );
+
+
+        if (
+            !url
+        ) {
+
+            return "";
+
+        }
+
+
+        return `
+            <a
+                class="
+                    ct-residence-action
+                    instagram
+                "
+                href="${escapeHTML(url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                📸 اینستاگرام
+            </a>
+        `;
+
+    }
+
+
+    /* =========================================================
+       وب‌سایت
+       ========================================================= */
+
+    function buildWebsiteButton(
+        residence
+    ) {
+
+        if (
+            !residence.website
+        ) {
+
+            return "";
+
+        }
+
+
+        if (
+            residence.display &&
+            residence.display.showWebsite ===
+            false
+        ) {
+
+            return "";
+
+        }
+
+
+        const url =
+            safeUrl(
+                residence.website
+            );
+
+
+        if (
+            !url
+        ) {
+
+            return "";
+
+        }
+
+
+        return `
+            <a
+                class="
+                    ct-residence-action
+                    website
+                "
+                href="${escapeHTML(url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                🌐 وب‌سایت
+            </a>
+        `;
+
+    }
+
+
+    /* =========================================================
+       کارت اقامتگاه
        ========================================================= */
 
     function createResidenceCard(
@@ -1655,7 +2486,9 @@
         const image =
             residence.imageUrl
                 ? escapeHTML(
-                    residence.imageUrl
+                    safeUrl(
+                        residence.imageUrl
+                    )
                 )
                 : "";
 
@@ -1672,41 +2505,20 @@
             );
 
 
-        const phone =
-            residence.phone
-                ? String(
-                    residence.phone
-                )
-                : "";
-
-
-        const website =
-            residence.website
-                ? String(
-                    residence.website
-                )
-                : "";
-
-
-        const instagram =
-            residence.instagram
-                ? String(
-                    residence.instagram
-                )
-                : "";
-
-
         const distance =
             residence.distanceText ||
             "";
 
 
-        let ratingHTML = "";
+        let ratingHTML =
+            "";
 
 
         if (
             typeof ResidenceRating !==
             "undefined" &&
+            typeof ResidenceRating.canShow ===
+            "function" &&
             ResidenceRating.canShow(
                 residence
             )
@@ -1732,10 +2544,15 @@
 
                 ratingHTML =
                     `
-                    <div class="ct-residence-rating">
-                        ${escapeHTML(
-                            formatted.stars
-                        )}
+                    <div
+                        class="ct-residence-rating"
+                    >
+                        <span>
+                            ${escapeHTML(
+                                formatted.stars
+                            )}
+                        </span>
+
                         <span>
                             ${escapeHTML(
                                 String(
@@ -1743,6 +2560,7 @@
                                 )
                             )}
                         </span>
+
                         <small>
                             (${escapeHTML(
                                 formatted.countText
@@ -1756,10 +2574,13 @@
         }
 
 
-        let imageHTML;
+        let imageHTML =
+            "";
 
 
-        if (image) {
+        if (
+            image
+        ) {
 
             imageHTML =
                 `
@@ -1773,8 +2594,11 @@
                         this.nextElementSibling.style.display='flex';
                     "
                 >
+
                 <div
-                    class="ct-residence-image-placeholder"
+                    class="
+                        ct-residence-image-placeholder
+                    "
                     style="display:none"
                     aria-hidden="true"
                 >
@@ -1787,7 +2611,9 @@
             imageHTML =
                 `
                 <div
-                    class="ct-residence-image-placeholder"
+                    class="
+                        ct-residence-image-placeholder
+                    "
                     aria-hidden="true"
                 >
                     ${type.icon}
@@ -1797,15 +2623,26 @@
         }
 
 
-        let videoButton = "";
+        let videoButton =
+            "";
 
 
-        if (video) {
+        if (
+            video &&
+            (
+                !residence.display ||
+                residence.display.showVideo !==
+                false
+            )
+        ) {
 
             videoButton =
                 `
                 <a
-                    class="ct-residence-action video"
+                    class="
+                        ct-residence-action
+                        video
+                    "
                     href="${escapeHTML(video)}"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -1817,15 +2654,26 @@
         }
 
 
-        let routeButton = "";
+        let routeButton =
+            "";
 
 
-        if (route) {
+        if (
+            route &&
+            (
+                !residence.display ||
+                residence.display.showRoute !==
+                false
+            )
+        ) {
 
             routeButton =
                 `
                 <a
-                    class="ct-residence-action route"
+                    class="
+                        ct-residence-action
+                        route
+                    "
                     href="${escapeHTML(route)}"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -1837,109 +2685,117 @@
         }
 
 
-        let callButton = "";
+        const phoneButtons =
+            renderPhoneButtons(
+                residence
+            );
 
 
-        if (phone) {
-
-            callButton =
-                `
-                <a
-                    class="ct-residence-action primary"
-                    href="tel:${escapeHTML(phone)}"
-                >
-                    📞 تماس
-                </a>
-                `;
-
-        }
+        const instagramButton =
+            buildInstagramButton(
+                residence
+            );
 
 
-        let instagramButton = "";
-
-
-        if (instagram) {
-
-            instagramButton =
-                `
-                <a
-                    class="ct-residence-action"
-                    href="${escapeHTML(instagram)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    📸 اینستاگرام
-                </a>
-                `;
-
-        }
-
-
-        let websiteButton = "";
-
-
-        if (website) {
-
-            websiteButton =
-                `
-                <a
-                    class="ct-residence-action"
-                    href="${escapeHTML(website)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    🌐 وب‌سایت
-                </a>
-                `;
-
-        }
+        const websiteButton =
+            buildWebsiteButton(
+                residence
+            );
 
 
         const distanceHTML =
             distance
                 ? `
-                    <span class="ct-residence-badge ct-residence-distance">
-                        📍 ${escapeHTML(distance)}
+                    <span
+                        class="
+                            ct-residence-badge
+                            ct-residence-distance
+                        "
+                    >
+                        📍
+                        ${escapeHTML(
+                            distance
+                        )}
                     </span>
                   `
                 : "";
 
 
+        const statusText =
+            getStatusText(
+                residence
+            );
+
+
         return `
             <article
-                class="ct-residence-card"
+                class="
+                    ct-residence-card
+                "
                 data-residence-id="${escapeHTML(
-                    residence.id || ""
+                    residence.id ||
+                    ""
                 )}"
             >
 
-                <div class="ct-residence-status">
-                    🟢 ${escapeHTML(
-                        getStatusText(
-                            residence
-                        )
+                <div
+                    class="ct-residence-status"
+                >
+                    ${escapeHTML(
+                        statusText
                     )}
                 </div>
 
+
                 ${imageHTML}
 
-                <div class="ct-residence-body">
 
-                    <h3 class="ct-residence-title">
+                <div
+                    class="ct-residence-body"
+                >
+
+                    <h3
+                        class="ct-residence-title"
+                    >
                         ${name}
                     </h3>
 
-                    <div class="ct-residence-location">
+
+                    <div
+                        class="
+                            ct-residence-location
+                        "
+                    >
                         📍
                         ${province}
-                        ${city ? " — " + city : ""}
-                        ${region ? " — " + region : ""}
+
+                        ${
+                            city
+                                ? " — " +
+                                  city
+                                : ""
+                        }
+
+                        ${
+                            region
+                                ? " — " +
+                                  region
+                                : ""
+                        }
                     </div>
 
-                    <div class="ct-residence-meta">
 
-                        <span class="ct-residence-badge">
+                    <div
+                        class="ct-residence-meta"
+                    >
+
+                        <span
+                            class="
+                                ct-residence-badge
+                            "
+                        >
                             ${type.icon}
+
                             ${escapeHTML(
                                 type.name
                             )}
@@ -1949,35 +2805,52 @@
 
                     </div>
 
+
                     ${ratingHTML}
+
 
                     ${
                         description
                             ? `
-                            <div class="ct-residence-description">
-                                ${description}
-                            </div>
-                            `
+                                <div
+                                    class="
+                                        ct-residence-description
+                                    "
+                                >
+                                    ${description}
+                                </div>
+                              `
                             : ""
                     }
+
 
                     ${
                         address
                             ? `
-                            <div class="ct-residence-location">
-                                🏠 ${address}
-                            </div>
-                            `
+                                <div
+                                    class="
+                                        ct-residence-location
+                                    "
+                                >
+                                    🏠
+                                    ${address}
+                                </div>
+                              `
                             : ""
                     }
 
-                    <div class="ct-residence-actions">
+
+                    <div
+                        class="
+                            ct-residence-actions
+                        "
+                    >
 
                         ${videoButton}
 
                         ${routeButton}
 
-                        ${callButton}
+                        ${phoneButtons}
 
                         ${instagramButton}
 
@@ -2012,7 +2885,8 @@
         }
 
 
-        grid.innerHTML = "";
+        grid.innerHTML =
+            "";
 
 
         if (
@@ -2031,38 +2905,16 @@
         }
 
 
-        /*
-         * اطمینان از Grid مناسب
-         */
-
-        if (
-            !grid.style.display
-        ) {
-
-            grid.style.display =
-                "grid";
-
-        }
+        grid.style.display =
+            "grid";
 
 
-        if (
-            !grid.style.gridTemplateColumns
-        ) {
-
-            grid.style.gridTemplateColumns =
-                "repeat(auto-fit, minmax(280px, 1fr))";
-
-        }
+        grid.style.gridTemplateColumns =
+            "repeat(auto-fit, minmax(280px, 1fr))";
 
 
-        if (
-            !grid.style.gap
-        ) {
-
-            grid.style.gap =
-                "22px";
-
-        }
+        grid.style.gap =
+            "22px";
 
 
         const fragment =
@@ -2084,9 +2936,15 @@
                     );
 
 
-                fragment.appendChild(
+                if (
                     wrapper.firstElementChild
-                );
+                ) {
+
+                    fragment.appendChild(
+                        wrapper.firstElementChild
+                    );
+
+                }
 
             }
         );
@@ -2100,7 +2958,7 @@
 
 
     /* =========================================================
-       حالت بدون نتیجه
+       بدون نتیجه
        ========================================================= */
 
     function renderEmptyState(
@@ -2116,24 +2974,53 @@
                 : "اقامتگاهی با این مشخصات پیدا نشد.";
 
 
+        const retryText =
+            typeof residenceText ===
+            "function"
+                ? residenceText(
+                    "retry"
+                )
+                : "🔄 جستجوی مجدد";
+
+
         grid.innerHTML =
             `
-            <div class="ct-residence-empty">
+            <div
+                class="
+                    ct-residence-empty
+                "
+            >
 
-                <div class="ct-residence-empty-icon">
+                <div
+                    class="
+                        ct-residence-empty-icon
+                    "
+                >
                     🏡
                 </div>
 
-                <div class="ct-residence-empty-title">
-                    ${escapeHTML(title)}
+
+                <div
+                    class="
+                        ct-residence-empty-title
+                    "
+                >
+                    ${escapeHTML(
+                        title
+                    )}
                 </div>
+
 
                 <button
                     type="button"
-                    class="ct-residence-retry"
+                    class="
+                        ct-residence-retry
+                    "
                     id="ctResidenceRetry"
                 >
-                    🔄 جستجوی مجدد
+                    ${escapeHTML(
+                        retryText
+                    )}
                 </button>
 
             </div>
@@ -2163,7 +3050,7 @@
 
 
     /* =========================================================
-       نمایش نوار نتیجه
+       نوار نتیجه
        ========================================================= */
 
     function renderResultBar(
@@ -2182,24 +3069,24 @@
             );
 
 
-        if (resultCount) {
+        if (
+            resultCount
+        ) {
 
             resultCount.textContent =
-                String(count);
+                String(
+                    count
+                );
 
         }
 
 
-        if (resultBar) {
+        if (
+            resultBar
+        ) {
 
             resultBar.style.display =
                 "block";
-
-            /*
-             * اگر resultBar متن قابل تغییر دارد،
-             * فقط بخش count را تغییر نمی‌دهیم تا
-             * طراحی مادر صفحه خراب نشود.
-             */
 
         }
 
@@ -2207,7 +3094,7 @@
 
 
     /* =========================================================
-       اعمال تمام فیلترها
+       اعمال فیلترها
        ========================================================= */
 
     function applyFilters() {
@@ -2219,7 +3106,7 @@
 
 
         /*
-         * حالت مکان من
+         * حالت نزدیک‌ترین
          */
 
         if (
@@ -2243,13 +3130,11 @@
 
         } else {
 
-            /*
-             * جستجوی معمولی
-             */
-
             if (
                 typeof ResidenceSearch !==
-                "undefined"
+                "undefined" &&
+                typeof ResidenceSearch.filterResidences ===
+                "function"
             ) {
 
                 results =
@@ -2267,20 +3152,18 @@
 
                             type:
                                 ResidenceAppState.currentType
-
                         }
                     );
 
             } else {
 
-                /*
-                 * fallback ساده
-                 */
-
                 const query =
-                    ResidenceAppState
-                        .currentQuery
-                        .toLowerCase();
+                    String(
+                        ResidenceAppState
+                            .currentQuery ||
+                        ""
+                    )
+                    .toLowerCase();
 
 
                 results =
@@ -2296,7 +3179,9 @@
                                 ResidenceAppState
                                     .currentProvince
                             ) {
+
                                 return false;
+
                             }
 
 
@@ -2309,7 +3194,9 @@
                                 ResidenceAppState
                                     .currentCity
                             ) {
+
                                 return false;
+
                             }
 
 
@@ -2320,7 +3207,9 @@
                                 ResidenceAppState
                                     .currentType
                             ) {
+
                                 return false;
+
                             }
 
 
@@ -2334,11 +3223,14 @@
                                     query
                                 )
                             ) {
+
                                 return false;
+
                             }
 
 
                             return (
+                                !residence.status ||
                                 residence.status ===
                                 "active"
                             );
@@ -2404,7 +3296,9 @@
 
         if (
             typeof ResidenceSearch !==
-            "undefined"
+            "undefined" &&
+            typeof ResidenceSearch.setQuery ===
+            "function"
         ) {
 
             ResidenceSearch.setQuery(
@@ -2420,7 +3314,7 @@
 
 
     /* =========================================================
-       تغییر استان
+       استان
        ========================================================= */
 
     function handleProvinceChange(
@@ -2431,11 +3325,6 @@
             .currentProvince =
             value || "";
 
-
-        /*
-         * با تغییر استان،
-         * شهرها دوباره ساخته می‌شوند.
-         */
 
         ResidenceAppState
             .currentCity =
@@ -2450,13 +3339,28 @@
             "undefined"
         ) {
 
-            ResidenceSearch.setProvince(
-                value || ""
-            );
+            if (
+                typeof ResidenceSearch.setProvince ===
+                "function"
+            ) {
 
-            ResidenceSearch.setCity(
-                ""
-            );
+                ResidenceSearch.setProvince(
+                    value || ""
+                );
+
+            }
+
+
+            if (
+                typeof ResidenceSearch.setCity ===
+                "function"
+            ) {
+
+                ResidenceSearch.setCity(
+                    ""
+                );
+
+            }
 
         }
 
@@ -2474,7 +3378,7 @@
 
 
     /* =========================================================
-       تغییر شهر
+       شهر
        ========================================================= */
 
     function handleCityChange(
@@ -2488,7 +3392,9 @@
 
         if (
             typeof ResidenceSearch !==
-            "undefined"
+            "undefined" &&
+            typeof ResidenceSearch.setCity ===
+            "function"
         ) {
 
             ResidenceSearch.setCity(
@@ -2511,7 +3417,7 @@
 
 
     /* =========================================================
-       اتصال رویدادهای جستجو
+       رویدادهای جستجو
        ========================================================= */
 
     function bindSearchEvents() {
@@ -2522,7 +3428,14 @@
             );
 
 
-        if (search) {
+        if (
+            search &&
+            !search.dataset.ctResidenceBound
+        ) {
+
+            search.dataset.ctResidenceBound =
+                "true";
+
 
             search.addEventListener(
                 "input",
@@ -2563,7 +3476,14 @@
             );
 
 
-        if (province) {
+        if (
+            province &&
+            !province.dataset.ctResidenceBound
+        ) {
+
+            province.dataset.ctResidenceBound =
+                "true";
+
 
             province.addEventListener(
                 "change",
@@ -2585,7 +3505,14 @@
             );
 
 
-        if (city) {
+        if (
+            city &&
+            !city.dataset.ctResidenceBound
+        ) {
+
+            city.dataset.ctResidenceBound =
+                "true";
+
 
             city.addEventListener(
                 "change",
@@ -2607,7 +3534,14 @@
             );
 
 
-        if (locationButton) {
+        if (
+            locationButton &&
+            !locationButton.dataset.ctResidenceBound
+        ) {
+
+            locationButton.dataset.ctResidenceBound =
+                "true";
+
 
             locationButton.addEventListener(
                 "click",
@@ -2654,10 +3588,13 @@
             true;
 
 
-        if (button) {
+        if (
+            button
+        ) {
 
             button.disabled =
                 true;
+
 
             button.dataset.oldText =
                 button.textContent;
@@ -2705,18 +3642,19 @@
                 "";
 
 
-            /*
-             * پاک کردن ورودی‌ها
-             */
-
             const search =
                 findElement(
                     SELECTORS.searchInput
                 );
 
 
-            if (search) {
-                search.value = "";
+            if (
+                search
+            ) {
+
+                search.value =
+                    "";
+
             }
 
 
@@ -2726,8 +3664,13 @@
                 );
 
 
-            if (province) {
-                province.value = "";
+            if (
+                province
+            ) {
+
+                province.value =
+                    "";
+
             }
 
 
@@ -2740,8 +3683,13 @@
                 );
 
 
-            if (city) {
-                city.value = "";
+            if (
+                city
+            ) {
+
+                city.value =
+                    "";
+
             }
 
 
@@ -2750,8 +3698,9 @@
 
             applyFilters();
 
-
-        } catch (error) {
+        } catch (
+            error
+        ) {
 
             console.warn(
                 "Residence location:",
@@ -2760,10 +3709,21 @@
 
 
             const message =
-                ResidenceLocation
-                    .getErrorMessage(
-                        error
-                    );
+                typeof ResidenceLocation
+                    .getErrorMessage ===
+                    "function"
+                        ? ResidenceLocation
+                            .getErrorMessage(
+                                error
+                            )
+                        : (
+                            typeof residenceText ===
+                            "function"
+                                ? residenceText(
+                                    "locationError"
+                                )
+                                : "دریافت موقعیت مکانی با خطا روبه‌رو شد."
+                        );
 
 
             alert(
@@ -2777,10 +3737,13 @@
                 false;
 
 
-            if (button) {
+            if (
+                button
+            ) {
 
                 button.disabled =
                     false;
+
 
                 button.textContent =
                     button.dataset.oldText ||
@@ -2801,7 +3764,7 @@
 
 
     /* =========================================================
-       نمایش همه اقامتگاه‌ها
+       نمایش همه
        ========================================================= */
 
     function showAllResidences() {
@@ -2810,17 +3773,21 @@
             .currentMode =
             "all";
 
+
         ResidenceAppState
             .currentQuery =
             "";
+
 
         ResidenceAppState
             .currentProvince =
             "";
 
+
         ResidenceAppState
             .currentCity =
             "";
+
 
         ResidenceAppState
             .currentType =
@@ -2833,8 +3800,13 @@
             );
 
 
-        if (search) {
-            search.value = "";
+        if (
+            search
+        ) {
+
+            search.value =
+                "";
+
         }
 
 
@@ -2844,8 +3816,13 @@
             );
 
 
-        if (province) {
-            province.value = "";
+        if (
+            province
+        ) {
+
+            province.value =
+                "";
+
         }
 
 
@@ -2858,14 +3835,21 @@
             );
 
 
-        if (city) {
-            city.value = "";
+        if (
+            city
+        ) {
+
+            city.value =
+                "";
+
         }
 
 
         if (
             typeof ResidenceSearch !==
-            "undefined"
+            "undefined" &&
+            typeof ResidenceSearch.selectAll ===
+            "function"
         ) {
 
             ResidenceSearch.selectAll();
@@ -2874,13 +3858,14 @@
 
 
         renderCategories();
+
         applyFilters();
 
     }
 
 
     /* =========================================================
-       بازنشانی جستجو
+       بازنشانی
        ========================================================= */
 
     function resetSearch() {
@@ -2932,7 +3917,7 @@
 
 
     /* =========================================================
-       راه‌اندازی اصلی
+       راه‌اندازی
        ========================================================= */
 
     async function initResidences() {
@@ -2940,7 +3925,9 @@
         if (
             ResidenceAppState.initialized
         ) {
+
             return;
+
         }
 
 
@@ -2948,53 +3935,25 @@
             true;
 
 
-        /*
-         * بارگذاری فایل‌های وابسته
-         */
-
         await ensureDependencies();
 
-
-        /*
-         * استایل‌ها
-         */
 
         injectResidenceStyles();
 
 
-        /*
-         * داده‌ها
-         */
-
         prepareData();
 
-
-        /*
-         * فرم‌ها
-         */
 
         populateProvinces();
 
         populateCities();
 
 
-        /*
-         * دسته‌بندی‌ها
-         */
-
         renderCategories();
 
 
-        /*
-         * رویدادها
-         */
-
         bindSearchEvents();
 
-
-        /*
-         * نمایش اولیه
-         */
 
         applyFilters();
 
@@ -3006,10 +3965,6 @@
         ResidenceAppState.initialized =
             true;
 
-
-        /*
-         * اعلام آماده بودن سیستم
-         */
 
         window.dispatchEvent(
             new CustomEvent(
@@ -3035,9 +3990,11 @@
         render:
             renderResidences,
 
-        renderCategories,
+        renderCategories:
+            renderCategories,
 
-        applyFilters,
+        applyFilters:
+            applyFilters,
 
         search:
             handleSearch,
@@ -3048,25 +4005,31 @@
         reset:
             resetSearch,
 
-        setCategory,
+        setCategory:
+            setCategory,
 
         findNearby:
             findNearbyResidences,
 
-        refreshLanguage,
+        refreshLanguage:
+            refreshLanguage,
 
         getData:
             function () {
+
                 return ResidenceAppState
                     .residences
                     .slice();
+
             },
 
         getResults:
             function () {
+
                 return ResidenceAppState
                     .filteredResidences
                     .slice();
+
             }
 
     };
@@ -3091,7 +4054,7 @@
 
                 },
                 {
-                    once: true
+                    once:true
                 }
             );
 
