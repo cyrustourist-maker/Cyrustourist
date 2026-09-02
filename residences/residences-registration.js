@@ -50,6 +50,27 @@
 
 
     /* =========================================================
+       تنظیمات کارت نمونه (برای مشاهده مالک اقامتگاه)
+       ========================================================= */
+
+    const SAMPLE_CARD_CONFIG = {
+
+        videoEmbedUrl:
+            "https://www.aparat.com/video/video/embed/videohash/w43c127/vt/frame",
+
+        routeUrl:
+            "../index.html#map",
+
+        instagram:
+            "https://www.instagram.com/cyrustourist?igsi=aDc3end6dTNqNW1o",
+
+        website:
+            "https://cyrustourist-maker.github.io/Cyrustourist/#residence"
+
+    };
+
+
+    /* =========================================================
        وضعیت ثبت
        ========================================================= */
 
@@ -119,6 +140,36 @@
 
             benefit6Desc:
                 "گردشگران می‌توانند به اقامتگاه از ۱ تا ۵ ستاره امتیاز دهند.",
+
+            sampleTitle:
+                "🏡 نمونه کارت اقامتگاه شما",
+
+            sampleDesc:
+                "این یک نمونه از کارت اقامتگاه شماست. برای فیلم اقامتگاه دو روش دارید: ۱. ارسال لینک فیلم شبکه‌های اجتماعی‌تان به پشتیبانی سایروس توریست ۲. سفارش تولید محتوای حرفه‌ای توسط تیم سایروس توریست (حضوری یا دورکاری).",
+
+            sampleRoute:
+                "🗺️ مسیریابی (مکان من)",
+
+            sampleCall:
+                "📞 تماس مستقیم",
+
+            sampleCallMobile:
+                "📱 تلفن همراه",
+
+            sampleCallLandline:
+                "☎️ تلفن ثابت",
+
+            sampleCallSupport:
+                "🛟 تلفن پشتیبان",
+
+            sampleCallNote:
+                "پس از ثبت‌نام آماده به کار است.",
+
+            sampleInstagram:
+                "📸 اینستاگرام",
+
+            sampleWebsite:
+                "🌐 وب‌سایت",
 
             rulesTitle:
                 "📋 قوانین و شرایط خدمات",
@@ -206,6 +257,36 @@
             benefit6Desc:
                 "Tourists can rate the residence from 1 to 5 stars.",
 
+            sampleTitle:
+                "🏡 Sample Residence Card",
+
+            sampleDesc:
+                "This is a sample of your residence card. There are two ways to add your video: 1. Send your social media video link to Cyrus Tourist support 2. Order professional content production by the Cyrus Tourist team (in person or remote).",
+
+            sampleRoute:
+                "🗺️ Route (My Location)",
+
+            sampleCall:
+                "📞 Direct Call",
+
+            sampleCallMobile:
+                "📱 Mobile Number",
+
+            sampleCallLandline:
+                "☎️ Landline Number",
+
+            sampleCallSupport:
+                "🛟 Support Line",
+
+            sampleCallNote:
+                "Ready to use after registration.",
+
+            sampleInstagram:
+                "📸 Instagram",
+
+            sampleWebsite:
+                "🌐 Website",
+
             rulesTitle:
                 "📋 Terms and Conditions",
 
@@ -291,6 +372,36 @@
 
             benefit6Desc:
                 "يمكن للسياح تقييم مكان الإقامة من نجمة إلى خمس نجوم.",
+
+            sampleTitle:
+                "🏡 نموذج بطاقة الإقامة الخاصة بك",
+
+            sampleDesc:
+                "هذا نموذج لبطاقة إقامتك. لديك طريقتان لإضافة الفيديو: ١. إرسال رابط فيديو من وسائل التواصل الاجتماعي إلى دعم سايروس توريست ٢. طلب إنتاج محتوى احترافي من فريق سايروس توريست (حضورياً أو عن بُعد).",
+
+            sampleRoute:
+                "🗺️ الملاحة (موقعي)",
+
+            sampleCall:
+                "📞 اتصال مباشر",
+
+            sampleCallMobile:
+                "📱 رقم الجوال",
+
+            sampleCallLandline:
+                "☎️ رقم الهاتف الأرضي",
+
+            sampleCallSupport:
+                "🛟 خط الدعم",
+
+            sampleCallNote:
+                "جاهز للاستخدام بعد التسجيل.",
+
+            sampleInstagram:
+                "📸 إنستغرام",
+
+            sampleWebsite:
+                "🌐 الموقع الإلكتروني",
 
             rulesTitle:
                 "📋 الشروط والأحكام",
@@ -521,6 +632,147 @@
             font-size:20px;
             font-weight:900;
             color:#202936;
+        }
+
+        .ct-sample-card {
+            margin-bottom:24px;
+            border-radius:20px;
+            overflow:hidden;
+            border:1px solid #e5edf0;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fbff,
+                    #eef8f5
+                );
+        }
+
+        .ct-sample-video {
+            position:relative;
+            padding-top:56.25%;
+            background:#000;
+        }
+
+        .ct-sample-video iframe {
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            border:0;
+        }
+
+        .ct-sample-body {
+            padding:16px;
+        }
+
+        .ct-sample-title {
+            margin:0 0 8px;
+            font-size:16px;
+            font-weight:900;
+            color:#1d2935;
+        }
+
+        .ct-sample-desc {
+            margin:0 0 14px;
+            font-size:12.5px;
+            line-height:1.9;
+            color:#687482;
+        }
+
+        .ct-sample-actions {
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+            margin-bottom:10px;
+        }
+
+        .ct-sample-btn {
+            flex:1 1 auto;
+            min-width:130px;
+            text-align:center;
+            padding:11px 10px;
+            border-radius:12px;
+            font-size:12.5px;
+            font-weight:900;
+            cursor:pointer;
+            border:0;
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            color:#344050;
+            background:#edf1f5;
+        }
+
+        .ct-sample-btn.call {
+            color:#fff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #11998e,
+                    #38ef7d
+                );
+        }
+
+        .ct-sample-call-options {
+            display:none;
+            gap:8px;
+            flex-wrap:wrap;
+            margin-bottom:10px;
+        }
+
+        .ct-sample-call-options.open {
+            display:flex;
+        }
+
+        .ct-sample-call-options button {
+            flex:1 1 auto;
+            min-width:100px;
+            padding:10px;
+            border-radius:10px;
+            border:1px solid #dbe3ea;
+            background:#fff;
+            color:#344050;
+            font-size:12px;
+            font-weight:800;
+            cursor:pointer;
+        }
+
+        .ct-sample-call-note {
+            display:none;
+            margin-bottom:10px;
+            padding:10px 12px;
+            border-radius:10px;
+            background:#fff7e6;
+            color:#8a6d1d;
+            font-size:12px;
+            font-weight:800;
+            text-align:center;
+        }
+
+        .ct-sample-call-note.open {
+            display:block;
+        }
+
+        .ct-sample-links {
+            display:flex;
+            gap:10px;
+        }
+
+        .ct-sample-link {
+            flex:1 1 auto;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:6px;
+            padding:10px;
+            border-radius:12px;
+            background:#fff;
+            border:1px solid #e5edf0;
+            color:#344050;
+            text-decoration:none;
+            font-size:12.5px;
+            font-weight:800;
         }
 
         .ct-registration-benefits {
@@ -868,6 +1120,8 @@
                         id="ctRegistrationTermsStep"
                     >
 
+                        ${sampleCardHTML()}
+
                         <h3
                             class="ct-registration-section-title"
                         >
@@ -1147,6 +1401,146 @@
 
 
     /* =========================================================
+       ساخت کارت نمونه اقامتگاه
+       ========================================================= */
+
+    function sampleCardHTML() {
+
+        return `
+            <div class="ct-sample-card">
+
+                <div class="ct-sample-video">
+                    <iframe
+                        src="${escapeHTML(
+                            SAMPLE_CARD_CONFIG.videoEmbedUrl
+                        )}"
+                        allowfullscreen
+                        loading="lazy"
+                    ></iframe>
+                </div>
+
+                <div class="ct-sample-body">
+
+                    <div class="ct-sample-title">
+                        ${escapeHTML(
+                            text("sampleTitle")
+                        )}
+                    </div>
+
+                    <p class="ct-sample-desc">
+                        ${escapeHTML(
+                            text("sampleDesc")
+                        )}
+                    </p>
+
+                    <div class="ct-sample-actions">
+
+                        <a
+                            class="ct-sample-btn"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.routeUrl
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleRoute")
+                            )}
+                        </a>
+
+                        <button
+                            type="button"
+                            class="ct-sample-btn call"
+                            id="ctSampleCallToggle"
+                        >
+                            ${escapeHTML(
+                                text("sampleCall")
+                            )}
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="ct-sample-call-options"
+                        id="ctSampleCallOptions"
+                    >
+
+                        <button type="button" class="ct-sample-call-opt">
+                            ${escapeHTML(
+                                text(
+                                    "sampleCallMobile"
+                                )
+                            )}
+                        </button>
+
+                        <button type="button" class="ct-sample-call-opt">
+                            ${escapeHTML(
+                                text(
+                                    "sampleCallLandline"
+                                )
+                            )}
+                        </button>
+
+                        <button type="button" class="ct-sample-call-opt">
+                            ${escapeHTML(
+                                text(
+                                    "sampleCallSupport"
+                                )
+                            )}
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="ct-sample-call-note"
+                        id="ctSampleCallNote"
+                    >
+                        ${escapeHTML(
+                            text("sampleCallNote")
+                        )}
+                    </div>
+
+                    <div class="ct-sample-links">
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.instagram
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text(
+                                    "sampleInstagram"
+                                )
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.website
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleWebsite")
+                            )}
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    }
+
+
+    /* =========================================================
        اتصال رویدادها
        ========================================================= */
 
@@ -1260,6 +1654,9 @@
         }
 
 
+        bindSampleCardEvents();
+
+
         /*
          * کلیک روی فضای بیرون پنجره
          */
@@ -1301,6 +1698,83 @@
 
             }
         );
+
+    }
+
+
+    /* =========================================================
+       اتصال رویدادهای کارت نمونه
+       ========================================================= */
+
+    function bindSampleCardEvents() {
+
+        const toggle =
+            document.getElementById(
+                "ctSampleCallToggle"
+            );
+
+
+        const options =
+            document.getElementById(
+                "ctSampleCallOptions"
+            );
+
+
+        const note =
+            document.getElementById(
+                "ctSampleCallNote"
+            );
+
+
+        if (toggle && options) {
+
+            toggle.addEventListener(
+                "click",
+                function () {
+
+                    options.classList.toggle(
+                        "open"
+                    );
+
+
+                    if (note) {
+
+                        note.classList.remove(
+                            "open"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        if (options && note) {
+
+            options
+                .querySelectorAll(
+                    ".ct-sample-call-opt"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                note.classList.add(
+                                    "open"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
 
     }
 
