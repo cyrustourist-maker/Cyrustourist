@@ -38,13 +38,13 @@
             "09153448818",
 
         telegram:
-            "https://t.me/cytustourist",
+            "https://t.me/Cyrustourist",
 
         whatsapp:
             "https://wa.me/989153448818",
 
         supportUsername:
-            "@cytustourist"
+            "@Cyrustourist"
 
     };
 
