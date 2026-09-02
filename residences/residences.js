@@ -1,2011 +1,947 @@
+/* =========================================================
+   Cyrus Tourist — Residence Data
+   اقامتگاه‌های سایروس توریست
+   Version: 1.1.0
+   ========================================================= */
+
 (function () {
   "use strict";
 
   /* =========================================================
-     CYRUS TOURIST — RESIDENCES
-     High Performance Edition
-     Version: 1.2.0
+     TYPES
      ========================================================= */
 
-  const ResidenceAppState = {
-    initialized: false,
-    loading: false,
-    language: "fa",
-    query: "",
-    province: "",
-    city: "",
-    type: "",
-    mode: "all",
-    location: null,
-    residences: [],
-    filteredResidences: [],
-    lastRenderSignature: ""
+  const RESIDENCE_TYPES = [
+    {
+      id: "hotel-apartment",
+      icon: "🏨",
+      order: 1,
+      featured: true,
+      name: {
+        fa: "هتل / آپارتمان",
+        en: "Hotel / Apartment",
+        ar: "فندق / شقة"
+      }
+    },
+
+    {
+      id: "ecotourism",
+      icon: "🌿",
+      order: 2,
+      featured: true,
+      name: {
+        fa: "بوم‌گردی",
+        en: "Eco Tourism",
+        ar: "السياحة البيئية"
+      }
+    },
+
+    {
+      id: "forest-cabin",
+      icon: "🛖",
+      order: 3,
+      featured: true,
+      name: {
+        fa: "کلبه جنگلی",
+        en: "Forest Cabin",
+        ar: "كوخ غابي"
+      }
+    },
+
+    {
+      id: "camping",
+      icon: "🏕️",
+      order: 4,
+      featured: true,
+      name: {
+        fa: "کمپ و طبیعت‌گردی",
+        en: "Camping & Nature",
+        ar: "التخييم والطبيعة"
+      }
+    },
+
+    {
+      id: "villa-local-house",
+      icon: "🏡",
+      order: 5,
+      featured: true,
+      name: {
+        fa: "ویلا / خانه محلی",
+        en: "Villa / Local House",
+        ar: "فيلا / منزل محلي"
+      }
+    },
+
+    {
+      id: "beach",
+      icon: "🌊",
+      order: 6,
+      featured: false,
+      name: {
+        fa: "اقامتگاه ساحلی",
+        en: "Beach Residence",
+        ar: "إقامة ساحلية"
+      }
+    },
+
+    {
+      id: "mountain",
+      icon: "⛰️",
+      order: 7,
+      featured: false,
+      name: {
+        fa: "اقامتگاه کوهستانی",
+        en: "Mountain Residence",
+        ar: "إقامة جبلية"
+      }
+    },
+
+    {
+      id: "guesthouse",
+      icon: "🏠",
+      order: 8,
+      featured: false,
+      name: {
+        fa: "مهمان‌پذیر",
+        en: "Guesthouse",
+        ar: "بيت ضيافة"
+      }
+    },
+
+    {
+      id: "suite",
+      icon: "🏘️",
+      order: 9,
+      featured: false,
+      name: {
+        fa: "سوئیت",
+        en: "Suite",
+        ar: "جناح"
+      }
+    },
+
+    {
+      id: "forest",
+      icon: "🌳",
+      order: 10,
+      featured: false,
+      name: {
+        fa: "اقامتگاه جنگلی",
+        en: "Forest Residence",
+        ar: "إقامة غابية"
+      }
+    },
+
+    {
+      id: "desert",
+      icon: "🏜️",
+      order: 11,
+      featured: false,
+      name: {
+        fa: "اقامتگاه کویری",
+        en: "Desert Residence",
+        ar: "إقامة صحراوية"
+      }
+    },
+
+    {
+      id: "other",
+      icon: "➕",
+      order: 99,
+      featured: false,
+      name: {
+        fa: "سایر",
+        en: "Other",
+        ar: "أخرى"
+      }
+    }
+  ];
+
+
+  /* =========================================================
+     STATUS
+     ========================================================= */
+
+  const RESIDENCE_STATUS = {
+    active: {
+      fa: "🟢 فعال",
+      en: "🟢 Active",
+      ar: "🟢 نشط"
+    },
+
+    pending: {
+      fa: "🟡 در انتظار بررسی",
+      en: "🟡 Pending Review",
+      ar: "🟡 قيد المراجعة"
+    },
+
+    inactive: {
+      fa: "🔵 غیرفعال موقت",
+      en: "🔵 Temporarily Inactive",
+      ar: "🔵 غير نشط مؤقتاً"
+    },
+
+    expired: {
+      fa: "🔴 اعتبار پایان یافته",
+      en: "🔴 Membership Expired",
+      ar: "🔴 انتهت الصلاحية"
+    },
+
+    suspended: {
+      fa: "⚫ تعلیق مدیریتی",
+      en: "⚫ Administratively Suspended",
+      ar: "⚫ موقوف إدارياً"
+    },
+
+    archived: {
+      fa: "🗃️ آرشیو",
+      en: "🗃️ Archived",
+      ar: "🗃️ مؤرشف"
+    }
   };
 
-  const SELECTORS = {
-    searchInput: "#searchInput",
-    provinceSelect: "#provinceSelect",
-    citySelect: "#citySelect",
-    locationButton: "#myLocationBtn",
-    categoryButtons: "#categoryButtons",
-    resultBar: "#resultBar",
-    resultCount: "#resultCount",
-    residenceGrid: "#residenceGrid",
-    registerButton: "#registerResidenceBtn"
+
+  /* =========================================================
+     VIDEO SOURCES
+     ========================================================= */
+
+  const RESIDENCE_VIDEO_SOURCES = {
+    aparat: {
+      id: "aparat",
+      name: "Aparat"
+    },
+
+    youtube: {
+      id: "youtube",
+      name: "YouTube"
+    },
+
+    vimeo: {
+      id: "vimeo",
+      name: "Vimeo"
+    },
+
+    instagram: {
+      id: "instagram",
+      name: "Instagram"
+    },
+
+    tiktok: {
+      id: "tiktok",
+      name: "TikTok"
+    },
+
+    other: {
+      id: "other",
+      name: "Other"
+    }
   };
 
-  /* =========================================================
-     BASIC HELPERS
-     ========================================================= */
-
-  function findElement(selector) {
-    try {
-      return document.querySelector(selector);
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function getText(key) {
-    if (typeof residenceText === "function") {
-      return residenceText(key);
-    }
-
-    if (
-      typeof RESIDENCE_I18N !== "undefined" &&
-      RESIDENCE_I18N.fa &&
-      RESIDENCE_I18N.fa[key]
-    ) {
-      return RESIDENCE_I18N.fa[key];
-    }
-
-    return key;
-  }
-
-  function currentLanguage() {
-    if (typeof getResidenceLanguage === "function") {
-      return getResidenceLanguage();
-    }
-
-    return ResidenceAppState.language || "fa";
-  }
-
-  function getResidenceData() {
-    if (Array.isArray(window.RESIDENCES_DATA)) {
-      return window.RESIDENCES_DATA;
-    }
-
-    if (
-      window.CyrusResidenceData &&
-      Array.isArray(window.CyrusResidenceData.residences)
-    ) {
-      return window.CyrusResidenceData.residences;
-    }
-
-    return [];
-  }
-
-  function getLocalizedValue(value) {
-    if (value == null) return "";
-
-    if (typeof value === "string") {
-      return value;
-    }
-
-    if (typeof value === "object") {
-      const lang = currentLanguage();
-
-      return (
-        value[lang] ||
-        value.fa ||
-        value.en ||
-        value.ar ||
-        Object.values(value)[0] ||
-        ""
-      );
-    }
-
-    return String(value);
-  }
 
   /* =========================================================
-     DEPENDENCIES
+     SAMPLE RESIDENCE
+     =========================================================
+     این رکورد فقط برای تست سیستم است.
+     اطلاعات واقعی اقامتگاه‌ها بعداً جایگزین می‌شوند.
      ========================================================= */
 
-  /*
-   * residences.html already loads:
-   * i18n
-   * data
-   * search
-   * location
-   * rating
-   *
-   * Therefore we DO NOT load them again.
-   *
-   * This removes unnecessary network/script work during startup.
-   */
+  const RESIDENCES_DATA = [
 
-  function dependenciesReady() {
-    const hasData =
-      Array.isArray(window.RESIDENCES_DATA) ||
-      (
-        window.CyrusResidenceData &&
-        Array.isArray(window.CyrusResidenceData.residences)
-      );
+    {
+      id: "RES-0001",
 
-    const hasSearch =
-      !!window.ResidenceSearch ||
-      typeof window.filterResidences === "function";
+      name: {
+        fa: "نمونه اقامتگاه سایروس توریست",
+        en: "Cyrus Tourist Sample Residence",
+        ar: "نموذج إقامة سايروس توريست"
+      },
 
-    const hasLocation =
-      !!window.ResidenceLocation ||
-      typeof window.calculateResidenceDistance === "function";
+      type: "ecotourism",
 
-    const hasRating =
-      !!window.ResidenceRating;
+      province: {
+        fa: "خراسان رضوی",
+        en: "Razavi Khorasan",
+        ar: "خراسان الرضوية"
+      },
 
-    return hasData && hasSearch && hasLocation && hasRating;
-  }
+      city: {
+        fa: "مشهد",
+        en: "Mashhad",
+        ar: "مشهد"
+      },
 
-  function ensureDependencies() {
-    /*
-     * No dynamic loading.
-     *
-     * The HTML file already places all dependencies before
-     * residences.js, so returning immediately is the fastest path.
-     */
-    return dependenciesReady();
-  }
+      region: {
+        fa: "حومه مشهد",
+        en: "Mashhad Area",
+        ar: "منطقة مشهد"
+      },
+
+      address: {
+        fa: "آدرس نمونه؛ بعداً اطلاعات واقعی اقامتگاه وارد می‌شود.",
+        en: "Sample address; real accommodation information can be added later.",
+        ar: "عنوان تجريبي؛ يمكن إضافة معلومات الإقامة الحقيقية لاحقاً."
+      },
+
+
+      /* =====================================================
+         CONTACT NUMBERS
+         ===================================================== */
+
+      phoneMobile: "09150000000",
+
+      phoneLandline: "",
+
+      phoneSupport: "",
+
+
+      /* =====================================================
+         SOCIAL / WEBSITE
+         ===================================================== */
+
+      instagram: "",
+
+      website: "",
+
+
+      /* =====================================================
+         LOCATION
+         ===================================================== */
+
+      latitude: 36.2972,
+
+      longitude: 59.6067,
+
+
+      /* =====================================================
+         DESCRIPTION
+         ===================================================== */
+
+      description: {
+        fa: "این رکورد نمونه برای آزمایش سیستم اقامتگاه سایروس توریست ایجاد شده است.",
+        en: "This sample record is used to test the Cyrus Tourist accommodation system.",
+        ar: "تم إنشاء هذا السجل التجريبي لاختبار نظام أماكن الإقامة في سايروس توريست."
+      },
+
+
+      /* =====================================================
+         MEDIA
+         ===================================================== */
+
+      imageUrl: "",
+
+      videoUrl: "https://www.aparat.com/v/w43c127",
+
+      videoSource: "aparat",
+
+
+      /* =====================================================
+         RATING
+         ===================================================== */
+
+      rating: 4.8,
+
+      ratingCount: 0,
+
+
+      /* =====================================================
+         STATUS
+         ===================================================== */
+
+      status: "active",
+
+
+      /* =====================================================
+         MEMBERSHIP
+         ===================================================== */
+
+      membership: {
+        type: "annual",
+        startDate: "",
+        endDate: ""
+      },
+
+
+      /* =====================================================
+         DISPLAY OPTIONS
+         ===================================================== */
+
+      display: {
+
+        featured: true,
+
+        showVideo: true,
+
+        showPhoneMobile: true,
+
+        showPhoneLandline: true,
+
+        showPhoneSupport: true,
+
+        showInstagram: true,
+
+        showWebsite: true,
+
+        showRating: true,
+
+        showRoute: true
+      },
+
+
+      /* =====================================================
+         SYSTEM DATES
+         ===================================================== */
+
+      createdAt: "",
+
+      updatedAt: ""
+    }
+
+  ];
+
 
   /* =========================================================
-     PREMIUM STYLES
+     SEARCH FIELDS
      ========================================================= */
 
-  function injectResidenceStyles() {
-    if (document.getElementById("cyrus-residence-premium-styles")) {
-      return;
-    }
+  const RESIDENCE_SEARCH_FIELDS = [
+    "name",
+    "province",
+    "city",
+    "region",
+    "address",
+    "type"
+  ];
 
-    const style = document.createElement("style");
-    style.id = "cyrus-residence-premium-styles";
-
-    style.textContent = `
-      .ct-residence-category-wrap{
-        display:flex;
-        flex-wrap:wrap;
-        gap:10px;
-        margin:14px 0 20px;
-      }
-
-      .ct-residence-category{
-        appearance:none;
-        border:1px solid rgba(13,148,136,.18);
-        background:linear-gradient(135deg,#ffffff,#f2fbf8);
-        color:#155e59;
-        min-height:44px;
-        padding:10px 15px;
-        border-radius:15px;
-        cursor:pointer;
-        font-weight:800;
-        font-size:14px;
-        box-shadow:0 5px 16px rgba(15,118,110,.08);
-        transition:
-          transform .16s ease,
-          box-shadow .16s ease,
-          background .16s ease;
-        -webkit-tap-highlight-color:transparent;
-      }
-
-      .ct-residence-category:hover{
-        transform:translateY(-2px);
-        box-shadow:0 9px 22px rgba(15,118,110,.14);
-      }
-
-      .ct-residence-category:active{
-        transform:scale(.97);
-      }
-
-      .ct-residence-category.active{
-        background:linear-gradient(135deg,#087f72,#0f766e);
-        color:#fff;
-        border-color:#0f766e;
-        box-shadow:0 8px 22px rgba(15,118,110,.25);
-      }
-
-      .ct-residence-more{
-        appearance:none;
-        border:1px solid rgba(180,130,25,.25);
-        background:linear-gradient(135deg,#fffdf5,#fff7d6);
-        color:#8a6412;
-        min-height:44px;
-        padding:10px 16px;
-        border-radius:15px;
-        cursor:pointer;
-        font-weight:900;
-        box-shadow:0 5px 16px rgba(180,130,25,.08);
-      }
-
-      .ct-residence-more:active{
-        transform:scale(.97);
-      }
-
-      .ct-residence-card{
-        position:relative;
-        overflow:hidden;
-        background:rgba(255,255,255,.97);
-        border:1px solid rgba(15,118,110,.10);
-        border-radius:22px;
-        box-shadow:
-          0 10px 28px rgba(15,23,42,.08),
-          0 2px 7px rgba(15,118,110,.05);
-        transition:
-          transform .18s ease,
-          box-shadow .18s ease;
-        contain:layout paint;
-      }
-
-      .ct-residence-card::before{
-        content:"";
-        position:absolute;
-        top:0;
-        left:0;
-        right:0;
-        height:4px;
-        background:linear-gradient(
-          90deg,
-          #0f766e,
-          #14b8a6,
-          #d4a72c
-        );
-        z-index:2;
-      }
-
-      .ct-residence-card:hover{
-        transform:translateY(-3px);
-        box-shadow:
-          0 16px 34px rgba(15,23,42,.12),
-          0 4px 12px rgba(15,118,110,.08);
-      }
-
-      .ct-residence-image{
-        width:100%;
-        height:220px;
-        object-fit:cover;
-        display:block;
-        background:#e8f3f0;
-      }
-
-      .ct-residence-placeholder{
-        width:100%;
-        height:220px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:
-          radial-gradient(circle at 25% 20%,rgba(20,184,166,.16),transparent 30%),
-          linear-gradient(135deg,#eaf8f5,#dcefea);
-        color:#17736b;
-        font-size:52px;
-      }
-
-      .ct-residence-body{
-        padding:17px;
-      }
-
-      .ct-residence-head{
-        display:flex;
-        align-items:flex-start;
-        justify-content:space-between;
-        gap:10px;
-        margin-bottom:9px;
-      }
-
-      .ct-residence-title{
-        margin:0;
-        color:#123c39;
-        font-size:19px;
-        line-height:1.5;
-        font-weight:900;
-      }
-
-      .ct-residence-status{
-        flex:0 0 auto;
-        border-radius:999px;
-        padding:5px 9px;
-        background:#eef8f5;
-        color:#11665f;
-        font-size:11px;
-        font-weight:900;
-        white-space:nowrap;
-      }
-
-      .ct-residence-location{
-        color:#47706c;
-        font-size:13px;
-        line-height:1.8;
-        margin-bottom:8px;
-      }
-
-      .ct-residence-description{
-        color:#526c69;
-        font-size:13px;
-        line-height:1.9;
-        margin:8px 0;
-      }
-
-      .ct-residence-meta{
-        display:flex;
-        flex-wrap:wrap;
-        gap:7px;
-        margin:10px 0;
-      }
-
-      .ct-residence-meta-item{
-        display:inline-flex;
-        align-items:center;
-        gap:4px;
-        padding:6px 9px;
-        border-radius:10px;
-        background:#f3f9f7;
-        color:#31635f;
-        font-size:12px;
-        font-weight:800;
-      }
-
-      .ct-residence-rating{
-        display:flex;
-        align-items:center;
-        gap:7px;
-        margin:10px 0;
-        color:#876517;
-        font-weight:900;
-      }
-
-      .ct-residence-stars{
-        letter-spacing:1px;
-      }
-
-      .ct-residence-actions{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
-        margin-top:13px;
-      }
-
-      .ct-residence-action{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        min-height:42px;
-        padding:9px 10px;
-        border-radius:13px;
-        text-decoration:none;
-        font-size:12px;
-        font-weight:900;
-        border:1px solid transparent;
-        transition:
-          transform .15s ease,
-          box-shadow .15s ease;
-      }
-
-      .ct-residence-action:hover{
-        transform:translateY(-1px);
-      }
-
-      .ct-residence-action:active{
-        transform:scale(.97);
-      }
-
-      .ct-residence-action.video{
-        color:#fff;
-        background:linear-gradient(135deg,#a66a00,#d6a629);
-        box-shadow:0 5px 14px rgba(166,106,0,.16);
-      }
-
-      .ct-residence-action.route{
-        color:#fff;
-        background:linear-gradient(135deg,#087f72,#0f9d8f);
-        box-shadow:0 5px 14px rgba(15,118,110,.16);
-      }
-
-      .ct-residence-action.phone{
-        color:#fff;
-        background:linear-gradient(135deg,#1769aa,#2489d2);
-      }
-
-      .ct-residence-action.instagram{
-        color:#fff;
-        background:linear-gradient(135deg,#8e3d8f,#d44f72);
-      }
-
-      .ct-residence-action.website{
-        color:#fff;
-        background:linear-gradient(135deg,#355c7d,#3d8db7);
-      }
-
-      .ct-residence-empty{
-        width:100%;
-        padding:38px 18px;
-        text-align:center;
-        background:rgba(255,255,255,.86);
-        border:1px solid rgba(15,118,110,.10);
-        border-radius:20px;
-        color:#55706c;
-        box-shadow:0 8px 22px rgba(15,23,42,.05);
-      }
-
-      .ct-residence-empty-icon{
-        font-size:42px;
-        margin-bottom:10px;
-      }
-
-      .ct-residence-empty-title{
-        font-size:17px;
-        font-weight:900;
-        color:#315c58;
-        margin-bottom:7px;
-      }
-
-      .ct-residence-empty-button{
-        border:0;
-        margin-top:14px;
-        padding:10px 18px;
-        border-radius:13px;
-        cursor:pointer;
-        color:#fff;
-        background:linear-gradient(135deg,#0f766e,#14a897);
-        font-weight:900;
-      }
-
-      #residenceGrid{
-        contain:layout style;
-      }
-
-      #residenceGrid img{
-        content-visibility:auto;
-      }
-
-      @media(max-width:700px){
-        .ct-residence-category-wrap{
-          gap:8px;
-        }
-
-        .ct-residence-category,
-        .ct-residence-more{
-          flex:1 1 calc(50% - 8px);
-          min-width:0;
-        }
-
-        .ct-residence-image,
-        .ct-residence-placeholder{
-          height:190px;
-        }
-
-        .ct-residence-title{
-          font-size:17px;
-        }
-
-        .ct-residence-actions{
-          grid-template-columns:1fr 1fr;
-        }
-      }
-
-      @media(max-width:430px){
-        .ct-residence-category,
-        .ct-residence-more{
-          flex:1 1 100%;
-        }
-
-        .ct-residence-actions{
-          grid-template-columns:1fr;
-        }
-
-        .ct-residence-head{
-          flex-direction:column;
-        }
-      }
-
-      @media(prefers-reduced-motion:reduce){
-        .ct-residence-card,
-        .ct-residence-category,
-        .ct-residence-action{
-          transition:none !important;
-        }
-      }
-    `;
-
-    document.head.appendChild(style);
-  }
 
   /* =========================================================
-     CATEGORY BUTTONS
+     HELPERS
      ========================================================= */
 
-  function renderCategories() {
-    const container = findElement(SELECTORS.categoryButtons);
-    if (!container) return;
-
-    const types =
-      typeof getResidenceTypes === "function"
-        ? getResidenceTypes()
-        : (window.RESIDENCE_TYPES || []);
-
-    if (!Array.isArray(types) || !types.length) {
-      container.innerHTML = "";
-      return;
-    }
-
-    const featured =
-      typeof getFeaturedResidenceTypes === "function"
-        ? getFeaturedResidenceTypes()
-        : types.filter(function (item) {
-            return item.featured;
-          });
-
-    const visibleTypes =
-      featured.length > 0 ? featured : types.slice(0, 5);
-
-    const currentType = ResidenceAppState.type;
-
-    let html = "";
-
-    visibleTypes.forEach(function (type) {
-      const name = getLocalizedValue(type.name);
-      const active = currentType === type.id;
-
-      html += `
-        <button
-          type="button"
-          class="ct-residence-category${active ? " active" : ""}"
-          data-residence-type="${escapeHtml(type.id)}"
-          aria-pressed="${active ? "true" : "false"}"
-        >
-          ${escapeHtml(type.icon || "")}
-          ${escapeHtml(name)}
-        </button>
-      `;
-    });
-
-    const hiddenTypes = types.filter(function (type) {
-      return !visibleTypes.some(function (item) {
-        return item.id === type.id;
-      });
-    });
-
-    if (hiddenTypes.length > 0) {
-      html += `
-        <button
-          type="button"
-          class="ct-residence-more"
-          id="ctResidenceMoreButton"
-        >
-          ⋮ ${escapeHtml(getText("more"))}
-        </button>
-      `;
-    }
-
-    container.innerHTML = html;
-
-    container.querySelectorAll("[data-residence-type]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        const typeId = button.getAttribute("data-residence-type") || "";
-
-        ResidenceAppState.type =
-          ResidenceAppState.type === typeId ? "" : typeId;
-
-        renderCategories();
-        applyFilters();
-      });
-    });
-
-    const moreButton = document.getElementById(
-      "ctResidenceMoreButton"
-    );
-
-    if (moreButton) {
-      moreButton.addEventListener("click", function () {
-        showAllCategories(types);
-      });
-    }
-  }
-
-  function showAllCategories(types) {
-    const container = findElement(SELECTORS.categoryButtons);
-    if (!container) return;
-
-    let html = "";
-
-    types.forEach(function (type) {
-      const active = ResidenceAppState.type === type.id;
-
-      html += `
-        <button
-          type="button"
-          class="ct-residence-category${active ? " active" : ""}"
-          data-residence-type="${escapeHtml(type.id)}"
-          aria-pressed="${active ? "true" : "false"}"
-        >
-          ${escapeHtml(type.icon || "")}
-          ${escapeHtml(getLocalizedValue(type.name))}
-        </button>
-      `;
-    });
-
-    html += `
-      <button
-        type="button"
-        class="ct-residence-more"
-        id="ctResidenceMoreButton"
-      >
-        ${escapeHtml(getText("allResidences"))}
-      </button>
-    `;
-
-    container.innerHTML = html;
-
-    container.querySelectorAll("[data-residence-type]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        const typeId = button.getAttribute("data-residence-type") || "";
-
-        ResidenceAppState.type =
-          ResidenceAppState.type === typeId ? "" : typeId;
-
-        renderCategories();
-        applyFilters();
-      });
-    });
-
-    const allButton = document.getElementById(
-      "ctResidenceMoreButton"
-    );
-
-    if (allButton) {
-      allButton.addEventListener("click", function () {
-        ResidenceAppState.type = "";
-        renderCategories();
-        applyFilters();
-      });
-    }
-  }
-
-  /* =========================================================
-     FILTER SELECTS
-     ========================================================= */
-
-  function populateProvinceSelect() {
-    const select = findElement(SELECTORS.provinceSelect);
-    if (!select) return;
-
-    const provinces =
-      typeof getResidenceProvinces === "function"
-        ? getResidenceProvinces()
-        : [];
-
-    const current = ResidenceAppState.province;
-
-    let html = `
-      <option value="">
-        ${escapeHtml(getText("allProvinces"))}
-      </option>
-    `;
-
-    provinces.forEach(function (province) {
-      html += `
-        <option
-          value="${escapeHtml(province)}"
-          ${current === province ? "selected" : ""}
-        >
-          ${escapeHtml(province)}
-        </option>
-      `;
-    });
-
-    select.innerHTML = html;
-  }
-
-  function populateCitySelect() {
-    const select = findElement(SELECTORS.citySelect);
-    if (!select) return;
-
-    const cities =
-      typeof getResidenceCities === "function"
-        ? getResidenceCities(ResidenceAppState.province)
-        : [];
-
-    const current = ResidenceAppState.city;
-
-    let html = `
-      <option value="">
-        ${escapeHtml(getText("allCities"))}
-      </option>
-    `;
-
-    cities.forEach(function (city) {
-      html += `
-        <option
-          value="${escapeHtml(city)}"
-          ${current === city ? "selected" : ""}
-        >
-          ${escapeHtml(city)}
-        </option>
-      `;
-    });
-
-    select.innerHTML = html;
-  }
-
-  /* =========================================================
-     STATUS / TYPE
-     ========================================================= */
-
-  function getTypeInfo(typeId) {
-    if (typeof getResidenceType === "function") {
-      return getResidenceType(typeId);
-    }
-
-    const types = window.RESIDENCE_TYPES || [];
-
-    return types.find(function (type) {
-      return type.id === typeId;
-    }) || null;
-  }
-
-  function getStatusInfo(statusId) {
-    if (typeof getResidenceStatus === "function") {
-      return getResidenceStatus(statusId);
-    }
-
-    const statuses = window.RESIDENCE_STATUS || {};
-
-    return statuses[statusId] || null;
-  }
-
-  /* =========================================================
-     SECURITY
-     ========================================================= */
-
-  function escapeHtml(value) {
-    return String(value == null ? "" : value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function safeUrl(value) {
-    if (!value) return "";
-
-    const url = String(value).trim();
-
-    if (!url) return "";
-
-    if (
-      url.startsWith("https://") ||
-      url.startsWith("http://") ||
-      url.startsWith("tel:") ||
-      url.startsWith("mailto:")
-    ) {
-      return url;
-    }
-
-    return "";
-  }
-
-  /* =========================================================
-     ROUTE
-     ========================================================= */
-
-  function buildRouteUrl(residence) {
-    if (
-      !residence ||
-      !Number.isFinite(Number(residence.latitude)) ||
-      !Number.isFinite(Number(residence.longitude))
-    ) {
-      return "";
-    }
-
-    const lat = Number(residence.latitude);
-    const lng = Number(residence.longitude);
-
-    let from = "";
-
-    if (
-      ResidenceAppState.location &&
-      Number.isFinite(Number(ResidenceAppState.location.latitude)) &&
-      Number.isFinite(Number(ResidenceAppState.location.longitude))
-    ) {
-      from =
-        Number(ResidenceAppState.location.latitude) +
-        "," +
-        Number(ResidenceAppState.location.longitude);
-    }
-
-    const destination = lat + "," + lng;
-
-    if (from) {
-      return (
-        "https://www.openstreetmap.org/directions?from=" +
-        encodeURIComponent(from) +
-        "&to=" +
-        encodeURIComponent(destination)
-      );
-    }
+  function getResidenceType(typeId) {
 
     return (
-      "https://www.openstreetmap.org/directions?to=" +
-      encodeURIComponent(destination)
-    );
-  }
-
-  /* =========================================================
-     VIDEO
-     ========================================================= */
-
-  function getVideoUrl(residence) {
-    if (!residence || !residence.videoUrl) {
-      return "";
-    }
-
-    return safeUrl(residence.videoUrl);
-  }
-
-  /* =========================================================
-     PHONES
-     ========================================================= */
-
-  function getPhoneFields(residence) {
-    if (
-      typeof getResidencePhoneFields === "function"
-    ) {
-      return getResidencePhoneFields(residence);
-    }
-
-    return [];
-  }
-
-  /* =========================================================
-     IMAGE
-     ========================================================= */
-
-  function buildImage(residence) {
-    const imageUrl = safeUrl(residence.imageUrl);
-
-    if (!imageUrl) {
-      return `
-        <div
-          class="ct-residence-placeholder"
-          aria-label="${escapeHtml(getText("title"))}"
-        >
-          🏡
-        </div>
-      `;
-    }
-
-    return `
-      <img
-        class="ct-residence-image"
-        src="${escapeHtml(imageUrl)}"
-        alt="${escapeHtml(getLocalizedValue(residence.name))}"
-        loading="lazy"
-        decoding="async"
-        fetchpriority="low"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-      >
-      <div
-        class="ct-residence-placeholder"
-        style="display:none"
-        aria-hidden="true"
-      >
-        🏡
-      </div>
-    `;
-  }
-
-  /* =========================================================
-     ACTION BUTTONS
-     ========================================================= */
-
-  function buildVideoButton(residence) {
-    if (
-      !residence ||
-      !residence.display ||
-      residence.display.showVideo === false
-    ) {
-      return "";
-    }
-
-    const url = getVideoUrl(residence);
-
-    if (!url) {
-      return "";
-    }
-
-    return `
-      <a
-        class="ct-residence-action video"
-        href="${escapeHtml(url)}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ${escapeHtml(getText("video"))}
-      </a>
-    `;
-  }
-
-  function buildRouteButton(residence) {
-    if (
-      !residence ||
-      !residence.display ||
-      residence.display.showRoute === false
-    ) {
-      return "";
-    }
-
-    const url = buildRouteUrl(residence);
-
-    if (!url) {
-      return "";
-    }
-
-    return `
-      <a
-        class="ct-residence-action route"
-        href="${escapeHtml(url)}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ${escapeHtml(getText("route"))}
-      </a>
-    `;
-  }
-
-  function buildPhoneButtons(residence) {
-    const phones = getPhoneFields(residence);
-
-    if (!phones.length) {
-      return "";
-    }
-
-    return phones.map(function (phone) {
-      const value = String(phone.value || "").trim();
-
-      if (!value) return "";
-
-      const telValue = value.replace(/[^\d+]/g, "");
-
-      if (!telValue) return "";
-
-      return `
-        <a
-          class="ct-residence-action phone"
-          href="tel:${escapeHtml(telValue)}"
-        >
-          ${escapeHtml(phone.label)}
-        </a>
-      `;
-    }).join("");
-  }
-
-  function buildInstagramButton(residence) {
-    if (
-      !residence ||
-      !residence.instagram ||
-      !residence.display ||
-      residence.display.showInstagram === false
-    ) {
-      return "";
-    }
-
-    const url = safeUrl(residence.instagram);
-
-    if (!url) return "";
-
-    return `
-      <a
-        class="ct-residence-action instagram"
-        href="${escapeHtml(url)}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        📸 ${escapeHtml(getText("instagram"))}
-      </a>
-    `;
-  }
-
-  function buildWebsiteButton(residence) {
-    if (
-      !residence ||
-      !residence.website ||
-      !residence.display ||
-      residence.display.showWebsite === false
-    ) {
-      return "";
-    }
-
-    const url = safeUrl(residence.website);
-
-    if (!url) return "";
-
-    return `
-      <a
-        class="ct-residence-action website"
-        href="${escapeHtml(url)}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        🌐 ${escapeHtml(getText("website"))}
-      </a>
-    `;
-  }
-
-  /* =========================================================
-     RATING
-     ========================================================= */
-
-  function buildRating(residence) {
-    if (
-      !residence ||
-      !residence.display ||
-      residence.display.showRating === false
-    ) {
-      return "";
-    }
-
-    if (!window.ResidenceRating) {
-      return "";
-    }
-
-    const rating = Number(residence.rating);
-
-    if (!Number.isFinite(rating) || rating <= 0) {
-      return "";
-    }
-
-    const rounded =
-      typeof ResidenceRating.round === "function"
-        ? ResidenceRating.round(rating)
-        : Math.round(rating * 10) / 10;
-
-    const stars =
-      typeof ResidenceRating.toStars === "function"
-        ? ResidenceRating.toStars(rounded)
-        : "★★★★★";
-
-    const count = Number(residence.ratingCount || 0);
-
-    return `
-      <div class="ct-residence-rating">
-        <span class="ct-residence-stars">${escapeHtml(stars)}</span>
-        <span>${escapeHtml(String(rounded))}</span>
-        ${
-          count > 0
-            ? `<span>(${escapeHtml(String(count))})</span>`
-            : ""
+      RESIDENCE_TYPES.find(
+        function (item) {
+          return item.id === typeId;
         }
-      </div>
-    `;
+      ) || null
+    );
+
   }
 
-  /* =========================================================
-     DISTANCE
-     ========================================================= */
 
-  function getDistanceText(residence) {
-    if (
-      !ResidenceAppState.location ||
-      !window.ResidenceLocation
-    ) {
-      return "";
-    }
+  function getResidenceStatus(statusId) {
 
-    if (
-      !Number.isFinite(Number(residence.latitude)) ||
-      !Number.isFinite(Number(residence.longitude))
-    ) {
-      return "";
-    }
+    return (
+      RESIDENCE_STATUS[statusId] || null
+    );
 
-    try {
-      let distance = null;
+  }
 
-      if (
-        typeof ResidenceLocation.distanceKm === "function"
-      ) {
-        distance = ResidenceLocation.distanceKm(
-          ResidenceAppState.location.latitude,
-          ResidenceAppState.location.longitude,
-          residence.latitude,
-          residence.longitude
-        );
-      } else if (
-        typeof ResidenceLocation.calculateDistanceKm === "function"
-      ) {
-        distance = ResidenceLocation.calculateDistanceKm(
-          ResidenceAppState.location.latitude,
-          ResidenceAppState.location.longitude,
-          residence.latitude,
-          residence.longitude
-        );
+
+  function getActiveResidences() {
+
+    return RESIDENCES_DATA.filter(
+      function (residence) {
+        return residence.status === "active";
       }
+    );
 
-      if (!Number.isFinite(Number(distance))) {
-        return "";
-      }
-
-      const rounded =
-        Number(distance) < 10
-          ? Number(distance).toFixed(1)
-          : Math.round(Number(distance));
-
-      return `
-        <span class="ct-residence-meta-item">
-          📍 ${escapeHtml(String(rounded))}
-          ${escapeHtml(getText("kilometer"))}
-        </span>
-      `;
-    } catch (error) {
-      return "";
-    }
   }
 
-  /* =========================================================
-     RESIDENCE CARD
-     ========================================================= */
 
-  function createResidenceCard(residence) {
-    const name =
-      getLocalizedValue(residence.name) ||
-      "Cyrus Tourist";
+  function getResidenceTypes() {
 
-    const province =
-      getLocalizedValue(residence.province);
-
-    const city =
-      getLocalizedValue(residence.city);
-
-    const region =
-      getLocalizedValue(residence.region);
-
-    const address =
-      getLocalizedValue(residence.address);
-
-    const description =
-      getLocalizedValue(residence.description);
-
-    const typeInfo =
-      getTypeInfo(residence.type);
-
-    const typeName =
-      typeInfo
-        ? getLocalizedValue(typeInfo.name)
-        : "";
-
-    const statusInfo =
-      getStatusInfo(residence.status);
-
-    const statusName =
-      statusInfo
-        ? getLocalizedValue(statusInfo)
-        : "";
-
-    const locationParts = [
-      province,
-      city,
-      region
-    ].filter(Boolean);
-
-    const metaParts = [];
-
-    if (typeName) {
-      metaParts.push(`
-        <span class="ct-residence-meta-item">
-          ${escapeHtml(typeInfo.icon || "🏡")}
-          ${escapeHtml(typeName)}
-        </span>
-      `);
-    }
-
-    if (address) {
-      metaParts.push(`
-        <span class="ct-residence-meta-item">
-          📌 ${escapeHtml(address)}
-        </span>
-      `);
-    }
-
-    const distanceText =
-      getDistanceText(residence);
-
-    if (distanceText) {
-      metaParts.push(distanceText);
-    }
-
-    const actions = [
-      buildVideoButton(residence),
-      buildRouteButton(residence),
-      buildPhoneButtons(residence),
-      buildInstagramButton(residence),
-      buildWebsiteButton(residence)
-    ].join("");
-
-    return `
-      <article
-        class="ct-residence-card"
-        data-residence-id="${escapeHtml(residence.id || "")}"
-      >
-        ${buildImage(residence)}
-
-        <div class="ct-residence-body">
-
-          <div class="ct-residence-head">
-            <h3 class="ct-residence-title">
-              ${escapeHtml(name)}
-            </h3>
-
-            ${
-              statusName
-                ? `
-                  <span class="ct-residence-status">
-                    ${escapeHtml(statusName)}
-                  </span>
-                `
-                : ""
-            }
-          </div>
-
-          ${
-            locationParts.length
-              ? `
-                <div class="ct-residence-location">
-                  📍 ${escapeHtml(locationParts.join(" • "))}
-                </div>
-              `
-              : ""
-          }
-
-          ${
-            description
-              ? `
-                <div class="ct-residence-description">
-                  ${escapeHtml(description)}
-                </div>
-              `
-              : ""
-          }
-
-          ${
-            metaParts.length
-              ? `
-                <div class="ct-residence-meta">
-                  ${metaParts.join("")}
-                </div>
-              `
-              : ""
-          }
-
-          ${buildRating(residence)}
-
-          ${
-            actions
-              ? `
-                <div class="ct-residence-actions">
-                  ${actions}
-                </div>
-              `
-              : ""
-          }
-
-        </div>
-      </article>
-    `;
-  }
-
-  /* =========================================================
-     RENDER GRID
-     ========================================================= */
-
-  function renderResidences(residences) {
-    const grid = findElement(SELECTORS.residenceGrid);
-
-    if (!grid) return;
-
-    const list =
-      Array.isArray(residences)
-        ? residences
-        : [];
-
-    const signature =
-      list.map(function (item) {
-        return item.id || "";
-      }).join("|") +
-      "::" +
-      currentLanguage() +
-      "::" +
-      ResidenceAppState.location
-        ? JSON.stringify(ResidenceAppState.location || {})
-        : "";
-
-    /*
-     * Prevent identical consecutive renders.
-     */
-    if (
-      ResidenceAppState.lastRenderSignature === signature &&
-      grid.children.length === list.length
-    ) {
-      return;
-    }
-
-    ResidenceAppState.lastRenderSignature = signature;
-
-    if (!list.length) {
-      renderEmptyState();
-      return;
-    }
-
-    /*
-     * One DOM write only.
-     */
-    grid.innerHTML = list
-      .map(createResidenceCard)
-      .join("");
-  }
-
-  function renderEmptyState() {
-    const grid = findElement(SELECTORS.residenceGrid);
-
-    if (!grid) return;
-
-    grid.innerHTML = `
-      <div class="ct-residence-empty">
-        <div class="ct-residence-empty-icon">
-          🏡
-        </div>
-
-        <div class="ct-residence-empty-title">
-          ${escapeHtml(getText("noResults"))}
-        </div>
-
-        <button
-          type="button"
-          class="ct-residence-empty-button"
-          id="ctResidenceRetryButton"
-        >
-          ${escapeHtml(getText("retry"))}
-        </button>
-      </div>
-    `;
-
-    const retry =
-      document.getElementById(
-        "ctResidenceRetryButton"
-      );
-
-    if (retry) {
-      retry.addEventListener("click", function () {
-        resetSearch();
+    return RESIDENCE_TYPES.slice()
+      .sort(function (a, b) {
+        return a.order - b.order;
       });
-    }
+
   }
 
-  /* =========================================================
-     RESULT BAR
-     ========================================================= */
 
-  function updateResultBar(count) {
-    const bar = findElement(SELECTORS.resultBar);
-    const resultCount = findElement(
-      SELECTORS.resultCount
+  function getFeaturedResidenceTypes() {
+
+    return getResidenceTypes().filter(
+      function (item) {
+        return item.featured;
+      }
     );
 
-    if (resultCount) {
-      resultCount.textContent = String(count);
-    }
-
-    if (bar) {
-      bar.style.display = "flex";
-    }
   }
 
+
+  function getResidenceProvinces() {
+
+    const values = {};
+
+    RESIDENCES_DATA.forEach(
+      function (residence) {
+
+        const key =
+          residence.province &&
+          residence.province.fa
+            ? residence.province.fa
+            : "";
+
+        if (key) {
+          values[key] = residence.province;
+        }
+
+      }
+    );
+
+    return Object.values(values);
+
+  }
+
+
+  function getResidenceCities(provinceFa) {
+
+    const values = {};
+
+    RESIDENCES_DATA.forEach(
+      function (residence) {
+
+        const province =
+          residence.province &&
+          residence.province.fa
+            ? residence.province.fa
+            : "";
+
+        if (
+          !provinceFa ||
+          province === provinceFa
+        ) {
+
+          const city =
+            residence.city &&
+            residence.city.fa
+              ? residence.city.fa
+              : "";
+
+          if (city) {
+            values[city] = residence.city;
+          }
+
+        }
+
+      }
+    );
+
+    return Object.values(values);
+
+  }
+
+
+  function getResidenceRegions() {
+
+    const values = {};
+
+    RESIDENCES_DATA.forEach(
+      function (residence) {
+
+        const region =
+          residence.region &&
+          residence.region.fa
+            ? residence.region.fa
+            : "";
+
+        if (region) {
+          values[region] = residence.region;
+        }
+
+      }
+    );
+
+    return Object.values(values);
+
+  }
+
+
   /* =========================================================
-     FILTERING
+     ID GENERATOR
      ========================================================= */
 
-  function applyFilters() {
-    let results =
-      ResidenceAppState.residences.slice();
+  function createResidenceId() {
 
-    const query =
-      ResidenceAppState.query.trim();
+    const numbers =
+      RESIDENCES_DATA
+        .map(function (item) {
 
-    /*
-     * Nearby mode.
-     */
+          const match =
+            String(item.id || "")
+              .match(/^RES-(\d+)$/);
+
+          return match
+            ? Number(match[1])
+            : 0;
+
+        });
+
+    const max =
+      numbers.length
+        ? Math.max.apply(null, numbers)
+        : 0;
+
+    return (
+      "RES-" +
+      String(max + 1).padStart(4, "0")
+    );
+
+  }
+
+
+  /* =========================================================
+     VALIDATION
+     ========================================================= */
+
+  function validateResidence(residence) {
+
+    const errors = [];
+
+    if (!residence) {
+      errors.push("Residence object is required.");
+      return {
+        valid: false,
+        errors: errors
+      };
+    }
+
+    if (!residence.id) {
+      errors.push("Missing residence id.");
+    }
+
+    if (!residence.name) {
+      errors.push("Missing residence name.");
+    }
+
+    if (!residence.type) {
+      errors.push("Missing residence type.");
+    }
+
+    if (!RESIDENCE_TYPES.some(
+      function (type) {
+        return type.id === residence.type;
+      }
+    )) {
+      errors.push("Invalid residence type.");
+    }
+
     if (
-      ResidenceAppState.mode === "nearby" &&
-      window.ResidenceLocation &&
-      ResidenceAppState.location
+      residence.status &&
+      !RESIDENCE_STATUS[residence.status]
     ) {
-      try {
-        if (
-          typeof ResidenceLocation.sortByDistance === "function"
-        ) {
-          results =
-            ResidenceLocation.sortByDistance(
-              results,
-              ResidenceAppState.location
-            );
-        }
-      } catch (error) {
-        // graceful fallback
-      }
+      errors.push("Invalid residence status.");
     }
 
-    /*
-     * Standard search engine.
-     */
-    if (window.ResidenceSearch) {
-      try {
+
+    /* شماره‌ها اختیاری هستند،
+       اما اگر وجود داشته باشند باید رشته باشند. */
+
+    const phoneFields = [
+      "phoneMobile",
+      "phoneLandline",
+      "phoneSupport"
+    ];
+
+    phoneFields.forEach(
+      function (field) {
+
         if (
-          typeof ResidenceSearch.filterResidences === "function"
+          residence[field] !== undefined &&
+          residence[field] !== null &&
+          typeof residence[field] !== "string"
         ) {
-          results =
-            ResidenceSearch.filterResidences(
-              results,
-              query,
-              ResidenceAppState.province,
-              ResidenceAppState.city,
-              ResidenceAppState.type
-            );
-        } else if (
-          typeof window.filterResidences === "function"
-        ) {
-          results =
-            window.filterResidences(
-              results,
-              query,
-              ResidenceAppState.province,
-              ResidenceAppState.city,
-              ResidenceAppState.type
-            );
+          errors.push(
+            field + " must be a string."
+          );
         }
-      } catch (error) {
-        results =
-          fallbackFilter(results);
+
       }
-    } else {
-      results =
-        fallbackFilter(results);
-    }
-
-    /*
-     * Nearby sorting should remain after filtering.
-     */
-    if (
-      ResidenceAppState.mode === "nearby" &&
-      window.ResidenceLocation &&
-      ResidenceAppState.location
-    ) {
-      try {
-        if (
-          typeof ResidenceLocation.sortByDistance === "function"
-        ) {
-          results =
-            ResidenceLocation.sortByDistance(
-              results,
-              ResidenceAppState.location
-            );
-        }
-      } catch (error) {
-        // ignore
-      }
-    }
-
-    ResidenceAppState.filteredResidences =
-      Array.isArray(results)
-        ? results
-        : [];
-
-    updateResultBar(
-      ResidenceAppState.filteredResidences.length
     );
 
-    renderResidences(
-      ResidenceAppState.filteredResidences
-    );
+
+    return {
+      valid: errors.length === 0,
+      errors: errors
+    };
+
   }
 
-  function fallbackFilter(list) {
-    const query =
-      ResidenceAppState.query.trim().toLowerCase();
 
-    return list.filter(function (residence) {
-      const active =
-        !residence.status ||
-        residence.status === "active";
+  function validateAllResidences() {
 
-      if (!active) {
-        return false;
-      }
+    return RESIDENCES_DATA.map(
+      function (residence) {
 
-      if (
-        ResidenceAppState.province &&
-        getLocalizedValue(residence.province) !==
-          ResidenceAppState.province
-      ) {
-        return false;
-      }
-
-      if (
-        ResidenceAppState.city &&
-        getLocalizedValue(residence.city) !==
-          ResidenceAppState.city
-      ) {
-        return false;
-      }
-
-      if (
-        ResidenceAppState.type &&
-        residence.type !== ResidenceAppState.type
-      ) {
-        return false;
-      }
-
-      if (!query) {
-        return true;
-      }
-
-      const text = [
-        getLocalizedValue(residence.name),
-        getLocalizedValue(residence.province),
-        getLocalizedValue(residence.city),
-        getLocalizedValue(residence.region),
-        getLocalizedValue(residence.address),
-        getLocalizedValue(residence.description)
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return text.indexOf(query) !== -1;
-    });
-  }
-
-  /* =========================================================
-     SEARCH EVENTS
-     ========================================================= */
-
-  function setupSearch() {
-    const input =
-      findElement(SELECTORS.searchInput);
-
-    if (!input) return;
-
-    let timer = null;
-
-    input.addEventListener("input", function () {
-      const value = input.value || "";
-
-      clearTimeout(timer);
-
-      /*
-       * Small debounce prevents excessive renders while typing.
-       */
-      timer = setTimeout(function () {
-        ResidenceAppState.query = value;
-
-        ResidenceAppState.mode = "all";
-
-        applyFilters();
-      }, 100);
-    });
-  }
-
-  function setupProvince() {
-    const select =
-      findElement(SELECTORS.provinceSelect);
-
-    if (!select) return;
-
-    select.addEventListener("change", function () {
-      ResidenceAppState.province =
-        select.value || "";
-
-      ResidenceAppState.city = "";
-
-      populateCitySelect();
-
-      ResidenceAppState.mode = "all";
-
-      applyFilters();
-    });
-  }
-
-  function setupCity() {
-    const select =
-      findElement(SELECTORS.citySelect);
-
-    if (!select) return;
-
-    select.addEventListener("change", function () {
-      ResidenceAppState.city =
-        select.value || "";
-
-      ResidenceAppState.mode = "all";
-
-      applyFilters();
-    });
-  }
-
-  /* =========================================================
-     LOCATION
-     ========================================================= */
-
-  function setupLocation() {
-    const button =
-      findElement(SELECTORS.locationButton);
-
-    if (!button) return;
-
-    button.addEventListener("click", function () {
-      if (!window.ResidenceLocation) {
-        return;
-      }
-
-      const originalText =
-        button.textContent;
-
-      button.disabled = true;
-      button.textContent =
-        getText("searchingLocation");
-
-      const success =
-        function (location) {
-          ResidenceAppState.location = location;
-          ResidenceAppState.mode = "nearby";
-
-          button.disabled = false;
-          button.textContent =
-            getText("myLocation");
-
-          applyFilters();
+        return {
+          id: residence.id,
+          result: validateResidence(residence)
         };
 
-      const failure =
-        function () {
-          button.disabled = false;
-          button.textContent =
-            originalText || getText("myLocation");
-        };
-
-      try {
-        if (
-          typeof ResidenceLocation.getCurrentLocation ===
-          "function"
-        ) {
-          ResidenceLocation.getCurrentLocation(
-            success,
-            failure
-          );
-          return;
-        }
-
-        if (
-          typeof ResidenceLocation.getLocation ===
-          "function"
-        ) {
-          ResidenceLocation.getLocation(
-            success,
-            failure
-          );
-          return;
-        }
-
-        failure();
-      } catch (error) {
-        failure();
       }
-    });
+    );
+
   }
 
+
   /* =========================================================
-     REGISTRATION
+     STATISTICS
      ========================================================= */
 
-  function setupRegistration() {
-    const buttons =
-      document.querySelectorAll(
-        [
-          SELECTORS.registerButton,
-          "#residenceRegistrationBtn",
-          "#addResidenceBtn",
-          "[data-residence-register]",
-          ".register-residence-btn"
-        ].join(",")
-      );
+  function getResidenceStatistics() {
 
-    if (!buttons.length) return;
-
-    buttons.forEach(function (button) {
-      if (
-        button.dataset.ctRegistrationReady === "1"
-      ) {
-        return;
-      }
-
-      button.dataset.ctRegistrationReady = "1";
-
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        if (
-          window.CyrusResidenceRegistration &&
-          typeof window.CyrusResidenceRegistration.open ===
-            "function"
-        ) {
-          window.CyrusResidenceRegistration.open();
+    const active =
+      RESIDENCES_DATA.filter(
+        function (item) {
+          return item.status === "active";
         }
-      });
-    });
+      ).length;
+
+    const pending =
+      RESIDENCES_DATA.filter(
+        function (item) {
+          return item.status === "pending";
+        }
+      ).length;
+
+    const expired =
+      RESIDENCES_DATA.filter(
+        function (item) {
+          return item.status === "expired";
+        }
+      ).length;
+
+    return {
+
+      total: RESIDENCES_DATA.length,
+
+      active: active,
+
+      pending: pending,
+
+      expired: expired,
+
+      other:
+        RESIDENCES_DATA.length -
+        active -
+        pending -
+        expired
+
+    };
+
   }
 
+
   /* =========================================================
-     LANGUAGE
+     CONTACT HELPERS
      ========================================================= */
 
-  function refreshLanguage() {
-    ResidenceAppState.language =
-      currentLanguage();
+  function getResidencePhoneFields(residence) {
 
-    /*
-     * Rebuild only what needs localization.
-     */
-    renderCategories();
-    populateProvinceSelect();
-    populateCitySelect();
+    if (!residence) {
+      return [];
+    }
 
-    ResidenceAppState.lastRenderSignature = "";
+    const result = [];
 
-    applyFilters();
 
     if (
-      window.CyrusResidenceRegistration &&
-      typeof window.CyrusResidenceRegistration
-        .refreshLanguage === "function"
+      residence.phoneMobile &&
+      residence.display &&
+      residence.display.showPhoneMobile !== false
     ) {
-      try {
-        window.CyrusResidenceRegistration
-          .refreshLanguage();
-      } catch (error) {
-        // ignore
-      }
-    }
-  }
 
-  /* =========================================================
-     RESET
-     ========================================================= */
-
-  function resetSearch() {
-    ResidenceAppState.query = "";
-    ResidenceAppState.province = "";
-    ResidenceAppState.city = "";
-    ResidenceAppState.type = "";
-    ResidenceAppState.mode = "all";
-    ResidenceAppState.lastRenderSignature = "";
-
-    const input =
-      findElement(SELECTORS.searchInput);
-
-    if (input) {
-      input.value = "";
-    }
-
-    populateProvinceSelect();
-    populateCitySelect();
-    renderCategories();
-
-    applyFilters();
-  }
-
-  /* =========================================================
-     PREPARE DATA
-     ========================================================= */
-
-  function prepareData() {
-    const data =
-      getResidenceData();
-
-    ResidenceAppState.residences =
-      data.filter(function (residence) {
-        return (
-          !residence.status ||
-          residence.status === "active"
-        );
+      result.push({
+        type: "mobile",
+        label: {
+          fa: "📱 تماس همراه",
+          en: "📱 Mobile",
+          ar: "📱 هاتف محمول"
+        },
+        value: residence.phoneMobile
       });
-  }
 
-  /* =========================================================
-     INITIALIZATION
-     ========================================================= */
-
-  function initResidences() {
-    if (ResidenceAppState.initialized) {
-      return;
     }
 
-    ResidenceAppState.loading = true;
 
-    /*
-     * All dependencies are already loaded by HTML.
-     */
-    ensureDependencies();
-
-    injectResidenceStyles();
-
-    ResidenceAppState.language =
-      currentLanguage();
-
-    prepareData();
-
-    renderCategories();
-
-    populateProvinceSelect();
-
-    populateCitySelect();
-
-    setupSearch();
-
-    setupProvince();
-
-    setupCity();
-
-    setupLocation();
-
-    setupRegistration();
-
-    /*
-     * First render immediately from local data.
-     * No network request is required.
-     */
-    applyFilters();
-
-    ResidenceAppState.initialized = true;
-    ResidenceAppState.loading = false;
-
-    /*
-     * Refresh registration after the page is fully painted.
-     * This keeps the critical first render lighter.
-     */
     if (
-      window.requestAnimationFrame &&
-      window.CyrusResidenceRegistration
+      residence.phoneLandline &&
+      residence.display &&
+      residence.display.showPhoneLandline !== false
     ) {
-      requestAnimationFrame(function () {
-        try {
-          if (
-            typeof window.CyrusResidenceRegistration
-              .refreshLanguage === "function"
-          ) {
-            window.CyrusResidenceRegistration
-              .refreshLanguage();
-          }
-        } catch (error) {
-          // ignore
-        }
+
+      result.push({
+        type: "landline",
+        label: {
+          fa: "☎️ تماس ثابت",
+          en: "☎️ Landline",
+          ar: "☎️ هاتف ثابت"
+        },
+        value: residence.phoneLandline
       });
+
     }
+
+
+    if (
+      residence.phoneSupport &&
+      residence.display &&
+      residence.display.showPhoneSupport !== false
+    ) {
+
+      result.push({
+        type: "support",
+        label: {
+          fa: "📞 تماس پشتیبان",
+          en: "📞 Support",
+          ar: "📞 هاتف الدعم"
+        },
+        value: residence.phoneSupport
+      });
+
+    }
+
+
+    return result;
+
   }
 
+
   /* =========================================================
-     PUBLIC API
+     PUBLIC CONFIG
      ========================================================= */
 
-  window.CyrusResidences = {
-    version: "1.2.0",
+  const RESIDENCE_DATA_CONFIG = {
 
-    state: ResidenceAppState,
+    version: "1.1.0",
 
-    init: initResidences,
+    dataSource: "local",
 
-    refresh: function () {
-      ResidenceAppState.lastRenderSignature = "";
-      prepareData();
-      applyFilters();
-    },
+    futureDataSource: "api",
 
-    refreshLanguage: refreshLanguage,
+    apiReady: true,
 
-    search: function (query) {
-      ResidenceAppState.query =
-        String(query || "");
+    databaseReady: true,
 
-      ResidenceAppState.mode = "all";
+    databaseName: "cyrus-tourist-db",
 
-      const input =
-        findElement(SELECTORS.searchInput);
+    apiName: "cyrus-tourist-api",
 
-      if (input) {
-        input.value =
-          ResidenceAppState.query;
-      }
+    dynamicRecords: true,
 
-      applyFilters();
-    },
+    unlimitedRecords: true,
 
-    setProvince: function (province) {
-      ResidenceAppState.province =
-        String(province || "");
+    supportedLanguages: [
+      "fa",
+      "en",
+      "ar"
+    ],
 
-      ResidenceAppState.city = "";
+    contactFields: [
+      "phoneMobile",
+      "phoneLandline",
+      "phoneSupport",
+      "instagram",
+      "website"
+    ]
 
-      populateProvinceSelect();
-      populateCitySelect();
-
-      applyFilters();
-    },
-
-    setCity: function (city) {
-      ResidenceAppState.city =
-        String(city || "");
-
-      populateCitySelect();
-
-      applyFilters();
-    },
-
-    setType: function (type) {
-      ResidenceAppState.type =
-        String(type || "");
-
-      renderCategories();
-
-      applyFilters();
-    },
-
-    nearby: function (location) {
-      ResidenceAppState.location =
-        location || null;
-
-      ResidenceAppState.mode =
-        "nearby";
-
-      applyFilters();
-    },
-
-    showAll: function () {
-      ResidenceAppState.mode = "all";
-      applyFilters();
-    },
-
-    reset: resetSearch,
-
-    getResults: function () {
-      return ResidenceAppState
-        .filteredResidences
-        .slice();
-    }
   };
 
+
   /* =========================================================
-     START
+     GLOBAL EXPORT
      ========================================================= */
 
-  /*
-   * residences.js is the last script in residences.html,
-   * so DOM and dependencies are already available.
-   *
-   * We still keep a tiny DOMContentLoaded fallback for
-   * unusual embedding situations.
-   */
+  window.RESIDENCE_TYPES =
+    RESIDENCE_TYPES;
 
-  if (document.readyState === "loading") {
-    document.addEventListener(
-      "DOMContentLoaded",
-      initResidences,
-      { once: true }
-    );
-  } else {
-    initResidences();
-  }
+  window.RESIDENCE_STATUS =
+    RESIDENCE_STATUS;
+
+  window.RESIDENCE_VIDEO_SOURCES =
+    RESIDENCE_VIDEO_SOURCES;
+
+  window.RESIDENCES_DATA =
+    RESIDENCES_DATA;
+
+  window.RESIDENCE_SEARCH_FIELDS =
+    RESIDENCE_SEARCH_FIELDS;
+
+  window.RESIDENCE_DATA_CONFIG =
+    RESIDENCE_DATA_CONFIG;
+
+
+  window.getResidenceType =
+    getResidenceType;
+
+  window.getResidenceStatus =
+    getResidenceStatus;
+
+  window.getActiveResidences =
+    getActiveResidences;
+
+  window.getResidenceTypes =
+    getResidenceTypes;
+
+  window.getFeaturedResidenceTypes =
+    getFeaturedResidenceTypes;
+
+  window.getResidenceProvinces =
+    getResidenceProvinces;
+
+  window.getResidenceCities =
+    getResidenceCities;
+
+  window.getResidenceRegions =
+    getResidenceRegions;
+
+  window.createResidenceId =
+    createResidenceId;
+
+  window.validateResidence =
+    validateResidence;
+
+  window.validateAllResidences =
+    validateAllResidences;
+
+  window.getResidenceStatistics =
+    getResidenceStatistics;
+
+  window.getResidencePhoneFields =
+    getResidencePhoneFields;
+
+
+  /* =========================================================
+     DEBUG
+     ========================================================= */
+
+  window.CyrusResidenceData = {
+
+    config: RESIDENCE_DATA_CONFIG,
+
+    types: RESIDENCE_TYPES,
+
+    status: RESIDENCE_STATUS,
+
+    videoSources: RESIDENCE_VIDEO_SOURCES,
+
+    residences: RESIDENCES_DATA,
+
+    getPhoneFields:
+      getResidencePhoneFields,
+
+    statistics:
+      getResidenceStatistics,
+
+    validate:
+      validateResidence,
+
+    validateAll:
+      validateAllResidences
+
+  };
+
 
 })();
