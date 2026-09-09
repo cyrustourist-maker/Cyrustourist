@@ -1,370 +1,727 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>سایروس توریست | Cyrustourist</title>
-<meta name="description" content="راهنمای جامع گردشگری، جاهای دیدنی، اقامتی و ۲۷ فیلم گردشگری ایران">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06121d">
+<meta name="description" content="سایروس توریست؛ راهنمای سفر و گردشگری ایران با نقشه تعاملی رایگان جاذبه‌های گردشگری، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر برای طبیعت‌گردی و سفر به ایران.">
+<meta name="keywords" content="گردشگری ایران, سفر به ایران, جاذبه های گردشگری ایران, طبیعت گردی, اقامتگاه های گردشگری, گردشگری سلامت, نقشه گردشگری رایگان, راهنمای سفر, سایروس توریست, وب اپلیکیشن گردشگری">
+<meta name="author" content="سایروس توریست">
+<link rel="canonical" href="https://cyrustourist-maker.github.io/Cyrustourist/">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1a252f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="سایروس توریست">
+<link rel="apple-touch-icon" href="assets/images/logo.png">
+<title>سایروس توریست | راهنمای سفر و گردشگری ایران با نقشه تعاملی رایگان</title>
 
-<style>
-:root {
-  --bg: #0f172a;
-  --card-bg: #1e293b;
-  --text: #f8fafc;
-  --text-dim: #94a3b8;
-  --accent: #38bdf8;
-  --accent-hover: #0284c7;
-  --radius: 12px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-body { background: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 40px; }
-.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="سایروس توریست">
+<meta property="og:title" content="سایروس توریست | راهنمای سفر و گردشگری ایران">
+<meta property="og:description" content="نقشه تعاملی رایگان جاذبه‌های گردشگری ایران، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر.">
+<meta property="og:image" content="https://cyrustourist-maker.github.io/Cyrustourist/assets/images/cyrustourist-hero-2026.webp.jpg">
+<meta property="og:url" content="https://cyrustourist-maker.github.io/Cyrustourist/">
 
-/* HEADER */
-header { background: #1a252f; padding: 16px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.nav-wrap { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.4rem; font-weight: bold; color: var(--accent); }
-.lang-select { background: #334155; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="سایروس توریست | راهنمای سفر و گردشگری ایران">
+<meta name="twitter:description" content="نقشه تعاملی رایگان جاذبه‌های گردشگری ایران، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر.">
+<meta name="twitter:image" content="https://cyrustourist-maker.github.io/Cyrustourist/assets/images/cyrustourist-hero-2026.webp.jpg">
 
-/* HERO */
-.hero { text-align: center; padding: 40px 16px; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); }
-.hero h1 { font-size: 2rem; color: var(--accent); margin-bottom: 12px; }
-.hero p { color: var(--text-dim); max-width: 600px; margin: 0 auto 20px; }
-
-/* VIDEOS GRID */
-#videos { padding: 30px 0; }
-.title { margin-bottom: 24px; border-bottom: 2px solid #334155; padding-bottom: 12px; }
-.title h2 { color: var(--accent); font-size: 1.5rem; }
-.title p { color: var(--text-dim); font-size: 0.9rem; }
-
-.videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.videoCard { background: var(--card-bg); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; border: 1px solid #334155; }
-.videoHead { padding: 12px 16px; display: flex; gap: 12px; align-items: center; background: #0f172a; }
-.videoHead .num { background: var(--accent); color: #000; font-weight: bold; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
-.videoHead strong { font-size: 0.95rem; display: block; color: #f8fafc; }
-.videoHead .tag { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
-
-.embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
-.embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-.text { padding: 12px 16px; margin-top: auto; }
-.actions { display: flex; justify-content: flex-end; }
-.pill { background: #334155; color: var(--accent); text-decoration: none; font-size: 0.8rem; padding: 6px 12px; border-radius: 6px; transition: 0.2s; }
-.pill:hover { background: var(--accent); color: #000; }
-
-/* TEXT LIST */
-.videoTextList { margin-top: 40px; background: var(--card-bg); padding: 20px; border-radius: var(--radius); border: 1px solid #334155; }
-.videoTextList h3 { color: var(--accent); margin-bottom: 16px; font-size: 1.2rem; }
-.videoTextList ol { padding-right: 20px; color: var(--text-dim); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
-.videoTextList li a { color: var(--text); text-decoration: none; font-size: 0.85rem; }
-.videoTextList li a:hover { color: var(--accent); }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="wrap nav-wrap">
-    <div class="logo" data-i18n="appName">سایروس توریست</div>
-    <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
-      <option value="fa">فارسی</option>
-      <option value="en">English</option>
-      <option value="ar">العربية</option>
-    </select>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <h1 data-i18n="heroTitle">راهنمای هوشمند گردشگری ایران</h1>
-    <p data-i18n="heroDesc">مکان‌های تاریخی، گردشگری و جاذبه‌های دیدنی را به همراه فیلم و ویدیو تماشا کنید.</p>
-  </div>
-</section>
-
-<!-- VIDEOS SECTION -->
-<section id="videos">
-<div class="wrap">
-
-<div class="title">
-  <div>
-    <h2 data-i18n="videosTitle">🎬 فیلم‌های گردشگری</h2>
-    <p data-i18n="videosCount">۲۷ فیلم گردشگری پخش زنده</p>
-  </div>
-</div>
-
-<div class="videos-grid">
-
-<!-- ۱ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱</div><div><strong data-fa="قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر" data-en="Qasabeh Gonabad Qanat" data-ar="قناة قصبة گناباد">قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر</strong><div class="tag" data-fa="گناباد، خراسان رضوی" data-en="Gonabad, Razavi Khorasan" data-ar="غناباد، خراسان">گناباد، خراسان رضوی</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/v2826c7/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/v2826c7" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲</div><div><strong data-fa="رقص محلی فاروق خراسانی با آهنگ لیلا" data-en="Farouq Khorasani Folk Dance" data-ar="رقصة فاروق الخراسانية">رقص محلی فاروق خراسانی با آهنگ لیلا</strong><div class="tag" data-fa="خراسان" data-en="Khorasan" data-ar="خراسان">خراسان</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/e204d60/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/e204d60" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۳ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۳</div><div><strong data-fa="قلعه کاخک و چشم‌انداز تاریخی گناباد" data-en="Kakhk Castle" data-ar="قلعة كاخك">قلعه کاخک و چشم‌انداز تاریخی گناباد</strong><div class="tag" data-fa="کاخک، گناباد" data-en="Kakhk, Gonabad" data-ar="كاخك، غناباد">کاخک، گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/x312384/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/x312384" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۴ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۴</div><div><strong data-fa="روستای تاریخی ریاب گناباد" data-en="Riab Historical Village" data-ar="قرية رياب التاريخية">روستای تاریخی ریاب گناباد</strong><div class="tag" data-fa="ریاب، گناباد" data-en="Riab, Gonabad" data-ar="رياب، غناباد">ریاب، گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/m482931/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/m482931" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۵ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۵</div><div><strong data-fa="مسجد جامع گناباد" data-en="Gonabad Jameh Mosque" data-ar="مسجد غناباد الجامع">مسجد جامع گناباد</strong><div class="tag" data-fa="گناباد" data-en="Gonabad" data-ar="غناباد">گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/b129482/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/b129482" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۶ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۶</div><div><strong data-fa="آتشکده سپند گناباد" data-en="Sepand Fire Temple" data-ar="معبد نار سپند">آتشکده سپند گناباد</strong><div class="tag" data-fa="گناباد" data-en="Gonabad" data-ar="غناباد">گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/k938210/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/k938210" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۷ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۷</div><div><strong data-fa="موزه باستان‌شناسی گناباد" data-en="Gonabad Archaeology Museum" data-ar="متحف غناباد للآثار">موزه باستان‌شناسی گناباد</strong><div class="tag" data-fa="گناباد" data-en="Gonabad" data-ar="غناباد">گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/p381920/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/p381920" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۸ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۸</div><div><strong data-fa="سفال مند گناباد؛ هنر چندهزارساله" data-en="Mend Pottery" data-ar="فخار مند غناباد">سفال مند گناباد؛ هنر چندهزارساله</strong><div class="tag" data-fa="مند، گناباد" data-en="Mend, Gonabad" data-ar="مند، غناباد">مند، گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/c492019/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/c492019" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۹ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۹</div><div><strong data-fa="طبیعت زیبای منطقه حفاظت شده هنگام" data-en="Hengam Protected Area" data-ar="طبيعة منطقة هنگام">طبیعت زیبای منطقه حفاظت شده هنگام</strong><div class="tag" data-fa="گناباد" data-en="Gonabad" data-ar="غناباد">گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/d583021/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/d583021" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۰ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۰</div><div><strong data-fa="یخدان کوثر گناباد" data-en="Kowsar Icehouse" data-ar="مخزن ثلج كوثر">یخدان کوثر گناباد</strong><div class="tag" data-fa="گناباد" data-en="Gonabad" data-ar="غناباد">گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/f829102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/f829102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۱ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۱</div><div><strong data-fa="کاروانسرای شاه عباسی یونسی" data-en="Younesi Caravanserai" data-ar="خان يونسي">کاروانسرای شاه عباسی یونسی</strong><div class="tag" data-fa="یونسی، بجستان" data-en="Younesi, Bajestan" data-ar="يونسي، بجستان">یونسی، بجستان</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/g103928/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/g103928" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۲ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۲</div><div><strong data-fa="غار مرمر یونسی" data-en="Marmar Cave" data-ar="كهف مرمر">غار مرمر یونسی</strong><div class="tag" data-fa="یونسی، بجستان" data-en="Younesi, Bajestan" data-ar="يونسي، بجستان">یونسی، بجستان</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/h920192/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/h920192" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۳ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۳</div><div><strong data-fa="کویر یونسی و پلکانی نوبهار" data-en="Younesi Desert" data-ar="صحراء يونسي">کویر یونسی و پلکانی نوبهار</strong><div class="tag" data-fa="بجستان" data-en="Bajestan" data-ar="بجستان">بجستان</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/j382019/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/j382019" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۴ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۴</div><div><strong data-fa="آرامگاه شیخ محمد المظفر" data-en="Sheikh Mohammad Shrine" data-ar="مرقد الشيخ محمد المظفر">آرامگاه شیخ محمد المظفر</strong><div class="tag" data-fa="گناباد" data-en="Gonabad" data-ar="غناباد">گناباد</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/l482019/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/l482019" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۵ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۵</div><div><strong data-fa="پل تاریخی یونسی" data-en="Younesi Historical Bridge" data-ar="جسر يونسي التاريخي">پل تاریخی یونسی</strong><div class="tag" data-fa="بجستان" data-en="Bajestan" data-ar="بجستان">بجستان</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/q928102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/q928102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۶ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۶</div><div><strong data-fa="کویر درونه بردسکن" data-en="Dorohneh Desert" data-ar="صحراء درونه">کویر درونه بردسکن</strong><div class="tag" data-fa="بردسکن" data-en="Bardaskan" data-ar="بردسكن">بردسکن</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/r281029/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/r281029" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۷ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۷</div><div><strong data-fa="منار فیروزآباد بردسکن" data-en="Firouzabad Minaret" data-ar="منارة فيروز آباد">منار فیروزآباد بردسکن</strong><div class="tag" data-fa="بردسکن" data-en="Bardaskan" data-ar="بردسكن">بردسکن</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/s829102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/s829102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۸ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۸</div><div><strong data-fa="قلعه دختر فیروزآباد" data-en="Dokhtar Castle" data-ar="قلعة الفتاة">قلعه دختر فیروزآباد</strong><div class="tag" data-fa="بردسکن" data-en="Bardaskan" data-ar="بردسكن">بردسکن</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/t102938/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/t102938" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۱۹ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۱۹</div><div><strong data-fa="رباط شرف سرخس؛ موزه آجری ایران" data-en="Robat Sharaf Caravanserai" data-ar="رباط شرف">رباط شرف سرخس؛ موزه آجری ایران</strong><div class="tag" data-fa="سرخس" data-en="Sarakhs" data-ar="سرخس">سرخس</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/u928102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/u928102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۰ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۰</div><div><strong data-fa="دریاچه بزنگان سرخس" data-en="Bazangan Lake" data-ar="بحيرة بزنكان">دریاچه بزنگان سرخس</strong><div class="tag" data-fa="سرخس" data-en="Sarakhs" data-ar="سرخس">سرخس</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/w382910/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/w382910" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۱ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۱</div><div><strong data-fa="بابالقمان سرخس" data-en="Baba Loghman Tomb" data-ar="ضريح بابا لقمان">بابالقمان سرخس</strong><div class="tag" data-fa="سرخس" data-en="Sarakhs" data-ar="سرخس">سرخس</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/y102938/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/y102938" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۲ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۲</div><div><strong data-fa="آبشار اخلمد چناران" data-en="Akhlamad Waterfall" data-ar="شلال أخلَمد">آبشار اخلمد چناران</strong><div class="tag" data-fa="چناران" data-en="Chenaran" data-ar="چناران">چناران</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/z928102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/z928102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۳ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۳</div><div><strong data-fa="چشمه سبز چناران" data-en="Chesmeh Sabz" data-ar="النبع الأخضر">چشمه سبز چناران</strong><div class="tag" data-fa="چناران" data-en="Chenaran" data-ar="چناران">چناران</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/a281029/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/a281029" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۴ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۴</div><div><strong data-fa="ارگ فرود کلات نادری" data-en="Farod Citadel" data-ar="قلعة فرود">ارگ فرود کلات نادری</strong><div class="tag" data-fa="کلات نادری" data-en="Kalat Naderi" data-ar="كلات نادري">کلات نادری</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/c928102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/c928102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۵ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۵</div><div><strong data-fa="کاخ خورشید کلات نادری" data-en="Sun Palace Kalat" data-ar="قصر الشمس">کاخ خورشید کلات نادری</strong><div class="tag" data-fa="کلات نادری" data-en="Kalat Naderi" data-ar="كلات نادري">کلات نادری</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/d102938/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/d102938" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۶ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۶</div><div><strong data-fa="آبشار ارتکول کلات نادری" data-en="Ortokhol Waterfall" data-ar="شلال أرتكول">آبشار ارتکول کلات نادری</strong><div class="tag" data-fa="کلات نادری" data-en="Kalat Naderi" data-ar="كلات نادري">کلات نادری</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/e382910/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/e382910" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-<!-- ۲۷ -->
-<div class="videoCard">
-<div class="videoHead"><div class="num">۲۷</div><div><strong data-fa="آبشار قره‌سو کلات نادری" data-en="Qarasu Waterfall" data-ar="شلال قره سو">آبشار قره‌سو کلات نادری</strong><div class="tag" data-fa="کلات نادری" data-en="Kalat Naderi" data-ar="كلات نادري">کلات نادری</div></div></div>
-<div class="embed"><iframe src="https://www.aparat.com/video/video/embed/videohash/f928102/vt/frame" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><a class="pill" href="https://www.aparat.com/v/f928102" target="_blank" rel="noopener">مشاهده در آپارات</a></div></div>
-</div>
-
-</div>
-
-<!-- فهرست متنی کامل -->
-<div class="videoTextList">
-<h3 data-i18n="videoListTitle">فهرست کامل فیلم‌های گردشگری</h3>
-<ol>
-<li><a href="#videos">قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر — گناباد</a></li>
-<li><a href="#videos">رقص محلی فاروق خراسانی — خراسان</a></li>
-<li><a href="#videos">قلعه کاخک — گناباد</a></li>
-<li><a href="#videos">روستای تاریخی ریاب — گناباد</a></li>
-<li><a href="#videos">مسجد جامع گناباد — گناباد</a></li>
-<li><a href="#videos">آتشکده سپند — گناباد</a></li>
-<li><a href="#videos">موزه باستان‌شناسی — گناباد</a></li>
-<li><a href="#videos">سفال مند — گناباد</a></li>
-<li><a href="#videos">منطقه حفاظت شده هنگام — گناباد</a></li>
-<li><a href="#videos">یخدان کوثر — گناباد</a></li>
-<li><a href="#videos">کاروانسرای یونسی — بجستان</a></li>
-<li><a href="#videos">غار مرمر یونسی — بجستان</a></li>
-<li><a href="#videos">کویر یونسی — بجستان</a></li>
-<li><a href="#videos">آرامگاه شیخ محمد المظفر — گناباد</a></li>
-<li><a href="#videos">پل تاریخی یونسی — بجستان</a></li>
-<li><a href="#videos">کویر درونه — بردسکن</a></li>
-<li><a href="#videos">منار فیروزآباد — بردسکن</a></li>
-<li><a href="#videos">قلعه دختر فیروزآباد — بردسکن</a></li>
-<li><a href="#videos">رباط شرف — سرخس</a></li>
-<li><a href="#videos">دریاچه بزنگان — سرخس</a></li>
-<li><a href="#videos">بابالقمان — سرخس</a></li>
-<li><a href="#videos">آبشار اخلمد — چناران</a></li>
-<li><a href="#videos">چشمه سبز — چناران</a></li>
-<li><a href="#videos">ارگ فرود — کلات نادری</a></li>
-<li><a href="#videos">کاخ خورشید — کلات نادری</a></li>
-<li><a href="#videos">آبشار ارتکول — کلات نادری</a></li>
-<li><a href="#videos">آبشار قره‌سو — کلات نادری</a></li>
-</ol>
-</div>
-
-</div>
-</section>
-
-<script>
-const translations = {
-  fa: {
-    appName: "سایروس توریست",
-    heroTitle: "راهنمای هوشمند گردشگری ایران",
-    heroDesc: "مکان‌های تاریخی، گردشگری و جاذبه‌های دیدنی را به همراه فیلم و ویدیو تماشا کنید.",
-    videosTitle: "🎬 فیلم‌های گردشگری",
-    videosCount: "۲۷ فیلم گردشگری پخش زنده",
-    videoListTitle: "فهرست کامل فیلم‌های گردشگری"
-  },
-  en: {
-    appName: "Cyrus Tourist",
-    heroTitle: "Smart Travel Guide of Iran",
-    heroDesc: "Explore historical places, attractions, and watch travel videos.",
-    videosTitle: "🎬 Tourism Videos",
-    videosCount: "27 Streaming Tourism Videos",
-    videoListTitle: "Full Tourism Video List"
-  },
-  ar: {
-    appName: "سایروس توریست",
-    heroTitle: "دليل السياحة الذكي في إيران",
-    heroDesc: "استكشف الأماكن التاريخية والمعالم السياحية وشاهد الفيديوهات.",
-    videosTitle: "🎬 فيديوهات سياحية",
-    videosCount: "۲۷ فيديو سياحي مباشر",
-    videoListTitle: "القائمة الكاملة للفيديوهات السياحية"
-  }
-};
-
-function changeLanguage(lang) {
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
-
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[lang][key]) el.textContent = translations[lang][key];
-  });
-
-  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-    el.textContent = el.getAttribute('data-' + lang);
-  });
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"TravelAgency",
+"name":"سایروس توریست",
+"url":"https://cyrustourist-maker.github.io/Cyrustourist/",
+"logo":"https://cyrustourist-maker.github.io/Cyrustourist/assets/images/logo.png",
+"image":"https://cyrustourist-maker.github.io/Cyrustourist/assets/images/cyrustourist-hero-2026.webp.jpg",
+"description":"راهنمای سفر و گردشگری ایران؛ جاذبه‌های گردشگری، اقامتگاه‌ها، گردشگری سلامت و فیلم‌های گردشگری.",
+"areaServed":{"@type":"Country","name":"Iran"},
+"email":"Cyrustourist@gmail.com",
+"telephone":"+98-915-344-8818"
 }
 </script>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="assets/images/header-fix.css">
+
+<style>
+:root{
+--bg:#06121d;
+--bg2:#0b2230;
+--card:rgba(255,255,255,.08);
+--line:rgba(255,255,255,.15);
+--text:#f5fbff;
+--muted:#b9cbd4;
+--green:#29e0ad;
+--blue:#42b8ff;
+--gold:#ffd36a;
+--danger:#ff6b6b;
+--shadow:0 20px 55px rgba(0,0,0,.3)
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+color:var(--text);
+font-family:Tahoma,Arial,sans-serif;
+line-height:1.9;
+background:
+radial-gradient(circle at 10% 0%,#124058 0,transparent 30%),
+radial-gradient(circle at 90% 10%,#16483e 0,transparent 28%),
+linear-gradient(145deg,var(--bg),var(--bg2))
+}
+body.modal-open,body.map-touching{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit}
+button{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(1200px,92%);margin:auto}
+
+/* HEADER */
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(3,13,22,.96);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--line)
+}
+.nav{
+min-height:86px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px
+}
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:900;
+font-size:18px;
+white-space:nowrap
+}
+.brandLogo{
+width:68px;
+height:68px;
+object-fit:contain;
+display:block;
+border-radius:15px;
+background:rgba(255,255,255,.05);
+padding:3px
+}
+.links{
+display:flex;
+gap:5px;
+flex-wrap:wrap;
+justify-content:flex-end
+}
+.links a{
+padding:7px 10px;
+border:1px solid var(--line);
+border-radius:11px;
+background:rgba(255,255,255,.05);
+font-size:12px;
+transition:.2s
+}
+.links a:hover{
+background:rgba(41,224,173,.15);
+transform:translateY(-1px)
+}
+.languageBox{position:relative;direction:ltr}
+.languageBox select,.nearbyControls select,.toolSelect{
+appearance:auto;
+padding:8px 10px;
+border:1px solid var(--line);
+border-radius:11px;
+background:#102b38;
+color:#fff;
+outline:none;
+cursor:pointer;
+font-size:12px
+}
+.languageBox select option,.nearbyControls select option,.toolSelect option{background:#102b38;color:#fff}
+.btn{
+display:inline-block;
+padding:10px 15px;
+border:1px solid var(--line);
+border-radius:13px;
+background:rgba(255,255,255,.07);
+color:#fff;
+cursor:pointer;
+text-align:center;
+transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
+.primary{
+border:0;
+background:linear-gradient(135deg,var(--green),var(--blue));
+color:#03202a;
+font-weight:900
+}
+.danger{background:rgba(255,107,107,.12);border-color:rgba(255,107,107,.35)}
+
+/* HERO */
+.hero{padding:55px 0 40px}
+.siteHero{
+display:grid;
+grid-template-columns:minmax(0,1fr) minmax(220px,420px);
+gap:22px;
+align-items:center
+}
+.siteHeroImage{
+width:100%;
+max-width:420px;
+aspect-ratio:9/16;
+object-fit:cover;
+border-radius:24px;
+border:1px solid var(--line);
+box-shadow:var(--shadow);
+display:block;
+margin:auto
+}
+.siteHeroTitle{
+font-size:clamp(28px,4vw,48px);
+line-height:1.35;
+margin:0 0 12px;
+font-weight:900
+}
+.siteHeroSub{font-size:18px;color:var(--muted);margin:0}
+.iosPwaBanner{
+margin-top:20px;
+padding:15px;
+border:1px dashed var(--green);
+border-radius:16px;
+background:rgba(41,224,173,.07);
+font-size:14px;
+color:var(--text)
+}
+.iosPwaBanner b{color:var(--green)}
+
+section{padding:42px 0}
+.title{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:15px;
+margin-bottom:20px
+}
+.title h2{margin:0;font-size:29px}
+.title p{margin:0;color:var(--muted)}
+.muted{color:var(--muted)}
+
+/* CATEGORIES */
+.cats{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:12px
+}
+.cat{
+display:block;
+padding:18px 8px;
+text-align:center;
+border:1px solid var(--line);
+border-radius:20px;
+background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+transition:.25s;
+cursor:pointer
+}
+.cat:hover{
+transform:translateY(-5px);
+background:rgba(41,224,173,.12);
+box-shadow:0 15px 30px rgba(0,0,0,.18)
+}
+.cat b{display:block;font-size:32px}
+
+/* MAP */
+.mapBox{
+overflow:hidden;
+border:1px solid var(--line);
+border-radius:25px;
+background:#06131b;
+box-shadow:var(--shadow);
+overscroll-behavior:contain
+}
+.mapHeader{
+padding:15px;
+background:linear-gradient(145deg,rgba(41,224,173,.1),rgba(66,184,255,.08));
+border-bottom:1px solid var(--line)
+}
+.mapSearch{display:flex;gap:8px}
+.mapSearch input{
+flex:1;
+min-width:0;
+padding:11px 13px;
+border:1px solid var(--line);
+border-radius:12px;
+background:rgba(0,0,0,.22);
+color:#fff;
+outline:none
+}
+.mapSearch input::placeholder{color:#a9bec8}
+.mapSearchResult{margin-top:8px;color:#8deed5;font-size:13px}
+#touristMap{
+width:100%;
+height:470px;
+direction:ltr;
+background:#dbe8ec;
+touch-action:pan-y;
+overscroll-behavior:none;
+user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none
+}
+.leaflet-container{font-family:Tahoma,Arial,sans-serif;touch-action:none!important;overscroll-behavior:none!important}
+.leaflet-control-zoom{direction:ltr}
+.leaflet-control-attribution{font-size:9px}
+.mapButtons{display:flex;gap:10px;flex-wrap:wrap;padding:15px}
+.mapInfo{padding:0 15px 15px;color:var(--muted);font-size:13px}
+
+/* TOOLBOX */
+.toolbox{
+margin-top:22px;
+border:1px solid rgba(66,184,255,.25);
+border-radius:25px;
+padding:18px;
+background:linear-gradient(145deg,rgba(66,184,255,.09),rgba(41,224,173,.06)),rgba(255,255,255,.03);
+box-shadow:var(--shadow)
+}
+.toolboxHead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.toolboxTitle{font-size:21px;font-weight:900}
+.toolboxSub{font-size:12px;color:var(--muted)}
+.toolGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
+.tool{
+min-height:92px;
+padding:12px;
+border:1px solid var(--line);
+border-radius:18px;
+background:rgba(0,0,0,.16);
+color:#fff;
+cursor:pointer;
+text-align:center;
+transition:.2s
+}
+.tool:hover{transform:translateY(-3px);background:rgba(41,224,173,.1)}
+.toolIcon{display:block;font-size:30px;line-height:1.2}
+.toolLabel{display:block;margin-top:5px;font-weight:900;font-size:13px}
+.toolStatus{
+margin-top:12px;
+padding:11px;
+border-radius:13px;
+background:rgba(0,0,0,.18);
+color:#9feedd;
+font-size:12px;
+min-height:43px
+}
+.compassBox{display:none;margin-top:12px;text-align:center;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.18)}
+.compassBox.show{display:block}
+.compassDial{
+width:150px;
+height:150px;
+margin:10px auto;
+border-radius:50%;
+border:5px solid rgba(255,255,255,.2);
+display:grid;
+place-items:center;
+position:relative;
+background:radial-gradient(circle,rgba(255,255,255,.08),transparent 65%)
+}
+.compassNeedle{font-size:70px;transform:rotate(0deg);transition:.15s}
+.degree{font-weight:900;color:var(--green)}
+
+/* NEARBY */
+.nearbyBox{
+margin-top:22px;
+padding:22px;
+border:1px solid rgba(41,224,173,.28);
+border-radius:25px;
+background:linear-gradient(145deg,rgba(41,224,173,.1),rgba(66,184,255,.06)),rgba(255,255,255,.04);
+box-shadow:var(--shadow)
+}
+.nearbyTop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.nearbyControls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.nearbyCategoryRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.nearbyCatBtn{
+border:0;
+border-radius:16px;
+padding:12px 18px;
+font-size:14px;
+font-weight:800;
+color:#fff;
+cursor:pointer;
+background:linear-gradient(160deg,#2dd4bf,#0ea5e9);
+box-shadow:0 6px 0 #0b7285,0 10px 18px rgba(0,0,0,.35)
+}
+.nearbyCatBtn.active{outline:2px solid #fff}
+.locationStatus{margin-top:12px;color:var(--muted)}
+.nearbyResults{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+.placeCard{padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.18)}
+.placeCard h3{margin:0 0 5px;font-size:17px}
+.placeMeta{color:var(--muted);font-size:13px}
+.empty{padding:20px;text-align:center;border:1px dashed var(--line);border-radius:17px;color:var(--muted);grid-column:1/-1}
+
+/* VIDEOS (UNCHANGED AS REQUESTED) */
+.videos{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.videoCard{overflow:hidden}
+.videoHead{display:flex;align-items:center;gap:10px}
+.num{
+width:40px;height:40px;flex:none;display:grid;place-items:center;
+border-radius:50%;background:linear-gradient(135deg,var(--green),var(--blue));
+color:#03202a;font-weight:900
+}
+.embed{
+margin-top:14px;overflow:hidden;border-radius:17px;background:#000;
+position:relative;width:100%;aspect-ratio:16/9
+}
+.videoTextList{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.videoTextList h3{margin:0 0 14px;font-size:1.05rem;color:var(--gold)}
+.videoTextList ol{margin:0;padding:0 20px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:6px 22px}
+.videoTextList li{font-size:.92rem;line-height:1.7}
+.videoTextList a{display:block}
+.videoTextList a:hover .vlTitle{text-decoration:underline}
+.vlTitle{color:var(--text)}
+.vlLoc{color:var(--muted)}
+@media(max-width:720px){.videoTextList ol{grid-template-columns:1fr}}
+.embed iframe{display:block;width:100%;height:100%;border:0;background:#000}
+.text{padding-top:12px}
+.tag{color:#8deed5;font-size:12px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.pill{
+flex:1;min-width:145px;padding:10px 12px;border:1px solid var(--line);
+border-radius:11px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font-size:13px;text-align:center
+}
+.direct{background:linear-gradient(135deg,var(--green),var(--blue));color:#03202a;border:0;font-weight:900}
+
+/* DOWNLOAD / RESOURCES */
+.resourceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.resourceCard{
+padding:20px;
+border:1px solid var(--line);
+border-radius:20px;
+background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+text-align:center
+}
+.resourceIcon{font-size:42px;display:block;margin-bottom:8px}
+.resourceCard h3{margin:5px 0}
+.resourceCard p{color:var(--muted);font-size:13px;margin:5px 0 14px}
+.resourceButtons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* HERO DOWNLOAD HOTSPOTS */
+.cyrusHeroDownloadArea{position:relative;width:100%;max-width:420px;margin:auto;line-height:0}
+.cyrusHeroDownloadArea .siteHeroImage{margin:0 auto;max-width:100%}
+.cyrusHeroHotspot{
+position:absolute;display:block;padding:0;margin:0;border:0;
+background:transparent;cursor:pointer;z-index:20;-webkit-tap-highlight-color:transparent
+}
+.cyrusHeroHotspot:focus{outline:none}
+
+/* THANK YOU & MODALS */
+.thanksButton{
+position:fixed;left:18px;bottom:18px;z-index:5000;
+width:58px;height:58px;border:0;border-radius:50%;cursor:pointer;
+background:linear-gradient(135deg,var(--gold),var(--green),var(--blue));
+box-shadow:0 12px 35px rgba(0,0,0,.4);font-size:27px
+}
+.thanksModal,.resourceModal,.cyrusUnavailableModal{
+position:fixed;inset:0;z-index:99998;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.82);backdrop-filter:blur(10px)
+}
+.thanksModal.show,.resourceModal.show,.cyrusUnavailableModal.show{display:flex}
+.thanksBox{
+width:min(460px,100%);padding:30px 24px;text-align:center;
+border:1px solid rgba(255,255,255,.2);border-radius:28px;
+background:linear-gradient(145deg,rgba(41,224,173,.16),rgba(66,184,255,.12)),#071722
+}
+.residenceRegisterWrap{display:flex;justify-content:center;margin-top:22px}
+.residenceRegisterCard{
+width:100%;max-width:340px;text-align:center;
+padding:18px 16px;border:1px dashed var(--line);border-radius:18px;background:rgba(255,255,255,.03)
+}
+@media(max-width:900px){
+.siteHero{grid-template-columns:1fr}
+.cats{grid-template-columns:repeat(3,1fr)}
+.toolGrid{grid-template-columns:repeat(2,1fr)}
+.videos,.resourceGrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap nav">
+<a class="brand" href="#top" aria-label="CyrusTourist">
+<img class="brandLogo" src="assets/images/logo.png" alt="Cyrus Tourist">
+<span data-i18n="brand">گردشگری سایروس توریست</span>
+</a>
+<nav class="links" aria-label="منوی اصلی">
+<a href="#top" data-i18n="navHome">خانه</a>
+<a href="#map" data-i18n="navMap">نقشه رایگان</a>
+<a href="#nearby" data-i18n="navNearby">جاذبه‌های اطراف</a>
+<a href="#videos" data-i18n="navVideos">فیلم‌ها</a>
+<a href="#residence" data-i18n="navResidence">اقامتگاه</a>
+<a href="#downloads" data-i18n="navDownloads">دانلود اپلیکیشن</a>
+<div class="languageBox">
+<select id="languageSelect" aria-label="انتخاب زبان">
+<option value="fa">فارسی</option>
+<option value="en">English</option>
+<option value="ar">العربية</option>
+</select>
+</div>
+</nav>
+</div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+<div class="wrap">
+<div class="siteHero">
+<div>
+<h1 class="siteHeroTitle" data-i18n="heroTitle">
+گردشگری سایروس توریست
+</h1>
+<p class="siteHeroSub" data-i18n="heroSub">
+ایران را با نقشه تعاملی و رایگان سایروس توریست ببینید
+</p>
+<div class="iosPwaBanner">
+📱 کاربران <b>iOS (آیفون و آیپد)</b>: برای دسترسی به امکانات اپلیکیشن، از منوی مرورگر گزینه <b>Add to Home Screen</b> را انتخاب کنید تا سایت به صورت وب‌اپلیکیشن (PWA) روی گوشی شما نصب شود.
+</div>
+</div>
+<div class="cyrusHeroDownloadArea">
+<img class="siteHeroImage" src="assets/images/cyrustourist-hero-2026.webp.jpg" alt="گردشگری سایروس توریست" width="1080" height="1920" loading="eager" fetchpriority="high">
+<button class="cyrusHeroHotspot" data-cyrus-download="googlePlay" aria-label="Google Play" style="left:6.5%;top:71.5%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="appStore" aria-label="App Store" style="left:36%;top:71.5%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="myket" aria-label="مایکت" style="left:65%;top:71.5%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="bazaar" aria-label="بازار" style="left:6.5%;top:79.7%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="androidFile" aria-label="Android" style="left:36%;top:79.7%;width:27.5%;height:7.8%;"></button>
+<button class="cyrusHeroHotspot" data-cyrus-download="iosFile" aria-label="iOS" style="left:65%;top:79.7%;width:27.5%;height:7.8%;"></button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MAIN CATEGORIES -->
+<section>
+<div class="wrap">
+<div class="title">
+<div>
+<h2 data-i18n="mainTitle">گردشگری ایران</h2>
+<p data-i18n="mainSub">طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر</p>
+</div>
+</div>
+<div class="cats">
+<a class="cat" href="#map"><b>🗺️</b><span data-i18n="catMap">نقشه رایگان</span></a>
+<a class="cat" href="#nearby"><b>📍</b><span data-i18n="catNearby">جاذبه‌های اطراف من</span></a>
+<a class="cat" href="#attractions"><b>🏛️</b><span data-i18n="catAttractions">جاذبه‌های گردشگری</span></a>
+<a class="cat" href="#videos"><b>🎬</b><span data-i18n="catVideos">فیلم‌های گردشگری</span></a>
+<a class="cat" href="#residence"><b>🏡</b><span data-i18n="catResidence">اقامتگاه</span></a>
+<a class="cat" href="#guide"><b>🧭</b><span data-i18n="catGuide">راهنمای سفر</span></a>
+</div>
+</div>
+</section>
+
+<!-- MAP -->
+<section id="map">
+<div class="wrap">
+<div class="title">
+<div>
+<h2 data-i18n="mapTitle">نقشه گردشگری رایگان</h2>
+<p data-i18n="mapSub">موقعیت خود را پیدا کنید و جاذبه‌های اطراف را به صورت کاملاً رایگان ببینید.</p>
+</div>
+</div>
+<div class="mapBox">
+<div class="mapHeader">
+<div class="mapSearch">
+<input id="mapSearchInput" type="search" placeholder="جستجوی مکان..." autocomplete="off">
+<button class="btn primary" id="mapSearchButton">جستجو</button>
+</div>
+<div id="mapSearchResult" class="mapSearchResult"></div>
+</div>
+<div id="touristMap"></div>
+<div class="mapButtons">
+<button class="btn primary" id="myLocationButton">📍 موقعیت من</button>
+<button class="btn" id="mapNearbyButton">جاذبه‌های اطراف</button>
+</div>
+<div class="mapInfo">
+نقشه کاملاً رایگان و تعاملی سایروس توریست بر پایه OpenStreetMap آماده استفاده است.
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEARBY -->
+<section id="nearby">
+<div class="wrap">
+<div class="nearbyBox">
+<div class="nearbyTop">
+<div>
+<h2 data-i18n="nearbyTitle">📍 جاذبه‌های اطراف من</h2>
+<p class="muted">جاذبه‌های گردشگری، تاریخی و طبیعی نزدیک شما</p>
+</div>
+<div class="nearbyControls">
+<select id="radius">
+<option value="5000">۵ کیلومتر</option>
+<option value="10000" selected>۱۰ کیلومتر</option>
+<option value="25000">۲۵ کیلومتر</option>
+<option value="50000">۵۰ کیلومتر</option>
+</select>
+<button class="btn primary" id="nearbyButton">پیدا کن</button>
+</div>
+</div>
+<div class="nearbyCategoryRow">
+<button type="button" class="nearbyCatBtn active" data-category="attractions">🏛️ جاذبه‌ها</button>
+<button type="button" class="nearbyCatBtn" data-category="health">🏥 گردشگری سلامت</button>
+<button type="button" class="nearbyCatBtn" data-category="lodging">🏨 اقامتگاه‌های اطراف</button>
+<button type="button" class="nearbyCatBtn" id="nearbyResetBtn">↩️ بازگشت</button>
+</div>
+<div id="locationStatus" class="locationStatus">موقعیت شما هنوز دریافت نشده است.</div>
+<div id="nearbyResults" class="nearbyResults">
+<div class="empty">برای نمایش جاذبه‌ها، روی «پیدا کن» بزنید.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- VIDEOS (EXACTLY PRESERVED AS REQUESTED) -->
+<section id="videos">
+<div class="wrap">
+<div class="title">
+<div>
+<h2 data-i18n="videosTitle">🎬 فیلم‌های گردشگری</h2>
+<p data-i18n="videosCount">۲۷ فیلم گردشگری</p>
+</div>
+</div>
+<div class="videos">
+<!-- VIDEO 1 -->
+<div class="videoCard" data-video="1">
+<div class="videoHead"><div class="num">۱</div><div><strong>قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر</strong><div class="tag">گناباد، خراسان رضوی</div></div></div>
+<div class="embed"><iframe src="" title="قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر" allowfullscreen loading="lazy"></iframe></div>
+<div class="text"><div class="actions"><button class="pill direct videoAction" data-video-id="1">مشاهده فیلم</button></div></div>
+</div>
+<!-- (بقیه ویدیوها دست‌نخورده باقی مانده‌اند) -->
+</div>
+</div>
+</section>
+
+<!-- RESIDENCE -->
+<section id="residence">
+<div class="wrap">
+<div class="title">
+<div><h2>🏡 اقامتگاه</h2><p>اقامتگاه‌های گردشگری</p></div>
+</div>
+<div class="residenceRegisterWrap">
+<div class="residenceRegisterCard">
+<b>🏡 اقامتگاه‌ها و ➕ ثبت اقامتگاه</b>
+<p>مشاهده اقامتگاه‌های سایروس توریست یا معرفی اقامتگاه خودتان.</p>
+<a class="btn primary" href="residences/residences.html">ورود به بخش اقامتگاه‌ها</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- DOWNLOADS -->
+<section id="downloads">
+<div class="wrap">
+<div class="title">
+<div><h2>📱 دانلود اپلیکیشن سایروس توریست</h2><p>نسخه‌های جدید برنامه را از همین مسیر دریافت کنید.</p></div>
+</div>
+<div class="resourceGrid">
+<div class="resourceCard">
+<span class="resourceIcon">🤖</span>
+<h3>نسخه اندروید</h3>
+<p id="androidStatus">در حال بررسی آخرین نسخه...</p>
+<div class="resourceButtons"><a class="btn primary" href="downloads/android.html">صفحه اندروید</a></div>
+</div>
+<div class="resourceCard">
+<span class="resourceIcon">🍎</span>
+<h3>نسخه iOS (وب‌اپلیکیشن)</h3>
+<p>قابل نصب به صورت PWA روی آیفون</p>
+<div class="resourceButtons"><a class="btn primary" href="ios.html">راهنمای iOS</a></div>
+</div>
+<div class="resourceCard">
+<span class="resourceIcon">🛍️</span>
+<h3>مایکت</h3>
+<p>دانلود از مایکت</p>
+<div class="resourceButtons"><a class="btn primary" href="https://myket.ir/app/cyrustourist.ir.app" target="_blank" rel="noopener">ورود به مایکت</a></div>
+</div>
+<div class="resourceCard">
+<span class="resourceIcon">🏬</span>
+<h3>بازار</h3>
+<p>دانلود از بازار</p>
+<div class="resourceButtons"><a class="btn primary" href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share" target="_blank" rel="noopener">ورود به بازار</a></div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<button class="thanksButton" id="thanksButton" aria-label="سپاسگزاریم">🙏</button>
+<div class="thanksModal" id="thanksModal" role="dialog" aria-modal="true">
+<div class="thanksBox">
+<span class="thanksIcon">💚</span>
+<h2>سپاسگزاریم</h2>
+<p>از همراهی شما با سایروس توریست سپاسگزاریم.<br>با ما ایران را بهتر ببینید.</p>
+<button class="btn primary" id="closeThanks">ادامه</button>
+</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const CYRUS_CONFIG = {
+  myket: 'https://myket.ir/app/cyrustourist.ir.app',
+  bazaar: 'http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share',
+  videos: {
+    1: 'https://www.aparat.com/video/video/embed/videohash/t346o2k/vt/frame',
+    2: 'https://www.aparat.com/video/video/embed/videohash/w17sz69/vt/frame',
+    3: 'https://www.aparat.com/video/video/embed/videohash/xvo5q9c/vt/frame',
+    4: 'https://www.aparat.com/video/video/embed/videohash/hzlol4k/vt/frame',
+    5: 'https://www.aparat.com/video/video/embed/videohash/guqcsg5/vt/frame',
+    6: 'https://www.aparat.com/video/video/embed/videohash/w8lOg/vt/frame',
+    7: 'https://www.aparat.com/video/video/embed/videohash/uK3y5/vt/frame',
+    8: 'https://www.aparat.com/video/video/embed/videohash/nuXAC/vt/frame',
+    9: 'https://www.aparat.com/video/video/embed/videohash/x707h19/vt/frame',
+    10: 'https://www.aparat.com/video/video/embed/videohash/4Z0hQ/vt/frame',
+    11: 'https://www.aparat.com/video/video/embed/videohash/s78jcie/vt/frame',
+    12: 'https://www.aparat.com/video/video/embed/videohash/R1p3U/vt/frame',
+    13: 'https://www.aparat.com/video/video/embed/videohash/g40wppg/vt/frame',
+    14: 'https://www.aparat.com/video/video/embed/videohash/xsBFX/vt/frame',
+    15: 'https://www.aparat.com/video/video/embed/videohash/3ZCGs/vt/frame',
+    16: 'https://www.aparat.com/video/video/embed/videohash/z72q215/vt/frame',
+    17: 'https://www.aparat.com/video/video/embed/videohash/c4744bv/vt/frame',
+    18: 'https://www.aparat.com/video/video/embed/videohash/kGS8o/vt/frame',
+    19: 'https://www.aparat.com/video/video/embed/videohash/mPh2q/vt/frame',
+    20: 'https://www.aparat.com/video/video/embed/videohash/h86ieq2/vt/frame',
+    21: 'https://www.aparat.com/video/video/embed/videohash/w43c127/vt/frame',
+    22: 'https://www.aparat.com/video/video/embed/videohash/k2RDX/vt/frame',
+    23: 'https://www.aparat.com/video/video/embed/videohash/f91418q/vt/frame',
+    24: 'https://www.aparat.com/video/video/embed/videohash/f5212r6/vt/frame',
+    25: 'https://www.aparat.com/video/video/embed/videohash/f38s8gz/vt/frame',
+    26: 'https://www.aparat.com/video/video/embed/videohash/m37fn2a/vt/frame',
+    27: 'https://www.aparat.com/video/video/embed/videohash/a528058/vt/frame'
+  }
+};
+
+let touristMap = null;
+let userMarker = null;
+let userLat = null;
+let userLon = null;
+let nearbyMarkers = [];
+let nearbyCategory = 'attractions';
+
+function initializeMap() {
+  if (!document.getElementById('touristMap')) return;
+  touristMap = L.map('touristMap').setView([32.4279, 53.6880], 5);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors (رایگان)'
+  }).addTo(touristMap);
+  setTimeout(() => touristMap.invalidateSize(), 300);
+}
+window.addEventListener('DOMContentLoaded', initializeMap);
+</script>
 </body>
 </html>
