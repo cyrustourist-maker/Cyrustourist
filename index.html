@@ -1,31 +1,27 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#06121d">
-<meta name="description" content="سایروس توریست؛ راهنمای سفر و گردشگری ایران با نقشه تعاملی رایگان جاذبه‌های گردشگری، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر برای طبیعت‌گردی و سفر به ایران.">
-<meta name="keywords" content="گردشگری ایران, سفر به ایران, جاذبه های گردشگری ایران, طبیعت گردی, اقامتگاه های گردشگری, گردشگری سلامت, نقشه گردشگری رایگان, راهنمای سفر, سایروس توریست, وب اپلیکیشن گردشگری">
+<meta name="description" content="سایروس توریست؛ راهنمای سفر و گردشگری ایران با نقشه تعاملی جاذبه‌های گردشگری، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر برای طبیعت‌گردی و سفر به ایران.">
+<meta name="keywords" content="گردشگری ایران, سفر به ایران, جاذبه های گردشگری ایران, طبیعت گردی, اقامتگاه های گردشگری, گردشگری سلامت, نقشه گردشگری, راهنمای سفر, سایروس توریست">
 <meta name="author" content="سایروس توریست">
 <link rel="canonical" href="https://cyrustourist-maker.github.io/Cyrustourist/">
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="سایروس توریست">
-<link rel="apple-touch-icon" href="assets/images/logo.png">
-<title>سایروس توریست | راهنمای سفر و گردشگری ایران با نقشه تعاملی رایگان</title>
+<title>سایروس توریست | راهنمای سفر و گردشگری ایران با نقشه تعاملی</title>
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fa_IR">
 <meta property="og:site_name" content="سایروس توریست">
 <meta property="og:title" content="سایروس توریست | راهنمای سفر و گردشگری ایران">
-<meta property="og:description" content="نقشه تعاملی رایگان جاذبه‌های گردشگری ایران، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر.">
+<meta property="og:description" content="نقشه تعاملی جاذبه‌های گردشگری ایران، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر.">
 <meta property="og:image" content="https://cyrustourist-maker.github.io/Cyrustourist/assets/images/cyrustourist-hero-2026.webp.jpg">
 <meta property="og:url" content="https://cyrustourist-maker.github.io/Cyrustourist/">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="سایروس توریست | راهنمای سفر و گردشگری ایران">
-<meta name="twitter:description" content="نقشه تعاملی رایگان جاذبه‌های گردشگری ایران، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر.">
+<meta name="twitter:description" content="نقشه تعاملی جاذبه‌های گردشگری ایران، اقامتگاه‌ها، گردشگری سلامت، فیلم‌های گردشگری و راهنمای سفر.">
 <meta name="twitter:image" content="https://cyrustourist-maker.github.io/Cyrustourist/assets/images/cyrustourist-hero-2026.webp.jpg">
 
 <script type="application/ld+json">
@@ -62,7 +58,9 @@
 }
 
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 body{
 margin:0;
 color:var(--text);
@@ -73,13 +71,32 @@ radial-gradient(circle at 10% 0%,#124058 0,transparent 30%),
 radial-gradient(circle at 90% 10%,#16483e 0,transparent 28%),
 linear-gradient(145deg,var(--bg),var(--bg2))
 }
-body.modal-open,body.map-touching{overflow:hidden}
-a{color:inherit;text-decoration:none}
-button,input,select{font-family:inherit}
-button{-webkit-tap-highlight-color:transparent}
-.wrap{width:min(1200px,92%);margin:auto}
+
+body.modal-open,
+body.map-touching{
+overflow:hidden
+}
+
+a{
+color:inherit;
+text-decoration:none
+}
+
+button,input,select{
+font-family:inherit
+}
+
+button{
+-webkit-tap-highlight-color:transparent
+}
+
+.wrap{
+width:min(1200px,92%);
+margin:auto
+}
 
 /* HEADER */
+
 header{
 position:sticky;
 top:0;
@@ -88,6 +105,7 @@ background:rgba(3,13,22,.96);
 backdrop-filter:blur(18px);
 border-bottom:1px solid var(--line)
 }
+
 .nav{
 min-height:86px;
 display:flex;
@@ -95,6 +113,7 @@ align-items:center;
 justify-content:space-between;
 gap:12px
 }
+
 .brand{
 display:flex;
 align-items:center;
@@ -103,6 +122,7 @@ font-weight:900;
 font-size:18px;
 white-space:nowrap
 }
+
 .brandLogo{
 width:68px;
 height:68px;
@@ -112,12 +132,14 @@ border-radius:15px;
 background:rgba(255,255,255,.05);
 padding:3px
 }
+
 .links{
 display:flex;
 gap:5px;
 flex-wrap:wrap;
 justify-content:flex-end
 }
+
 .links a{
 padding:7px 10px;
 border:1px solid var(--line);
@@ -126,12 +148,20 @@ background:rgba(255,255,255,.05);
 font-size:12px;
 transition:.2s
 }
+
 .links a:hover{
 background:rgba(41,224,173,.15);
 transform:translateY(-1px)
 }
-.languageBox{position:relative;direction:ltr}
-.languageBox select,.nearbyControls select,.toolSelect{
+
+.languageBox{
+position:relative;
+direction:ltr
+}
+
+.languageBox select,
+.nearbyControls select,
+.toolSelect{
 appearance:auto;
 padding:8px 10px;
 border:1px solid var(--line);
@@ -142,7 +172,14 @@ outline:none;
 cursor:pointer;
 font-size:12px
 }
-.languageBox select option,.nearbyControls select option,.toolSelect option{background:#102b38;color:#fff}
+
+.languageBox select option,
+.nearbyControls select option,
+.toolSelect option{
+background:#102b38;
+color:#fff
+}
+
 .btn{
 display:inline-block;
 padding:10px 15px;
@@ -154,23 +191,36 @@ cursor:pointer;
 text-align:center;
 transition:.2s
 }
-.btn:hover{transform:translateY(-2px)}
+
+.btn:hover{
+transform:translateY(-2px)
+}
+
 .primary{
 border:0;
 background:linear-gradient(135deg,var(--green),var(--blue));
 color:#03202a;
 font-weight:900
 }
-.danger{background:rgba(255,107,107,.12);border-color:rgba(255,107,107,.35)}
+
+.danger{
+background:rgba(255,107,107,.12);
+border-color:rgba(255,107,107,.35)
+}
 
 /* HERO */
-.hero{padding:55px 0 40px}
+
+.hero{
+padding:55px 0 40px
+}
+
 .siteHero{
 display:grid;
 grid-template-columns:minmax(0,1fr) minmax(220px,420px);
 gap:22px;
 align-items:center
 }
+
 .siteHeroImage{
 width:100%;
 max-width:420px;
@@ -182,25 +232,113 @@ box-shadow:var(--shadow);
 display:block;
 margin:auto
 }
+
 .siteHeroTitle{
 font-size:clamp(28px,4vw,48px);
 line-height:1.35;
 margin:0 0 12px;
 font-weight:900
 }
-.siteHeroSub{font-size:18px;color:var(--muted);margin:0}
-.iosPwaBanner{
-margin-top:20px;
-padding:15px;
-border:1px dashed var(--green);
-border-radius:16px;
-background:rgba(41,224,173,.07);
-font-size:14px;
-color:var(--text)
-}
-.iosPwaBanner b{color:var(--green)}
 
-section{padding:42px 0}
+.siteHeroSub{
+font-size:18px;
+color:var(--muted);
+margin:0
+}
+
+.heroGrid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:30px;
+align-items:center
+}
+
+.eyebrow{
+color:var(--green);
+font-weight:900
+}
+
+.hero h1{
+font-size:clamp(35px,5.5vw,66px);
+line-height:1.25;
+margin:8px 0 15px
+}
+
+.hero p{
+color:var(--muted);
+font-size:18px;
+max-width:700px
+}
+
+.search{
+display:flex;
+gap:8px;
+padding:8px;
+margin-top:20px;
+border:1px solid var(--line);
+border-radius:18px;
+background:rgba(255,255,255,.07)
+}
+
+.search input{
+flex:1;
+min-width:0;
+border:0;
+outline:0;
+background:transparent;
+color:#fff;
+padding:10px;
+font-size:16px
+}
+
+.heroBtns{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:14px
+}
+
+.scene{
+min-height:350px;
+display:grid;
+place-items:center;
+position:relative
+}
+
+.earth{
+width:220px;
+height:220px;
+border-radius:50%;
+background:
+radial-gradient(circle at 30% 25%,#7af5d3 0 7%,transparent 8%),
+radial-gradient(circle at 70% 55%,#42b8ff 0 13%,transparent 14%),
+radial-gradient(circle at 42% 72%,#29e0ad 0 12%,transparent 13%),
+linear-gradient(145deg,#236a87,#061d2d);
+box-shadow:
+inset 20px 18px 30px rgba(255,255,255,.13),
+inset -35px -35px 50px rgba(0,0,0,.5),
+0 30px 60px rgba(0,0,0,.35);
+animation:float 5s ease-in-out infinite
+}
+
+.pin{
+position:absolute;
+font-size:35px;
+filter:drop-shadow(0 8px 7px #0008)
+}
+
+.p1{top:40px;right:20%}
+.p2{bottom:45px;left:20%}
+.p3{top:45%;left:10%}
+
+@keyframes float{
+50%{transform:translateY(-10px)}
+}
+
+section{
+padding:42px 0
+}
+
 .title{
 display:flex;
 justify-content:space-between;
@@ -208,34 +346,54 @@ align-items:end;
 gap:15px;
 margin-bottom:20px
 }
-.title h2{margin:0;font-size:29px}
-.title p{margin:0;color:var(--muted)}
-.muted{color:var(--muted)}
+
+.title h2{
+margin:0;
+font-size:29px
+}
+
+.title p{
+margin:0;
+color:var(--muted)
+}
+
+.muted{
+color:var(--muted)
+}
 
 /* CATEGORIES */
+
 .cats{
 display:grid;
 grid-template-columns:repeat(6,1fr);
 gap:12px
 }
+
 .cat{
 display:block;
 padding:18px 8px;
 text-align:center;
 border:1px solid var(--line);
 border-radius:20px;
-background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+background:
+linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
 transition:.25s;
 cursor:pointer
 }
+
 .cat:hover{
 transform:translateY(-5px);
 background:rgba(41,224,173,.12);
 box-shadow:0 15px 30px rgba(0,0,0,.18)
 }
-.cat b{display:block;font-size:32px}
+
+.cat b{
+display:block;
+font-size:32px
+}
 
 /* MAP */
+
 .mapBox{
 overflow:hidden;
 border:1px solid var(--line);
@@ -244,12 +402,19 @@ background:#06131b;
 box-shadow:var(--shadow);
 overscroll-behavior:contain
 }
+
 .mapHeader{
 padding:15px;
-background:linear-gradient(145deg,rgba(41,224,173,.1),rgba(66,184,255,.08));
+background:
+linear-gradient(145deg,rgba(41,224,173,.1),rgba(66,184,255,.08));
 border-bottom:1px solid var(--line)
 }
-.mapSearch{display:flex;gap:8px}
+
+.mapSearch{
+display:flex;
+gap:8px
+}
+
 .mapSearch input{
 flex:1;
 min-width:0;
@@ -260,8 +425,17 @@ background:rgba(0,0,0,.22);
 color:#fff;
 outline:none
 }
-.mapSearch input::placeholder{color:#a9bec8}
-.mapSearchResult{margin-top:8px;color:#8deed5;font-size:13px}
+
+.mapSearch input::placeholder{
+color:#a9bec8
+}
+
+.mapSearchResult{
+margin-top:8px;
+color:#8deed5;
+font-size:13px
+}
+
 #touristMap{
 width:100%;
 height:470px;
@@ -273,25 +447,77 @@ user-select:none;
 -webkit-user-select:none;
 -webkit-touch-callout:none
 }
-.leaflet-container{font-family:Tahoma,Arial,sans-serif;touch-action:none!important;overscroll-behavior:none!important}
-.leaflet-control-zoom{direction:ltr}
-.leaflet-control-attribution{font-size:9px}
-.mapButtons{display:flex;gap:10px;flex-wrap:wrap;padding:15px}
-.mapInfo{padding:0 15px 15px;color:var(--muted);font-size:13px}
+
+.leaflet-container{
+font-family:Tahoma,Arial,sans-serif;
+touch-action:none!important;
+overscroll-behavior:none!important
+}
+
+.leaflet-control-zoom{
+direction:ltr
+}
+
+.leaflet-control-attribution{
+font-size:9px
+}
+
+.leaflet-control,
+.leaflet-control *{
+touch-action:manipulation
+}
+
+.mapButtons{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+padding:15px
+}
+
+.mapInfo{
+padding:0 15px 15px;
+color:var(--muted);
+font-size:13px
+}
 
 /* TOOLBOX */
+
 .toolbox{
 margin-top:22px;
 border:1px solid rgba(66,184,255,.25);
 border-radius:25px;
 padding:18px;
-background:linear-gradient(145deg,rgba(66,184,255,.09),rgba(41,224,173,.06)),rgba(255,255,255,.03);
+background:
+linear-gradient(145deg,rgba(66,184,255,.09),rgba(41,224,173,.06)),
+rgba(255,255,255,.03);
 box-shadow:var(--shadow)
 }
-.toolboxHead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.toolboxTitle{font-size:21px;font-weight:900}
-.toolboxSub{font-size:12px;color:var(--muted)}
-.toolGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
+
+.toolboxHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+flex-wrap:wrap
+}
+
+.toolboxTitle{
+font-size:21px;
+font-weight:900
+}
+
+.toolboxSub{
+font-size:12px;
+color:var(--muted)
+}
+
+.toolGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-top:15px
+}
+
 .tool{
 min-height:92px;
 padding:12px;
@@ -303,9 +529,25 @@ cursor:pointer;
 text-align:center;
 transition:.2s
 }
-.tool:hover{transform:translateY(-3px);background:rgba(41,224,173,.1)}
-.toolIcon{display:block;font-size:30px;line-height:1.2}
-.toolLabel{display:block;margin-top:5px;font-weight:900;font-size:13px}
+
+.tool:hover{
+transform:translateY(-3px);
+background:rgba(41,224,173,.1)
+}
+
+.toolIcon{
+display:block;
+font-size:30px;
+line-height:1.2
+}
+
+.toolLabel{
+display:block;
+margin-top:5px;
+font-weight:900;
+font-size:13px
+}
+
 .toolStatus{
 margin-top:12px;
 padding:11px;
@@ -315,8 +557,21 @@ color:#9feedd;
 font-size:12px;
 min-height:43px
 }
-.compassBox{display:none;margin-top:12px;text-align:center;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.18)}
-.compassBox.show{display:block}
+
+.compassBox{
+display:none;
+margin-top:12px;
+text-align:center;
+padding:18px;
+border:1px solid var(--line);
+border-radius:18px;
+background:rgba(0,0,0,.18)
+}
+
+.compassBox.show{
+display:block
+}
+
 .compassDial{
 width:150px;
 height:150px;
@@ -326,23 +581,56 @@ border:5px solid rgba(255,255,255,.2);
 display:grid;
 place-items:center;
 position:relative;
-background:radial-gradient(circle,rgba(255,255,255,.08),transparent 65%)
+background:
+radial-gradient(circle,rgba(255,255,255,.08),transparent 65%)
 }
-.compassNeedle{font-size:70px;transform:rotate(0deg);transition:.15s}
-.degree{font-weight:900;color:var(--green)}
+
+.compassNeedle{
+font-size:70px;
+transform:rotate(0deg);
+transition:.15s
+}
+
+.degree{
+font-weight:900;
+color:var(--green)
+}
 
 /* NEARBY */
+
 .nearbyBox{
 margin-top:22px;
 padding:22px;
 border:1px solid rgba(41,224,173,.28);
 border-radius:25px;
-background:linear-gradient(145deg,rgba(41,224,173,.1),rgba(66,184,255,.06)),rgba(255,255,255,.04);
+background:
+linear-gradient(145deg,rgba(41,224,173,.1),rgba(66,184,255,.06)),
+rgba(255,255,255,.04);
 box-shadow:var(--shadow)
 }
-.nearbyTop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.nearbyControls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.nearbyCategoryRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+.nearbyTop{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+flex-wrap:wrap
+}
+
+.nearbyControls{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+align-items:center
+}
+
+.nearbyCategoryRow{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:14px
+}
+
 .nearbyCatBtn{
 border:0;
 border-radius:16px;
@@ -352,97 +640,638 @@ font-weight:800;
 color:#fff;
 cursor:pointer;
 background:linear-gradient(160deg,#2dd4bf,#0ea5e9);
-box-shadow:0 6px 0 #0b7285,0 10px 18px rgba(0,0,0,.35)
+box-shadow:0 6px 0 #0b7285,0 10px 18px rgba(0,0,0,.35);
+transform:translateY(0);
+transition:transform .12s,box-shadow .12s
 }
-.nearbyCatBtn.active{outline:2px solid #fff}
-.locationStatus{margin-top:12px;color:var(--muted)}
-.nearbyResults{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
-.placeCard{padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.18)}
-.placeCard h3{margin:0 0 5px;font-size:17px}
-.placeMeta{color:var(--muted);font-size:13px}
-.empty{padding:20px;text-align:center;border:1px dashed var(--line);border-radius:17px;color:var(--muted);grid-column:1/-1}
 
-/* VIDEOS (UNCHANGED AS REQUESTED) */
-.videos{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.videoCard{overflow:hidden}
-.videoHead{display:flex;align-items:center;gap:10px}
+.nearbyCatBtn:active{
+transform:translateY(4px);
+box-shadow:0 2px 0 #0b7285,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.health{
+background:linear-gradient(160deg,#f87171,#dc2626);
+box-shadow:0 6px 0 #7f1d1d,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.health:active{
+box-shadow:0 2px 0 #7f1d1d,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.lodging{
+background:linear-gradient(160deg,#fbbf24,#d97706);
+box-shadow:0 6px 0 #92400e,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.lodging:active{
+box-shadow:0 2px 0 #92400e,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.reset{
+background:linear-gradient(160deg,#94a3b8,#475569);
+box-shadow:0 6px 0 #1e293b,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.reset:active{
+box-shadow:0 2px 0 #1e293b,0 4px 10px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.active{
+outline:2px solid #fff
+}
+
+.nearbyRetry{
+margin-top:10px;
+display:inline-block;
+border:0;
+border-radius:12px;
+padding:8px 16px;
+font-weight:700;
+color:#fff;
+background:linear-gradient(160deg,#2dd4bf,#0ea5e9);
+box-shadow:0 4px 0 #0b7285;
+cursor:pointer
+}
+
+.locationStatus{
+margin-top:12px;
+color:var(--muted)
+}
+
+.nearbyResults{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:18px
+}
+
+.placeCard{
+padding:17px;
+border:1px solid var(--line);
+border-radius:18px;
+background:rgba(0,0,0,.18)
+}
+
+.placeCard h3{
+margin:0 0 5px;
+font-size:17px
+}
+
+.placeMeta{
+color:var(--muted);
+font-size:13px
+}
+
+.placeActions{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-top:10px
+}
+
+.smallBtn{
+display:inline-block;
+padding:6px 10px;
+border:1px solid var(--line);
+border-radius:10px;
+background:rgba(255,255,255,.06);
+color:#fff;
+font-size:12px
+}
+
+.empty{
+padding:20px;
+text-align:center;
+border:1px dashed var(--line);
+border-radius:17px;
+color:var(--muted);
+grid-column:1/-1
+}
+
+/* VIDEOS */
+
+.videos{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:22px
+}
+
+.videoCard{
+overflow:hidden
+}
+
+.videoHead{
+display:flex;
+align-items:center;
+gap:10px
+}
+
 .num{
-width:40px;height:40px;flex:none;display:grid;place-items:center;
-border-radius:50%;background:linear-gradient(135deg,var(--green),var(--blue));
-color:#03202a;font-weight:900
+width:40px;
+height:40px;
+flex:none;
+display:grid;
+place-items:center;
+border-radius:50%;
+background:linear-gradient(135deg,var(--green),var(--blue));
+color:#03202a;
+font-weight:900
 }
-.embed{
-margin-top:14px;overflow:hidden;border-radius:17px;background:#000;
-position:relative;width:100%;aspect-ratio:16/9
-}
-.videoTextList{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
-.videoTextList h3{margin:0 0 14px;font-size:1.05rem;color:var(--gold)}
-.videoTextList ol{margin:0;padding:0 20px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:6px 22px}
-.videoTextList li{font-size:.92rem;line-height:1.7}
-.videoTextList a{display:block}
-.videoTextList a:hover .vlTitle{text-decoration:underline}
-.vlTitle{color:var(--text)}
-.vlLoc{color:var(--muted)}
-@media(max-width:720px){.videoTextList ol{grid-template-columns:1fr}}
-.embed iframe{display:block;width:100%;height:100%;border:0;background:#000}
-.text{padding-top:12px}
-.tag{color:#8deed5;font-size:12px}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-.pill{
-flex:1;min-width:145px;padding:10px 12px;border:1px solid var(--line);
-border-radius:11px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font-size:13px;text-align:center
-}
-.direct{background:linear-gradient(135deg,var(--green),var(--blue));color:#03202a;border:0;font-weight:900}
 
-/* DOWNLOAD / RESOURCES */
-.resourceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.embed{
+margin-top:14px;
+overflow:hidden;
+border-radius:17px;
+background:#000;
+position:relative;
+width:100%;
+aspect-ratio:16/9
+}
+
+.videoTextList{
+margin-top:34px;
+padding-top:24px;
+border-top:1px solid var(--line)
+}
+
+.videoTextList h3{
+margin:0 0 14px;
+font-size:1.05rem;
+color:var(--gold)
+}
+
+.videoTextList ol{
+margin:0;
+padding:0 20px 0 0;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:6px 22px
+}
+
+.videoTextList li{
+font-size:.92rem;
+line-height:1.7
+}
+
+.videoTextList a{
+display:block
+}
+
+.videoTextList a:hover .vlTitle{
+text-decoration:underline
+}
+
+.vlTitle{
+color:var(--text)
+}
+
+.vlLoc{
+color:var(--muted)
+}
+
+@media(max-width:720px){
+.videoTextList ol{
+grid-template-columns:1fr
+}
+}
+
+.embed iframe{
+display:block;
+width:100%;
+height:100%;
+border:0;
+background:#000
+}
+
+.text{
+padding-top:12px
+}
+
+.tag{
+color:#8deed5;
+font-size:12px
+}
+
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:13px
+}
+
+.pill{
+flex:1;
+min-width:145px;
+padding:10px 12px;
+border:1px solid var(--line);
+border-radius:11px;
+background:rgba(255,255,255,.06);
+color:#fff;
+cursor:pointer;
+font-size:13px;
+text-align:center;
+transition:.2s
+}
+
+.pill:hover{
+transform:translateY(-2px)
+}
+
+.direct{
+background:linear-gradient(135deg,var(--green),var(--blue));
+color:#03202a;
+border:0;
+font-weight:900
+}
+
+/* DOWNLOAD / LINK CARDS */
+
+.resourceGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px
+}
+
 .resourceCard{
 padding:20px;
 border:1px solid var(--line);
 border-radius:20px;
-background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+background:
+linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
 text-align:center
 }
-.resourceIcon{font-size:42px;display:block;margin-bottom:8px}
-.resourceCard h3{margin:5px 0}
-.resourceCard p{color:var(--muted);font-size:13px;margin:5px 0 14px}
-.resourceButtons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 
-/* HERO DOWNLOAD HOTSPOTS */
-.cyrusHeroDownloadArea{position:relative;width:100%;max-width:420px;margin:auto;line-height:0}
-.cyrusHeroDownloadArea .siteHeroImage{margin:0 auto;max-width:100%}
+.resourceIcon{
+font-size:42px;
+display:block;
+margin-bottom:8px
+}
+
+.resourceCard h3{
+margin:5px 0
+}
+
+.resourceCard p{
+color:var(--muted);
+font-size:13px;
+margin:5px 0 14px
+}
+
+.resourceButtons{
+display:flex;
+gap:8px;
+justify-content:center;
+flex-wrap:wrap
+}
+
+.loadingSoon{
+color:var(--gold);
+font-weight:900
+}
+
+/* =========================================================
+   CYRUS TOURIST HERO DOWNLOAD HOTSPOTS
+   نامرئی هستند و ظاهر تصویر هدر را تغییر نمی‌دهند.
+========================================================= */
+
+.cyrusHeroDownloadArea{
+position:relative;
+width:100%;
+max-width:420px;
+margin:auto;
+line-height:0
+}
+
+.cyrusHeroDownloadArea .siteHeroImage{
+margin:0 auto;
+max-width:100%
+}
+
 .cyrusHeroHotspot{
-position:absolute;display:block;padding:0;margin:0;border:0;
-background:transparent;cursor:pointer;z-index:20;-webkit-tap-highlight-color:transparent
+position:absolute;
+display:block;
+padding:0;
+margin:0;
+border:0;
+background:transparent;
+cursor:pointer;
+z-index:20;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+appearance:none;
+-webkit-appearance:none
 }
-.cyrusHeroHotspot:focus{outline:none}
 
-/* THANK YOU & MODALS */
+.cyrusHeroHotspot:focus{
+outline:none
+}
+
+.cyrusHeroHotspot:focus-visible{
+outline:2px solid rgba(255,211,106,.8);
+outline-offset:2px
+}
+
+/* THANK YOU */
+
 .thanksButton{
-position:fixed;left:18px;bottom:18px;z-index:5000;
-width:58px;height:58px;border:0;border-radius:50%;cursor:pointer;
+position:fixed;
+left:18px;
+bottom:18px;
+z-index:5000;
+width:58px;
+height:58px;
+border:0;
+border-radius:50%;
+cursor:pointer;
 background:linear-gradient(135deg,var(--gold),var(--green),var(--blue));
-box-shadow:0 12px 35px rgba(0,0,0,.4);font-size:27px
+box-shadow:0 12px 35px rgba(0,0,0,.4);
+font-size:27px;
+transition:.25s
 }
-.thanksModal,.resourceModal,.cyrusUnavailableModal{
-position:fixed;inset:0;z-index:99998;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.82);backdrop-filter:blur(10px)
+
+.thanksButton:hover{
+transform:scale(1.08) rotate(5deg)
 }
-.thanksModal.show,.resourceModal.show,.cyrusUnavailableModal.show{display:flex}
+
+.thanksModal{
+position:fixed;
+inset:0;
+z-index:99998;
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+background:rgba(0,0,0,.82);
+backdrop-filter:blur(10px)
+}
+
+.thanksModal.show{
+display:flex
+}
+
 .thanksBox{
-width:min(460px,100%);padding:30px 24px;text-align:center;
-border:1px solid rgba(255,255,255,.2);border-radius:28px;
-background:linear-gradient(145deg,rgba(41,224,173,.16),rgba(66,184,255,.12)),#071722
+width:min(460px,100%);
+padding:30px 24px;
+text-align:center;
+border:1px solid rgba(255,255,255,.2);
+border-radius:28px;
+background:
+linear-gradient(145deg,rgba(41,224,173,.16),rgba(66,184,255,.12)),
+#071722;
+box-shadow:0 30px 80px rgba(0,0,0,.5);
+animation:thanksIn .35s ease
 }
-.residenceRegisterWrap{display:flex;justify-content:center;margin-top:22px}
+
+.thanksIcon{
+font-size:65px;
+display:block;
+margin-bottom:8px
+}
+
+.thanksBox h2{
+margin:0 0 8px;
+font-size:27px
+}
+
+.thanksBox p{
+color:var(--muted);
+margin:0 0 18px
+}
+
+@keyframes thanksIn{
+from{
+opacity:0;
+transform:scale(.9) translateY(20px)
+}
+to{
+opacity:1;
+transform:scale(1) translateY(0)
+}
+}
+
+/* RESOURCE MODAL */
+
+.resourceModal{
+position:fixed;
+inset:0;
+z-index:99997;
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+background:rgba(0,0,0,.86);
+backdrop-filter:blur(8px)
+}
+
+.resourceModal.show{
+display:flex
+}
+
+.resourceModalBox{
+width:min(600px,100%);
+background:#06131b;
+border:1px solid var(--line);
+border-radius:24px;
+padding:20px;
+box-shadow:0 30px 80px rgba(0,0,0,.5)
+}
+
+.resourceModalBox h2{
+margin-top:0
+}
+
+.resourceModalText{
+color:var(--muted)
+}
+
+.resourceModalActions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:18px
+}
+
+/* DOWNLOAD UNAVAILABLE IMAGE */
+.cyrusUnavailableModal{
+position:fixed;
+inset:0;
+z-index:100000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:14px;
+background:rgba(0,0,0,.9);
+backdrop-filter:blur(8px)
+}
+
+.cyrusUnavailableModal.show{
+display:flex
+}
+
+.cyrusUnavailableBox{
+position:relative;
+width:min(760px,100%);
+max-height:94vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+border:2px solid rgba(255,211,106,.65);
+border-radius:22px;
+box-shadow:0 0 0 1px rgba(255,211,106,.12),0 28px 90px rgba(0,0,0,.7);
+background:#06131b
+}
+
+.cyrusUnavailableImage{
+display:block;
+width:100%;
+max-height:94vh;
+object-fit:contain;
+background:#06131b
+}
+
+.cyrusUnavailableBack{
+position:absolute;
+left:16%;
+top:68%;
+width:68%;
+height:16%;
+z-index:2;
+padding:0;
+margin:0;
+border:0;
+background:transparent;
+color:transparent;
+cursor:pointer;
+-webkit-tap-highlight-color:transparent
+}
+
+.cyrusDownloadPressed{
+box-shadow:inset 0 0 0 2px rgba(255,211,106,.95),inset 0 0 14px rgba(255,211,106,.18)!important;
+}
+
+/* RESIDENCE REGISTER */
+
+.residenceRegisterWrap{
+display:flex;
+justify-content:center;
+margin-top:22px
+}
+
 .residenceRegisterCard{
-width:100%;max-width:340px;text-align:center;
-padding:18px 16px;border:1px dashed var(--line);border-radius:18px;background:rgba(255,255,255,.03)
+width:100%;
+max-width:340px;
+text-align:center;
+padding:18px 16px;
+border:1px dashed var(--line);
+border-radius:18px;
+background:rgba(255,255,255,.03)
 }
+
+.residenceRegisterCard b{
+display:block;
+font-size:16px;
+margin-bottom:6px
+}
+
+.residenceRegisterCard p{
+color:var(--muted);
+font-size:13.5px;
+margin:0 0 14px
+}
+
+/* RESPONSIVE */
+
 @media(max-width:900px){
-.siteHero{grid-template-columns:1fr}
-.cats{grid-template-columns:repeat(3,1fr)}
-.toolGrid{grid-template-columns:repeat(2,1fr)}
-.videos,.resourceGrid{grid-template-columns:1fr}
+
+.nav{
+align-items:center;
+flex-wrap:wrap;
+padding:8px 0
+}
+
+.links{
+width:100%;
+justify-content:center
+}
+
+.siteHero{
+grid-template-columns:1fr
+}
+
+.siteHeroImage{
+max-width:min(100%,420px)
+}
+
+.heroGrid{
+grid-template-columns:1fr
+}
+
+.cats{
+grid-template-columns:repeat(3,1fr)
+}
+
+.toolGrid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.videos{
+grid-template-columns:1fr
+}
+
+.resourceGrid{
+grid-template-columns:1fr
+}
+}
+
+@media(max-width:600px){
+
+.wrap{
+width:min(94%,1200px)
+}
+
+.brand{
+font-size:15px
+}
+
+.brandLogo{
+width:56px;
+height:56px
+}
+
+.nav{
+min-height:74px
+}
+
+.links a{
+font-size:11px;
+padding:6px 8px
+}
+
+.siteHeroTitle{
+font-size:29px
+}
+
+.siteHeroSub{
+font-size:15px
+}
+
+.siteHeroImage{
+border-radius:18px
+}
+
+.cats{
+grid-template-columns:repeat(2,1fr)
+}
+
+.nearbyResults{
+grid-template-columns:1fr
+}
+
+#touristMap{
+height:430px
+}
 }
 </style>
 </head>
@@ -451,17 +1280,25 @@ padding:18px 16px;border:1px dashed var(--line);border-radius:18px;background:rg
 
 <header>
 <div class="wrap nav">
+
 <a class="brand" href="#top" aria-label="CyrusTourist">
-<img class="brandLogo" src="assets/images/logo.png" alt="Cyrus Tourist">
+<img
+class="brandLogo"
+src="assets/images/logo.png"
+alt="Cyrus Tourist"
+>
 <span data-i18n="brand">گردشگری سایروس توریست</span>
 </a>
+
 <nav class="links" aria-label="منوی اصلی">
+
 <a href="#top" data-i18n="navHome">خانه</a>
-<a href="#map" data-i18n="navMap">نقشه رایگان</a>
+<a href="#map" data-i18n="navMap">نقشه</a>
 <a href="#nearby" data-i18n="navNearby">جاذبه‌های اطراف</a>
 <a href="#videos" data-i18n="navVideos">فیلم‌ها</a>
 <a href="#residence" data-i18n="navResidence">اقامتگاه</a>
 <a href="#downloads" data-i18n="navDownloads">دانلود اپلیکیشن</a>
+
 <div class="languageBox">
 <select id="languageSelect" aria-label="انتخاب زبان">
 <option value="fa">فارسی</option>
@@ -469,149 +1306,1474 @@ padding:18px 16px;border:1px dashed var(--line);border-radius:18px;background:rg
 <option value="ar">العربية</option>
 </select>
 </div>
+
 </nav>
+
 </div>
 </header>
 
 <main id="top">
 
 <!-- HERO -->
+
 <section class="hero">
 <div class="wrap">
+
 <div class="siteHero">
+
 <div>
 <h1 class="siteHeroTitle" data-i18n="heroTitle">
 گردشگری سایروس توریست
 </h1>
+
 <p class="siteHeroSub" data-i18n="heroSub">
-ایران را با نقشه تعاملی و رایگان سایروس توریست ببینید
+ایران را با سایروس توریست ببینید
 </p>
-<div class="iosPwaBanner">
-📱 کاربران <b>iOS (آیفون و آیپد)</b>: برای دسترسی به امکانات اپلیکیشن، از منوی مرورگر گزینه <b>Add to Home Screen</b> را انتخاب کنید تا سایت به صورت وب‌اپلیکیشن (PWA) روی گوشی شما نصب شود.
 </div>
-</div>
+
 <div class="cyrusHeroDownloadArea">
-<img class="siteHeroImage" src="assets/images/cyrustourist-hero-2026.webp.jpg" alt="گردشگری سایروس توریست" width="1080" height="1920" loading="eager" fetchpriority="high">
+
+<img
+class="siteHeroImage"
+src="assets/images/cyrustourist-hero-2026.webp.jpg"
+alt="گردشگری سایروس توریست"
+width="1080"
+height="1920"
+loading="eager"
+fetchpriority="high"
+>
+
 <button class="cyrusHeroHotspot" data-cyrus-download="googlePlay" aria-label="Google Play" style="left:6.5%;top:71.5%;width:27.5%;height:7.8%;"></button>
 <button class="cyrusHeroHotspot" data-cyrus-download="appStore" aria-label="App Store" style="left:36%;top:71.5%;width:27.5%;height:7.8%;"></button>
 <button class="cyrusHeroHotspot" data-cyrus-download="myket" aria-label="مایکت" style="left:65%;top:71.5%;width:27.5%;height:7.8%;"></button>
 <button class="cyrusHeroHotspot" data-cyrus-download="bazaar" aria-label="بازار" style="left:6.5%;top:79.7%;width:27.5%;height:7.8%;"></button>
 <button class="cyrusHeroHotspot" data-cyrus-download="androidFile" aria-label="Android" style="left:36%;top:79.7%;width:27.5%;height:7.8%;"></button>
 <button class="cyrusHeroHotspot" data-cyrus-download="iosFile" aria-label="iOS" style="left:65%;top:79.7%;width:27.5%;height:7.8%;"></button>
+
 </div>
+
 </div>
+
 </div>
 </section>
 
 <!-- MAIN CATEGORIES -->
+
 <section>
 <div class="wrap">
+
 <div class="title">
 <div>
 <h2 data-i18n="mainTitle">گردشگری ایران</h2>
 <p data-i18n="mainSub">طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر</p>
 </div>
 </div>
+
 <div class="cats">
-<a class="cat" href="#map"><b>🗺️</b><span data-i18n="catMap">نقشه رایگان</span></a>
-<a class="cat" href="#nearby"><b>📍</b><span data-i18n="catNearby">جاذبه‌های اطراف من</span></a>
-<a class="cat" href="#attractions"><b>🏛️</b><span data-i18n="catAttractions">جاذبه‌های گردشگری</span></a>
-<a class="cat" href="#videos"><b>🎬</b><span data-i18n="catVideos">فیلم‌های گردشگری</span></a>
-<a class="cat" href="#residence"><b>🏡</b><span data-i18n="catResidence">اقامتگاه</span></a>
-<a class="cat" href="#guide"><b>🧭</b><span data-i18n="catGuide">راهنمای سفر</span></a>
+
+<a class="cat" href="#map">
+<b>🗺️</b>
+<span data-i18n="catMap">نقشه گردشگری</span>
+</a>
+
+<a class="cat" href="#nearby">
+<b>📍</b>
+<span data-i18n="catNearby">جاذبه‌های اطراف من</span>
+</a>
+
+<a class="cat" href="#attractions">
+<b>🏛️</b>
+<span data-i18n="catAttractions">جاذبه‌های گردشگری</span>
+</a>
+
+<a class="cat" href="#videos">
+<b>🎬</b>
+<span data-i18n="catVideos">فیلم‌های گردشگری</span>
+</a>
+
+<a class="cat" href="#residence">
+<b>🏡</b>
+<span data-i18n="catResidence">اقامتگاه</span>
+</a>
+
+<a class="cat" href="#guide">
+<b>🧭</b>
+<span data-i18n="catGuide">راهنمای سفر</span>
+</a>
+
 </div>
+
 </div>
 </section>
 
 <!-- MAP -->
+
 <section id="map">
 <div class="wrap">
+
 <div class="title">
 <div>
-<h2 data-i18n="mapTitle">نقشه گردشگری رایگان</h2>
-<p data-i18n="mapSub">موقعیت خود را پیدا کنید و جاذبه‌های اطراف را به صورت کاملاً رایگان ببینید.</p>
+<h2 data-i18n="mapTitle">نقشه گردشگری</h2>
+<p data-i18n="mapSub">موقعیت خود را پیدا کنید و جاذبه‌های اطراف را ببینید.</p>
 </div>
 </div>
+
 <div class="mapBox">
+
 <div class="mapHeader">
+
 <div class="mapSearch">
-<input id="mapSearchInput" type="search" placeholder="جستجوی مکان..." autocomplete="off">
-<button class="btn primary" id="mapSearchButton">جستجو</button>
+
+<input
+id="mapSearchInput"
+type="search"
+placeholder="جستجوی مکان..."
+data-i18n-placeholder="mapSearchPlaceholder"
+autocomplete="off"
+>
+
+<button class="btn primary" id="mapSearchButton" data-i18n="mapSearchBtn">
+جستجو
+</button>
+
 </div>
+
 <div id="mapSearchResult" class="mapSearchResult"></div>
+
 </div>
+
 <div id="touristMap"></div>
+
 <div class="mapButtons">
-<button class="btn primary" id="myLocationButton">📍 موقعیت من</button>
-<button class="btn" id="mapNearbyButton">جاذبه‌های اطراف</button>
+
+<button class="btn primary" id="myLocationButton" data-i18n="myLocationBtn">
+📍 موقعیت من
+</button>
+
+<button class="btn" id="mapNearbyButton" data-i18n="catNearby2">
+جاذبه‌های اطراف
+</button>
+
 </div>
-<div class="mapInfo">
-نقشه کاملاً رایگان و تعاملی سایروس توریست بر پایه OpenStreetMap آماده استفاده است.
+
+<div class="mapInfo" data-i18n="mapInfo">
+برای استفاده از موقعیت مکانی، اجازه دسترسی به موقعیت را در مرورگر تأیید کنید.
+</div>
+
+</div>
+
+<!-- TOOLBOX -->
+
+<div class="toolbox">
+
+<div class="toolboxHead">
+
+<div>
+<div class="toolboxTitle" data-i18n="toolboxTitle">
+🧰 جعبه ابزار گردشگری
+</div>
+
+<div class="toolboxSub" data-i18n="toolboxSub">
+ابزارهای کاربردی برای سفر
 </div>
 </div>
+
+<button class="btn" id="toolReset" data-i18n="toolReset">
+بازنشانی
+</button>
+
+</div>
+
+<div class="toolGrid">
+
+<button class="tool" id="mapTool">
+<span class="toolIcon">🗺️</span>
+<span class="toolLabel" data-i18n="toolMap">نقشه</span>
+</button>
+
+<button class="tool" id="nearbyTool">
+<span class="toolIcon">📍</span>
+<span class="toolLabel" data-i18n="catNearby2">جاذبه‌های اطراف</span>
+</button>
+
+<button class="tool" id="locationTool">
+<span class="toolIcon">📌</span>
+<span class="toolLabel" data-i18n="toolLocation">موقعیت من</span>
+</button>
+
+<button class="tool" id="weatherTool">
+<span class="toolIcon">🌤️</span>
+<span class="toolLabel" data-i18n="toolWeather">آب‌وهوا</span>
+</button>
+
+<button class="tool" id="emergencyTool">
+<span class="toolIcon">🆘</span>
+<span class="toolLabel" data-i18n="toolEmergency">اضطراری</span>
+</button>
+
+<button class="tool" id="distanceTool">
+<span class="toolIcon">📏</span>
+<span class="toolLabel" data-i18n="toolDistance">اندازه‌گیری فاصله</span>
+</button>
+
+<button class="tool" id="flashTool">
+<span class="toolIcon">🔦</span>
+<span class="toolLabel" data-i18n="toolFlash">چراغ‌قوه</span>
+</button>
+
+<button class="tool" id="compassTool">
+<span class="toolIcon">🧭</span>
+<span class="toolLabel" data-i18n="toolCompass">قطب‌نما</span>
+</button>
+
+</div>
+
+<div id="toolStatus" class="toolStatus">
+آماده استفاده
+</div>
+
+<div id="compassBox" class="compassBox">
+
+<div class="compassDial">
+<div id="compassNeedle" class="compassNeedle">▲</div>
+</div>
+
+<div id="compassDegree" class="degree">
+0°
+</div>
+
+<button class="btn primary" id="compassPermission">
+فعال‌سازی قطب‌نما
+</button>
+
+</div>
+
+</div>
+
 </div>
 </section>
 
 <!-- NEARBY -->
+
 <section id="nearby">
 <div class="wrap">
+
 <div class="nearbyBox">
+
 <div class="nearbyTop">
+
 <div>
 <h2 data-i18n="nearbyTitle">📍 جاذبه‌های اطراف من</h2>
-<p class="muted">جاذبه‌های گردشگری، تاریخی و طبیعی نزدیک شما</p>
+
+<p class="muted" data-i18n="nearbySub">
+جاذبه‌های گردشگری، تاریخی و طبیعی نزدیک شما
+</p>
 </div>
+
 <div class="nearbyControls">
+
 <select id="radius">
-<option value="5000">۵ کیلومتر</option>
-<option value="10000" selected>۱۰ کیلومتر</option>
-<option value="25000">۲۵ کیلومتر</option>
-<option value="50000">۵۰ کیلومتر</option>
+
+<option value="5000">
+۵ کیلومتر
+</option>
+
+<option value="10000" selected>
+۱۰ کیلومتر
+</option>
+
+<option value="25000">
+۲۵ کیلومتر
+</option>
+
+<option value="50000">
+۵۰ کیلومتر
+</option>
+
 </select>
-<button class="btn primary" id="nearbyButton">پیدا کن</button>
+
+<button class="btn primary" id="nearbyButton">
+پیدا کن
+</button>
+
 </div>
+
 </div>
+
 <div class="nearbyCategoryRow">
-<button type="button" class="nearbyCatBtn active" data-category="attractions">🏛️ جاذبه‌ها</button>
-<button type="button" class="nearbyCatBtn" data-category="health">🏥 گردشگری سلامت</button>
-<button type="button" class="nearbyCatBtn" data-category="lodging">🏨 اقامتگاه‌های اطراف</button>
-<button type="button" class="nearbyCatBtn" id="nearbyResetBtn">↩️ بازگشت</button>
+
+<button type="button" class="nearbyCatBtn active" id="nearbyCatAttractions" data-category="attractions">
+🏛️ جاذبه‌ها
+</button>
+
+<button type="button" class="nearbyCatBtn health" id="nearbyCatHealth" data-category="health">
+🏥 گردشگری سلامت
+</button>
+
+<button type="button" class="nearbyCatBtn lodging" id="nearbyCatLodging" data-category="lodging">
+🏨 اقامتگاه‌های اطراف
+</button>
+
+<button type="button" class="nearbyCatBtn reset" id="nearbyResetBtn">
+↩️ بازگشت
+</button>
+
 </div>
-<div id="locationStatus" class="locationStatus">موقعیت شما هنوز دریافت نشده است.</div>
+
+<div id="locationStatus" class="locationStatus">
+موقعیت شما هنوز دریافت نشده است.
+</div>
+
 <div id="nearbyResults" class="nearbyResults">
-<div class="empty">برای نمایش جاذبه‌ها، روی «پیدا کن» بزنید.</div>
+
+<div class="empty">
+برای نمایش جاذبه‌ها، روی «پیدا کن» بزنید.
 </div>
+
 </div>
+
+</div>
+
 </div>
 </section>
 
-<!-- VIDEOS (EXACTLY PRESERVED AS REQUESTED) -->
+<!-- ATTRACTIONS -->
+
+<section id="attractions">
+<div class="wrap">
+
+<div class="title">
+<div>
+<h2 data-i18n="attractionsTitle">جاذبه‌های گردشگری</h2>
+<p data-i18n="attractionsSub">مکان‌های دیدنی ایران</p>
+</div>
+</div>
+
+<div class="cats">
+
+<div class="cat">
+<b>🏛️</b>
+<span data-i18n="catHistoric">تاریخی</span>
+</div>
+
+<div class="cat">
+<b>🌄</b>
+<span data-i18n="catNature">طبیعی</span>
+</div>
+
+<div class="cat">
+<b>🏺</b>
+<span data-i18n="catCultural">فرهنگی</span>
+</div>
+
+<div class="cat">
+<b>🌊</b>
+<span data-i18n="catCoastal">ساحلی</span>
+</div>
+
+<div class="cat">
+<b>🌲</b>
+<span data-i18n="catEcotour">طبیعت‌گردی</span>
+</div>
+
+<div class="cat">
+<b>📸</b>
+<span data-i18n="catSights">دیدنی‌ها</span>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- VIDEOS -->
+
 <section id="videos">
 <div class="wrap">
+
 <div class="title">
 <div>
 <h2 data-i18n="videosTitle">🎬 فیلم‌های گردشگری</h2>
 <p data-i18n="videosCount">۲۷ فیلم گردشگری</p>
 </div>
 </div>
+
 <div class="videos">
+
 <!-- VIDEO 1 -->
+
 <div class="videoCard" data-video="1">
-<div class="videoHead"><div class="num">۱</div><div><strong>قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر</strong><div class="tag">گناباد، خراسان رضوی</div></div></div>
-<div class="embed"><iframe src="" title="قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر" allowfullscreen loading="lazy"></iframe></div>
-<div class="text"><div class="actions"><button class="pill direct videoAction" data-video-id="1">مشاهده فیلم</button></div></div>
+
+<div class="videoHead">
+<div class="num">۱</div>
+
+<div>
+<strong data-title-fa="قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر" data-title-en="Qasabeh Gonabad Qanat; A Wonder of Human Civilization" data-title-ar="قناة قصبة گناباد؛ أعجوبة من تاريخ الحضارة البشرية">قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر</strong>
+<div class="tag" data-loc-fa="گناباد، خراسان رضوی" data-loc-en="Gonabad, Razavi Khorasan" data-loc-ar="غناباد، خراسان الرضوية">گناباد، خراسان رضوی</div>
 </div>
-<!-- (بقیه ویدیوها دست‌نخورده باقی مانده‌اند) -->
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="1">
+مشاهده فیلم
+</button>
+
 </div>
 </div>
+
+</div>
+
+<!-- VIDEO 2 -->
+
+<div class="videoCard" data-video="2">
+
+<div class="videoHead">
+<div class="num">۲</div>
+
+<div>
+<strong data-title-fa="رقص محلی فاروق خراسانی با آهنگ لیلا" data-title-en="Farouq Khorasani Folk Dance with the Song Leila" data-title-ar="رقصة فاروق الخراسانية الشعبية على أنغام ليلى">رقص محلی فاروق خراسانی با آهنگ لیلا</strong>
+<div class="tag" data-loc-fa="خراسان" data-loc-en="Khorasan" data-loc-ar="خراسان">خراسان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="رقص محلی فاروق خراسانی با آهنگ لیلا"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="2">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 3 -->
+
+<div class="videoCard" data-video="3">
+
+<div class="videoHead">
+<div class="num">۳</div>
+
+<div>
+<strong data-title-fa="چشمه گراب؛ جادوی طبیعت ایران" data-title-en="Gorab Spring; The Magic of Iranian Nature" data-title-ar="نبع غراب؛ سحر الطبيعة الإيرانية">چشمه گراب؛ جادوی طبیعت ایران</strong>
+<div class="tag" data-loc-fa="خراسان رضوی" data-loc-en="Razavi Khorasan" data-loc-ar="خراسان الرضوية">خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="چشمه گراب؛ جادوی طبیعت ایران"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="3">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 4 -->
+
+<div class="videoCard" data-video="4">
+
+<div class="videoHead">
+<div class="num">۴</div>
+
+<div>
+<strong data-title-fa="جنگل کوه‌پارک مشهد و قله زو" data-title-en="Mashhad Kuh Park Forest and Zoo Peak" data-title-ar="غابة كوه بارك في مشهد وقمة زو">جنگل کوه‌پارک مشهد و قله زو</strong>
+<div class="tag" data-loc-fa="مشهد، خراسان رضوی" data-loc-en="Mashhad, Razavi Khorasan" data-loc-ar="مشهد، خراسان الرضوية">مشهد، خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="جنگل کوه‌پارک مشهد و قله زو"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="4">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 5 -->
+
+<div class="videoCard" data-video="5">
+
+<div class="videoHead">
+<div class="num">۵</div>
+
+<div>
+<strong data-title-fa="کاشت بلوط؛ راه نجات جنگل‌های هیرکانی" data-title-en="Planting Oak Trees; A Way to Save the Hyrcanian Forests" data-title-ar="زراعة أشجار البلوط؛ طريق لإنقاذ غابات هيركان">کاشت بلوط؛ راه نجات جنگل‌های هیرکانی</strong>
+<div class="tag" data-loc-fa="جنگل‌های هیرکانی" data-loc-en="Hyrcanian Forests" data-loc-ar="غابات هيركان">جنگل‌های هیرکانی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="کاشت بلوط؛ راه نجات جنگل‌های هیرکانی"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="5">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 6 -->
+
+<div class="videoCard" data-video="6">
+
+<div class="videoHead">
+<div class="num">۶</div>
+
+<div>
+<strong data-title-fa="آبشار شیرآباد؛ یکی از دیدنی‌های گلستان" data-title-en="Shirabad Waterfall; One of Golestan's Natural Attractions" data-title-ar="شلال شيرآباد؛ أحد المعالم الطبيعية في غلستان">آبشار شیرآباد؛ یکی از دیدنی‌های گلستان</strong>
+<div class="tag" data-loc-fa="استان گلستان" data-loc-en="Golestan Province" data-loc-ar="محافظة غلستان">استان گلستان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="آبشار شیرآباد؛ یکی از دیدنی‌های گلستان"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="6">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 7 -->
+
+<div class="videoCard" data-video="7">
+
+<div class="videoHead">
+<div class="num">۷</div>
+
+<div>
+<strong data-title-fa="آبگوشت دیزی سنگی در طبیعت" data-title-en="Traditional Dizi Stone-Pot Stew in Nature" data-title-ar="أبغوشت ديزي التقليدي في الطبيعة">آبگوشت دیزی سنگی در طبیعت</strong>
+<div class="tag" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران">ایران</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="آبگوشت دیزی سنگی در طبیعت"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="7">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 8 -->
+
+<div class="videoCard" data-video="8">
+
+<div class="videoHead">
+<div class="num">۸</div>
+
+<div>
+<strong data-title-fa="۲۵ اردیبهشت؛ روز بزرگداشت فردوسی" data-title-en="May 15; Ferdowsi Commemoration Day" data-title-ar="15 مايو؛ يوم تكريم الفردوسي">۲۵ اردیبهشت؛ روز بزرگداشت فردوسی</strong>
+<div class="tag" data-loc-fa="مشهد، خراسان رضوی" data-loc-en="Mashhad, Razavi Khorasan" data-loc-ar="مشهد، خراسان الرضوية">مشهد، خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="۲۵ اردیبهشت؛ روز بزرگداشت فردوسی"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="8">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 9 -->
+
+<div class="videoCard" data-video="9">
+
+<div class="videoHead">
+<div class="num">۹</div>
+
+<div>
+<strong data-title-fa="چشمه سبز گلمکان؛ دریاچه زیبای مشهد" data-title-en="Golmakan Green Spring; A Beautiful Lake near Mashhad" data-title-ar="نبع سبز غلمكان؛ البحيرة الجميلة قرب مشهد">چشمه سبز گلمکان؛ دریاچه زیبای مشهد</strong>
+<div class="tag" data-loc-fa="گلمکان، خراسان رضوی" data-loc-en="Golmakan, Razavi Khorasan" data-loc-ar="غلمكان، خراسان الرضوية">گلمکان، خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="چشمه سبز گلمکان؛ دریاچه زیبای مشهد"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="9">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 10 -->
+
+<div class="videoCard" data-video="10">
+
+<div class="videoHead">
+<div class="num">۱۰</div>
+
+<div>
+<strong data-title-fa="آموزش پخت سیب‌زمینی آتشی در طبیعت" data-title-en="How to Cook Campfire Potatoes in Nature" data-title-ar="طريقة إعداد البطاطا المشوية على النار في الطبيعة">آموزش پخت سیب‌زمینی آتشی در طبیعت</strong>
+<div class="tag" data-loc-fa="طبیعت ایران" data-loc-en="Iranian Nature" data-loc-ar="الطبيعة الإيرانية">طبیعت ایران</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="آموزش پخت سیب‌زمینی آتشی در طبیعت"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="10">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 11 -->
+
+<div class="videoCard" data-video="11">
+
+<div class="videoHead">
+<div class="num">۱۱</div>
+
+<div>
+<strong data-title-fa="جشن نوروز باستانی و سفره هفت‌سین" data-title-en="Ancient Nowruz Celebration and Haft-Seen Table" data-title-ar="احتفال نوروز القديم ومائدة هفت سين">جشن نوروز باستانی و سفره هفت‌سین</strong>
+<div class="tag" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران">ایران</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="جشن نوروز باستانی و سفره هفت‌سین"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="11">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 12 -->
+
+<div class="videoCard" data-video="12">
+
+<div class="videoHead">
+<div class="num">۱۲</div>
+
+<div>
+<strong data-title-fa="چایخانه حمام وکیل کرمان" data-title-en="Vakil Bathhouse Teahouse in Kerman" data-title-ar="مقهى حمام وكيل في كرمان">چایخانه حمام وکیل کرمان</strong>
+<div class="tag" data-loc-fa="کرمان" data-loc-en="Kerman" data-loc-ar="كرمان">کرمان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="چایخانه حمام وکیل کرمان"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="12">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 13 -->
+
+<div class="videoCard" data-video="13">
+
+<div class="videoHead">
+<div class="num">۱۳</div>
+
+<div>
+<strong data-title-fa="بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر" data-title-en="Bajestan, Nashtifan Windmills and Aliabad Kashmar Tower" data-title-ar="بجستان وطواحين نشتيـفان الهوائية وبرج علي آباد كاشمر">بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر</strong>
+<div class="tag" data-loc-fa="خراسان رضوی" data-loc-en="Razavi Khorasan" data-loc-ar="خراسان الرضوية">خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="13">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 14 -->
+
+<div class="videoCard" data-video="14">
+
+<div class="videoHead">
+<div class="num">۱۴</div>
+
+<div>
+<strong data-title-fa="شاه نعمت‌الله ولی؛ ماهان کرمان" data-title-en="Shah Nematollah Vali; Mahan, Kerman" data-title-ar="شاه نعمة الله ولي؛ ماهان، كرمان">شاه نعمت‌الله ولی؛ ماهان کرمان</strong>
+<div class="tag" data-loc-fa="ماهان، کرمان" data-loc-en="Mahan, Kerman" data-loc-ar="ماهان، كرمان">ماهان، کرمان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="شاه نعمت‌الله ولی؛ ماهان کرمان"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="14">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 15 -->
+
+<div class="videoCard" data-video="15">
+
+<div class="videoHead">
+<div class="num">۱۵</div>
+
+<div>
+<strong data-title-fa="باغ شاهزاده ماهان؛ شاهکار باغ ایرانی" data-title-en="Shazdeh Garden in Mahan; A Masterpiece of Persian Gardens" data-title-ar="حديقة شازده ماهان؛ تحفة الحدائق الفارسية">باغ شاهزاده ماهان؛ شاهکار باغ ایرانی</strong>
+<div class="tag" data-loc-fa="ماهان، کرمان" data-loc-en="Mahan, Kerman" data-loc-ar="ماهان، كرمان">ماهان، کرمان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="باغ شاهزاده ماهان؛ شاهکار باغ ایرانی"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="15">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 16 -->
+
+<div class="videoCard" data-video="16">
+
+<div class="videoHead">
+<div class="num">۱۶</div>
+
+<div>
+<strong data-title-fa="موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان" data-title-en="Banoo Hayati Museum; A Treasure in Kerman Bazaar" data-title-ar="متحف بانو حياتي؛ كنز في بازار كرمان">موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان</strong>
+<div class="tag" data-loc-fa="کرمان" data-loc-en="Kerman" data-loc-ar="كرمان">کرمان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="16">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 17 -->
+
+<div class="videoCard" data-video="17">
+
+<div class="videoHead">
+<div class="num">۱۷</div>
+
+<div>
+<strong data-title-fa="قلعه سریزد؛ نخستین بانک جهان" data-title-en="Saryazd Castle; The World's First Bank" data-title-ar="قلعة سريزد؛ أول بنك في العالم">قلعه سریزد؛ نخستین بانک جهان</strong>
+<div class="tag" data-loc-fa="سریزد، یزد" data-loc-en="Saryazd, Yazd" data-loc-ar="سريزد، يزد">سریزد، یزد</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="قلعه سریزد؛ نخستین بانک جهان"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="17">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 18 -->
+
+<div class="videoCard" data-video="18">
+
+<div class="videoHead">
+<div class="num">۱۸</div>
+
+<div>
+<strong data-title-fa="جنگل‌های حرا و بندر تاریخی لافت" data-title-en="Mangrove Forests and the Historic Port of Laft" data-title-ar="غابات القرم وميناء لافت التاريخي">جنگل‌های حرا و بندر تاریخی لافت</strong>
+<div class="tag" data-loc-fa="جزیره قشم" data-loc-en="Qeshm Island" data-loc-ar="جزيرة قشم">جزیره قشم</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="جنگل‌های حرا و بندر تاریخی لافت"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="18">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 19 -->
+
+<div class="videoCard" data-video="19">
+
+<div class="videoHead">
+<div class="num">۱۹</div>
+
+<div>
+<strong data-title-fa="باغ فین کاشان با موسیقی سنتی" data-title-en="Fin Garden in Kashan with Traditional Music" data-title-ar="حديقة فين في كاشان مع الموسيقى التقليدية">باغ فین کاشان با موسیقی سنتی</strong>
+<div class="tag" data-loc-fa="کاشان" data-loc-en="Kashan" data-loc-ar="كاشان">کاشان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="باغ فین کاشان با موسیقی سنتی"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="19">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 20 -->
+
+<div class="videoCard" data-video="20">
+
+<div class="videoHead">
+<div class="num">۲۰</div>
+
+<div>
+<strong data-title-fa="زیباترین اقامتگاه بوم‌گردی در جنگل ابر" data-title-en="A Beautiful Eco-Lodge in Abr Forest" data-title-ar="أحد أجمل النزل البيئية في غابة أبر">زیباترین اقامتگاه بوم‌گردی در جنگل ابر</strong>
+<div class="tag" data-loc-fa="جنگل ابر" data-loc-en="Abr Forest" data-loc-ar="غابة أبر">جنگل ابر</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="زیباترین اقامتگاه بوم‌گردی در جنگل ابر"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="20">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 21 -->
+
+<div class="videoCard" data-video="21">
+
+<div class="videoHead">
+<div class="num">۲۱</div>
+
+<div>
+<strong data-title-fa="زیباترین اقامتگاه‌های بوم‌گردی ایران" data-title-en="The Most Beautiful Eco-Lodges in Iran" data-title-ar="أجمل النزل البيئية في إيران">زیباترین اقامتگاه‌های بوم‌گردی ایران</strong>
+<div class="tag" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران">ایران</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="زیباترین اقامتگاه‌های بوم‌گردی ایران"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="21">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 22 -->
+
+<div class="videoCard" data-video="22">
+
+<div class="videoHead">
+<div class="num">۲۲</div>
+
+<div>
+<strong data-title-fa="غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران" data-title-en="Ali Sadr Cave; Iran's Amazing Water Cave" data-title-ar="كهف علي صدر؛ الكهف المائي المذهل في إيران">غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران</strong>
+<div class="tag" data-loc-fa="همدان" data-loc-en="Hamadan" data-loc-ar="همدان">همدان</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="22">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 23 -->
+
+<div class="videoCard" data-video="23">
+
+<div class="videoHead">
+<div class="num">۲۳</div>
+
+<div>
+<strong data-title-fa="آبشار اخلمد چناران؛ طبیعت زیبای خراسان" data-title-en="Akhlamad Waterfall in Chenaran; The Beautiful Nature of Khorasan" data-title-ar="شلال أخلمد في چناران؛ طبيعة خراسان الجميلة">آبشار اخلمد چناران؛ طبیعت زیبای خراسان</strong>
+<div class="tag" data-loc-fa="چناران، خراسان رضوی" data-loc-en="Chenaran, Razavi Khorasan" data-loc-ar="چناران، خراسان الرضوية">چناران، خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="آبشار اخلمد چناران؛ طبیعت زیبای خراسان"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="23">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 24 -->
+
+<div class="videoCard" data-video="24">
+
+<div class="videoHead">
+<div class="num">۲۴</div>
+
+<div>
+<strong data-title-fa="جشن نوروز تخت جمشید؛ شهر پارس و پاسارگاد" data-title-en="Nowruz Celebration at Persepolis; The Land of Pars and Pasargadae" data-title-ar="احتفال نوروز في تخت جمشيد؛ أرض فارس وباسارغاد">جشن نوروز تخت جمشید؛ شهر پارس و پاسارگاد</strong>
+<div class="tag" data-loc-fa="فارس" data-loc-en="Fars" data-loc-ar="فارس">فارس</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="جشن نوروز تخت جمشید؛ شهر پارس و پاسارگاد"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="24">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 25 -->
+
+<div class="videoCard" data-video="25">
+
+<div class="videoHead">
+<div class="num">۲۵</div>
+
+<div>
+<strong data-title-fa="اقامتگاه‌ها و دیدنی‌های ایران" data-title-en="Accommodation and Attractions in Iran" data-title-ar="أماكن الإقامة والمعالم السياحية في إيران">اقامتگاه‌ها و دیدنی‌های ایران</strong>
+<div class="tag" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران">ایران</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="اقامتگاه‌ها و دیدنی‌های ایران"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="25">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 26 -->
+
+<div class="videoCard" data-video="26">
+
+<div class="videoHead">
+<div class="num">۲۶</div>
+
+<div>
+<strong data-title-fa="اقامتگاه بوم‌گردی قوامیه گناباد" data-title-en="Qavamieh Eco-Lodge in Gonabad" data-title-ar="النزل البيئي قوامية في غناباد">اقامتگاه بوم‌گردی قوامیه گناباد</strong>
+<div class="tag" data-loc-fa="گناباد، خراسان رضوی" data-loc-en="Gonabad, Razavi Khorasan" data-loc-ar="غناباد، خراسان الرضوية">گناباد، خراسان رضوی</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="اقامتگاه بوم‌گردی قوامیه گناباد"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="26">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- VIDEO 27 -->
+
+<div class="videoCard" data-video="27">
+
+<div class="videoHead">
+<div class="num">۲۷</div>
+
+<div>
+<strong data-title-fa="اقامتگاه بوم‌گردی ناخدا علی در لافت" data-title-en="Nakhoda Ali Eco-Lodge in Laft" data-title-ar="النزل البيئي ناخدا علي في لافت">اقامتگاه بوم‌گردی ناخدا علی در لافت</strong>
+<div class="tag" data-loc-fa="جزیره قشم، بندر لافت" data-loc-en="Qeshm Island, Laft Port" data-loc-ar="جزيرة قشم، ميناء لافت">جزیره قشم، بندر لافت</div>
+</div>
+
+</div>
+
+<div class="embed">
+<iframe
+src=""
+title="اقامتگاه بوم‌گردی ناخدا علی در لافت"
+allowfullscreen
+loading="lazy">
+</iframe>
+</div>
+
+<div class="text">
+<div class="actions">
+
+<button
+class="pill direct videoAction"
+data-video-id="27">
+مشاهده فیلم
+</button>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="videoTextList">
+<h3 data-i18n="videoListTitle">فهرست فیلم‌های گردشگری سایروس توریست</h3>
+<ol>
+<li><a href="#videos" data-video-jump="1"><span class="vlTitle" data-title-fa="قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر" data-title-en="Qasabeh Gonabad Qanat; A Wonder of Human Civilization" data-title-ar="قناة قصبة گناباد؛ أعجوبة من تاريخ الحضارة البشرية">قنات قصبه گناباد؛ شگفتی تاریخ تمدن بشر</span><span class="vlLoc" data-loc-fa="گناباد، خراسان رضوی" data-loc-en="Gonabad, Razavi Khorasan" data-loc-ar="غناباد، خراسان الرضوية"> — گناباد، خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="2"><span class="vlTitle" data-title-fa="رقص محلی فاروق خراسانی با آهنگ لیلا" data-title-en="Farouq Khorasani Folk Dance with the Song Leila" data-title-ar="رقصة فاروق الخراسانية الشعبية على أنغام ليلى">رقص محلی فاروق خراسانی با آهنگ لیلا</span><span class="vlLoc" data-loc-fa="خراسان" data-loc-en="Khorasan" data-loc-ar="خراسان"> — خراسان</span></a></li>
+<li><a href="#videos" data-video-jump="3"><span class="vlTitle" data-title-fa="چشمه گراب؛ جادوی طبیعت ایران" data-title-en="Gorab Spring; The Magic of Iranian Nature" data-title-ar="نبع غراب؛ سحر الطبيعة الإيرانية">چشمه گراب؛ جادوی طبیعت ایران</span><span class="vlLoc" data-loc-fa="خراسان رضوی" data-loc-en="Razavi Khorasan" data-loc-ar="خراسان الرضوية"> — خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="4"><span class="vlTitle" data-title-fa="جنگل کوه‌پارک مشهد و قله زو" data-title-en="Mashhad Kuh Park Forest and Zoo Peak" data-title-ar="غابة كوه بارك في مشهد وقمة زو">جنگل کوه‌پارک مشهد و قله زو</span><span class="vlLoc" data-loc-fa="مشهد، خراسان رضوی" data-loc-en="Mashhad, Razavi Khorasan" data-loc-ar="مشهد، خراسان الرضوية"> — مشهد، خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="5"><span class="vlTitle" data-title-fa="کاشت بلوط؛ راه نجات جنگل‌های هیرکانی" data-title-en="Planting Oak Trees; A Way to Save the Hyrcanian Forests" data-title-ar="زراعة أشجار البلوط؛ طريق لإنقاذ غابات هيركان">کاشت بلوط؛ راه نجات جنگل‌های هیرکانی</span><span class="vlLoc" data-loc-fa="جنگل‌های هیرکانی" data-loc-en="Hyrcanian Forests" data-loc-ar="غابات هيركان"> — جنگل‌های هیرکانی</span></a></li>
+<li><a href="#videos" data-video-jump="6"><span class="vlTitle" data-title-fa="آبشار شیرآباد؛ یکی از دیدنی‌های گلستان" data-title-en="Shirabad Waterfall; One of Golestan's Natural Attractions" data-title-ar="شلال شيرآباد؛ أحد المعالم الطبيعية في غلستان">آبشار شیرآباد؛ یکی از دیدنی‌های گلستان</span><span class="vlLoc" data-loc-fa="استان گلستان" data-loc-en="Golestan Province" data-loc-ar="محافظة غلستان"> — استان گلستان</span></a></li>
+<li><a href="#videos" data-video-jump="7"><span class="vlTitle" data-title-fa="آبگوشت دیزی سنگی در طبیعت" data-title-en="Traditional Dizi Stone-Pot Stew in Nature" data-title-ar="أبغوشت ديزي التقليدي في الطبيعة">آبگوشت دیزی سنگی در طبیعت</span><span class="vlLoc" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران"> — ایران</span></a></li>
+<li><a href="#videos" data-video-jump="8"><span class="vlTitle" data-title-fa="۲۵ اردیبهشت؛ روز بزرگداشت فردوسی" data-title-en="May 15; Ferdowsi Commemoration Day" data-title-ar="15 مايو؛ يوم تكريم الفردوسي">۲۵ اردیبهشت؛ روز بزرگداشت فردوسی</span><span class="vlLoc" data-loc-fa="مشهد، خراسان رضوی" data-loc-en="Mashhad, Razavi Khorasan" data-loc-ar="مشهد، خراسان الرضوية"> — مشهد، خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="9"><span class="vlTitle" data-title-fa="چشمه سبز گلمکان؛ دریاچه زیبای مشهد" data-title-en="Golmakan Green Spring; A Beautiful Lake near Mashhad" data-title-ar="نبع سبز غلمكان؛ البحيرة الجميلة قرب مشهد">چشمه سبز گلمکان؛ دریاچه زیبای مشهد</span><span class="vlLoc" data-loc-fa="گلمکان، خراسان رضوی" data-loc-en="Golmakan, Razavi Khorasan" data-loc-ar="غلمكان، خراسان الرضوية"> — گلمکان، خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="10"><span class="vlTitle" data-title-fa="آموزش پخت سیب‌زمینی آتشی در طبیعت" data-title-en="How to Cook Campfire Potatoes in Nature" data-title-ar="طريقة إعداد البطاطا المشوية على النار في الطبيعة">آموزش پخت سیب‌زمینی آتشی در طبیعت</span><span class="vlLoc" data-loc-fa="طبیعت ایران" data-loc-en="Iranian Nature" data-loc-ar="الطبيعة الإيرانية"> — طبیعت ایران</span></a></li>
+<li><a href="#videos" data-video-jump="11"><span class="vlTitle" data-title-fa="جشن نوروز باستانی و سفره هفت‌سین" data-title-en="Ancient Nowruz Celebration and Haft-Seen Table" data-title-ar="احتفال نوروز القديم ومائدة هفت سين">جشن نوروز باستانی و سفره هفت‌سین</span><span class="vlLoc" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران"> — ایران</span></a></li>
+<li><a href="#videos" data-video-jump="12"><span class="vlTitle" data-title-fa="چایخانه حمام وکیل کرمان" data-title-en="Vakil Bathhouse Teahouse in Kerman" data-title-ar="مقهى حمام وكيل في كرمان">چایخانه حمام وکیل کرمان</span><span class="vlLoc" data-loc-fa="کرمان" data-loc-en="Kerman" data-loc-ar="كرمان"> — کرمان</span></a></li>
+<li><a href="#videos" data-video-jump="13"><span class="vlTitle" data-title-fa="بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر" data-title-en="Bajestan, Nashtifan Windmills and Aliabad Kashmar Tower" data-title-ar="بجستان وطواحين نشتيـفان الهوائية وبرج علي آباد كاشمر">بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر</span><span class="vlLoc" data-loc-fa="خراسان رضوی" data-loc-en="Razavi Khorasan" data-loc-ar="خراسان الرضوية"> — خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="14"><span class="vlTitle" data-title-fa="شاه نعمت‌الله ولی؛ ماهان کرمان" data-title-en="Shah Nematollah Vali; Mahan, Kerman" data-title-ar="شاه نعمة الله ولي؛ ماهان، كرمان">شاه نعمت‌الله ولی؛ ماهان کرمان</span><span class="vlLoc" data-loc-fa="ماهان، کرمان" data-loc-en="Mahan, Kerman" data-loc-ar="ماهان، كرمان"> — ماهان، کرمان</span></a></li>
+<li><a href="#videos" data-video-jump="15"><span class="vlTitle" data-title-fa="باغ شاهزاده ماهان؛ شاهکار باغ ایرانی" data-title-en="Shazdeh Garden in Mahan; A Masterpiece of Persian Gardens" data-title-ar="حديقة شازده ماهان؛ تحفة الحدائق الفارسية">باغ شاهزاده ماهان؛ شاهکار باغ ایرانی</span><span class="vlLoc" data-loc-fa="ماهان، کرمان" data-loc-en="Mahan, Kerman" data-loc-ar="ماهان، كرمان"> — ماهان، کرمان</span></a></li>
+<li><a href="#videos" data-video-jump="16"><span class="vlTitle" data-title-fa="موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان" data-title-en="Banoo Hayati Museum; A Treasure in Kerman Bazaar" data-title-ar="متحف بانو حياتي؛ كنز في بازار كرمان">موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان</span><span class="vlLoc" data-loc-fa="کرمان" data-loc-en="Kerman" data-loc-ar="كرمان"> — کرمان</span></a></li>
+<li><a href="#videos" data-video-jump="17"><span class="vlTitle" data-title-fa="قلعه سریزد؛ نخستین بانک جهان" data-title-en="Saryazd Castle; The World's First Bank" data-title-ar="قلعة سريزد؛ أول بنك في العالم">قلعه سریزد؛ نخستین بانک جهان</span><span class="vlLoc" data-loc-fa="سریزد، یزد" data-loc-en="Saryazd, Yazd" data-loc-ar="سريزد، يزد"> — سریزد، یزد</span></a></li>
+<li><a href="#videos" data-video-jump="18"><span class="vlTitle" data-title-fa="جنگل‌های حرا و بندر تاریخی لافت" data-title-en="Mangrove Forests and the Historic Port of Laft" data-title-ar="غابات القرم وميناء لافت التاريخي">جنگل‌های حرا و بندر تاریخی لافت</span><span class="vlLoc" data-loc-fa="جزیره قشم" data-loc-en="Qeshm Island" data-loc-ar="جزيرة قشم"> — جزیره قشم</span></a></li>
+<li><a href="#videos" data-video-jump="19"><span class="vlTitle" data-title-fa="باغ فین کاشان با موسیقی سنتی" data-title-en="Fin Garden in Kashan with Traditional Music" data-title-ar="حديقة فين في كاشان مع الموسيقى التقليدية">باغ فین کاشان با موسیقی سنتی</span><span class="vlLoc" data-loc-fa="کاشان" data-loc-en="Kashan" data-loc-ar="كاشان"> — کاشان</span></a></li>
+<li><a href="#videos" data-video-jump="20"><span class="vlTitle" data-title-fa="زیباترین اقامتگاه بوم‌گردی در جنگل ابر" data-title-en="A Beautiful Eco-Lodge in Abr Forest" data-title-ar="أحد أجمل النزل البيئية في غابة أبر">زیباترین اقامتگاه بوم‌گردی در جنگل ابر</span><span class="vlLoc" data-loc-fa="جنگل ابر" data-loc-en="Abr Forest" data-loc-ar="غابة أبر"> — جنگل ابر</span></a></li>
+<li><a href="#videos" data-video-jump="21"><span class="vlTitle" data-title-fa="زیباترین اقامتگاه‌های بوم‌گردی ایران" data-title-en="The Most Beautiful Eco-Lodges in Iran" data-title-ar="أجمل النزل البيئية في إيران">زیباترین اقامتگاه‌های بوم‌گردی ایران</span><span class="vlLoc" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران"> — ایران</span></a></li>
+<li><a href="#videos" data-video-jump="22"><span class="vlTitle" data-title-fa="غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران" data-title-en="Ali Sadr Cave; Iran's Amazing Water Cave" data-title-ar="كهف علي صدر؛ الكهف المائي المذهل في إيران">غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران</span><span class="vlLoc" data-loc-fa="همدان" data-loc-en="Hamadan" data-loc-ar="همدان"> — همدان</span></a></li>
+<li><a href="#videos" data-video-jump="23"><span class="vlTitle" data-title-fa="آبشار اخلمد چناران؛ طبیعت زیبای خراسان" data-title-en="Akhlamad Waterfall in Chenaran; The Beautiful Nature of Khorasan" data-title-ar="شلال أخلمد في چناران؛ طبيعة خراسان الجميلة">آبشار اخلمد چناران؛ طبیعت زیبای خراسان</span><span class="vlLoc" data-loc-fa="چناران، خراسان رضوی" data-loc-en="Chenaran, Razavi Khorasan" data-loc-ar="چناران، خراسان الرضوية"> — چناران، خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="24"><span class="vlTitle" data-title-fa="جشن نوروز تخت جمشید؛ شهر پارس و پاسارگاد" data-title-en="Nowruz Celebration at Persepolis; The Land of Pars and Pasargadae" data-title-ar="احتفال نوروز في تخت جمشيد؛ أرض فارس وباسارغاد">جشن نوروز تخت جمشید؛ شهر پارس و پاسارگاد</span><span class="vlLoc" data-loc-fa="فارس" data-loc-en="Fars" data-loc-ar="فارس"> — فارس</span></a></li>
+<li><a href="#videos" data-video-jump="25"><span class="vlTitle" data-title-fa="اقامتگاه‌ها و دیدنی‌های ایران" data-title-en="Accommodation and Attractions in Iran" data-title-ar="أماكن الإقامة والمعالم السياحية في إيران">اقامتگاه‌ها و دیدنی‌های ایران</span><span class="vlLoc" data-loc-fa="ایران" data-loc-en="Iran" data-loc-ar="إيران"> — ایران</span></a></li>
+<li><a href="#videos" data-video-jump="26"><span class="vlTitle" data-title-fa="اقامتگاه بوم‌گردی قوامیه گناباد" data-title-en="Qavamieh Eco-Lodge in Gonabad" data-title-ar="النزل البيئي قوامية في غناباد">اقامتگاه بوم‌گردی قوامیه گناباد</span><span class="vlLoc" data-loc-fa="گناباد، خراسان رضوی" data-loc-en="Gonabad, Razavi Khorasan" data-loc-ar="غناباد، خراسان الرضوية"> — گناباد، خراسان رضوی</span></a></li>
+<li><a href="#videos" data-video-jump="27"><span class="vlTitle" data-title-fa="اقامتگاه بوم‌گردی ناخدا علی در لافت" data-title-en="Nakhoda Ali Eco-Lodge in Laft" data-title-ar="النزل البيئي ناخدا علي في لافت">اقامتگاه بوم‌گردی ناخدا علی در لافت</span><span class="vlLoc" data-loc-fa="جزیره قشم، بندر لافت" data-loc-en="Qeshm Island, Laft Port" data-loc-ar="جزيرة قشم، ميناء لافت"> — جزیره قشم، بندر لافت</span></a></li>
+</ol>
+</div>
+
+</div>
+
 </section>
 
 <!-- RESIDENCE -->
+
 <section id="residence">
 <div class="wrap">
+
 <div class="title">
-<div><h2>🏡 اقامتگاه</h2><p>اقامتگاه‌های گردشگری</p></div>
+<div>
+<h2 data-i18n="residenceTitle">🏡 اقامتگاه</h2>
+<p data-i18n="residenceSub">اقامتگاه‌های گردشگری</p>
 </div>
+</div>
+
+<div class="cats">
+
+<div class="cat">
+<b>🏨</b>
+<span data-i18n="catHotel">هتل</span>
+</div>
+
+<div class="cat">
+<b>🏠</b>
+<span data-i18n="catGuesthouse">مهمان‌خانه</span>
+</div>
+
+<div class="cat">
+<b>🌳</b>
+<span data-i18n="catEcolodge">بوم‌گردی</span>
+</div>
+
+<div class="cat">
+<b>⛺</b>
+<span data-i18n="catCamp">کمپ</span>
+</div>
+
+</div>
+
 <div class="residenceRegisterWrap">
 <div class="residenceRegisterCard">
 <b>🏡 اقامتگاه‌ها و ➕ ثبت اقامتگاه</b>
@@ -619,109 +2781,2664 @@ padding:18px 16px;border:1px dashed var(--line);border-radius:18px;background:rg
 <a class="btn primary" href="residences/residences.html">ورود به بخش اقامتگاه‌ها</a>
 </div>
 </div>
+
+</div>
+</section>
+
+<!-- GUIDE -->
+
+<section id="guide">
+<div class="wrap">
+
+<div class="title">
+<div>
+<h2 data-i18n="guideTitle">🧭 راهنمای سفر</h2>
+<p data-i18n="guideSub">راهنمای گردشگری سایروس توریست</p>
+</div>
+</div>
+
+<div class="cats">
+
+<div class="cat">
+<b>🗺️</b>
+<span data-i18n="catItinerary">برنامه سفر</span>
+</div>
+
+<div class="cat">
+<b>🚗</b>
+<span data-i18n="catNavigation">مسیریابی</span>
+</div>
+
+<div class="cat">
+<b>💡</b>
+<span data-i18n="catTips">نکات سفر</span>
+</div>
+
+<div class="cat">
+<b>☎️</b>
+<span data-i18n="catSupport">پشتیبانی</span>
+</div>
+
+</div>
+
 </div>
 </section>
 
 <!-- DOWNLOADS -->
+
 <section id="downloads">
 <div class="wrap">
+
 <div class="title">
-<div><h2>📱 دانلود اپلیکیشن سایروس توریست</h2><p>نسخه‌های جدید برنامه را از همین مسیر دریافت کنید.</p></div>
+<div>
+<h2 data-i18n="downloadsTitle">📱 دانلود اپلیکیشن سایروس توریست</h2>
+<p data-i18n="downloadsSub">
+نسخه‌های جدید برنامه را از همین مسیر دریافت کنید.
+</p>
 </div>
+</div>
+
 <div class="resourceGrid">
+
 <div class="resourceCard">
+
 <span class="resourceIcon">🤖</span>
+
 <h3>نسخه اندروید</h3>
-<p id="androidStatus">در حال بررسی آخرین نسخه...</p>
-<div class="resourceButtons"><a class="btn primary" href="downloads/android.html">صفحه اندروید</a></div>
+
+<p id="androidStatus">
+در حال بررسی آخرین نسخه...
+</p>
+
+<div class="resourceButtons">
+
+<a
+class="btn primary"
+href="downloads/android.html">صفحه اندروید
+</a>
+
 </div>
+
+</div>
+
 <div class="resourceCard">
+
 <span class="resourceIcon">🍎</span>
-<h3>نسخه iOS (وب‌اپلیکیشن)</h3>
-<p>قابل نصب به صورت PWA روی آیفون</p>
-<div class="resourceButtons"><a class="btn primary" href="ios.html">راهنمای iOS</a></div>
+
+<h3>نسخه iOS</h3>
+
+<p id="iosStatus">
+در حال آماده‌سازی...
+</p>
+
+<div class="resourceButtons">
+
+<a
+class="btn primary"
+href="ios.html">
+صفحه iOS
+</a>
+
 </div>
+
+</div>
+
 <div class="resourceCard">
+
 <span class="resourceIcon">🛍️</span>
-<h3>مایکت</h3>
-<p>دانلود از مایکت</p>
-<div class="resourceButtons"><a class="btn primary" href="https://myket.ir/app/cyrustourist.ir.app" target="_blank" rel="noopener">ورود به مایکت</a></div>
+
+<h3>اپلیکیشن گردشگری سایروس توریست در مایکت</h3>
+
+<p>
+دانلود اپلیکیشن گردشگری سایروس توریست از مایکت
+</p>
+
+<div class="resourceButtons">
+
+<a
+class="btn primary"
+href="https://myket.ir/app/cyrustourist.ir.app"
+target="_blank"
+rel="noopener">
+ورود به مایکت
+</a>
+
 </div>
+
+</div>
+
 <div class="resourceCard">
+
 <span class="resourceIcon">🏬</span>
-<h3>بازار</h3>
-<p>دانلود از بازار</p>
-<div class="resourceButtons"><a class="btn primary" href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share" target="_blank" rel="noopener">ورود به بازار</a></div>
+
+<h3>اپلیکیشن گردشگری سایروس توریست در بازار</h3>
+
+<p>
+دانلود اپلیکیشن گردشگری سایروس توریست از بازار
+</p>
+
+<div class="resourceButtons">
+
+<a
+class="btn primary"
+href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share"
+target="_blank"
+rel="noopener">
+ورود به بازار
+</a>
+
 </div>
+
 </div>
+
+</div>
+
 </div>
 </section>
 
 </main>
 
-<button class="thanksButton" id="thanksButton" aria-label="سپاسگزاریم">🙏</button>
-<div class="thanksModal" id="thanksModal" role="dialog" aria-modal="true">
+<!-- THANK YOU BUTTON -->
+
+<button
+class="thanksButton"
+id="thanksButton"
+aria-label="سپاسگزاریم">
+🙏
+</button>
+
+<!-- THANK YOU MODAL -->
+
+<div
+class="thanksModal"
+id="thanksModal"
+role="dialog"
+aria-modal="true">
+
 <div class="thanksBox">
-<span class="thanksIcon">💚</span>
-<h2>سپاسگزاریم</h2>
-<p>از همراهی شما با سایروس توریست سپاسگزاریم.<br>با ما ایران را بهتر ببینید.</p>
-<button class="btn primary" id="closeThanks">ادامه</button>
+
+<span class="thanksIcon">
+💚
+</span>
+
+<h2>
+سپاسگزاریم
+</h2>
+
+<p>
+از همراهی شما با سایروس توریست سپاسگزاریم.
+<br>
+با ما ایران را بهتر ببینید.
+</p>
+
+<button
+class="btn primary"
+id="closeThanks">
+ادامه
+</button>
+
+</div>
+
+</div>
+
+<!-- DOWNLOAD UNAVAILABLE IMAGE MODAL -->
+<div class="cyrusUnavailableModal" id="cyrusUnavailableModal" role="dialog" aria-modal="true" aria-label="Cyrus Tourist">
+<div class="cyrusUnavailableBox">
+<img class="cyrusUnavailableImage" src="assets/download.jpg" alt="Cyrus Tourist">
+<button class="cyrusUnavailableBack" id="cyrusUnavailableBack" type="button">بازگشت</button>
 </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<!-- RESOURCE MODAL -->
+
+<div
+class="resourceModal"
+id="resourceModal"
+role="dialog"
+aria-modal="true">
+
+<div class="resourceModalBox">
+
+<h2 id="resourceModalTitle">
+اطلاع‌رسانی
+</h2>
+
+<div
+class="resourceModalText"
+id="resourceModalText">
+</div>
+
+<div class="resourceModalActions">
+
+<a
+class="btn primary"
+id="resourceOpenButton"
+href="#"
+target="_blank"
+rel="noopener">
+مشاهده
+</a>
+
+<button
+class="btn"
+id="resourceCloseButton">
+بستن
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+crossorigin="">
+</script>
+
 <script>
+
+/* =========================================================
+   CONFIG
+   مسیرهای ثابت فایل‌ها و فروشگاه
+   فقط در صورت تغییر مسیر واقعی، همین قسمت را تغییر دهید.
+========================================================= */
+
 const CYRUS_CONFIG = {
-  myket: 'https://myket.ir/app/cyrustourist.ir.app',
-  bazaar: 'http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share',
-  videos: {
-    1: 'https://www.aparat.com/video/video/embed/videohash/t346o2k/vt/frame',
-    2: 'https://www.aparat.com/video/video/embed/videohash/w17sz69/vt/frame',
-    3: 'https://www.aparat.com/video/video/embed/videohash/xvo5q9c/vt/frame',
-    4: 'https://www.aparat.com/video/video/embed/videohash/hzlol4k/vt/frame',
-    5: 'https://www.aparat.com/video/video/embed/videohash/guqcsg5/vt/frame',
-    6: 'https://www.aparat.com/video/video/embed/videohash/w8lOg/vt/frame',
-    7: 'https://www.aparat.com/video/video/embed/videohash/uK3y5/vt/frame',
-    8: 'https://www.aparat.com/video/video/embed/videohash/nuXAC/vt/frame',
-    9: 'https://www.aparat.com/video/video/embed/videohash/x707h19/vt/frame',
-    10: 'https://www.aparat.com/video/video/embed/videohash/4Z0hQ/vt/frame',
-    11: 'https://www.aparat.com/video/video/embed/videohash/s78jcie/vt/frame',
-    12: 'https://www.aparat.com/video/video/embed/videohash/R1p3U/vt/frame',
-    13: 'https://www.aparat.com/video/video/embed/videohash/g40wppg/vt/frame',
-    14: 'https://www.aparat.com/video/video/embed/videohash/xsBFX/vt/frame',
-    15: 'https://www.aparat.com/video/video/embed/videohash/3ZCGs/vt/frame',
-    16: 'https://www.aparat.com/video/video/embed/videohash/z72q215/vt/frame',
-    17: 'https://www.aparat.com/video/video/embed/videohash/c4744bv/vt/frame',
-    18: 'https://www.aparat.com/video/video/embed/videohash/kGS8o/vt/frame',
-    19: 'https://www.aparat.com/video/video/embed/videohash/mPh2q/vt/frame',
-    20: 'https://www.aparat.com/video/video/embed/videohash/h86ieq2/vt/frame',
-    21: 'https://www.aparat.com/video/video/embed/videohash/w43c127/vt/frame',
-    22: 'https://www.aparat.com/video/video/embed/videohash/k2RDX/vt/frame',
-    23: 'https://www.aparat.com/video/video/embed/videohash/f91418q/vt/frame',
-    24: 'https://www.aparat.com/video/video/embed/videohash/f5212r6/vt/frame',
-    25: 'https://www.aparat.com/video/video/embed/videohash/f38s8gz/vt/frame',
-    26: 'https://www.aparat.com/video/video/embed/videohash/m37fn2a/vt/frame',
-    27: 'https://www.aparat.com/video/video/embed/videohash/a528058/vt/frame'
-  }
+
+/* لینک فروشگاه‌ها: اگر آماده نیست، خالی بماند. */
+googlePlay:
+'',
+
+appStore:
+'',
+
+myket:
+'https://myket.ir/app/cyrustourist.ir.app',
+
+bazaar:
+'http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share',
+
+/* فایل مستقیم: اگر فایل واقعی روی هاست نیست، خالی بماند. */
+androidFile:
+'Cyrustourist.ir.apk',
+
+iosFile:
+'',
+
+androidPage:
+'android.html',
+
+iosPage:
+'ios.html',
+
+videos: {
+
+1:'https://www.aparat.com/video/video/embed/videohash/t346o2k/vt/frame',
+2:'https://www.aparat.com/video/video/embed/videohash/w17sz69/vt/frame',
+3:'https://www.aparat.com/video/video/embed/videohash/xvo5q9c/vt/frame',
+4:'https://www.aparat.com/video/video/embed/videohash/hzlol4k/vt/frame',
+5:'https://www.aparat.com/video/video/embed/videohash/guqcsg5/vt/frame',
+6:'https://www.aparat.com/video/video/embed/videohash/w8lOg/vt/frame',
+7:'https://www.aparat.com/video/video/embed/videohash/uK3y5/vt/frame',
+8:'https://www.aparat.com/video/video/embed/videohash/nuXAC/vt/frame',
+9:'https://www.aparat.com/video/video/embed/videohash/x707h19/vt/frame',
+10:'https://www.aparat.com/video/video/embed/videohash/4Z0hQ/vt/frame',
+11:'https://www.aparat.com/video/video/embed/videohash/s78jcie/vt/frame',
+12:'https://www.aparat.com/video/video/embed/videohash/R1p3U/vt/frame',
+13:'https://www.aparat.com/video/video/embed/videohash/g40wppg/vt/frame',
+14:'https://www.aparat.com/video/video/embed/videohash/xsBFX/vt/frame',
+15:'https://www.aparat.com/video/video/embed/videohash/3ZCGs/vt/frame',
+16:'https://www.aparat.com/video/video/embed/videohash/z72q215/vt/frame',
+17:'https://www.aparat.com/video/video/embed/videohash/c4744bv/vt/frame',
+18:'https://www.aparat.com/video/video/embed/videohash/kGS8o/vt/frame',
+19:'https://www.aparat.com/video/video/embed/videohash/mPh2q/vt/frame',
+20:'https://www.aparat.com/video/video/embed/videohash/h86ieq2/vt/frame',
+21:'https://www.aparat.com/video/video/embed/videohash/w43c127/vt/frame',
+22:'https://www.aparat.com/video/video/embed/videohash/k2RDX/vt/frame',
+23:'https://www.aparat.com/video/video/embed/videohash/f91418q/vt/frame',
+24:'https://www.aparat.com/video/video/embed/videohash/f5212r6/vt/frame',
+25:'https://www.aparat.com/video/video/embed/videohash/f38s8gz/vt/frame',
+26:'https://www.aparat.com/video/video/embed/videohash/m37fn2a/vt/frame',
+27:'https://www.aparat.com/video/video/embed/videohash/a528058/vt/frame'
+
+}
+
 };
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
 
 let touristMap = null;
 let userMarker = null;
 let userLat = null;
 let userLon = null;
 let nearbyMarkers = [];
+let measureStart = null;
+let measureLine = null;
+let compassListening = false;
 let nearbyCategory = 'attractions';
 
-function initializeMap() {
-  if (!document.getElementById('touristMap')) return;
-  touristMap = L.map('touristMap').setView([32.4279, 53.6880], 5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors (رایگان)'
-  }).addTo(touristMap);
-  setTimeout(() => touristMap.invalidateSize(), 300);
+function setStatus(t){
+
+const el = $('toolStatus');
+
+if(el){
+el.textContent = t;
 }
-window.addEventListener('DOMContentLoaded', initializeMap);
+
+}
+
+function invalidate(){
+
+if(touristMap){
+
+setTimeout(
+()=>touristMap.invalidateSize(),
+100
+);
+
+}
+
+}
+
+function escapeHtml(v){
+
+return String(v)
+.replaceAll('&','&amp;')
+.replaceAll('<','&lt;')
+.replaceAll('>','&gt;')
+.replaceAll('"','&quot;')
+.replaceAll("'","&#039;");
+
+}
+
+function distanceKm(
+lat1,
+lon1,
+lat2,
+lon2
+){
+
+const R = 6371;
+
+const p1 =
+lat1*Math.PI/180;
+
+const p2 =
+lat2*Math.PI/180;
+
+const dp =
+(lat2-lat1)*Math.PI/180;
+
+const dl =
+(lon2-lon1)*Math.PI/180;
+
+const a =
+Math.sin(dp/2)**2+
+Math.cos(p1)*
+Math.cos(p2)*
+Math.sin(dl/2)**2;
+
+return
+2*R*
+Math.atan2(
+Math.sqrt(a),
+Math.sqrt(1-a)
+);
+
+}
+
+function formatDistance(m){
+
+if(m<1000){
+
+return Math.round(m)+' متر';
+
+}
+
+return (m/1000).toFixed(1)+' کیلومتر';
+
+}
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+function getLocation(callback){
+
+if(!navigator.geolocation){
+
+callback(
+null,
+'مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.'
+);
+
+return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+
+p=>callback(p,null),
+
+e=>{
+
+let msg =
+'دریافت موقعیت انجام نشد.';
+
+if(e.code===1){
+
+msg =
+'دسترسی به موقعیت مکانی رد شده است.';
+
+}
+
+if(e.code===2){
+
+msg =
+'موقعیت مکانی در دسترس نیست.';
+
+}
+
+if(e.code===3){
+
+msg =
+'زمان دریافت موقعیت تمام شد.';
+
+}
+
+callback(null,msg);
+
+},
+
+{
+
+enableHighAccuracy:true,
+
+timeout:15000,
+
+maximumAge:10000
+
+}
+
+);
+
+}
+
+/* =========================================================
+   MAP
+========================================================= */
+
+function initializeMap(){
+
+if(!$('touristMap')){
+
+return;
+
+}
+
+touristMap =
+L.map(
+'touristMap',
+{
+
+zoomControl:true,
+attributionControl:true,
+dragging:true,
+touchZoom:true,
+scrollWheelZoom:true,
+doubleClickZoom:true,
+boxZoom:true,
+keyboard:true
+
+}
+)
+.setView(
+[32.4279,53.6880],
+5
+);
+
+L.tileLayer(
+
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
+{
+
+maxZoom:19,
+attribution:'© OpenStreetMap'
+
+}
+
+).addTo(touristMap);
+
+setTimeout(
+invalidate,
+300
+);
+
+$('myLocationButton').onclick =
+showMyLocation;
+
+$('mapSearchButton').onclick =
+findMapLocation;
+
+$('mapSearchInput')
+.addEventListener(
+'keydown',
+e=>{
+
+if(e.key==='Enter'){
+
+e.preventDefault();
+
+findMapLocation();
+
+}
+
+}
+);
+
+}
+
+/* =========================================================
+   MY LOCATION
+========================================================= */
+
+function showMyLocation(){
+
+setStatus(
+'📍 در حال دریافت موقعیت شما...'
+);
+
+getLocation(
+
+(p,err)=>{
+
+if(err){
+
+setStatus('❌ '+err);
+
+alert(err);
+
+return;
+
+}
+
+userLat =
+p.coords.latitude;
+
+userLon =
+p.coords.longitude;
+
+if(userMarker){
+
+touristMap.removeLayer(
+userMarker
+);
+
+}
+
+userMarker =
+L.marker(
+[userLat,userLon]
+)
+.addTo(touristMap)
+.bindPopup(
+'<strong>📍 موقعیت فعلی شما</strong>'
+)
+.openPopup();
+
+touristMap.setView(
+[userLat,userLon],
+15
+);
+
+setStatus(
+
+'✅ موقعیت شما پیدا شد: '+
+userLat.toFixed(5)+
+' , '+
+userLon.toFixed(5)
+
+);
+
+}
+
+);
+
+}
+
+/* =========================================================
+   MAP SEARCH
+========================================================= */
+
+async function findMapLocation(){
+
+const input =
+$('mapSearchInput');
+
+const result =
+$('mapSearchResult');
+
+const q =
+input.value.trim();
+
+if(!q){
+
+result.textContent =
+'لطفاً نام مکان را وارد کنید.';
+
+return;
+
+}
+
+result.textContent =
+'🔎 در حال جستجو...';
+
+try{
+
+const r =
+await fetch(
+
+'https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=fa&q='+
+encodeURIComponent(q)
+
+);
+
+if(!r.ok){
+
+throw Error(
+'HTTP '+r.status
+);
+
+}
+
+const data =
+await r.json();
+
+if(!data.length){
+
+result.textContent =
+'مکانی پیدا نشد.';
+
+return;
+
+}
+
+const p =
+data[0];
+
+const lat =
+parseFloat(p.lat);
+
+const lon =
+parseFloat(p.lon);
+
+touristMap.setView(
+[lat,lon],
+14
+);
+
+L.marker(
+[lat,lon]
+)
+.addTo(touristMap)
+.bindPopup(
+'<strong>'+
+escapeHtml(
+p.display_name
+)+
+'</strong>'
+)
+.openPopup();
+
+result.textContent =
+'✅ '+p.display_name;
+
+}catch(e){
+
+console.error(e);
+
+result.textContent =
+'❌ جستجوی مکان انجام نشد.';
+
+}
+
+}
+
+/* =========================================================
+   TOURISM TRANSLATIONS
+========================================================= */
+
+function translateTourism(v){
+
+return {
+
+attraction:'جاذبه گردشگری',
+museum:'موزه',
+gallery:'گالری',
+viewpoint:'نقطه دیدنی',
+information:'مرکز اطلاعات گردشگری',
+hotel:'هتل',
+hostel:'هاستل',
+guest_house:'مهمان‌خانه',
+camp_site:'کمپ گردشگری',
+theme_park:'پارک تفریحی',
+zoo:'باغ‌وحش',
+aquarium:'آکواریوم',
+picnic_site:'محل پیک‌نیک',
+resort:'مجتمع گردشگری'
+
+}[v]||'جاذبه گردشگری';
+
+}
+
+function translateHistoric(v){
+
+return {
+
+castle:'قلعه',
+ruins:'ویرانه تاریخی',
+monument:'بنای یادبود',
+archaeological_site:'محوطه باستانی',
+memorial:'یادمان',
+fort:'دژ',
+city_gate:'دروازه تاریخی',
+building:'ساختمان تاریخی',
+tomb:'آرامگاه',
+battlefield:'میدان تاریخی'
+
+}[v]||'مکان تاریخی';
+
+}
+
+function translateNatural(v){
+
+return {
+
+peak:'قله',
+mountain:'کوه',
+waterfall:'آبشار',
+spring:'چشمه',
+beach:'ساحل',
+cave_entrance:'غار',
+valley:'دره',
+wood:'جنگل',
+forest:'جنگل',
+protected_area:'منطقه حفاظت‌شده',
+nature_reserve:'ذخیره‌گاه طبیعی',
+water:'منطقه آبی',
+bay:'خلیج',
+cape:'دماغه'
+
+}[v]||'جاذبه طبیعی';
+
+}
+
+function translateHealth(v){
+
+return {
+
+hospital:'بیمارستان',
+clinic:'کلینیک درمانی',
+doctors:'مطب پزشک',
+pharmacy:'داروخانه',
+dentist:'دندان‌پزشکی',
+health_center:'مرکز بهداشت'
+
+}[v]||'مرکز درمانی';
+
+}
+
+function translateLodging(v){
+
+return {
+
+hotel:'هتل',
+guest_house:'مهمان‌خانه',
+hostel:'هاستل',
+motel:'متل',
+apartment:'اقامتگاه آپارتمانی',
+camp_site:'کمپ'
+
+}[v]||'اقامتگاه';
+
+}
+
+/* =========================================================
+   NEARBY
+========================================================= */
+
+function clearNearbyMarkers(){
+
+nearbyMarkers.forEach(
+m=>{
+
+if(touristMap){
+
+touristMap.removeLayer(m);
+
+}
+
+}
+);
+
+nearbyMarkers=[];
+
+}
+
+function initializeNearbyCategories(){
+
+const buttons =
+document.querySelectorAll('.nearbyCatBtn[data-category]');
+
+const resetBtn =
+$('nearbyResetBtn');
+
+buttons.forEach(btn=>{
+
+btn.onclick=()=>{
+
+buttons.forEach(b=>
+b.classList.remove('active')
+);
+
+btn.classList.add('active');
+
+nearbyCategory =
+btn.getAttribute('data-category');
+
+if(userLat!=null && userLon!=null){
+
+loadNearbyAttractions();
+
+}else{
+
+getNearbyAttractions();
+
+}
+
+};
+
+});
+
+if(resetBtn){
+
+resetBtn.onclick=()=>{
+
+clearNearbyMarkers();
+
+nearbyCategory='attractions';
+
+buttons.forEach(b=>
+b.classList.remove('active')
+);
+
+const attractionsBtn=
+$('nearbyCatAttractions');
+
+if(attractionsBtn){
+attractionsBtn.classList.add('active');
+}
+
+$('locationStatus').textContent=
+'موقعیت شما هنوز دریافت نشده است.';
+
+$('nearbyResults').innerHTML=
+'<div class="empty">برای نمایش جاذبه‌ها، روی «پیدا کن» بزنید.</div>';
+
+};
+
+}
+
+}
+
+function getNearbyAttractions(){
+
+const status =
+$('locationStatus');
+
+const results =
+$('nearbyResults');
+
+status.textContent =
+'📡 در حال دریافت موقعیت...';
+
+results.innerHTML =
+'<div class="empty">در حال پیدا کردن جاذبه‌های اطراف شما...</div>';
+
+getLocation(
+
+(p,err)=>{
+
+if(err){
+
+status.textContent =
+'❌ '+err;
+
+results.innerHTML =
+'<div class="empty">'+
+escapeHtml(err)+
+'<br>'+
+'<button type="button" class="smallBtn nearbyRetry" id="nearbyRetryBtn2">🔄 تلاش دوباره</button>'+
+'</div>';
+
+const retryBtn2=
+$('nearbyRetryBtn2');
+
+if(retryBtn2){
+
+retryBtn2.onclick=()=>{
+getNearbyAttractions();
+};
+
+}
+
+return;
+
+}
+
+userLat =
+p.coords.latitude;
+
+userLon =
+p.coords.longitude;
+
+if(userMarker){
+
+touristMap.removeLayer(
+userMarker
+);
+
+}
+
+userMarker =
+L.marker(
+[userLat,userLon]
+)
+.addTo(touristMap)
+.bindPopup(
+'<strong>📍 موقعیت فعلی شما</strong>'
+);
+
+loadNearbyAttractions();
+
+}
+
+);
+
+}
+
+async function loadNearbyAttractions(){
+
+const status =
+$('locationStatus');
+
+const results =
+$('nearbyResults');
+
+const radius =
+parseInt(
+$('radius').value,
+10
+)||10000;
+
+const query =
+
+nearbyCategory==='health' ?
+
+`[out:json][timeout:25];
+(
+node["amenity"~"^(hospital|clinic|pharmacy|doctors|dentist)$"](around:${radius},${userLat},${userLon});
+way["amenity"~"^(hospital|clinic|pharmacy|doctors|dentist)$"](around:${radius},${userLat},${userLon});
+relation["amenity"~"^(hospital|clinic|pharmacy|doctors|dentist)$"](around:${radius},${userLat},${userLon});
+node["healthcare"](around:${radius},${userLat},${userLon});
+way["healthcare"](around:${radius},${userLat},${userLon});
+);
+out center tags;` :
+
+nearbyCategory==='lodging' ?
+
+`[out:json][timeout:25];
+(
+node["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](around:${radius},${userLat},${userLon});
+way["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](around:${radius},${userLat},${userLon});
+relation["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](around:${radius},${userLat},${userLon});
+);
+out center tags;` :
+
+`[out:json][timeout:25];
+(
+node["tourism"](around:${radius},${userLat},${userLon});
+way["tourism"](around:${radius},${userLat},${userLon});
+relation["tourism"](around:${radius},${userLat},${userLon});
+node["historic"](around:${radius},${userLat},${userLon});
+way["historic"](around:${radius},${userLat},${userLon});
+relation["historic"](around:${radius},${userLat},${userLon});
+node["natural"](around:${radius},${userLat},${userLon});
+way["natural"](around:${radius},${userLat},${userLon});
+relation["natural"](around:${radius},${userLat},${userLon});
+node["leisure"="park"](around:${radius},${userLat},${userLon});
+way["leisure"="park"](around:${radius},${userLat},${userLon});
+relation["leisure"="park"](around:${radius},${userLat},${userLon});
+);
+out center tags;`;
+
+try{
+
+status.textContent =
+'🔎 در حال جستجوی جاذبه‌ها...';
+
+const r =
+await fetch(
+
+'https://overpass-api.de/api/interpreter',
+
+{
+
+method:'POST',
+
+headers:{
+'Content-Type':
+'text/plain;charset=UTF-8'
+},
+
+body:query
+
+}
+
+);
+
+if(!r.ok){
+
+throw Error(
+'Overpass HTTP '+r.status
+);
+
+}
+
+const data =
+await r.json();
+
+const seen =
+new Set();
+
+const places=[];
+
+data.elements.forEach(i=>{
+
+const t =
+i.tags||{};
+
+let lat =
+i.lat;
+
+let lon =
+i.lon;
+
+if(i.center){
+
+lat =
+i.center.lat;
+
+lon =
+i.center.lon;
+
+}
+
+const name =
+t.name||
+t['name:fa']||
+t['name:en'];
+
+if(
+lat==null||
+lon==null||
+!name
+){
+
+return;
+
+}
+
+const d =
+distanceKm(
+userLat,
+userLon,
++lat,
++lon
+);
+
+let type =
+'جاذبه گردشگری';
+
+if(nearbyCategory==='health'){
+
+type =
+translateHealth(
+t.amenity||t.healthcare
+);
+
+}else if(nearbyCategory==='lodging'){
+
+type =
+translateLodging(
+t.tourism
+);
+
+}else if(t.tourism){
+
+type =
+translateTourism(
+t.tourism
+);
+
+}else if(t.historic){
+
+type =
+translateHistoric(
+t.historic
+);
+
+}else if(t.natural){
+
+type =
+translateNatural(
+t.natural
+);
+
+}else if(t.leisure){
+
+type =
+'پارک و فضای تفریحی';
+
+}
+
+const key =
+String(name)
+.trim()
+.toLowerCase();
+
+if(!seen.has(key)){
+
+seen.add(key);
+
+places.push({
+
+name:String(name),
+type,
+lat:+lat,
+lon:+lon,
+distance:d
+
+});
+
+}
+
+});
+
+places.sort(
+(a,b)=>
+a.distance-b.distance
+);
+
+const list =
+places.slice(0,30);
+
+clearNearbyMarkers();
+
+const categoryNoun =
+nearbyCategory==='health' ? 'مرکز درمانی' :
+nearbyCategory==='lodging' ? 'اقامتگاه' :
+'جاذبه';
+
+const categoryIcon =
+nearbyCategory==='health' ? '🏥' :
+nearbyCategory==='lodging' ? '🏨' :
+'📍';
+
+if(!list.length){
+
+status.textContent =
+'⚠️ '+categoryNoun+'ی پیدا نشد. شعاع جستجو را بیشتر کنید.';
+
+results.innerHTML =
+'<div class="empty">'+
+categoryNoun+'ی در این محدوده پیدا نشد.'+
+'</div>';
+
+return;
+
+}
+
+results.innerHTML='';
+
+const bounds =
+L.latLngBounds([]);
+
+list.forEach(p=>{
+
+const marker =
+L.marker(
+[p.lat,p.lon]
+)
+.addTo(touristMap)
+.bindPopup(
+
+'<strong>'+categoryIcon+' '+
+escapeHtml(p.name)+
+'</strong><br>'+
+escapeHtml(p.type)+
+'<br>📏 '+
+formatDistance(
+p.distance*1000
+)
+
+);
+
+nearbyMarkers.push(
+marker
+);
+
+bounds.extend(
+[p.lat,p.lon]
+);
+
+const mapUrl =
+'https://www.openstreetmap.org/?mlat='+
+encodeURIComponent(p.lat)+
+'&mlon='+
+encodeURIComponent(p.lon)+
+'#map=17/'+
+encodeURIComponent(p.lat)+
+'/'+
+encodeURIComponent(p.lon);
+
+const dir =
+'https://www.google.com/maps/dir/?api=1&destination='+
+encodeURIComponent(
+p.lat+','+p.lon
+);
+
+const card =
+document.createElement('div');
+
+card.className =
+'placeCard';
+
+card.innerHTML =
+
+'<h3>'+categoryIcon+' '+
+escapeHtml(p.name)+
+'</h3>'+
+'<div class="placeMeta">🏷️ '+
+escapeHtml(p.type)+
+'<br>📏 فاصله: '+
+formatDistance(
+p.distance*1000
+)+
+'</div>'+
+'<div class="placeActions">'+
+'<a class="smallBtn" href="'+
+mapUrl+
+'" target="_blank" rel="noopener">'+
+'🗺️ مشاهده روی نقشه</a>'+
+'<a class="smallBtn" href="'+
+dir+
+'" target="_blank" rel="noopener">'+
+'🧭 مسیریابی</a>'+
+'</div>';
+
+results.appendChild(
+card
+);
+
+});
+
+bounds.extend(
+[userLat,userLon]
+);
+
+touristMap.fitBounds(
+bounds,
+{
+
+padding:[30,30],
+maxZoom:14
+
+}
+);
+
+status.textContent =
+'✅ '+
+list.length+
+' '+categoryNoun+' نزدیک شما پیدا شد.';
+
+invalidate();
+
+}catch(e){
+
+console.error(e);
+
+status.textContent =
+'❌ دریافت اطلاعات با خطا روبه‌رو شد.';
+
+results.innerHTML =
+'<div class="empty">'+
+'ارتباط با سرویس نقشه برقرار نشد.'+
+'<br>'+
+'<button type="button" class="smallBtn nearbyRetry" id="nearbyRetryBtn">🔄 تلاش دوباره</button>'+
+'</div>';
+
+const retryBtn=
+$('nearbyRetryBtn');
+
+if(retryBtn){
+
+retryBtn.onclick=()=>{
+loadNearbyAttractions();
+};
+
+}
+
+}
+
+}
+
+/* =========================================================
+   TOOLBOX
+========================================================= */
+
+function initToolbox(){
+
+$('mapTool').onclick=()=>{
+
+location.hash='map';
+
+setTimeout(
+invalidate,
+400
+);
+
+setStatus(
+'🗺️ به نقشه رفتید.'
+);
+
+};
+
+$('nearbyTool').onclick=()=>{
+
+location.hash='nearby';
+
+setTimeout(
+getNearbyAttractions,
+400
+);
+
+setStatus(
+'📍 در حال جستجوی جاذبه‌های اطراف...'
+);
+
+};
+
+$('locationTool').onclick=()=>{
+
+showMyLocation();
+
+setStatus(
+'📍 در حال دریافت موقعیت شما...'
+);
+
+};
+
+$('weatherTool').onclick=()=>{
+
+if(
+userLat!==null&&
+userLon!==null
+){
+
+window.open(
+
+'https://www.google.com/search?q='+
+encodeURIComponent(
+'آب و هوای امروز '+
+userLat.toFixed(3)+
+','+
+userLon.toFixed(3)
+),
+
+'_blank',
+'noopener'
+
+);
+
+setStatus(
+'🌤️ صفحه آب‌وهوا باز شد.'
+);
+
+}else{
+
+getLocation(
+
+(p,e)=>{
+
+if(e){
+
+setStatus(
+'❌ '+e
+);
+
+return;
+
+}
+
+userLat =
+p.coords.latitude;
+
+userLon =
+p.coords.longitude;
+
+window.open(
+
+'https://www.google.com/search?q='+
+encodeURIComponent(
+'آب و هوای امروز '+
+userLat.toFixed(3)+
+','+
+userLon.toFixed(3)
+),
+
+'_blank',
+'noopener'
+
+);
+
+setStatus(
+'🌤️ صفحه آب‌وهوا باز شد.'
+);
+
+}
+
+);
+
+}
+
+};
+
+$('emergencyTool').onclick=()=>{
+
+setStatus(
+'🆘 شماره‌های اضطراری را فقط در صورت نیاز استفاده کنید.'
+);
+
+alert(
+
+'🆘 دسترسی اضطراری\n\n'+
+'پلیس: ۱۱۰\n'+
+'اورژانس: ۱۱۵\n'+
+'آتش‌نشانی: ۱۲۵'
+
+);
+
+};
+
+$('distanceTool').onclick=()=>{
+
+measureStart=null;
+
+if(measureLine){
+
+touristMap.removeLayer(
+measureLine
+);
+
+measureLine=null;
+
+}
+
+setStatus(
+'📏 برای اندازه‌گیری، دو نقطه روی نقشه را پشت سر هم لمس کنید.'
+);
+
+location.hash='map';
+
+setTimeout(
+
+()=>{
+
+touristMap.once(
+'click',
+e=>{
+
+measureStart =
+e.latlng;
+
+setStatus(
+'📏 نقطه اول ثبت شد؛ نقطه دوم را انتخاب کنید.'
+);
+
+touristMap.once(
+'click',
+e2=>{
+
+const meters =
+distanceKm(
+
+measureStart.lat,
+measureStart.lng,
+e2.latlng.lat,
+e2.latlng.lng
+
+)*1000;
+
+measureLine =
+L.polyline(
+
+[
+measureStart,
+e2.latlng
+],
+
+{
+weight:4
+}
+
+).addTo(
+touristMap
+);
+
+setStatus(
+'📏 فاصله: '+
+formatDistance(meters)
+);
+
+}
+
+);
+
+}
+
+);
+
+},
+
+400
+
+);
+
+};
+
+$('flashTool').onclick =
+toggleFlashlight;
+
+$('compassTool').onclick=()=>{
+
+const box =
+$('compassBox');
+
+box.classList.toggle(
+'show'
+);
+
+if(
+box.classList.contains('show')
+){
+
+startCompass();
+
+}
+
+};
+
+$('compassPermission').onclick =
+startCompass;
+
+$('toolReset').onclick=()=>{
+
+if(measureLine){
+
+touristMap.removeLayer(
+measureLine
+);
+
+measureLine=null;
+
+}
+
+measureStart=null;
+
+$('compassBox')
+.classList.remove('show');
+
+setStatus(
+'جعبه ابزار بازنشانی شد.'
+);
+
+};
+
+}
+
+/* =========================================================
+   FLASHLIGHT
+========================================================= */
+
+async function toggleFlashlight(){
+
+try{
+
+if(
+!navigator.mediaDevices||
+!navigator.mediaDevices.getUserMedia
+){
+
+throw Error(
+'unsupported'
+);
+
+}
+
+if(window.__flashTrack){
+
+try{
+
+await window.__flashTrack.applyConstraints(
+{
+advanced:[
+{
+torch:false
+}
+]
+}
+);
+
+}catch(e){}
+
+window.__flashTrack.stop();
+
+window.__flashTrack=null;
+
+setStatus(
+'🔦 چراغ‌قوه خاموش شد.'
+);
+
+return;
+
+}
+
+const stream =
+await navigator.mediaDevices.getUserMedia(
+
+{
+video:{
+facingMode:{
+ideal:'environment'
+}
+}
+}
+
+);
+
+const track =
+stream.getVideoTracks()[0];
+
+const caps =
+track.getCapabilities?
+track.getCapabilities():
+{};
+
+if(!caps.torch){
+
+track.stop();
+
+setStatus(
+'🔦 این گوشی/مرورگر کنترل چراغ‌قوه را پشتیبانی نمی‌کند.'
+);
+
+return;
+
+}
+
+await track.applyConstraints(
+
+{
+advanced:[
+{
+torch:true
+}
+]
+}
+
+);
+
+window.__flashTrack =
+track;
+
+setStatus(
+'🔦 چراغ‌قوه روشن است. دوباره همین ابزار را بزنید.'
+);
+
+}catch(e){
+
+console.error(e);
+
+setStatus(
+'🔦 چراغ‌قوه توسط این مرورگر/گوشی قابل کنترل نیست.'
+);
+
+}
+
+}
+
+/* =========================================================
+   COMPASS
+========================================================= */
+
+async function startCompass(){
+
+try{
+
+if(
+typeof DeviceOrientationEvent==='undefined'
+){
+
+throw Error(
+'unsupported'
+);
+
+}
+
+if(
+typeof DeviceOrientationEvent.requestPermission===
+'function'
+){
+
+const p =
+await DeviceOrientationEvent.requestPermission();
+
+if(p!=='granted'){
+
+throw Error(
+'denied'
+);
+
+}
+
+}
+
+if(compassListening){
+
+return;
+
+}
+
+window.addEventListener(
+'deviceorientationabsolute',
+handleCompass,
+true
+);
+
+window.addEventListener(
+'deviceorientation',
+handleCompass,
+true
+);
+
+compassListening=true;
+
+setStatus(
+'🧭 قطب‌نما فعال شد. گوشی را صاف و آرام نگه دارید.'
+);
+
+}catch(e){
+
+setStatus(
+'🧭 قطب‌نما در این مرورگر نیاز به اجازه یا پشتیبانی دستگاه دارد.'
+);
+
+}
+
+}
+
+function handleCompass(e){
+
+let h=null;
+
+if(
+typeof e.webkitCompassHeading===
+'number'
+){
+
+h =
+e.webkitCompassHeading;
+
+}else if(
+typeof e.alpha==='number'
+){
+
+h =
+360-e.alpha;
+
+}
+
+if(h==null){
+
+return;
+
+}
+
+$('compassNeedle')
+.style.transform =
+'rotate('+h+'deg)';
+
+$('compassDegree')
+.textContent =
+Math.round(h)+
+'° — '+
+directionText(h);
+
+}
+
+function directionText(h){
+
+const a=[
+
+'شمال',
+'شمال‌شرق',
+'شرق',
+'جنوب‌شرق',
+'جنوب',
+'جنوب‌غرب',
+'غرب',
+'شمال‌غرب'
+
+];
+
+return a[
+Math.round(h/45)%8
+];
+
+}
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function initializeLanguage(){
+
+const select =
+$('languageSelect');
+
+if(!select){
+return;
+}
+
+select.addEventListener(
+'change',
+function(){
+
+const language =
+this.value;
+
+if(language==='en'){
+
+document.documentElement.lang='en';
+document.documentElement.dir='ltr';
+
+}else if(language==='ar'){
+
+document.documentElement.lang='ar';
+document.documentElement.dir='rtl';
+
+}else{
+
+document.documentElement.lang='fa';
+document.documentElement.dir='rtl';
+
+}
+
+updateSiteLanguage(language);
+updateVideoCaptionsLanguage(language);
+
+}
+);
+
+}
+
+/* =========================================================
+   SITE-WIDE TEXT TRANSLATIONS
+   عنوان‌ها، دکمه‌ها و منوهای اصلی سایت بر اساس زبان انتخابی
+========================================================= */
+
+const CYRUS_I18N = {
+
+brand:{fa:'گردشگری سایروس توریست',en:'Cyrus Tourist',ar:'سايروس توريست للسياحة'},
+navHome:{fa:'خانه',en:'Home',ar:'الرئيسية'},
+navMap:{fa:'نقشه',en:'Map',ar:'الخريطة'},
+navNearby:{fa:'جاذبه‌های اطراف',en:'Nearby',ar:'الأماكن القريبة'},
+navVideos:{fa:'فیلم‌ها',en:'Videos',ar:'الفيديوهات'},
+navResidence:{fa:'اقامتگاه',en:'Stays',ar:'الإقامة'},
+navDownloads:{fa:'دانلود اپلیکیشن',en:'Download App',ar:'تحميل التطبيق'},
+
+heroTitle:{fa:'گردشگری سایروس توریست',en:'Cyrus Tourist',ar:'سايروس توريست للسياحة'},
+heroSub:{fa:'ایران را با سایروس توریست ببینید',en:'Discover Iran with Cyrus Tourist',ar:'اكتشف إيران مع سايروس توريست'},
+
+mainTitle:{fa:'گردشگری ایران',en:'Tourism in Iran',ar:'السياحة في إيران'},
+mainSub:{fa:'طبیعت، فرهنگ، جاذبه‌ها و تجربه‌های سفر',en:'Nature, culture, attractions and travel experiences',ar:'الطبيعة والثقافة والمعالم وتجارب السفر'},
+
+catMap:{fa:'نقشه گردشگری',en:'Tourist Map',ar:'خريطة سياحية'},
+catNearby:{fa:'جاذبه‌های اطراف من',en:'Attractions Near Me',ar:'المعالم القريبة مني'},
+catAttractions:{fa:'جاذبه‌های گردشگری',en:'Tourist Attractions',ar:'المعالم السياحية'},
+catVideos:{fa:'فیلم‌های گردشگری',en:'Tourism Videos',ar:'فيديوهات سياحية'},
+catResidence:{fa:'اقامتگاه',en:'Stays',ar:'الإقامة'},
+catGuide:{fa:'راهنمای سفر',en:'Travel Guide',ar:'دليل السفر'},
+
+mapTitle:{fa:'نقشه گردشگری',en:'Tourist Map',ar:'خريطة سياحية'},
+mapSub:{fa:'موقعیت خود را پیدا کنید و جاذبه‌های اطراف را ببینید.',en:'Find your location and see nearby attractions.',ar:'حدد موقعك وشاهد المعالم القريبة.'},
+mapSearchPlaceholder:{fa:'جستجوی مکان...',en:'Search a place...',ar:'ابحث عن مكان...'},
+mapSearchBtn:{fa:'جستجو',en:'Search',ar:'بحث'},
+myLocationBtn:{fa:'📍 موقعیت من',en:'📍 My Location',ar:'📍 موقعي'},
+catNearby2:{fa:'جاذبه‌های اطراف',en:'Nearby Attractions',ar:'المعالم القريبة'},
+mapInfo:{fa:'برای استفاده از موقعیت مکانی، اجازه دسترسی به موقعیت را در مرورگر تأیید کنید.',en:'To use your location, please allow location access in your browser.',ar:'لاستخدام موقعك، يرجى السماح بالوصول إلى الموقع في المتصفح.'},
+
+toolboxTitle:{fa:'🧰 جعبه ابزار گردشگری',en:'🧰 Traveler Toolbox',ar:'🧰 أدوات السائح'},
+toolboxSub:{fa:'ابزارهای کاربردی برای سفر',en:'Handy tools for your trip',ar:'أدوات مفيدة لرحلتك'},
+toolReset:{fa:'بازنشانی',en:'Reset',ar:'إعادة تعيين'},
+toolMap:{fa:'نقشه',en:'Map',ar:'الخريطة'},
+toolLocation:{fa:'موقعیت من',en:'My Location',ar:'موقعي'},
+toolWeather:{fa:'آب‌وهوا',en:'Weather',ar:'الطقس'},
+toolEmergency:{fa:'اضطراری',en:'Emergency',ar:'الطوارئ'},
+toolDistance:{fa:'اندازه‌گیری فاصله',en:'Measure Distance',ar:'قياس المسافة'},
+toolFlash:{fa:'چراغ‌قوه',en:'Flashlight',ar:'المصباح'},
+toolCompass:{fa:'قطب‌نما',en:'Compass',ar:'البوصلة'},
+
+nearbyTitle:{fa:'📍 جاذبه‌های اطراف من',en:'📍 Attractions Near Me',ar:'📍 المعالم القريبة مني'},
+nearbySub:{fa:'جاذبه‌های گردشگری، تاریخی و طبیعی نزدیک شما',en:'Tourist, historical and natural attractions near you',ar:'معالم سياحية وتاريخية وطبيعية بالقرب منك'},
+
+attractionsTitle:{fa:'جاذبه‌های گردشگری',en:'Tourist Attractions',ar:'المعالم السياحية'},
+attractionsSub:{fa:'مکان‌های دیدنی ایران',en:"Iran's must-see places",ar:'أماكن يجب زيارتها في إيران'},
+catHistoric:{fa:'تاریخی',en:'Historic',ar:'تاريخي'},
+catNature:{fa:'طبیعی',en:'Nature',ar:'طبيعي'},
+catCultural:{fa:'فرهنگی',en:'Cultural',ar:'ثقافي'},
+catCoastal:{fa:'ساحلی',en:'Coastal',ar:'ساحلي'},
+catEcotour:{fa:'طبیعت‌گردی',en:'Ecotourism',ar:'سياحة بيئية'},
+catSights:{fa:'دیدنی‌ها',en:'Sightseeing',ar:'معالم'},
+
+videosTitle:{fa:'🎬 فیلم‌های گردشگری',en:'🎬 Tourism Videos',ar:'🎬 فيديوهات سياحية'},
+videosCount:{fa:'۲۷ فیلم گردشگری',en:'27 tourism videos',ar:'27 فيديو سياحي'},
+videoListTitle:{fa:'فهرست فیلم‌های گردشگری سایروس توریست',en:'Cyrus Tourist Video Index',ar:'فهرس فيديوهات سايروس توريست'},
+
+residenceTitle:{fa:'🏡 اقامتگاه',en:'🏡 Stays',ar:'🏡 الإقامة'},
+residenceSub:{fa:'اقامتگاه‌های گردشگری',en:'Tourist accommodations',ar:'أماكن الإقامة السياحية'},
+catHotel:{fa:'هتل',en:'Hotel',ar:'فندق'},
+catGuesthouse:{fa:'مهمان‌خانه',en:'Guesthouse',ar:'بيت ضيافة'},
+catEcolodge:{fa:'بوم‌گردی',en:'Eco-lodge',ar:'نزل بيئي'},
+catCamp:{fa:'کمپ',en:'Camp',ar:'مخيم'},
+
+guideTitle:{fa:'🧭 راهنمای سفر',en:'🧭 Travel Guide',ar:'🧭 دليل السفر'},
+guideSub:{fa:'راهنمای گردشگری سایروس توریست',en:'Cyrus Tourist travel guide',ar:'دليل سايروس توريست السياحي'},
+catItinerary:{fa:'برنامه سفر',en:'Itinerary',ar:'برنامج الرحلة'},
+catNavigation:{fa:'مسیریابی',en:'Navigation',ar:'الملاحة'},
+catTips:{fa:'نکات سفر',en:'Travel Tips',ar:'نصائح السفر'},
+catSupport:{fa:'پشتیبانی',en:'Support',ar:'الدعم'},
+
+downloadsTitle:{fa:'📱 دانلود اپلیکیشن سایروس توریست',en:'📱 Download the Cyrus Tourist App',ar:'📱 تحميل تطبيق سايروس توريست'},
+downloadsSub:{fa:'نسخه‌های جدید برنامه را از همین مسیر دریافت کنید.',en:'Get the latest app versions right here.',ar:'احصل على أحدث إصدارات التطبيق من هنا.'}
+
+};
+
+function updateSiteLanguage(language){
+
+const lang =
+(language==='en'||language==='ar') ? language : 'fa';
+
+document.querySelectorAll('[data-i18n]').forEach(el=>{
+
+const key =
+el.getAttribute('data-i18n');
+
+const entry =
+CYRUS_I18N[key];
+
+if(entry && entry[lang]!==undefined){
+el.textContent = entry[lang];
+}
+
+});
+
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+
+const key =
+el.getAttribute('data-i18n-placeholder');
+
+const entry =
+CYRUS_I18N[key];
+
+if(entry && entry[lang]!==undefined){
+el.setAttribute('placeholder', entry[lang]);
+}
+
+});
+
+}
+
+/* =========================================================
+   VIDEO CAPTIONS (زبان)
+   عنوان و مکان هر فیلم بر اساس زبان انتخابی به‌روزرسانی می‌شود
+========================================================= */
+
+function updateVideoCaptionsLanguage(language){
+
+const suffix =
+(language==='en') ? 'en' :
+(language==='ar') ? 'ar' : 'fa';
+
+document
+.querySelectorAll('.videoCard strong[data-title-fa]')
+.forEach(el=>{
+
+const value =
+el.dataset['title'+suffix.charAt(0).toUpperCase()+suffix.slice(1)];
+
+if(value){
+el.textContent = value;
+}
+
+});
+
+document
+.querySelectorAll('.videoCard .tag[data-loc-fa]')
+.forEach(el=>{
+
+const value =
+el.dataset['loc'+suffix.charAt(0).toUpperCase()+suffix.slice(1)];
+
+if(value){
+el.textContent = value;
+}
+
+});
+
+document
+.querySelectorAll('.videoTextList .vlTitle[data-title-fa]')
+.forEach(el=>{
+
+const value =
+el.dataset['title'+suffix.charAt(0).toUpperCase()+suffix.slice(1)];
+
+if(value){
+el.textContent = value;
+}
+
+});
+
+document
+.querySelectorAll('.videoTextList .vlLoc[data-loc-fa]')
+.forEach(el=>{
+
+const value =
+el.dataset['loc'+suffix.charAt(0).toUpperCase()+suffix.slice(1)];
+
+if(value){
+el.textContent = ' — '+value;
+}
+
+});
+
+}
+
+/* =========================================================
+   VIDEO SYSTEM
+   لینک خالی = در حال بارگذاری بزودی
+========================================================= */
+
+function initializeVideos(){
+
+document
+.querySelectorAll('.videoCard')
+.forEach(card=>{
+
+const id =
+card.dataset.video;
+
+const url =
+CYRUS_CONFIG.videos[id];
+
+const iframe =
+card.querySelector('iframe');
+
+const button =
+card.querySelector('.videoAction');
+
+if(url){
+
+if(iframe){
+
+iframe.src =
+url;
+
+}
+
+if(button){
+
+button.onclick=()=>{
+
+window.open(
+url,
+'_blank',
+'noopener'
+);
+
+};
+
+}
+
+}else{
+
+if(iframe){
+
+iframe.removeAttribute(
+'src'
+);
+
+iframe.setAttribute(
+'title',
+'فیلم بزودی'
+);
+
+iframe.style.background =
+'linear-gradient(145deg,#071923,#0b2d39)';
+
+}
+
+if(button){
+
+button.onclick=()=>{
+
+openResourceModal(
+
+'🎬 فیلم گردشگری '+id,
+
+'لینک این فیلم هنوز ثبت نشده است.<br><br>'+
+'<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>',
+
+'#',
+false
+
+);
+
+};
+
+}
+
+}
+
+});
+
+document
+.querySelectorAll('[data-video-jump]')
+.forEach(link=>{
+
+link.addEventListener(
+'click',
+e=>{
+
+e.preventDefault();
+
+const id =
+link.dataset.videoJump;
+
+const card =
+document.querySelector(
+'.videoCard[data-video="'+id+'"]'
+);
+
+if(card){
+
+card.scrollIntoView(
+{behavior:'smooth',block:'center'}
+);
+
+card.style.outline =
+'2px solid var(--gold)';
+
+setTimeout(
+()=>{card.style.outline='';},
+1600
+);
+
+}
+
+}
+);
+
+});
+
+}
+
+/* =========================================================
+   RESOURCE MODAL
+========================================================= */
+
+function openResourceModal(
+title,
+text,
+url='#',
+showOpen=true
+){
+
+const modal =
+$('resourceModal');
+
+$('resourceModalTitle')
+.textContent =
+title;
+
+$('resourceModalText')
+innerHTML =
+text;
+
+const open =
+$('resourceOpenButton');
+
+if(showOpen){
+
+open.style.display =
+'inline-block';
+
+open.href =
+url;
+
+}else{
+
+open.style.display =
+'none';
+
+}
+
+modal.classList.add(
+'show'
+);
+
+document.body.classList.add(
+'modal-open'
+);
+
+}
+
+function closeResourceModal(){
+
+$('resourceModal')
+.classList.remove(
+'show'
+);
+
+document.body.classList.remove(
+'modal-open'
+);
+
+}
+
+function initializeResourceSystem(){
+
+$('resourceCloseButton')
+.onclick =
+closeResourceModal;
+
+$('resourceModal')
+.addEventListener(
+'click',
+e=>{
+
+if(
+e.target===
+$('resourceModal')
+){
+
+closeResourceModal();
+
+}
+
+}
+);
+
+}
+
+/* =========================================================
+   DOWNLOAD STATUS
+========================================================= */
+
+function cyrusGetLanguage(){
+
+const lang =
+(document.documentElement.lang || 'fa')
+.toLowerCase()
+.split('-')[0];
+
+if(lang==='en') return 'en';
+if(lang==='ar') return 'ar';
+return 'fa';
+
+}
+
+function cyrusLoadingMessage(){
+
+const lang = cyrusGetLanguage();
+
+if(lang==='en'){
+return {
+title:'Cyrus Tourist',
+text:'<span class="loadingSoon">Loading; coming soon... Thank you</span>'
+};
+}
+
+if(lang==='ar'){
+return {
+title:'سايروس توريست',
+text:'<span class="loadingSoon">جارٍ التحميل؛ قريباً... شكراً لكم</span>'
+};
+}
+
+return {
+title:'سایروس توریست',
+text:'<span class="loadingSoon">در حال بارگذاری؛ بزودی... سپاسگزاریم</span>'
+};
+
+}
+
+function cyrusDownloadTitle(key){
+
+const lang=cyrusGetLanguage();
+
+const titles={
+fa:{googlePlay:'Google Play',appStore:'App Store',myket:'مایکت',bazaar:'بازار',androidFile:'نسخه Android',iosFile:'نسخه iOS'},
+en:{googlePlay:'Google Play',appStore:'App Store',myket:'Myket',bazaar:'Bazaar',androidFile:'Android',iosFile:'iOS'},
+ar:{googlePlay:'Google Play',appStore:'App Store',myket:'مايكت',bazaar:'بازار',androidFile:'Android',iosFile:'iOS'}
+};
+
+return (titles[lang] && titles[lang][key]) || titles.fa[key] || 'Cyrus Tourist';
+
+}
+
+async function cyrusFileExists(url){
+
+if(!url || !url.trim()) return false;
+
+try{
+const response=await fetch(url,{method:'HEAD',cache:'no-store'});
+return response.ok;
+}catch(_){
+return false;
+}
+
+}
+
+async function cyrusHandleDownload(key){
+
+const destination=(CYRUS_CONFIG[key] || '').trim();
+
+if(!destination){
+showCyrusUnavailableDownload();
+return;
+}
+
+if(key==='androidFile' || key==='iosFile'){
+
+const exists=await cyrusFileExists(destination);
+
+if(!exists){
+showCyrusUnavailableDownload();
+return;
+}
+
+const link=document.createElement('a');
+link.href=destination;
+link.download='';
+link.rel='noopener';
+document.body.appendChild(link);
+link.click();
+link.remove();
+return;
+}
+
+window.open(destination,'_blank','noopener,noreferrer');
+
+}
+
+function showCyrusUnavailableDownload(){
+const modal=$('cyrusUnavailableModal');
+if(!modal) return;
+modal.classList.add('show');
+document.body.classList.add('modal-open');
+}
+
+function closeCyrusUnavailableDownload(){
+const modal=$('cyrusUnavailableModal');
+if(!modal) return;
+modal.classList.remove('show');
+document.body.classList.remove('modal-open');
+}
+
+
+function initializeCyrusHeaderDownloads(){
+
+const buttons=document.querySelectorAll('[data-cyrus-download]');
+
+buttons.forEach(button=>{
+
+button.addEventListener('click',function(event){
+
+event.preventDefault();
+
+this.classList.add('cyrusDownloadPressed');
+
+const pressedButton=this;
+
+setTimeout(()=>{
+pressedButton.classList.remove('cyrusDownloadPressed');
+pressedButton.blur();
+},350);
+
+const key=this.getAttribute('data-cyrus-download');
+
+if(key){
+void cyrusHandleDownload(key);
+}
+
+});
+
+});
+
+const unavailableModal=$('cyrusUnavailableModal');
+const unavailableBack=$('cyrusUnavailableBack');
+
+function clearCyrusDownloadHighlight(){
+
+document.querySelectorAll('.cyrusDownloadPressed').forEach(el=>{
+el.classList.remove('cyrusDownloadPressed');
+el.blur();
+});
+
+if(document.activeElement && document.activeElement.classList &&
+document.activeElement.classList.contains('cyrusHeroHotspot')){
+document.activeElement.blur();
+}
+
+}
+
+if(unavailableBack){
+unavailableBack.onclick=()=>{
+closeCyrusUnavailableDownload();
+clearCyrusDownloadHighlight();
+};
+}
+
+if(unavailableModal){
+unavailableModal.addEventListener('click',e=>{
+if(e.target===unavailableModal){
+closeCyrusUnavailableDownload();
+clearCyrusDownloadHighlight();
+}
+});
+}
+
+}
+
+function initializeDownloads(){
+
+initializeCyrusHeaderDownloads();
+
+const androidStatus=$('androidStatus');
+const iosStatus=$('iosStatus');
+
+if(androidStatus){
+androidStatus.innerHTML = CYRUS_CONFIG.androidFile
+? 'نسخه فعلی آماده دریافت است.'
+: '<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>';
+}
+
+if(iosStatus){
+iosStatus.innerHTML = CYRUS_CONFIG.iosFile
+? 'نسخه iOS آماده دریافت است.'
+: '<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>';
+}
+
+}
+
+/* =========================================================
+   REGISTER PLACEHOLDER
+========================================================= */
+
+function initializeRegister(){
+
+document
+.querySelectorAll('.registerButton')
+.forEach(
+b=>
+b.onclick=
+()=>alert(
+
+'اطلاعات اولیه '+
+b.dataset.type+
+' دریافت شد.\n\n'+
+'این بخش فعلاً برای آماده‌سازی سیستم ثبت اطلاعات طراحی شده است.'
+
+)
+);
+
+}
+
+/* =========================================================
+   THANK YOU
+========================================================= */
+
+function initializeThanks(){
+
+const button =
+$('thanksButton');
+
+const modal =
+$('thanksModal');
+
+const close =
+$('closeThanks');
+
+button.onclick=()=>{
+
+modal.classList.add(
+'show'
+);
+
+document.body.classList.add(
+'modal-open'
+);
+
+};
+
+close.onclick=()=>{
+
+modal.classList.remove(
+'show'
+);
+
+document.body.classList.remove(
+'modal-open'
+);
+
+};
+
+modal.addEventListener(
+'click',
+e=>{
+
+if(
+e.target===modal
+){
+
+modal.classList.remove(
+'show'
+);
+
+document.body.classList.remove(
+'modal-open'
+);
+
+}
+
+}
+);
+
+}
+
+/* =========================================================
+   MAIN INITIALIZATION
+========================================================= */
+
+document.addEventListener(
+'DOMContentLoaded',
+()=>{
+
+initializeMap();
+
+initializeLanguage();
+
+initializeVideos();
+
+initializeDownloads();
+
+initializeResourceSystem();
+
+initializeThanks();
+
+$('nearbyButton').onclick =
+getNearbyAttractions;
+
+$('mapNearbyButton').onclick =
+()=>{
+
+location.hash='nearby';
+
+setTimeout(
+getNearbyAttractions,
+400
+);
+
+};
+
+initializeNearbyCategories();
+
+initializeRegister();
+
+initToolbox();
+
+}
+);
+
 </script>
+
 </body>
 </html>
