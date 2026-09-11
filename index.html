@@ -5445,5 +5445,19 @@ initToolbox();
 
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("sw.js")
+      .then(function () {
+        console.log("Cyrus Tourist: Service Worker registered");
+      })
+      .catch(function (err) {
+        console.log("Cyrus Tourist: Service Worker failed", err);
+      });
+  });
+}
+</script>
 </body>
 </html>
