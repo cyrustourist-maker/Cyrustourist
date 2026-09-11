@@ -5184,6 +5184,11 @@ return false;
 
 async function cyrusHandleDownload(key){
 
+if(key==='iosFile' || key==='appStore'){
+window.location.href='downloads/ios.html';
+return;
+}
+
 const destination=(CYRUS_CONFIG[key] || '').trim();
 
 if(!destination){
@@ -5191,7 +5196,7 @@ showCyrusUnavailableDownload();
 return;
 }
 
-if(key==='androidFile' || key==='iosFile'){
+if(key==='androidFile'){
 
 const exists=await cyrusFileExists(destination);
 
@@ -5208,6 +5213,7 @@ document.body.appendChild(link);
 link.click();
 link.remove();
 return;
+
 }
 
 window.open(destination,'_blank','noopener,noreferrer');
@@ -5307,9 +5313,7 @@ androidStatus.innerHTML = CYRUS_CONFIG.androidFile
 }
 
 if(iosStatus){
-iosStatus.innerHTML = CYRUS_CONFIG.iosFile
-? 'نسخه iOS آماده دریافت است.'
-: '<span class="loadingSoon">در حال بارگذاری؛ بزودی...</span>';
+iosStatus.innerHTML = 'نصب مستقیم اپلیکیشن سایروس توریست روی iPhone و iPad — بدون نیاز به App Store، از طریق Safari.';
 }
 
 }
