@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>فیلم‌های اقامتگاه‌ها | سایروس توریست</title>
+<meta name="description" content="گالری فیلم اقامتگاه‌های سایروس توریست با مسیریابی، امکانات، آب‌وهوا و تماس مستقیم">
+<meta name="theme-color" content="#070f18">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/images/logo.png">
+<style>
+:root{
+  --bg:#070f18;
+  --card:#0d2432;
+  --cardAlt:#0a1c28;
+  --gold:#ffd36a;
+  --goldBright:#ffe39a;
+  --teal:#22e0ad;
+  --tealBright:#6df5cf;
+  --brand1:#11998e;
+  --brand2:#38ef7d;
+  --brand3:#667eea;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#fff;
+  font-family:Tahoma,Arial,sans-serif;
+  padding-bottom:40px;
+}
+.header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,211,106,.18);
+}
+.backBtn{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--card);
+  border:1px solid rgba(255,211,106,.28);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:16px;flex-shrink:0;
+}
+.headerTitle{font-size:16px;font-weight:bold;}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:14px;
+}
+.slotCard{
+  border-radius:18px;
+  padding:12px;
+  min-height:168px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  cursor:pointer;
+  border:1px solid rgba(255,211,106,.18);
+  background:transparent;
+}
+.slotCard.assigned{
+  background:linear-gradient(135deg,var(--cardAlt),var(--card));
+  border-color:rgba(255,211,106,.28);
+}
+.codeBadge{
+  display:inline-block;
+  padding:3px 9px;
+  border-radius:20px;
+  font-size:10.5px;font-weight:bold;color:#fff;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+  width:fit-content;
+}
+.slotTopRow{display:flex;align-items:center;justify-content:space-between;}
+.slotTitle{
+  font-size:13px;font-weight:bold;color:#fff;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  margin-top:10px;
+}
+.slotLoc{
+  font-size:10.5px;color:var(--goldBright);margin-top:4px;
+  display:flex;align-items:center;gap:3px;
+}
+.emptyIcon{font-size:24px;color:rgba(255,255,255,.35);margin-top:auto;}
+.emptyLabel{font-size:12px;font-weight:bold;color:rgba(255,255,255,.55);margin-top:6px;}
+.emptySub{font-size:10px;color:rgba(255,255,255,.3);}
+
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(3,10,16,.96);
+  z-index:60;overflow-y:auto;
+  display:none;
+}
+.overlay.show{display:block;}
+.detailClose{
+  position:sticky;top:12px;right:12px;float:left;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;margin:12px;z-index:5;
+}
+.videoWrap{width:100%;aspect-ratio:16/9;background:#000;}
+.videoWrap iframe{width:100%;height:100%;border:0;display:block;}
+.detailBody{padding:16px 16px 30px;}
+.dTitle{font-size:18px;font-weight:bold;color:#fff;}
+.dRating{font-size:12.5px;color:var(--gold);margin-top:4px;}
+.dLoc{font-size:13px;color:var(--goldBright);margin-top:6px;display:flex;align-items:center;gap:4px;}
+.dDesc{
+  font-size:13.5px;line-height:1.9;color:rgba(255,255,255,.72);margin-top:16px;
+  max-height:4.8em;overflow:hidden;
+}
+.dDesc.expanded{max-height:none;}
+.moreBtn{color:var(--gold);font-weight:bold;font-size:12.5px;margin-top:6px;cursor:pointer;display:inline-block;}
+
+.btnPrimary{
+  width:100%;border:0;border-radius:16px;padding:14px;margin-top:18px;
+  background:linear-gradient(135deg,var(--teal),var(--tealBright));
+  color:#03202a;font-weight:bold;font-size:14px;font-family:inherit;
+  display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+  text-decoration:none;
+}
+.btnOutline{
+  width:100%;border:1px solid rgba(255,211,106,.35);border-radius:16px;padding:13px 16px;margin-top:12px;
+  background:transparent;color:#fff;font-size:13.5px;font-family:inherit;
+  display:flex;align-items:center;gap:10px;cursor:pointer;text-align:right;
+}
+.btnOutline .chev{margin-right:auto;opacity:.4;}
+
+.panel{
+  display:none;margin-top:10px;background:var(--card);border:1px solid rgba(255,211,106,.2);
+  border-radius:14px;padding:12px 14px;
+}
+.panel.show{display:block;}
+.amenityRow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,.06);}
+.amenityRow:last-child{border-bottom:none;}
+.amenityLabel{display:flex;align-items:center;gap:8px;color:#fff;}
+.amenityYes{color:var(--teal);font-weight:bold;}
+.amenityNo{color:rgba(255,255,255,.25);}
+
+.weatherBox{
+  margin-top:12px;border-radius:16px;border:1px solid rgba(255,211,106,.25);
+  background:linear-gradient(135deg,#103b50,#0d2432);overflow:hidden;
+}
+.weatherHead{
+  display:flex;align-items:center;gap:8px;padding:13px 16px;cursor:pointer;
+}
+.weatherHead .wTitle{flex:1;font-size:13.5px;font-weight:bold;}
+.weatherBody{display:none;padding:0 16px 14px;font-size:12px;color:rgba(255,255,255,.75);}
+.weatherBody.show{display:block;}
+
+.linkRow{
+  display:flex;align-items:center;gap:10px;padding:13px 16px;margin-top:10px;
+  background:var(--card);border:1px solid rgba(255,211,106,.25);border-radius:14px;
+  color:#fff;text-decoration:none;font-size:13.5px;
+}
+.linkRow .chev{margin-right:auto;opacity:.35;}
+
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:var(--card);border-radius:24px 24px 0 0;
+  padding:16px 18px 26px;display:none;
+  box-shadow:0 -10px 40px rgba(0,0,0,.5);
+}
+.sheet.show{display:block;}
+.sheetHandle{width:40px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;margin:0 auto 14px;}
+.sheetTitle{color:var(--goldBright);font-weight:bold;font-size:15px;margin-bottom:14px;}
+.contactOpt{
+  display:flex;align-items:center;gap:12px;background:#103b50;border:1px solid rgba(255,211,106,.25);
+  border-radius:16px;padding:12px 14px;margin-bottom:10px;cursor:pointer;text-decoration:none;color:#fff;
+}
+.contactIcon{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.contactLabel{font-size:12px;color:rgba(255,255,255,.55);}
+.contactPhone{font-size:14px;font-weight:bold;}
+
+.emptySheetIcon{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+  display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;
+}
+.sheetOverlayBg{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:65;display:none;
+}
+.sheetOverlayBg.show{display:block;}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a class="backBtn" href="residences.html">←</a>
+<div class="headerTitle">🎬 فیلم‌های اقامتگاه‌ها</div>
+</div>
+
+<div class="grid" id="slotsGrid"></div>
+
+<!-- DETAIL OVERLAY -->
+<div class="overlay" id="detailOverlay">
+  <div class="detailClose" id="detailCloseBtn">✕</div>
+  <div style="clear:both;"></div>
+  <div class="videoWrap">
+    <iframe id="detailIframe" src="" allowfullscreen></iframe>
+  </div>
+  <div class="detailBody">
+    <div class="dTitle" id="detailName"></div>
+    <div class="dRating" id="detailRating"></div>
+    <div class="dLoc">📍 <span id="detailLoc"></span></div>
+
+    <div class="dDesc" id="detailDesc"></div>
+    <div class="moreBtn" id="detailMoreBtn">بیشتر ▾</div>
+
+    <a class="btnPrimary" id="detailRouteBtn" href="#" target="_blank" rel="noopener">🗺️ مسیریابی سریع</a>
+
+    <button class="btnOutline" id="amenitiesToggle">☑️ امکانات اقامتگاه <span class="chev">‹</span></button>
+    <div class="panel" id="amenitiesPanel"></div>
+
+    <div class="weatherBox">
+      <div class="weatherHead" id="weatherToggle">
+        <span>📍</span>
+        <span class="wTitle" id="weatherTitle">آب‌وهوا</span>
+        <span id="weatherSummary" style="font-size:13px;"></span>
+        <span id="weatherChev">▾</span>
+      </div>
+      <div class="weatherBody" id="weatherBody">در حال بارگذاری…</div>
+    </div>
+
+    <button class="btnOutline" id="contactToggle" style="margin-top:12px;">📞 تماس مستقیم <span class="chev">‹</span></button>
+
+    <a class="linkRow" id="detailInstagram" href="#" target="_blank" rel="noopener" style="display:none;">📷 اینستاگرام <span class="chev">‹</span></a>
+    <a class="linkRow" id="detailWebsite" href="#" target="_blank" rel="noopener" style="display:none;">🌐 وب‌سایت <span class="chev">‹</span></a>
+  </div>
+</div>
+
+<!-- CONTACT SHEET -->
+<div class="sheetOverlayBg" id="contactBg"></div>
+<div class="sheet" id="contactSheet">
+  <div class="sheetHandle"></div>
+  <div class="sheetTitle">📞 تماس مستقیم — یک شماره را انتخاب کنید</div>
+  <div id="contactOptions"></div>
+</div>
+
+<!-- EMPTY SLOT SHEET -->
+<div class="sheetOverlayBg" id="emptyBg"></div>
+<div class="sheet" id="emptySheet">
+  <div class="sheetHandle"></div>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+    <div class="emptySheetIcon">🏠</div>
+    <div style="color:var(--goldBright);font-weight:bold;font-size:15px;" id="emptySheetTitle"></div>
+  </div>
+  <p style="color:rgba(255,255,255,.7);font-size:13px;line-height:1.9;">
+    این جایگاه هنوز به هیچ اقامتگاهی اختصاص نیافته است. با ثبت‌نام و عضویت یک‌ساله، اقامتگاه شما همین‌جا با فیلم، توضیحات، آب‌وهوا و راه ارتباطی مستقیم به گردشگران معرفی می‌شود.
+  </p>
+  <a class="btnPrimary" href="residences.html#registerResidenceBtn" style="margin-top:6px;">✅ ثبت‌نام اقامتگاه (عضویت یک‌ساله)</a>
+</div>
+
+<script>
+const RESIDENCE_SLOTS = [
+  {
+    code:1, assigned:true,
+    name:"اقامتگاه نمونه سایروس توریست",
+    city:"مشهد", province:"خراسان رضوی",
+    description:"این یک نمونه از صفحه‌ی معرفی و نمایش فیلم اقامتگاه است. پس از ثبت‌نام اقامتگاه شما در سایروس توریست، همین قالب با فیلم، توضیحات، آدرس، آب‌وهوا و راه‌های تماس واقعی اقامتگاه شما پر می‌شود.",
+    aparatHash:"w43c127",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    instagramUrl:"https://www.instagram.com/cyrustourist?igsi=aDc3end6dTNqNW1o",
+    websiteUrl:"https://cyrustourist-maker.github.io/Cyrustourist/",
+    lat:36.2970, lon:59.6062,
+    rating:4.7, ratingCount:128,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:3,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:true, elevator:false, yard:true, pet:false
+    }
+  }
+];
+for(let i=2;i<=20;i++){ RESIDENCE_SLOTS.push({code:i, assigned:false}); }
+
+const AMENITY_DEFS = [
+  {key:"parking", icon:"🅿️", label:"پارکینگ"},
+  {key:"westernToilet", icon:"🚽", label:"سرویس فرنگی"},
+  {key:"iranianToilet", icon:"🚽", label:"سرویس ایرانی"},
+  {key:"bedrooms", icon:"🛏️", label:"تعداد اتاق‌خواب", isCount:true},
+  {key:"internet", icon:"📶", label:"اینترنت / وای‌فای"},
+  {key:"kitchen", icon:"🍳", label:"آشپزخانه"},
+  {key:"ac", icon:"❄️", label:"کولر / تهویه"},
+  {key:"heating", icon:"🌡️", label:"سیستم گرمایشی"},
+  {key:"hotWater", icon:"🚿", label:"آب‌گرم"},
+  {key:"breakfast", icon:"🍳", label:"صبحانه"},
+  {key:"elevator", icon:"🛗", label:"آسانسور"},
+  {key:"yard", icon:"🌳", label:"حیاط / بالکن"},
+  {key:"pet", icon:"🐾", label:"مناسب حیوان خانگی"}
+];
+
+const grid = document.getElementById("slotsGrid");
+
+RESIDENCE_SLOTS.forEach(function(slot){
+  const card = document.createElement("div");
+  card.className = "slotCard" + (slot.assigned ? " assigned" : "");
+
+  if(slot.assigned){
+    card.innerHTML =
+      '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><span>▶️</span></div>' +
+      '<div class="slotTitle">'+slot.name+'</div>' +
+      '<div class="slotLoc">📍 '+slot.city+'</div>';
+    card.onclick = function(){ openDetail(slot); };
+  } else {
+    card.innerHTML =
+      '<span class="codeBadge">#'+slot.code+'</span>' +
+      '<div class="emptyIcon">➕</div>' +
+      '<div class="emptyLabel">جای خالی</div>' +
+      '<div class="emptySub">عضویت یک‌ساله</div>';
+    card.onclick = function(){ openEmptySheet(slot.code); };
+  }
+
+  grid.appendChild(card);
+});
+
+/* ================= DETAIL OVERLAY ================= */
+
+const detailOverlay = document.getElementById("detailOverlay");
+const detailIframe = document.getElementById("detailIframe");
+let currentSlot = null;
+
+function openDetail(slot){
+  currentSlot = slot;
+
+  detailIframe.src = "https://www.aparat.com/video/video/embed/videohash/" + slot.aparatHash + "/vt/frame";
+  document.getElementById("detailName").textContent = slot.name;
+  document.getElementById("detailRating").textContent = "⭐ " + slot.rating + " (" + slot.ratingCount + " نظر)";
+  document.getElementById("detailLoc").textContent = slot.city + (slot.province ? "، " + slot.province : "");
+
+  const descEl = document.getElementById("detailDesc");
+  descEl.textContent = slot.description || "";
+  descEl.classList.remove("expanded");
+  document.getElementById("detailMoreBtn").textContent = "بیشتر ▾";
+
+  document.getElementById("detailRouteBtn").href =
+    "https://www.google.com/maps/dir/?api=1&destination=" + slot.lat + "," + slot.lon;
+
+  renderAmenities(slot);
+  document.getElementById("amenitiesPanel").classList.remove("show");
+
+  document.getElementById("weatherBody").classList.remove("show");
+  document.getElementById("weatherBody").innerHTML = "در حال بارگذاری…";
+  document.getElementById("weatherSummary").textContent = "";
+  document.getElementById("weatherTitle").textContent = "آب‌وهوای " + slot.city;
+  weatherLoadedFor = null;
+
+  const igEl = document.getElementById("detailInstagram");
+  if(slot.instagramUrl){ igEl.style.display="flex"; igEl.href = slot.instagramUrl; } else { igEl.style.display="none"; }
+
+  const webEl = document.getElementById("detailWebsite");
+  if(slot.websiteUrl){ webEl.style.display="flex"; webEl.href = slot.websiteUrl; } else { webEl.style.display="none"; }
+
+  detailOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeDetail(){
+  detailOverlay.classList.remove("show");
+  detailIframe.src = "";
+  document.body.style.overflow = "";
+}
+document.getElementById("detailCloseBtn").onclick = closeDetail;
+
+document.getElementById("detailMoreBtn").onclick = function(){
+  const descEl = document.getElementById("detailDesc");
+  const expanded = descEl.classList.toggle("expanded");
+  this.textContent = expanded ? "بازگشت ▴" : "بیشتر ▾";
+};
+
+/* ================= AMENITIES ================= */
+
+function renderAmenities(slot){
+  const panel = document.getElementById("amenitiesPanel");
+  panel.innerHTML = "";
+  AMENITY_DEFS.forEach(function(def){
+    const val = slot.amenities ? slot.amenities[def.key] : false;
+    const row = document.createElement("div");
+    row.className = "amenityRow";
+    let statusHtml;
+    if(def.isCount){
+      statusHtml = val ? '<span class="amenityYes">'+val+' اتاق</span>' : '<span class="amenityNo">—</span>';
+    } else {
+      statusHtml = val ? '<span class="amenityYes">✓</span>' : '<span class="amenityNo">✗</span>';
+    }
+    row.innerHTML = '<span class="amenityLabel">'+def.icon+' '+def.label+'</span>' + statusHtml;
+    panel.appendChild(row);
+  });
+}
+
+document.getElementById("amenitiesToggle").onclick = function(){
+  document.getElementById("amenitiesPanel").classList.toggle("show");
+};
+
+/* ================= WEATHER ================= */
+
+let weatherLoadedFor = null;
+
+document.getElementById("weatherToggle").onclick = function(){
+  const body = document.getElementById("weatherBody");
+  const willShow = !body.classList.contains("show");
+  body.classList.toggle("show");
+  document.getElementById("weatherChev").textContent = willShow ? "▴" : "▾";
+  if(willShow && weatherLoadedFor !== currentSlot.code){
+    loadWeather(currentSlot);
+  }
+};
+
+async function loadWeather(slot){
+  const body = document.getElementById("weatherBody");
+  const summary = document.getElementById("weatherSummary");
+  body.innerHTML = "در حال دریافت آب‌وهوا…";
+  try{
+    const geoUrl = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&accept-language=fa&q=" +
+      encodeURIComponent(slot.city + (slot.province ? ", " + slot.province : ""));
+    const geoRes = await fetch(geoUrl);
+    const geoData = await geoRes.json();
+
+    if(!geoData || !geoData.length){
+      body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+      return;
+    }
+
+    const lat = geoData[0].lat, lon = geoData[0].lon;
+
+    const wUrl = "https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon+
+      "&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto";
+    const wRes = await fetch(wUrl);
+    const wData = await wRes.json();
+    const cur = wData.current;
+
+    if(!cur){
+      body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+      return;
+    }
+
+    const emoji = weatherEmoji(cur.weather_code);
+    const label = weatherLabel(cur.weather_code);
+    const temp = Math.round(cur.temperature_2m);
+
+    summary.textContent = emoji + " " + temp + "°";
+    body.innerHTML =
+      '<div>'+label+'</div>' +
+      '<div style="margin-top:6px;">💧 '+cur.relative_humidity_2m+'٪ &nbsp; 🌬️ '+Math.round(cur.wind_speed_10m)+' km/h</div>';
+
+    weatherLoadedFor = slot.code;
+  }catch(e){
+    body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+  }
+}
+
+function weatherEmoji(code){
+  if(code===0) return "☀️";
+  if(code===1||code===2) return "🌤️";
+  if(code===3) return "☁️";
+  if(code===45||code===48) return "🌫️";
+  if(code>=51&&code<=57) return "🌦️";
+  if(code>=61&&code<=67) return "🌧️";
+  if(code>=71&&code<=77) return "🌨️";
+  if(code>=80&&code<=82) return "🌧️";
+  if(code===85||code===86) return "🌨️";
+  if(code>=95) return "⛈️";
+  return "🌡️";
+}
+function weatherLabel(code){
+  if(code===0) return "صاف";
+  if(code===1) return "کمی ابری";
+  if(code===2) return "نیمه‌ابری";
+  if(code===3) return "ابری";
+  if(code===45||code===48) return "مه‌آلود";
+  if(code>=51&&code<=57) return "نم‌نم باران";
+  if(code>=61&&code<=67) return "بارانی";
+  if(code>=71&&code<=77) return "برفی";
+  if(code>=80&&code<=82) return "رگبار";
+  if(code===85||code===86) return "رگبار برف";
+  if(code>=95) return "رعدوبرق";
+  return "نامشخص";
+}
+
+/* ================= CONTACT SHEET ================= */
+
+const contactSheet = document.getElementById("contactSheet");
+const contactBg = document.getElementById("contactBg");
+
+document.getElementById("contactToggle").onclick = function(){
+  const opts = document.getElementById("contactOptions");
+  opts.innerHTML = "";
+
+  const rows = [
+    {key:"mobilePhone", icon:"📱", label:"تلفن همراه"},
+    {key:"landlinePhone", icon:"☎️", label:"تلفن ثابت"},
+    {key:"supportPhone", icon:"🎧", label:"تلفن پشتیبان"}
+  ];
+
+  rows.forEach(function(r){
+    const phone = currentSlot[r.key];
+    if(!phone) return;
+    const a = document.createElement("a");
+    a.className = "contactOpt";
+    a.href = "tel:" + phone;
+    a.innerHTML =
+      '<div class="contactIcon">'+r.icon+'</div>' +
+      '<div><div class="contactLabel">'+r.label+'</div><div class="contactPhone">'+phone+'</div></div>';
+    opts.appendChild(a);
+  });
+
+  contactSheet.classList.add("show");
+  contactBg.classList.add("show");
+};
+contactBg.onclick = function(){
+  contactSheet.classList.remove("show");
+  contactBg.classList.remove("show");
+};
+
+/* ================= EMPTY SLOT SHEET ================= */
+
+const emptySheet = document.getElementById("emptySheet");
+const emptyBg = document.getElementById("emptyBg");
+
+function openEmptySheet(code){
+  document.getElementById("emptySheetTitle").textContent = "جایگاه #" + code + " — هنوز خالی است";
+  emptySheet.classList.add("show");
+  emptyBg.classList.add("show");
+}
+emptyBg.onclick = function(){
+  emptySheet.classList.remove("show");
+  emptyBg.classList.remove("show");
+};
+</script>
+
+</body>
+</html>
