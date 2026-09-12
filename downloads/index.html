@@ -1,11 +1,25 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
+<script>
+(function(){
+  if (location.hostname === 'cyrustourist-maker.github.io') {
+    var path = location.pathname.replace('/Cyrustourist', '') || '/';
+    location.replace('https://cyrustourist.ir' + path + location.search + location.hash);
+  }
+})();
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#06121d">
 <meta name="description" content="سایروس توریست؛ راهنمای سفر و گردشگری ایران، طبیعت‌گردی، جاذبه‌ها، اقامتگاه‌ها و فیلم‌های گردشگری.">
 <title>سایروس توریست | ایران را با سایروس توریست ببینید</title>
+
+<link rel="icon" href="../assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon-180.png">
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <link rel="stylesheet" href="assets/images/header-fix.css">
