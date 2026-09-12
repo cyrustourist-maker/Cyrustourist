@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+<script>
+(function(){
+  if (location.hostname === 'cyrustourist-maker.github.io') {
+    var path = location.pathname.replace('/Cyrustourist', '') || '/';
+    location.replace('https://cyrustourist.ir' + path + location.search + location.hash);
+  }
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>فیلم‌های اقامتگاه‌ها | سایروس توریست</title>
+<link rel="icon" href="../assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon-180.png">
+
 <meta name="description" content="گالری فیلم اقامتگاه‌های سایروس توریست با مسیریابی، امکانات، آب‌وهوا و تماس مستقیم">
 <meta name="theme-color" content="#070f18">
 <link rel="manifest" href="../manifest.json">
-<link rel="apple-touch-icon" sizes="180x180" href="../assets/images/logo.png">
 <style>
 :root{
   --bg:#070f18;
@@ -272,7 +285,7 @@ const RESIDENCE_SLOTS = [
     landlinePhone:"09153448818",
     supportPhone:"09153448818",
     instagramUrl:"https://www.instagram.com/cyrustourist?igsi=aDc3end6dTNqNW1o",
-    websiteUrl:"https://cyrustourist-maker.github.io/Cyrustourist/",
+    websiteUrl:"https://cyrustourist.ir/",
     lat:36.2970, lon:59.6062,
     rating:4.7, ratingCount:128,
     amenities:{
@@ -282,7 +295,350 @@ const RESIDENCE_SLOTS = [
     }
   }
 ];
-for(let i=2;i<=20;i++){ RESIDENCE_SLOTS.push({code:i, assigned:false}); }
+RESIDENCE_SLOTS.push(
+  {
+    code:2, assigned:true,
+    name:"رقص محلی فاروق خراسانی با آهنگ لیلا",
+    city:"خراسان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"w17sz69",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:3, assigned:true,
+    name:"چشمه گراب؛ جادوی طبیعت ایران",
+    city:"خراسان رضوی", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"xvo5q9c",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:4, assigned:true,
+    name:"جنگل کوه‌پارک مشهد و قله زو",
+    city:"مشهد، خراسان رضوی", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"hzlol4k",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:5, assigned:true,
+    name:"کاشت بلوط؛ راه نجات جنگل‌های هیرکانی",
+    city:"جنگل‌های هیرکانی", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"guqcsg5",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:6, assigned:true,
+    name:"آبشار شیرآباد؛ یکی از دیدنی‌های گلستان",
+    city:"استان گلستان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"w8lOg",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:7, assigned:true,
+    name:"آبگوشت دیزی سنگی در طبیعت",
+    city:"ایران", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"uK3y5",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:8, assigned:true,
+    name:"۲۵ اردیبهشت؛ روز بزرگداشت فردوسی",
+    city:"مشهد، خراسان رضوی", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"nuXAC",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:9, assigned:true,
+    name:"چشمه سبز گلمکان؛ دریاچه زیبای مشهد",
+    city:"گلمکان، خراسان رضوی", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"x707h19",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:10, assigned:true,
+    name:"آموزش پخت سیب‌زمینی آتشی در طبیعت",
+    city:"طبیعت ایران", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"4Z0hQ",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:11, assigned:true,
+    name:"جشن نوروز باستانی و سفره هفت‌سین",
+    city:"ایران", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"s78jcie",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:12, assigned:true,
+    name:"چایخانه حمام وکیل کرمان",
+    city:"کرمان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"R1p3U",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:13, assigned:true,
+    name:"بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر",
+    city:"خراسان رضوی", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"g40wppg",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:14, assigned:true,
+    name:"شاه نعمت‌الله ولی؛ ماهان کرمان",
+    city:"ماهان، کرمان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"xsBFX",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:15, assigned:true,
+    name:"باغ شاهزاده ماهان؛ شاهکار باغ ایرانی",
+    city:"ماهان، کرمان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"3ZCGs",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:16, assigned:true,
+    name:"موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان",
+    city:"کرمان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"z72q215",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:17, assigned:true,
+    name:"قلعه سریزد؛ نخستین بانک جهان",
+    city:"سریزد، یزد", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"c4744bv",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:18, assigned:true,
+    name:"جنگل‌های حرا و بندر تاریخی لافت",
+    city:"جزیره قشم", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"kGS8o",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:19, assigned:true,
+    name:"باغ فین کاشان با موسیقی سنتی",
+    city:"کاشان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"mPh2q",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  },
+  {
+    code:20, assigned:true,
+    name:"غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران",
+    city:"همدان", province:"",
+    description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
+    aparatHash:"k2RDX",
+    mobilePhone:"09153448818",
+    landlinePhone:"09153448818",
+    supportPhone:"09153448818",
+    websiteUrl:"https://cyrustourist.ir/",
+    lat:36.2970, lon:59.6062,
+    rating:4.5, ratingCount:0,
+    amenities:{
+      parking:true, westernToilet:true, iranianToilet:true, bedrooms:2,
+      internet:true, kitchen:true, ac:true, heating:true, hotWater:true,
+      breakfast:false, elevator:false, yard:true, pet:false
+    }
+  }
+);
 
 const AMENITY_DEFS = [
   {key:"parking", icon:"🅿️", label:"پارکینگ"},
