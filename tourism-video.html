@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>فیلم گردشگری | سایروس توریست</title>
+<meta name="theme-color" content="#070f18">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+<style>
+:root{
+  --bg:#070f18;
+  --card:#0d2432;
+  --cardAlt:#0a1c28;
+  --gold:#ffd36a;
+  --goldBright:#ffe39a;
+  --teal:#22e0ad;
+  --tealBright:#6df5cf;
+  --brand1:#11998e;
+  --brand2:#38ef7d;
+  --brand3:#667eea;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;background:var(--bg);color:#fff;
+  font-family:Tahoma,Arial,sans-serif;padding-bottom:40px;
+}
+a{color:inherit;text-decoration:none;}
+
+.videoWrap{width:100%;aspect-ratio:16/9;background:#000;}
+.videoWrap iframe{width:100%;height:100%;border:0;display:block;}
+
+.topBar{
+  display:flex;align-items:center;gap:10px;padding:16px 16px 4px;
+}
+.backBtn{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--card);border:1px solid rgba(255,211,106,.28);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
+}
+.dTitle{font-size:19px;font-weight:900;line-height:1.6;flex:1;}
+
+.tagRow{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  padding:10px 16px 0;
+}
+.tag{
+  padding:7px 13px;border-radius:20px;font-size:12px;font-weight:bold;
+  background:var(--card);border:1px solid rgba(255,211,106,.25);color:var(--goldBright);
+  display:flex;align-items:center;gap:5px;
+}
+.badgeNum{
+  padding:6px 13px;border-radius:20px;font-size:12px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+}
+
+.body{padding:16px;}
+
+.weatherBox{
+  border-radius:16px;border:1px solid rgba(255,211,106,.25);
+  background:linear-gradient(135deg,#103b50,#0d2432);overflow:hidden;margin-bottom:14px;
+}
+.weatherHead{display:flex;align-items:center;gap:8px;padding:14px 16px;cursor:pointer;}
+.weatherHead .wTitle{flex:1;font-size:13.5px;font-weight:bold;}
+.weatherBody{display:none;padding:0 16px 14px;font-size:12px;color:rgba(255,255,255,.75);}
+.weatherBody.show{display:block;}
+
+.sectionTitle{
+  font-size:15px;font-weight:900;margin:22px 0 12px;display:flex;align-items:center;gap:8px;
+}
+.countPill{
+  background:var(--card);border:1px solid rgba(255,211,106,.25);color:var(--goldBright);
+  padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:bold;
+}
+
+.relatedRow{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+.relatedRow::-webkit-scrollbar{display:none;}
+.relCard{
+  flex-shrink:0;width:150px;border-radius:16px;overflow:hidden;
+  background:var(--card);border:1px solid rgba(255,211,106,.14);
+}
+.relCoverWrap{position:relative;width:100%;aspect-ratio:1/1;background:#0a1c28;}
+.relCoverWrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;}
+.relCoverWrap .playIc{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+}
+.relCoverWrap .playIc span{
+  width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.42);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.relTitle{
+  font-size:11.5px;font-weight:bold;line-height:1.6;padding:9px 10px 11px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+.excerptText{
+  font-size:13.5px;line-height:1.9;color:rgba(255,255,255,.72);margin-top:8px;
+}
+
+.btnPrimary{
+  width:100%;border:0;border-radius:16px;padding:15px;margin-top:20px;
+  background:linear-gradient(135deg,var(--teal),var(--tealBright));
+  color:#03202a;font-weight:900;font-size:14px;font-family:inherit;
+  display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+}
+.btnGold{
+  width:100%;border:0;border-radius:16px;padding:15px;margin-top:12px;
+  background:linear-gradient(135deg,var(--gold),var(--goldBright));
+  color:#3a2900;font-weight:900;font-size:14px;font-family:inherit;
+  display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+}
+.btnOutline{
+  width:100%;border:1px solid rgba(255,211,106,.35);border-radius:16px;padding:14px 16px;margin-top:12px;
+  background:transparent;color:#fff;font-size:13.5px;font-family:inherit;
+  display:flex;align-items:center;gap:10px;cursor:pointer;text-align:right;
+}
+.btnOutline .chev{margin-right:auto;opacity:.4;}
+
+.linkGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.linkCard{
+  background:var(--card);border:1px solid rgba(255,211,106,.2);border-radius:16px;
+  padding:16px 10px;text-align:center;font-size:13px;font-weight:bold;
+}
+.linkIcon{
+  width:44px;height:44px;border-radius:50%;margin:0 auto 8px;
+  display:flex;align-items:center;justify-content:center;font-size:19px;
+}
+.linkIcon.web{background:linear-gradient(135deg,var(--brand1),var(--brand2));}
+.linkIcon.ig{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);}
+</style>
+</head>
+<body>
+
+<div class="videoWrap">
+<iframe id="mainIframe" src="" allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="topBar">
+<a class="backBtn" href="tourism-videos.html" aria-label="بازگشت">→</a>
+<div class="dTitle" id="dTitle"></div>
+</div>
+
+<div class="tagRow">
+<span class="tag" id="dCatTag"></span>
+<span class="tag" id="dLocTag">📍 <span id="dLocText"></span></span>
+<span class="badgeNum" id="dBadge"></span>
+</div>
+
+<div class="body">
+
+<div class="weatherBox">
+<div class="weatherHead" id="weatherToggle">
+<span>📍</span>
+<span class="wTitle">آب‌وهوای موقعیت من</span>
+<span id="weatherSummary" style="font-size:13px;"></span>
+<span id="weatherChev">▾</span>
+</div>
+<div class="weatherBody" id="weatherBody">برای مشاهده، لمس کنید…</div>
+</div>
+
+<div class="sectionTitle">
+<span id="relCount" class="countPill"></span>
+<span>🎬 فیلم‌های بیشتر از آپارات</span>
+</div>
+<div class="relatedRow" id="relatedRow"></div>
+
+<div class="sectionTitle" style="margin-bottom:6px;">چکیده</div>
+<div class="excerptText" id="excerptText"></div>
+
+<a class="btnPrimary" id="routeBtn" href="#" target="_blank" rel="noopener">🗺️ مسیریابی سریع</a>
+
+<button class="btnOutline" id="amenitiesToggle">☑️ امکانات اقامتگاه/هتل/کلبه <span class="chev">‹</span></button>
+
+<a class="btnGold" id="reserveBtn" href="residences/residences.html">📅 رزرو</a>
+
+<div class="linkGrid">
+<a class="linkCard" href="https://cyrustourist-maker.github.io/Cyrustourist/" target="_blank" rel="noopener">
+<div class="linkIcon web">🌐</div>
+وب‌سایت
+</a>
+<a class="linkCard" href="https://www.instagram.com/cyrustourist" target="_blank" rel="noopener">
+<div class="linkIcon ig">📷</div>
+Instagram
+</a>
+</div>
+
+</div>
+
+<script src="tourism-videos-data.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const id = parseInt(params.get("id"), 10) || TOURISM_VIDEOS[0].id;
+const video = TOURISM_VIDEOS.find(function(v){ return v.id === id; }) || TOURISM_VIDEOS[0];
+const cat = TOURISM_CATEGORIES[video.category];
+
+document.title = video.title.fa + " | سایروس توریست";
+document.getElementById("mainIframe").src =
+  "https://www.aparat.com/video/video/embed/videohash/" + video.hash + "/vt/frame";
+document.getElementById("dTitle").textContent = video.title.fa;
+document.getElementById("dCatTag").textContent = cat.icon + " " + cat.fa;
+document.getElementById("dLocText").textContent = video.loc.fa;
+document.getElementById("dBadge").textContent = "#" + video.id;
+
+document.getElementById("excerptText").textContent =
+  "بخشی از مجموعه فیلم‌های گردشگری سایروس توریست، در دسته‌ی " + cat.fa + "، در " + video.loc.fa + ".";
+
+document.getElementById("routeBtn").href =
+  "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(video.loc.fa);
+
+document.getElementById("reserveBtn").href = "residences/residences.html";
+
+document.getElementById("amenitiesToggle").onclick = function(){
+  location.href = "residences/residences.html";
+};
+
+/* ---------- RELATED VIDEOS ---------- */
+
+const relRow = document.getElementById("relatedRow");
+const others = TOURISM_VIDEOS.filter(function(v){ return v.id !== video.id; });
+document.getElementById("relCount").textContent = TOURISM_VIDEOS.length + " فیلم";
+
+others.slice(0, 8).forEach(function(v){
+  const a = document.createElement("a");
+  a.className = "relCard";
+  a.href = "tourism-video.html?id=" + v.id;
+  a.innerHTML =
+    '<div class="relCoverWrap">' +
+      '<iframe src="https://www.aparat.com/video/video/embed/videohash/' + v.hash + '/vt/frame" loading="lazy"></iframe>' +
+      '<div class="playIc"><span>▶</span></div>' +
+    '</div>' +
+    '<div class="relTitle">' + v.title.fa + '</div>';
+  relRow.appendChild(a);
+});
+
+/* ---------- WEATHER (user's current location) ---------- */
+
+let weatherLoaded = false;
+
+document.getElementById("weatherToggle").onclick = function(){
+  const body = document.getElementById("weatherBody");
+  const willShow = !body.classList.contains("show");
+  body.classList.toggle("show");
+  document.getElementById("weatherChev").textContent = willShow ? "▴" : "▾";
+  if(willShow && !weatherLoaded){
+    loadWeather();
+  }
+};
+
+function loadWeather(){
+  const body = document.getElementById("weatherBody");
+  const summary = document.getElementById("weatherSummary");
+  body.innerHTML = "در حال دریافت موقعیت شما…";
+
+  if(!navigator.geolocation){
+    body.innerHTML = "مرورگر شما موقعیت‌مکانی را پشتیبانی نمی‌کند.";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(async function(pos){
+    try{
+      const lat = pos.coords.latitude, lon = pos.coords.longitude;
+      const wUrl = "https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon+
+        "&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto";
+      const wRes = await fetch(wUrl);
+      const wData = await wRes.json();
+      const cur = wData.current;
+
+      if(!cur){
+        body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+        return;
+      }
+
+      const emoji = weatherEmoji(cur.weather_code);
+      const label = weatherLabel(cur.weather_code);
+      const temp = Math.round(cur.temperature_2m);
+
+      summary.textContent = emoji + " " + temp + "°";
+      body.innerHTML =
+        '<div>'+label+'</div>' +
+        '<div style="margin-top:6px;">💧 '+cur.relative_humidity_2m+'٪ &nbsp; 🌬️ '+Math.round(cur.wind_speed_10m)+' km/h</div>';
+
+      weatherLoaded = true;
+    }catch(e){
+      body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+    }
+  }, function(){
+    body.innerHTML = "دسترسی به موقعیت‌مکانی رد شد.";
+  });
+}
+
+function weatherEmoji(code){
+  if(code===0) return "☀️";
+  if(code===1||code===2) return "🌤️";
+  if(code===3) return "☁️";
+  if(code===45||code===48) return "🌫️";
+  if(code>=51&&code<=57) return "🌦️";
+  if(code>=61&&code<=67) return "🌧️";
+  if(code>=71&&code<=77) return "🌨️";
+  if(code>=80&&code<=82) return "🌧️";
+  if(code===85||code===86) return "🌨️";
+  if(code>=95) return "⛈️";
+  return "🌡️";
+}
+function weatherLabel(code){
+  if(code===0) return "صاف";
+  if(code===1) return "کمی ابری";
+  if(code===2) return "نیمه‌ابری";
+  if(code===3) return "ابری";
+  if(code===45||code===48) return "مه‌آلود";
+  if(code>=51&&code<=57) return "نم‌نم باران";
+  if(code>=61&&code<=67) return "بارانی";
+  if(code>=71&&code<=77) return "برفی";
+  if(code>=80&&code<=82) return "رگبار";
+  if(code===85||code===86) return "رگبار برف";
+  if(code>=95) return "رعدوبرق";
+  return "نامشخص";
+}
+</script>
+
+</body>
+</html>
