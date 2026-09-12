@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>گالری فیلم‌های گردشگری | سایروس توریست</title>
+<meta name="description" content="گالری فیلم‌های گردشگری سایروس توریست؛ جست‌وجو و مشاهده فیلم جاذبه‌های گردشگری، تاریخی و طبیعی ایران با مسیریابی، آب‌وهوا و رزرو اقامتگاه نزدیک.">
+<meta name="theme-color" content="#070f18">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+<style>
+:root{
+  --bg:#070f18;
+  --card:#0d2432;
+  --cardAlt:#0a1c28;
+  --gold:#ffd36a;
+  --goldBright:#ffe39a;
+  --teal:#22e0ad;
+  --tealBright:#6df5cf;
+  --brand1:#11998e;
+  --brand2:#38ef7d;
+  --brand3:#667eea;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#fff;
+  font-family:Tahoma,Arial,sans-serif;
+  padding-bottom:40px;
+}
+a{color:inherit;}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:18px 16px 6px;
+}
+.header h1{
+  font-size:22px;
+  margin:0;
+  font-weight:900;
+}
+.backBtn{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--card);
+  border:1px solid rgba(255,211,106,.28);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:17px;flex-shrink:0;
+}
+
+.searchWrap{padding:14px 16px 4px;}
+.searchBox{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);
+  border:1px solid rgba(255,211,106,.2);
+  border-radius:18px;
+  padding:14px 16px;
+}
+.searchBox input{
+  flex:1;background:transparent;border:0;outline:0;color:#fff;
+  font-size:14px;font-family:inherit;
+}
+.searchBox input::placeholder{color:rgba(255,255,255,.4);}
+.searchIcon{color:var(--gold);font-size:16px;}
+
+.filterRow{
+  display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;
+  scrollbar-width:none;
+}
+.filterRow::-webkit-scrollbar{display:none;}
+.filterChip{
+  flex-shrink:0;
+  padding:9px 15px;border-radius:20px;font-size:12.5px;font-weight:bold;
+  background:var(--card);border:1px solid rgba(255,211,106,.22);color:rgba(255,255,255,.8);
+  cursor:pointer;white-space:nowrap;
+}
+.filterChip.active{
+  background:linear-gradient(135deg,var(--brand1),var(--brand2));
+  border-color:transparent;color:#04241f;
+}
+
+.grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  padding:16px;
+}
+.vCard{
+  border-radius:20px;overflow:hidden;
+  background:var(--card);
+  border:1px solid rgba(255,211,106,.14);
+  text-decoration:none;color:#fff;
+  display:block;
+  box-shadow:0 12px 28px rgba(0,0,0,.3);
+}
+.vCoverWrap{
+  position:relative;
+  width:100%;aspect-ratio:1/1;
+  background:linear-gradient(135deg,#0a1c28,#12394d);
+  overflow:hidden;
+}
+.vCoverWrap iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;
+  pointer-events:none;
+}
+.vBadge{
+  position:absolute;top:10px;left:10px;z-index:2;
+  padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:900;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+  color:#fff;box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+.vPlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+}
+.vPlay span{
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,.4);
+}
+.vBody{padding:13px 13px 15px;}
+.vTitle{
+  font-size:13.5px;font-weight:bold;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  min-height:2.6em;
+}
+.vDesc{
+  font-size:11px;color:rgba(255,255,255,.5);margin-top:7px;line-height:1.7;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.vLoc{
+  margin-top:9px;font-size:11.5px;color:var(--goldBright);
+  display:flex;align-items:center;gap:4px;
+}
+
+.emptyState{
+  grid-column:1/-1;text-align:center;padding:50px 20px;color:rgba(255,255,255,.5);
+}
+.emptyState .ic{font-size:36px;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>گالری فیلم‌های گردشگری</h1>
+<a class="backBtn" href="index.html#videos" aria-label="بازگشت">→</a>
+</div>
+
+<div class="searchWrap">
+<div class="searchBox">
+<input id="searchInput" type="search" placeholder="جست‌وجو با کد، نام فیلم، شهر یا استان..." autocomplete="off">
+<span class="searchIcon">🔎</span>
+</div>
+</div>
+
+<div class="filterRow" id="filterRow"></div>
+
+<div class="grid" id="videoGrid"></div>
+
+<script src="tourism-videos-data.js"></script>
+<script>
+const grid = document.getElementById("videoGrid");
+const searchInput = document.getElementById("searchInput");
+const filterRow = document.getElementById("filterRow");
+
+let activeCat = "";
+
+/* ---------- FILTER CHIPS ---------- */
+
+function buildFilters(){
+  const allChip = document.createElement("div");
+  allChip.className = "filterChip active";
+  allChip.textContent = "همه";
+  allChip.onclick = function(){ setActiveCat(""); };
+  filterRow.appendChild(allChip);
+
+  Object.keys(TOURISM_CATEGORIES).forEach(function(key){
+    const cat = TOURISM_CATEGORIES[key];
+    const chip = document.createElement("div");
+    chip.className = "filterChip";
+    chip.textContent = cat.icon + " " + cat.fa;
+    chip.dataset.cat = key;
+    chip.onclick = function(){ setActiveCat(key); };
+    filterRow.appendChild(chip);
+  });
+}
+
+function setActiveCat(key){
+  activeCat = key;
+  Array.from(filterRow.children).forEach(function(chip){
+    chip.classList.toggle("active", (chip.dataset.cat || "") === key);
+  });
+  render();
+}
+
+/* ---------- GRID RENDER ---------- */
+
+function render(){
+  const q = (searchInput.value || "").trim().toLowerCase();
+  grid.innerHTML = "";
+
+  const filtered = TOURISM_VIDEOS.filter(function(v){
+    if(activeCat && v.category !== activeCat) return false;
+    if(!q) return true;
+    const hay = (
+      String(v.id) + " " +
+      v.title.fa + " " + v.title.en + " " +
+      v.loc.fa + " " + v.loc.en
+    ).toLowerCase();
+    return hay.indexOf(q) !== -1;
+  });
+
+  if(!filtered.length){
+    grid.innerHTML =
+      '<div class="emptyState"><div class="ic">🎬</div>نتیجه‌ای پیدا نشد</div>';
+    return;
+  }
+
+  filtered.forEach(function(v){
+    const cat = TOURISM_CATEGORIES[v.category];
+    const card = document.createElement("a");
+    card.className = "vCard";
+    card.href = "tourism-video.html?id=" + v.id;
+
+    card.innerHTML =
+      '<div class="vCoverWrap">' +
+        '<iframe src="https://www.aparat.com/video/video/embed/videohash/' + v.hash + '/vt/frame" loading="lazy"></iframe>' +
+        '<div class="vBadge">#' + v.id + '</div>' +
+        '<div class="vPlay"><span>▶</span></div>' +
+      '</div>' +
+      '<div class="vBody">' +
+        '<div class="vTitle">' + v.title.fa + '</div>' +
+        '<div class="vDesc">بخشی از مجموعه فیلم‌های گردشگری سایروس توریست، در دسته‌ی ' + cat.fa + '...</div>' +
+        '<div class="vLoc">📍 ' + v.loc.fa + '</div>' +
+      '</div>';
+
+    grid.appendChild(card);
+  });
+}
+
+buildFilters();
+render();
+searchInput.addEventListener("input", render);
+</script>
+
+</body>
+</html>
