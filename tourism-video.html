@@ -127,6 +127,36 @@ a{color:inherit;text-decoration:none;}
 }
 .linkIcon.web{background:linear-gradient(135deg,var(--brand1),var(--brand2));}
 .linkIcon.ig{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);}
+
+/* ---- CONTACT SHEET (reserve = 3 phone numbers) ---- */
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:var(--card);border-radius:24px 24px 0 0;
+  padding:16px 18px 26px;display:none;
+  box-shadow:0 -10px 40px rgba(0,0,0,.5);
+}
+.sheet.show{display:block;}
+.sheetHandle{width:40px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;margin:0 auto 14px;}
+.sheetTitle{color:var(--goldBright);font-weight:bold;font-size:15px;margin-bottom:14px;}
+.contactOpt{
+  display:flex;align-items:center;gap:12px;background:#103b50;border:1px solid rgba(255,211,106,.25);
+  border-radius:16px;padding:12px 14px;margin-bottom:10px;cursor:pointer;text-decoration:none;color:#fff;
+}
+.contactIcon{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.contactLabel{font-size:12px;color:rgba(255,255,255,.55);}
+.contactPhone{font-size:14px;font-weight:bold;}
+.sheetOverlayBg{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:65;display:none;
+}
+.sheetOverlayBg.show{display:block;}
+.seeAllLink{
+  display:block;text-align:center;margin-top:8px;padding:12px;
+  color:var(--goldBright);font-size:13px;font-weight:bold;
+}
 </style>
 </head>
 <body>
@@ -171,7 +201,7 @@ a{color:inherit;text-decoration:none;}
 
 <button class="btnOutline" id="amenitiesToggle">☑️ امکانات اقامتگاه/هتل/کلبه <span class="chev">‹</span></button>
 
-<a class="btnGold" id="reserveBtn" href="residences/residences.html">📅 رزرو</a>
+<button type="button" class="btnGold" id="reserveBtn">📅 رزرو</button>
 
 <div class="linkGrid">
 <a class="linkCard" href="https://cyrustourist-maker.github.io/Cyrustourist/" target="_blank" rel="noopener">
@@ -184,6 +214,15 @@ Instagram
 </a>
 </div>
 
+</div>
+
+<!-- CONTACT SHEET -->
+<div class="sheetOverlayBg" id="contactBg"></div>
+<div class="sheet" id="contactSheet">
+  <div class="sheetHandle"></div>
+  <div class="sheetTitle">📞 رزرو — یک شماره را انتخاب کنید</div>
+  <div id="contactOptions"></div>
+  <a class="seeAllLink" href="residences/residences.html">مشاهدهٔ همهٔ اقامتگاه‌ها ›</a>
 </div>
 
 <script src="tourism-videos-data.js"></script>
@@ -204,16 +243,64 @@ document.getElementById("dBadge").textContent = "#" + video.id;
 document.getElementById("excerptText").textContent =
   "بخشی از مجموعه فیلم‌های گردشگری سایروس توریست، در دسته‌ی " + cat.fa + "، در " + video.loc.fa + ".";
 
-document.getElementById("routeBtn").href =
-  "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(video.loc.fa);
-
-document.getElementById("reserveBtn").href = "residences/residences.html";
-
 document.getElementById("amenitiesToggle").onclick = function(){
   location.href = "residences/residences.html";
 };
 
-/* ---------- RELATED VIDEOS ---------- */
+/* ---------- ROUTE (uses my current location as origin when available) ---------- */
+
+const destQuery = encodeURIComponent(video.loc.fa);
+document.getElementById("routeBtn").href =
+  "https://www.google.com/maps/search/?api=1&query=" + destQuery;
+
+document.getElementById("routeBtn").onclick = function(e){
+  if(!navigator.geolocation) return; // fallback: normal href works
+  e.preventDefault();
+  const btn = this;
+  navigator.geolocation.getCurrentPosition(function(pos){
+    const origin = pos.coords.latitude + "," + pos.coords.longitude;
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destQuery,
+      "_blank", "noopener"
+    );
+  }, function(){
+    window.open(btn.href, "_blank", "noopener");
+  }, { timeout: 6000 });
+};
+
+/* ---------- RESERVE (3 phone numbers sheet) ---------- */
+
+const RESERVE_CONTACTS = [
+  { key:"mobile",  icon:"📱", label:"تلفن همراه",   phone:"09153448818" },
+  { key:"landline",icon:"☎️", label:"تلفن ثابت",    phone:"09153448818" },
+  { key:"support", icon:"🎧", label:"تلفن پشتیبان", phone:"09153448818" }
+];
+
+const contactSheet = document.getElementById("contactSheet");
+const contactBg = document.getElementById("contactBg");
+
+document.getElementById("reserveBtn").onclick = function(){
+  const opts = document.getElementById("contactOptions");
+  opts.innerHTML = "";
+  RESERVE_CONTACTS.forEach(function(r){
+    if(!r.phone) return;
+    const a = document.createElement("a");
+    a.className = "contactOpt";
+    a.href = "tel:" + r.phone;
+    a.innerHTML =
+      '<div class="contactIcon">'+r.icon+'</div>' +
+      '<div><div class="contactLabel">'+r.label+'</div><div class="contactPhone">'+r.phone+'</div></div>';
+    opts.appendChild(a);
+  });
+  contactSheet.classList.add("show");
+  contactBg.classList.add("show");
+};
+contactBg.onclick = function(){
+  contactSheet.classList.remove("show");
+  contactBg.classList.remove("show");
+};
+
+/* ---------- RELATED VIDEOS (دست‌نخورده) ---------- */
 
 const relRow = document.getElementById("relatedRow");
 const others = TOURISM_VIDEOS.filter(function(v){ return v.id !== video.id; });
@@ -232,7 +319,7 @@ others.slice(0, 8).forEach(function(v){
   relRow.appendChild(a);
 });
 
-/* ---------- WEATHER (user's current location) ---------- */
+/* ---------- WEATHER (دست‌نخورده) ---------- */
 
 let weatherLoaded = false;
 
