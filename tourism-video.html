@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+<script>
+(function(){
+  if (location.hostname === 'cyrustourist-maker.github.io') {
+    var path = location.pathname.replace('/Cyrustourist', '') || '/';
+    location.replace('https://cyrustourist.ir' + path + location.search + location.hash);
+  }
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>فیلم گردشگری | سایروس توریست</title>
+<link rel="icon" href="assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180.png">
+
+<meta name="description" content="تماشای فیلم‌های گردشگری سایروس توریست؛ معرفی جاذبه‌های تاریخی، طبیعی و فرهنگی ایران همراه با مسیریابی، آب‌وهوا و اقامتگاه‌های نزدیک.">
+<link rel="canonical" href="https://cyrustourist.ir/tourism-video.html">
+<meta property="og:type" content="video.other">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="سایروس توریست">
+<meta property="og:title" content="فیلم گردشگری | سایروس توریست">
+<meta property="og:description" content="تماشای فیلم‌های گردشگری سایروس توریست؛ معرفی جاذبه‌های تاریخی، طبیعی و فرهنگی ایران.">
+<meta property="og:image" content="https://cyrustourist.ir/assets/images/cyrustourist-hero-2026.webp.jpg">
+<meta property="og:url" content="https://cyrustourist.ir/tourism-video.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="فیلم گردشگری | سایروس توریست">
+<meta name="twitter:description" content="تماشای فیلم‌های گردشگری سایروس توریست؛ معرفی جاذبه‌های تاریخی، طبیعی و فرهنگی ایران.">
+<meta name="twitter:image" content="https://cyrustourist.ir/assets/images/cyrustourist-hero-2026.webp.jpg">
+
 <meta name="theme-color" content="#070f18">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
 <style>
 :root{
   --bg:#070f18;
@@ -204,7 +231,7 @@ a{color:inherit;text-decoration:none;}
 <button type="button" class="btnGold" id="reserveBtn">📅 رزرو</button>
 
 <div class="linkGrid">
-<a class="linkCard" href="https://cyrustourist-maker.github.io/Cyrustourist/" target="_blank" rel="noopener">
+<a class="linkCard" href="https://cyrustourist.ir/" target="_blank" rel="noopener">
 <div class="linkIcon web">🌐</div>
 وب‌سایت
 </a>
@@ -233,6 +260,22 @@ const video = TOURISM_VIDEOS.find(function(v){ return v.id === id; }) || TOURISM
 const cat = TOURISM_CATEGORIES[video.category];
 
 document.title = video.title.fa + " | سایروس توریست";
+(function(){
+  var desc = "فیلم گردشگری « " + video.title.fa + " » در " + video.loc.fa + " — دسته‌بندی " + cat.fa + ". از سایروس توریست.";
+  var pageUrl = "https://cyrustourist.ir/tourism-video.html?id=" + video.id;
+  function setMeta(sel, attr, val){
+    var el = document.querySelector(sel);
+    if(el) el.setAttribute(attr, val);
+  }
+  setMeta('meta[name="description"]','content', desc);
+  setMeta('meta[property="og:title"]','content', video.title.fa + " | سایروس توریست");
+  setMeta('meta[property="og:description"]','content', desc);
+  setMeta('meta[property="og:url"]','content', pageUrl);
+  setMeta('meta[name="twitter:title"]','content', video.title.fa + " | سایروس توریست");
+  setMeta('meta[name="twitter:description"]','content', desc);
+  var canon = document.querySelector('link[rel="canonical"]');
+  if(canon) canon.setAttribute('href', pageUrl);
+})();
 document.getElementById("mainIframe").src =
   "https://www.aparat.com/video/video/embed/videohash/" + video.hash + "/vt/frame";
 document.getElementById("dTitle").textContent = video.title.fa;
