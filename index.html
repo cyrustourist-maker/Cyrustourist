@@ -6,7 +6,21 @@
 (function(){
   if (location.hostname === 'cyrustourist-maker.github.io') {
     var path = location.pathname.replace('/Cyrustourist', '') || '/';
-    location.replace('https://cyrustourist.ir' + path + location.search + location.hash);
+    var target = 'https://cyrustourist.ir' + path + location.search + location.hash;
+    var settled = false;
+    var timer = setTimeout(function () {
+      settled = true; // دامنه پاسخ نداد؛ همین‌جا (گیت‌هاب) می‌مانیم
+    }, 2000);
+    fetch('https://cyrustourist.ir/favicon.ico', { mode: 'no-cors', cache: 'no-store' })
+      .then(function () {
+        if (!settled) {
+          clearTimeout(timer);
+          location.replace(target);
+        }
+      })
+      .catch(function () {
+        clearTimeout(timer); // دامنه در دسترس نیست؛ همین‌جا می‌مانیم
+      });
   }
 })();
 </script>
