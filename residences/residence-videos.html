@@ -99,6 +99,16 @@ body{
   font-size:10.5px;color:var(--goldBright);margin-top:4px;
   display:flex;align-items:center;gap:3px;
 }
+.slotCard.assigned{position:relative;overflow:hidden;}
+.slotCoverWrap{position:absolute;inset:0;border-radius:18px;overflow:hidden;z-index:0;}
+.slotCover{width:100%;height:100%;border:0;display:block;pointer-events:none;}
+.slotCoverWrap::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(6,18,29,.10) 0%,rgba(6,18,29,.55) 55%,rgba(6,18,29,.92) 100%);
+}
+.slotCard.assigned .slotTopRow,
+.slotCard.assigned .slotTitle,
+.slotCard.assigned .slotLoc{position:relative;z-index:1;}
 .emptyIcon{font-size:24px;color:rgba(255,255,255,.35);margin-top:auto;}
 .emptyLabel{font-size:12px;font-weight:bold;color:rgba(255,255,255,.55);margin-top:6px;}
 .emptySub{font-size:10px;color:rgba(255,255,255,.3);}
@@ -664,6 +674,7 @@ RESIDENCE_SLOTS.forEach(function(slot){
 
   if(slot.assigned){
     card.innerHTML =
+      '<div class="slotCoverWrap"><iframe class="slotCover" src="https://www.aparat.com/video/video/embed/videohash/'+slot.aparatHash+'/vt/frame" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>' +
       '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><span>▶️</span></div>' +
       '<div class="slotTitle">'+slot.name+'</div>' +
       '<div class="slotLoc">📍 '+slot.city+'</div>';
