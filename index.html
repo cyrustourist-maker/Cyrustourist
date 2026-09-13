@@ -6,21 +6,7 @@
 (function(){
   if (location.hostname === 'cyrustourist-maker.github.io') {
     var path = location.pathname.replace('/Cyrustourist', '') || '/';
-    var target = 'https://cyrustourist.ir' + path + location.search + location.hash;
-    var settled = false;
-    var timer = setTimeout(function () {
-      settled = true; // دامنه پاسخ نداد؛ همین‌جا (گیت‌هاب) می‌مانیم
-    }, 2000);
-    fetch('https://cyrustourist.ir/favicon.ico', { mode: 'no-cors', cache: 'no-store' })
-      .then(function () {
-        if (!settled) {
-          clearTimeout(timer);
-          location.replace(target);
-        }
-      })
-      .catch(function () {
-        clearTimeout(timer); // دامنه در دسترس نیست؛ همین‌جا می‌مانیم
-      });
+    location.replace('https://cyrustourist.ir' + path + location.search + location.hash);
   }
 })();
 </script>
@@ -1269,8 +1255,8 @@ font-size:15px
 }
 
 .brandLogo{
-width:73px;
-height:73px
+width:56px;
+height:56px
 }
 
 .nav{
@@ -3013,6 +2999,15 @@ style="width:100%;font-size:15px;padding:16px;">
 </div>
 
 </main>
+
+<!-- ENAMAD TRUST SEAL -->
+<div class="wrap" style="text-align:center;padding:24px 0;">
+
+<!-- کد ای‌نماد را دقیقاً همین‌جا، بین این دو کامنت جای‌گذاری کنید -->
+
+<!-- پایان کد ای‌نماد -->
+
+</div>
 
 <!-- THANK YOU BUTTON -->
 
