@@ -257,7 +257,12 @@ body{
 
 <div class="header">
 <a class="backBtn" href="residences.html">←</a>
-<div class="headerTitle">🎬 فیلم‌های اقامتگاه‌ها</div>
+<div class="headerTitle" id="rvHeaderTitle">🎬 فیلم‌های اقامتگاه‌ها</div>
+<select id="rvLangSelect" aria-label="انتخاب زبان" style="margin-inline-start:auto;background:var(--card);color:#fff;border:1px solid rgba(255,211,106,.3);border-radius:10px;padding:6px 8px;font-size:12px;font-family:inherit;">
+<option value="fa">فارسی</option>
+<option value="en">English</option>
+<option value="ar">العربية</option>
+</select>
 </div>
 
 <div class="searchWrap">
@@ -286,9 +291,9 @@ body{
     <div class="dDesc" id="detailDesc"></div>
     <div class="moreBtn" id="detailMoreBtn">بیشتر ▾</div>
 
-    <a class="btnPrimary" id="detailRouteBtn" href="#" target="_blank" rel="noopener">🗺️ مسیریابی سریع</a>
+    <a class="btnPrimary" id="detailRouteBtn" href="#" target="_blank" rel="noopener">🗺️ <span id="detailRouteBtnText">مسیریابی سریع</span></a>
 
-    <button class="btnOutline" id="amenitiesToggle">☑️ امکانات اقامتگاه <span class="chev">‹</span></button>
+    <button class="btnOutline" id="amenitiesToggle">☑️ <span id="amenitiesToggleText">امکانات اقامتگاه</span> <span class="chev">‹</span></button>
     <div class="panel" id="amenitiesPanel"></div>
 
     <div class="weatherBox">
@@ -301,10 +306,10 @@ body{
       <div class="weatherBody" id="weatherBody">در حال بارگذاری…</div>
     </div>
 
-    <button class="btnOutline" id="contactToggle" style="margin-top:12px;">📞 تماس مستقیم <span class="chev">‹</span></button>
+    <button class="btnOutline" id="contactToggle" style="margin-top:12px;">📞 <span id="contactToggleText">تماس مستقیم</span> <span class="chev">‹</span></button>
 
-    <a class="linkRow" id="detailInstagram" href="#" target="_blank" rel="noopener" style="display:none;">📷 اینستاگرام <span class="chev">‹</span></a>
-    <a class="linkRow" id="detailWebsite" href="#" target="_blank" rel="noopener" style="display:none;">🌐 وب‌سایت <span class="chev">‹</span></a>
+    <a class="linkRow" id="detailInstagram" href="#" target="_blank" rel="noopener" style="display:none;">📷 <span id="detailInstagramText">اینستاگرام</span> <span class="chev">‹</span></a>
+    <a class="linkRow" id="detailWebsite" href="#" target="_blank" rel="noopener" style="display:none;">🌐 <span id="detailWebsiteText">وب‌سایت</span> <span class="chev">‹</span></a>
   </div>
 </div>
 
@@ -312,7 +317,7 @@ body{
 <div class="sheetOverlayBg" id="contactBg"></div>
 <div class="sheet" id="contactSheet">
   <div class="sheetHandle"></div>
-  <div class="sheetTitle">📞 تماس مستقیم — یک شماره را انتخاب کنید</div>
+  <div class="sheetTitle" id="contactSheetTitle">📞 تماس مستقیم — یک شماره را انتخاب کنید</div>
   <div id="contactOptions"></div>
 </div>
 
@@ -324,20 +329,58 @@ body{
     <div class="emptySheetIcon">🏠</div>
     <div style="color:var(--goldBright);font-weight:bold;font-size:15px;" id="emptySheetTitle"></div>
   </div>
-  <p style="color:rgba(255,255,255,.7);font-size:13px;line-height:1.9;">
+  <p style="color:rgba(255,255,255,.7);font-size:13px;line-height:1.9;" id="emptySheetBody">
     این جایگاه هنوز به هیچ اقامتگاهی اختصاص نیافته است. با ثبت‌نام و عضویت یک‌ساله، اقامتگاه شما همین‌جا با فیلم، توضیحات، آب‌وهوا و راه ارتباطی مستقیم به گردشگران معرفی می‌شود.
   </p>
-  <a class="btnPrimary" href="residences.html#registerResidenceBtn" style="margin-top:6px;">✅ ثبت‌نام اقامتگاه (عضویت یک‌ساله)</a>
+  <a class="btnPrimary" href="residences.html#registerResidenceBtn" style="margin-top:6px;" id="emptySheetBtn">✅ ثبت‌نام اقامتگاه (عضویت یک‌ساله)</a>
 </div>
 
 <script>
+let currentLang = "fa";
+
 const RESIDENCE_TYPES = {
-  ecolodge:{fa:"بوم‌گردی", icon:"🌿"},
-  hotel:{fa:"هتل", icon:"🏨"},
-  villa:{fa:"ویلا", icon:"🏡"},
-  cabin:{fa:"کلبه", icon:"🌲"},
-  touristic:{fa:"توریستی", icon:"🧭"}
+  ecolodge:{fa:"بوم‌گردی", en:"Eco-lodge", ar:"سياحة بيئية", icon:"🌿"},
+  hotel:{fa:"هتل", en:"Hotel", ar:"فندق", icon:"🏨"},
+  villa:{fa:"ویلا", en:"Villa", ar:"فيلا", icon:"🏡"},
+  cabin:{fa:"کلبه", en:"Cabin", ar:"كوخ", icon:"🌲"},
+  touristic:{fa:"توریستی", en:"Touristic", ar:"سياحي", icon:"🧭"}
 };
+
+const RV_I18N = {
+  headerTitle:{fa:"🎬 فیلم‌های اقامتگاه‌ها", en:"🎬 Residence Videos", ar:"🎬 فيديوهات أماكن الإقامة"},
+  searchPlaceholder:{fa:"جست‌وجو با کد، نام، شهر یا استان...", en:"Search by code, name, city or province...", ar:"البحث بالرمز أو الاسم أو المدينة أو المحافظة..."},
+  allChip:{fa:"همه", en:"All", ar:"الكل"},
+  sortChip:{fa:"⭐ بیشترین امتیاز", en:"⭐ Top Rated", ar:"⭐ الأعلى تقييمًا"},
+  emptyResult:{fa:"نتیجه‌ای پیدا نشد", en:"No results found", ar:"لا توجد نتائج"},
+  emptyLabel:{fa:"جای خالی", en:"Vacant Slot", ar:"مكان شاغر"},
+  emptySub:{fa:"عضویت یک‌ساله", en:"1-year membership", ar:"عضوية سنوية"},
+  reviewsWord:{fa:"نظر", en:"reviews", ar:"تقييم"},
+  moreBtn:{fa:"بیشتر ▾", en:"More ▾", ar:"المزيد ▾"},
+  lessBtn:{fa:"بازگشت ▴", en:"Less ▴", ar:"أقل ▴"},
+  routeBtn:{fa:"🗺️ مسیریابی سریع", en:"🗺️ Quick Directions", ar:"🗺️ الاتجاهات السريعة"},
+  amenitiesToggle:{fa:"☑️ امکانات اقامتگاه", en:"☑️ Residence Amenities", ar:"☑️ مرافق الإقامة"},
+  weatherTitlePrefix:{fa:"آب‌وهوای", en:"Weather in", ar:"طقس"},
+  weatherLoading:{fa:"در حال بارگذاری…", en:"Loading…", ar:"جاري التحميل…"},
+  weatherFetching:{fa:"در حال دریافت آب‌وهوا…", en:"Fetching weather…", ar:"جاري جلب الطقس…"},
+  weatherFailed:{fa:"دریافت آب‌وهوا ممکن نشد.", en:"Couldn't fetch weather.", ar:"تعذّر جلب الطقس."},
+  contactToggle:{fa:"📞 تماس مستقیم", en:"📞 Direct Contact", ar:"📞 اتصال مباشر"},
+  instagramLink:{fa:"📷 اینستاگرام", en:"📷 Instagram", ar:"📷 إنستغرام"},
+  websiteLink:{fa:"🌐 وب‌سایت", en:"🌐 Website", ar:"🌐 الموقع الإلكتروني"},
+  contactSheetTitle:{fa:"📞 تماس مستقیم — یک شماره را انتخاب کنید", en:"📞 Direct Contact — choose a number", ar:"📞 اتصال مباشر — اختر رقمًا"},
+  mobilePhoneLabel:{fa:"تلفن همراه", en:"Mobile", ar:"الهاتف المحمول"},
+  landlinePhoneLabel:{fa:"تلفن ثابت", en:"Landline", ar:"الهاتف الثابت"},
+  supportPhoneLabel:{fa:"تلفن پشتیبان", en:"Support Line", ar:"خط الدعم"},
+  emptySheetTitle:{fa:"جایگاه #{code} — هنوز خالی است", en:"Slot #{code} — still vacant", ar:"المكان #{code} — لا يزال شاغرًا"},
+  emptySheetBody:{fa:"این جایگاه هنوز به هیچ اقامتگاهی اختصاص نیافته است. با ثبت‌نام و عضویت یک‌ساله، اقامتگاه شما همین‌جا با فیلم، توضیحات، آب‌وهوا و راه ارتباطی مستقیم به گردشگران معرفی می‌شود.",
+    en:"This slot has not been assigned to any residence yet. With a 1-year membership, your residence will be showcased right here with video, description, weather and direct contact for travelers.",
+    ar:"لم يتم تخصيص هذا المكان لأي إقامة حتى الآن. من خلال العضوية السنوية، سيتم عرض إقامتك هنا بفيديو ووصف وطقس وطريقة تواصل مباشرة مع المسافرين."},
+  emptySheetBtn:{fa:"✅ ثبت‌نام اقامتگاه (عضویت یک‌ساله)", en:"✅ Register Residence (1-year membership)", ar:"✅ تسجيل الإقامة (عضوية سنوية)"}
+};
+
+function t(key){
+  const entry = RV_I18N[key];
+  return entry ? (entry[currentLang] || entry.fa) : "";
+}
 
 const RESIDENCE_SLOTS = [
   {
@@ -706,19 +749,19 @@ RESIDENCE_SLOTS.push(
 );
 
 const AMENITY_DEFS = [
-  {key:"parking", icon:"🅿️", label:"پارکینگ"},
-  {key:"westernToilet", icon:"🚽", label:"سرویس فرنگی"},
-  {key:"iranianToilet", icon:"🚽", label:"سرویس ایرانی"},
-  {key:"bedrooms", icon:"🛏️", label:"تعداد اتاق‌خواب", isCount:true},
-  {key:"internet", icon:"📶", label:"اینترنت / وای‌فای"},
-  {key:"kitchen", icon:"🍳", label:"آشپزخانه"},
-  {key:"ac", icon:"❄️", label:"کولر / تهویه"},
-  {key:"heating", icon:"🌡️", label:"سیستم گرمایشی"},
-  {key:"hotWater", icon:"🚿", label:"آب‌گرم"},
-  {key:"breakfast", icon:"🍳", label:"صبحانه"},
-  {key:"elevator", icon:"🛗", label:"آسانسور"},
-  {key:"yard", icon:"🌳", label:"حیاط / بالکن"},
-  {key:"pet", icon:"🐾", label:"مناسب حیوان خانگی"}
+  {key:"parking", icon:"🅿️", label:{fa:"پارکینگ", en:"Parking", ar:"موقف سيارات"}},
+  {key:"westernToilet", icon:"🚽", label:{fa:"سرویس فرنگی", en:"Western Toilet", ar:"مرحاض إفرنجي"}},
+  {key:"iranianToilet", icon:"🚽", label:{fa:"سرویس ایرانی", en:"Iranian Toilet", ar:"مرحاض إيراني"}},
+  {key:"bedrooms", icon:"🛏️", label:{fa:"تعداد اتاق‌خواب", en:"Bedrooms", ar:"عدد غرف النوم"}, isCount:true},
+  {key:"internet", icon:"📶", label:{fa:"اینترنت / وای‌فای", en:"Internet / Wi-Fi", ar:"إنترنت / واي فاي"}},
+  {key:"kitchen", icon:"🍳", label:{fa:"آشپزخانه", en:"Kitchen", ar:"مطبخ"}},
+  {key:"ac", icon:"❄️", label:{fa:"کولر / تهویه", en:"AC / Cooling", ar:"مكيف / تهوية"}},
+  {key:"heating", icon:"🌡️", label:{fa:"سیستم گرمایشی", en:"Heating System", ar:"نظام تدفئة"}},
+  {key:"hotWater", icon:"🚿", label:{fa:"آب‌گرم", en:"Hot Water", ar:"ماء ساخن"}},
+  {key:"breakfast", icon:"🍳", label:{fa:"صبحانه", en:"Breakfast", ar:"وجبة الإفطار"}},
+  {key:"elevator", icon:"🛗", label:{fa:"آسانسور", en:"Elevator", ar:"مصعد"}},
+  {key:"yard", icon:"🌳", label:{fa:"حیاط / بالکن", en:"Yard / Balcony", ar:"حديقة / شرفة"}},
+  {key:"pet", icon:"🐾", label:{fa:"مناسب حیوان خانگی", en:"Pet Friendly", ar:"مناسب للحيوانات"}}
 ];
 
 const grid = document.getElementById("slotsGrid");
@@ -731,25 +774,27 @@ let sortByRating = false;
 /* ---------- FILTER CHIPS ---------- */
 
 function buildFilters(){
+  filterRow.innerHTML = "";
+
   const allChip = document.createElement("div");
-  allChip.className = "filterChip active";
-  allChip.textContent = "همه";
+  allChip.className = "filterChip" + (activeType === "" ? " active" : "");
+  allChip.textContent = t("allChip");
   allChip.onclick = function(){ setActiveType(""); };
   filterRow.appendChild(allChip);
 
   Object.keys(RESIDENCE_TYPES).forEach(function(key){
-    const t = RESIDENCE_TYPES[key];
+    const typeDef = RESIDENCE_TYPES[key];
     const chip = document.createElement("div");
-    chip.className = "filterChip";
-    chip.textContent = t.icon + " " + t.fa;
+    chip.className = "filterChip" + (activeType === key ? " active" : "");
+    chip.textContent = typeDef.icon + " " + typeDef[currentLang];
     chip.dataset.type = key;
     chip.onclick = function(){ setActiveType(key); };
     filterRow.appendChild(chip);
   });
 
   const sortChip = document.createElement("div");
-  sortChip.className = "filterChip sortChip";
-  sortChip.textContent = "⭐ بیشترین امتیاز";
+  sortChip.className = "filterChip sortChip" + (sortByRating ? " active" : "");
+  sortChip.textContent = t("sortChip");
   sortChip.onclick = function(){
     sortByRating = !sortByRating;
     sortChip.classList.toggle("active", sortByRating);
@@ -793,7 +838,7 @@ function render(){
 
   if(!list.length){
     grid.innerHTML =
-      '<div class="emptyState" style="grid-column:1/-1;text-align:center;padding:50px 20px;color:rgba(255,255,255,.5);"><div style="font-size:36px;margin-bottom:10px;">🎬</div>نتیجه‌ای پیدا نشد</div>';
+      '<div class="emptyState" style="grid-column:1/-1;text-align:center;padding:50px 20px;color:rgba(255,255,255,.5);"><div style="font-size:36px;margin-bottom:10px;">🎬</div>'+t("emptyResult")+'</div>';
     return;
   }
 
@@ -802,20 +847,20 @@ function render(){
     card.className = "slotCard" + (slot.assigned ? " assigned" : "");
 
     if(slot.assigned){
-      const t = RESIDENCE_TYPES[slot.type] || RESIDENCE_TYPES.touristic;
+      const typeInfo = RESIDENCE_TYPES[slot.type] || RESIDENCE_TYPES.touristic;
       card.innerHTML =
         '<div class="slotCoverWrap"><iframe class="slotCover" src="https://www.aparat.com/video/video/embed/videohash/'+slot.aparatHash+'/vt/frame" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>' +
         '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><span>▶️</span></div>' +
         '<div class="slotTitle">'+slot.name+'</div>' +
         '<div class="slotLoc">📍 '+slot.city+'</div>' +
-        '<div class="slotLoc" style="margin-top:2px;">'+t.icon+' '+t.fa+' &nbsp; ⭐ '+(slot.rating || "—")+'</div>';
+        '<div class="slotLoc" style="margin-top:2px;">'+typeInfo.icon+' '+typeInfo[currentLang]+' &nbsp; ⭐ '+(slot.rating || "—")+'</div>';
       card.onclick = function(){ openDetail(slot); };
     } else {
       card.innerHTML =
         '<span class="codeBadge">#'+slot.code+'</span>' +
         '<div class="emptyIcon">➕</div>' +
-        '<div class="emptyLabel">جای خالی</div>' +
-        '<div class="emptySub">عضویت یک‌ساله</div>';
+        '<div class="emptyLabel">'+t("emptyLabel")+'</div>' +
+        '<div class="emptySub">'+t("emptySub")+'</div>';
       card.onclick = function(){ openEmptySheet(slot.code); };
     }
 
@@ -826,6 +871,37 @@ function render(){
 buildFilters();
 render();
 searchInput.addEventListener("input", render);
+
+/* ================= LANGUAGE SWITCH ================= */
+
+function applyLanguage(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === "en") ? "ltr" : "rtl";
+
+  document.getElementById("rvHeaderTitle").textContent = t("headerTitle");
+  searchInput.placeholder = t("searchPlaceholder");
+  document.getElementById("detailRouteBtnText").textContent = t("routeBtn").replace("🗺️ ", "");
+  document.getElementById("amenitiesToggleText").textContent = t("amenitiesToggle").replace("☑️ ", "");
+  document.getElementById("contactToggleText").textContent = t("contactToggle").replace("📞 ", "");
+  document.getElementById("detailInstagramText").textContent = t("instagramLink").replace("📷 ", "");
+  document.getElementById("detailWebsiteText").textContent = t("websiteLink").replace("🌐 ", "");
+  document.getElementById("contactSheetTitle").textContent = t("contactSheetTitle");
+  document.getElementById("emptySheetBody").textContent = t("emptySheetBody");
+  document.getElementById("emptySheetBtn").textContent = t("emptySheetBtn");
+  document.getElementById("weatherBody").textContent = t("weatherLoading");
+
+  buildFilters();
+  render();
+
+  if(currentSlot && detailOverlay.classList.contains("show")){
+    openDetail(currentSlot);
+  }
+}
+
+document.getElementById("rvLangSelect").addEventListener("change", function(){
+  applyLanguage(this.value);
+});
 
 /* ================= DETAIL OVERLAY ================= */
 
@@ -838,13 +914,13 @@ function openDetail(slot){
 
   detailIframe.src = "https://www.aparat.com/video/video/embed/videohash/" + slot.aparatHash + "/vt/frame";
   document.getElementById("detailName").textContent = slot.name;
-  document.getElementById("detailRating").textContent = "⭐ " + slot.rating + " (" + slot.ratingCount + " نظر)";
+  document.getElementById("detailRating").textContent = "⭐ " + slot.rating + " (" + slot.ratingCount + " " + t("reviewsWord") + ")";
   document.getElementById("detailLoc").textContent = slot.city + (slot.province ? "، " + slot.province : "");
 
   const descEl = document.getElementById("detailDesc");
   descEl.textContent = slot.description || "";
   descEl.classList.remove("expanded");
-  document.getElementById("detailMoreBtn").textContent = "بیشتر ▾";
+  document.getElementById("detailMoreBtn").textContent = t("moreBtn");
 
   document.getElementById("detailRouteBtn").href =
     "https://www.google.com/maps/dir/?api=1&destination=" + slot.lat + "," + slot.lon;
@@ -853,9 +929,9 @@ function openDetail(slot){
   document.getElementById("amenitiesPanel").classList.remove("show");
 
   document.getElementById("weatherBody").classList.remove("show");
-  document.getElementById("weatherBody").innerHTML = "در حال بارگذاری…";
+  document.getElementById("weatherBody").innerHTML = t("weatherLoading");
   document.getElementById("weatherSummary").textContent = "";
-  document.getElementById("weatherTitle").textContent = "آب‌وهوای " + slot.city;
+  document.getElementById("weatherTitle").textContent = t("weatherTitlePrefix") + " " + slot.city;
   weatherLoadedFor = null;
 
   const igEl = document.getElementById("detailInstagram");
@@ -878,7 +954,7 @@ document.getElementById("detailCloseBtn").onclick = closeDetail;
 document.getElementById("detailMoreBtn").onclick = function(){
   const descEl = document.getElementById("detailDesc");
   const expanded = descEl.classList.toggle("expanded");
-  this.textContent = expanded ? "بازگشت ▴" : "بیشتر ▾";
+  this.textContent = expanded ? t("lessBtn") : t("moreBtn");
 };
 
 /* ================= AMENITIES ================= */
@@ -892,11 +968,12 @@ function renderAmenities(slot){
     row.className = "amenityRow";
     let statusHtml;
     if(def.isCount){
-      statusHtml = val ? '<span class="amenityYes">'+val+' اتاق</span>' : '<span class="amenityNo">—</span>';
+      const roomWord = currentLang === "en" ? "rooms" : (currentLang === "ar" ? "غرف" : "اتاق");
+      statusHtml = val ? '<span class="amenityYes">'+val+' '+roomWord+'</span>' : '<span class="amenityNo">—</span>';
     } else {
       statusHtml = val ? '<span class="amenityYes">✓</span>' : '<span class="amenityNo">✗</span>';
     }
-    row.innerHTML = '<span class="amenityLabel">'+def.icon+' '+def.label+'</span>' + statusHtml;
+    row.innerHTML = '<span class="amenityLabel">'+def.icon+' '+def.label[currentLang]+'</span>' + statusHtml;
     panel.appendChild(row);
   });
 }
@@ -922,7 +999,7 @@ document.getElementById("weatherToggle").onclick = function(){
 async function loadWeather(slot){
   const body = document.getElementById("weatherBody");
   const summary = document.getElementById("weatherSummary");
-  body.innerHTML = "در حال دریافت آب‌وهوا…";
+  body.innerHTML = t("weatherFetching");
   try{
     const geoUrl = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&accept-language=fa&q=" +
       encodeURIComponent(slot.city + (slot.province ? ", " + slot.province : ""));
@@ -930,7 +1007,7 @@ async function loadWeather(slot){
     const geoData = await geoRes.json();
 
     if(!geoData || !geoData.length){
-      body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+      body.innerHTML = t("weatherFailed");
       return;
     }
 
@@ -943,7 +1020,7 @@ async function loadWeather(slot){
     const cur = wData.current;
 
     if(!cur){
-      body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+      body.innerHTML = t("weatherFailed");
       return;
     }
 
@@ -958,7 +1035,7 @@ async function loadWeather(slot){
 
     weatherLoadedFor = slot.code;
   }catch(e){
-    body.innerHTML = "دریافت آب‌وهوا ممکن نشد.";
+    body.innerHTML = t("weatherFailed");
   }
 }
 
@@ -976,18 +1053,33 @@ function weatherEmoji(code){
   return "🌡️";
 }
 function weatherLabel(code){
-  if(code===0) return "صاف";
-  if(code===1) return "کمی ابری";
-  if(code===2) return "نیمه‌ابری";
-  if(code===3) return "ابری";
-  if(code===45||code===48) return "مه‌آلود";
-  if(code>=51&&code<=57) return "نم‌نم باران";
-  if(code>=61&&code<=67) return "بارانی";
-  if(code>=71&&code<=77) return "برفی";
-  if(code>=80&&code<=82) return "رگبار";
-  if(code===85||code===86) return "رگبار برف";
-  if(code>=95) return "رعدوبرق";
-  return "نامشخص";
+  const L = {
+    clear:{fa:"صاف", en:"Clear", ar:"صافٍ"},
+    mostlyClear:{fa:"کمی ابری", en:"Mostly Clear", ar:"غائم جزئيًا"},
+    partlyCloudy:{fa:"نیمه‌ابری", en:"Partly Cloudy", ar:"غائم نسبيًا"},
+    cloudy:{fa:"ابری", en:"Cloudy", ar:"غائم"},
+    fog:{fa:"مه‌آلود", en:"Foggy", ar:"ضباب"},
+    drizzle:{fa:"نم‌نم باران", en:"Drizzle", ar:"رذاذ"},
+    rain:{fa:"بارانی", en:"Rainy", ar:"ممطر"},
+    snow:{fa:"برفی", en:"Snowy", ar:"مثلج"},
+    showers:{fa:"رگبار", en:"Showers", ar:"زخات مطر"},
+    snowShowers:{fa:"رگبار برف", en:"Snow Showers", ar:"زخات ثلجية"},
+    thunder:{fa:"رعدوبرق", en:"Thunderstorm", ar:"عاصفة رعدية"},
+    unknown:{fa:"نامشخص", en:"Unknown", ar:"غير معروف"}
+  };
+  let k = "unknown";
+  if(code===0) k="clear";
+  else if(code===1) k="mostlyClear";
+  else if(code===2) k="partlyCloudy";
+  else if(code===3) k="cloudy";
+  else if(code===45||code===48) k="fog";
+  else if(code>=51&&code<=57) k="drizzle";
+  else if(code>=61&&code<=67) k="rain";
+  else if(code>=71&&code<=77) k="snow";
+  else if(code>=80&&code<=82) k="showers";
+  else if(code===85||code===86) k="snowShowers";
+  else if(code>=95) k="thunder";
+  return L[k][currentLang] || L[k].fa;
 }
 
 /* ================= CONTACT SHEET ================= */
@@ -999,10 +1091,12 @@ document.getElementById("contactToggle").onclick = function(){
   const opts = document.getElementById("contactOptions");
   opts.innerHTML = "";
 
+  document.getElementById("contactSheetTitle").textContent = t("contactSheetTitle");
+
   const rows = [
-    {key:"mobilePhone", icon:"📱", label:"تلفن همراه"},
-    {key:"landlinePhone", icon:"☎️", label:"تلفن ثابت"},
-    {key:"supportPhone", icon:"🎧", label:"تلفن پشتیبان"}
+    {key:"mobilePhone", icon:"📱", labelKey:"mobilePhoneLabel"},
+    {key:"landlinePhone", icon:"☎️", labelKey:"landlinePhoneLabel"},
+    {key:"supportPhone", icon:"🎧", labelKey:"supportPhoneLabel"}
   ];
 
   rows.forEach(function(r){
@@ -1013,7 +1107,7 @@ document.getElementById("contactToggle").onclick = function(){
     a.href = "tel:" + phone;
     a.innerHTML =
       '<div class="contactIcon">'+r.icon+'</div>' +
-      '<div><div class="contactLabel">'+r.label+'</div><div class="contactPhone">'+phone+'</div></div>';
+      '<div><div class="contactLabel">'+t(r.labelKey)+'</div><div class="contactPhone">'+phone+'</div></div>';
     opts.appendChild(a);
   });
 
@@ -1031,7 +1125,7 @@ const emptySheet = document.getElementById("emptySheet");
 const emptyBg = document.getElementById("emptyBg");
 
 function openEmptySheet(code){
-  document.getElementById("emptySheetTitle").textContent = "جایگاه #" + code + " — هنوز خالی است";
+  document.getElementById("emptySheetTitle").textContent = t("emptySheetTitle").replace("{code}", code);
   emptySheet.classList.add("show");
   emptyBg.classList.add("show");
 }
