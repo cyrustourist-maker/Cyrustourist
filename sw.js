@@ -1,4 +1,4 @@
-const CYRUS_CACHE = "cyrus-tourist-v2";
+const CYRUS_CACHE = "cyrus-tourist-v3";
 
 const CORE_FILES = [
   "./",
