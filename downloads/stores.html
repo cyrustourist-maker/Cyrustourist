@@ -18,6 +18,8 @@
 
 <title>فروشگاه‌ها | سایروس توریست</title>
 
+<script src="../js/pwa-install.js" defer></script>
+
 <link rel="icon" href="../assets/images/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16.png">
@@ -1079,55 +1081,12 @@ select:focus-visible{
 
     <div class="storeGrid">
 
-      <!-- GOOGLE PLAY -->
-
-      <div class="storeCard">
-
-        <div class="storeIcon">
-          ▶️
-        </div>
-
-        <div
-          class="storeName"
-          data-fa="Google Play"
-          data-en="Google Play"
-          data-ar="Google Play">
-          Google Play
-        </div>
-
-        <div
-          class="storeDescription"
-          data-fa="فروشگاه رسمی اندروید"
-          data-en="Official Android Store"
-          data-ar="متجر أندرويد الرسمي">
-          فروشگاه رسمی اندروید
-        </div>
-
-        <button
-          type="button"
-          class="storeButton coming"
-          data-store-fa="گوگل پلی"
-          data-store-en="Google Play"
-          data-store-ar="Google Play">
-
-          <span
-            data-fa="به‌زودی"
-            data-en="Coming Soon"
-            data-ar="قريباً">
-            به‌زودی
-          </span>
-
-        </button>
-
-      </div>
-
-
       <!-- BAZAAR -->
 
       <div class="storeCard">
 
         <div class="storeIcon">
-          🛍️
+          🏬
         </div>
 
         <div
@@ -1146,21 +1105,20 @@ select:focus-visible{
           فروشگاه ایرانی اپلیکیشن
         </div>
 
-        <button
-          type="button"
-          class="storeButton coming"
-          data-store-fa="بازار"
-          data-store-en="Bazaar"
-          data-store-ar="بازار">
+        <a
+          class="storeButton active"
+          href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share"
+          target="_blank"
+          rel="noopener noreferrer">
 
           <span
-            data-fa="به‌زودی"
-            data-en="Coming Soon"
-            data-ar="قريباً">
-            به‌زودی
+            data-fa="نصب از بازار"
+            data-en="Install from Bazaar"
+            data-ar="التثبيت من بازار">
+            نصب از بازار
           </span>
 
-        </button>
+        </a>
 
       </div>
 
@@ -1250,42 +1208,41 @@ select:focus-visible{
       </div>
 
 
-      <!-- SIB -->
+      <!-- PWA INSTALL (iOS placeholder until Sib is ready) -->
 
       <div class="storeCard">
 
         <div class="storeIcon">
-          🍏
+          📲
         </div>
 
         <div
           class="storeName"
-          data-fa="سیب"
-          data-en="Sib"
-          data-ar="سیب">
-          سیب
+          data-fa="نصب مستقیم (PWA)"
+          data-en="Direct Install (PWA)"
+          data-ar="تثبيت مباشر (PWA)">
+          نصب مستقیم (PWA)
         </div>
 
         <div
           class="storeDescription"
-          data-fa="فروشگاه ایرانی iOS"
-          data-en="Iranian iOS Store"
-          data-ar="متجر iOS الإيراني">
-          فروشگاه ایرانی iOS
+          data-fa="بدون فروشگاه، مستقیم روی گوشی یا کامپیوتر نصب کنید"
+          data-en="Install directly on your phone or computer, no store needed"
+          data-ar="التثبيت مباشرة على هاتفك أو جهازك دون الحاجة إلى متجر">
+          بدون فروشگاه، مستقیم روی گوشی یا کامپیوتر نصب کنید
         </div>
 
         <button
           type="button"
-          class="storeButton coming"
-          data-store-fa="سیب"
-          data-store-en="Sib"
-          data-store-ar="سیب">
+          class="storeButton active"
+          data-cyrus-install-btn
+          data-installed-text="✅ نصب شده است">
 
           <span
-            data-fa="به‌زودی"
-            data-en="Coming Soon"
-            data-ar="قريباً">
-            به‌زودی
+            data-fa="📲 نصب اپلیکیشن"
+            data-en="📲 Install App"
+            data-ar="📲 تثبيت التطبيق">
+            📲 نصب اپلیکیشن
           </span>
 
         </button>
