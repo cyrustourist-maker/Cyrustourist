@@ -62,6 +62,44 @@ body{
 }
 .headerTitle{font-size:16px;font-weight:bold;}
 
+.searchWrap{padding:14px 16px 4px;}
+.searchBox{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);
+  border:1px solid rgba(255,211,106,.2);
+  border-radius:18px;
+  padding:14px 16px;
+}
+.searchBox input{
+  flex:1;background:transparent;border:0;outline:0;color:#fff;
+  font-size:14px;font-family:inherit;
+}
+.searchBox input::placeholder{color:rgba(255,255,255,.4);}
+.searchIcon{color:var(--gold);font-size:16px;}
+
+.filterRow{
+  display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;
+  scrollbar-width:none;
+}
+.filterRow::-webkit-scrollbar{display:none;}
+.filterChip{
+  flex-shrink:0;
+  padding:9px 15px;border-radius:20px;font-size:12.5px;font-weight:bold;
+  background:var(--card);border:1px solid rgba(255,211,106,.22);color:rgba(255,255,255,.8);
+  cursor:pointer;white-space:nowrap;
+}
+.filterChip.active{
+  background:linear-gradient(135deg,var(--brand1),var(--brand2));
+  border-color:transparent;color:#04241f;
+}
+.filterChip.sortChip{
+  border-color:rgba(255,211,106,.4);
+}
+.filterChip.sortChip.active{
+  background:linear-gradient(135deg,var(--gold),var(--goldBright));
+  color:#3a2a00;
+}
+
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -222,6 +260,15 @@ body{
 <div class="headerTitle">🎬 فیلم‌های اقامتگاه‌ها</div>
 </div>
 
+<div class="searchWrap">
+<div class="searchBox">
+<input id="searchInput" type="search" placeholder="جست‌وجو با کد، نام، شهر یا استان..." autocomplete="off">
+<span class="searchIcon">🔎</span>
+</div>
+</div>
+
+<div class="filterRow" id="filterRow"></div>
+
 <div class="grid" id="slotsGrid"></div>
 
 <!-- DETAIL OVERLAY -->
@@ -284,9 +331,17 @@ body{
 </div>
 
 <script>
+const RESIDENCE_TYPES = {
+  ecolodge:{fa:"بوم‌گردی", icon:"🌿"},
+  hotel:{fa:"هتل", icon:"🏨"},
+  villa:{fa:"ویلا", icon:"🏡"},
+  cabin:{fa:"کلبه", icon:"🌲"},
+  touristic:{fa:"توریستی", icon:"🧭"}
+};
+
 const RESIDENCE_SLOTS = [
   {
-    code:1, assigned:true,
+    code:1, assigned:true, type:"ecolodge",
     name:"اقامتگاه نمونه سایروس توریست",
     city:"مشهد", province:"خراسان رضوی",
     description:"این یک نمونه از صفحه‌ی معرفی و نمایش فیلم اقامتگاه است. پس از ثبت‌نام اقامتگاه شما در سایروس توریست، همین قالب با فیلم، توضیحات، آدرس، آب‌وهوا و راه‌های تماس واقعی اقامتگاه شما پر می‌شود.",
@@ -307,7 +362,7 @@ const RESIDENCE_SLOTS = [
 ];
 RESIDENCE_SLOTS.push(
   {
-    code:2, assigned:true,
+    code:2, assigned:true, type:"touristic",
     name:"رقص محلی فاروق خراسانی با آهنگ لیلا",
     city:"خراسان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -325,7 +380,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:3, assigned:true,
+    code:3, assigned:true, type:"ecolodge",
     name:"چشمه گراب؛ جادوی طبیعت ایران",
     city:"خراسان رضوی", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -343,7 +398,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:4, assigned:true,
+    code:4, assigned:true, type:"cabin",
     name:"جنگل کوه‌پارک مشهد و قله زو",
     city:"مشهد، خراسان رضوی", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -361,7 +416,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:5, assigned:true,
+    code:5, assigned:true, type:"cabin",
     name:"کاشت بلوط؛ راه نجات جنگل‌های هیرکانی",
     city:"جنگل‌های هیرکانی", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -379,7 +434,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:6, assigned:true,
+    code:6, assigned:true, type:"ecolodge",
     name:"آبشار شیرآباد؛ یکی از دیدنی‌های گلستان",
     city:"استان گلستان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -397,7 +452,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:7, assigned:true,
+    code:7, assigned:true, type:"touristic",
     name:"آبگوشت دیزی سنگی در طبیعت",
     city:"ایران", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -415,7 +470,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:8, assigned:true,
+    code:8, assigned:true, type:"touristic",
     name:"۲۵ اردیبهشت؛ روز بزرگداشت فردوسی",
     city:"مشهد، خراسان رضوی", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -433,7 +488,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:9, assigned:true,
+    code:9, assigned:true, type:"ecolodge",
     name:"چشمه سبز گلمکان؛ دریاچه زیبای مشهد",
     city:"گلمکان، خراسان رضوی", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -451,7 +506,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:10, assigned:true,
+    code:10, assigned:true, type:"touristic",
     name:"آموزش پخت سیب‌زمینی آتشی در طبیعت",
     city:"طبیعت ایران", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -469,7 +524,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:11, assigned:true,
+    code:11, assigned:true, type:"touristic",
     name:"جشن نوروز باستانی و سفره هفت‌سین",
     city:"ایران", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -487,7 +542,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:12, assigned:true,
+    code:12, assigned:true, type:"hotel",
     name:"چایخانه حمام وکیل کرمان",
     city:"کرمان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -505,7 +560,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:13, assigned:true,
+    code:13, assigned:true, type:"touristic",
     name:"بجستان، آسبادهای نشتیفان و برج علی‌آباد کشمر",
     city:"خراسان رضوی", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -523,7 +578,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:14, assigned:true,
+    code:14, assigned:true, type:"touristic",
     name:"شاه نعمت‌الله ولی؛ ماهان کرمان",
     city:"ماهان، کرمان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -541,7 +596,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:15, assigned:true,
+    code:15, assigned:true, type:"villa",
     name:"باغ شاهزاده ماهان؛ شاهکار باغ ایرانی",
     city:"ماهان، کرمان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -559,7 +614,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:16, assigned:true,
+    code:16, assigned:true, type:"touristic",
     name:"موزه بانو حیاتی؛ گنجینه‌ای در بازار کرمان",
     city:"کرمان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -577,7 +632,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:17, assigned:true,
+    code:17, assigned:true, type:"touristic",
     name:"قلعه سریزد؛ نخستین بانک جهان",
     city:"سریزد، یزد", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -595,7 +650,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:18, assigned:true,
+    code:18, assigned:true, type:"cabin",
     name:"جنگل‌های حرا و بندر تاریخی لافت",
     city:"جزیره قشم", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -613,7 +668,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:19, assigned:true,
+    code:19, assigned:true, type:"villa",
     name:"باغ فین کاشان با موسیقی سنتی",
     city:"کاشان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -631,7 +686,7 @@ RESIDENCE_SLOTS.push(
     }
   },
   {
-    code:20, assigned:true,
+    code:20, assigned:true, type:"touristic",
     name:"غار علی‌صدر؛ غار تالابی شگفت‌انگیز ایران",
     city:"همدان", province:"",
     description:"این یک ویدیوی نمونه است تا این بخش خالی نماند؛ به‌زودی با معرفی اقامتگاه واقعی جایگزین می‌شود.",
@@ -667,29 +722,110 @@ const AMENITY_DEFS = [
 ];
 
 const grid = document.getElementById("slotsGrid");
+const searchInput = document.getElementById("searchInput");
+const filterRow = document.getElementById("filterRow");
 
-RESIDENCE_SLOTS.forEach(function(slot){
-  const card = document.createElement("div");
-  card.className = "slotCard" + (slot.assigned ? " assigned" : "");
+let activeType = "";
+let sortByRating = false;
 
-  if(slot.assigned){
-    card.innerHTML =
-      '<div class="slotCoverWrap"><iframe class="slotCover" src="https://www.aparat.com/video/video/embed/videohash/'+slot.aparatHash+'/vt/frame" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>' +
-      '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><span>▶️</span></div>' +
-      '<div class="slotTitle">'+slot.name+'</div>' +
-      '<div class="slotLoc">📍 '+slot.city+'</div>';
-    card.onclick = function(){ openDetail(slot); };
-  } else {
-    card.innerHTML =
-      '<span class="codeBadge">#'+slot.code+'</span>' +
-      '<div class="emptyIcon">➕</div>' +
-      '<div class="emptyLabel">جای خالی</div>' +
-      '<div class="emptySub">عضویت یک‌ساله</div>';
-    card.onclick = function(){ openEmptySheet(slot.code); };
+/* ---------- FILTER CHIPS ---------- */
+
+function buildFilters(){
+  const allChip = document.createElement("div");
+  allChip.className = "filterChip active";
+  allChip.textContent = "همه";
+  allChip.onclick = function(){ setActiveType(""); };
+  filterRow.appendChild(allChip);
+
+  Object.keys(RESIDENCE_TYPES).forEach(function(key){
+    const t = RESIDENCE_TYPES[key];
+    const chip = document.createElement("div");
+    chip.className = "filterChip";
+    chip.textContent = t.icon + " " + t.fa;
+    chip.dataset.type = key;
+    chip.onclick = function(){ setActiveType(key); };
+    filterRow.appendChild(chip);
+  });
+
+  const sortChip = document.createElement("div");
+  sortChip.className = "filterChip sortChip";
+  sortChip.textContent = "⭐ بیشترین امتیاز";
+  sortChip.onclick = function(){
+    sortByRating = !sortByRating;
+    sortChip.classList.toggle("active", sortByRating);
+    render();
+  };
+  filterRow.appendChild(sortChip);
+}
+
+function setActiveType(key){
+  activeType = key;
+  Array.from(filterRow.children).forEach(function(chip){
+    if(chip.classList.contains("sortChip")) return;
+    chip.classList.toggle("active", (chip.dataset.type || "") === key);
+  });
+  render();
+}
+
+/* ---------- GRID RENDER ---------- */
+
+function render(){
+  const q = (searchInput.value || "").trim().toLowerCase();
+  grid.innerHTML = "";
+
+  let list = RESIDENCE_SLOTS.filter(function(slot){
+    if(!slot.assigned) return true;
+    if(activeType && slot.type !== activeType) return false;
+    if(!q) return true;
+    const hay = (
+      String(slot.code) + " " + slot.name + " " + slot.city + " " + (slot.province || "")
+    ).toLowerCase();
+    return hay.indexOf(q) !== -1;
+  });
+
+  if(sortByRating){
+    list = list.slice().sort(function(a, b){
+      if(!a.assigned) return 1;
+      if(!b.assigned) return -1;
+      return (b.rating || 0) - (a.rating || 0);
+    });
   }
 
-  grid.appendChild(card);
-});
+  if(!list.length){
+    grid.innerHTML =
+      '<div class="emptyState" style="grid-column:1/-1;text-align:center;padding:50px 20px;color:rgba(255,255,255,.5);"><div style="font-size:36px;margin-bottom:10px;">🎬</div>نتیجه‌ای پیدا نشد</div>';
+    return;
+  }
+
+  list.forEach(function(slot){
+    const card = document.createElement("div");
+    card.className = "slotCard" + (slot.assigned ? " assigned" : "");
+
+    if(slot.assigned){
+      const t = RESIDENCE_TYPES[slot.type] || RESIDENCE_TYPES.touristic;
+      card.innerHTML =
+        '<div class="slotCoverWrap"><iframe class="slotCover" src="https://www.aparat.com/video/video/embed/videohash/'+slot.aparatHash+'/vt/frame" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>' +
+        '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><span>▶️</span></div>' +
+        '<div class="slotTitle">'+slot.name+'</div>' +
+        '<div class="slotLoc">📍 '+slot.city+'</div>' +
+        '<div class="slotLoc" style="margin-top:2px;">'+t.icon+' '+t.fa+' &nbsp; ⭐ '+(slot.rating || "—")+'</div>';
+      card.onclick = function(){ openDetail(slot); };
+    } else {
+      card.innerHTML =
+        '<span class="codeBadge">#'+slot.code+'</span>' +
+        '<div class="emptyIcon">➕</div>' +
+        '<div class="emptyLabel">جای خالی</div>' +
+        '<div class="emptySub">عضویت یک‌ساله</div>';
+      card.onclick = function(){ openEmptySheet(slot.code); };
+    }
+
+    grid.appendChild(card);
+  });
+}
+
+buildFilters();
+render();
+searchInput.addEventListener("input", render);
 
 /* ================= DETAIL OVERLAY ================= */
 
