@@ -12,6 +12,7 @@
   "theme_color": "#070f18",
   "lang": "fa-IR",
   "dir": "rtl",
+  "categories": ["travel", "lifestyle", "navigation"],
   "icons": [
     {
       "src": "assets/images/icon-192.png",
