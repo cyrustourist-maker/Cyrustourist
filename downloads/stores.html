@@ -18,6 +18,8 @@
 
 <title>فروشگاه‌ها | سایروس توریست</title>
 
+<link rel="manifest" href="../manifest.json">
+
 <script src="../js/pwa-install.js" defer></script>
 
 <link rel="icon" href="../assets/images/favicon.ico" sizes="any">
@@ -1781,6 +1783,21 @@ applyLanguage(
 
 })();
 
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("../sw.js")
+      .then(function () {
+        console.log("Cyrus Tourist: Service Worker registered");
+      })
+      .catch(function (err) {
+        console.log("Cyrus Tourist: Service Worker failed", err);
+      });
+  });
+}
 </script>
 
 </body>
