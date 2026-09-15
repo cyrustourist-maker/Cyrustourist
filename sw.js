@@ -1,4 +1,4 @@
-const CYRUS_CACHE = "cyrus-tourist-v7";
+const CYRUS_CACHE = "cyrus-tourist-v8";
 
 const CORE_FILES = [
   "./",
@@ -25,6 +25,3 @@ self.addEventListener("activate", function (event) {
         keys
           .filter(function (key) {
             return key !== CYRUS_CACHE;
-          })
-          .map(function (key) {
-            return caches.delete(key);
