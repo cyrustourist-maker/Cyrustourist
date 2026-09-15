@@ -23,3 +23,7 @@
   function isAndroid() {
     return /android/i.test(navigator.userAgent);
   }
+
+  function markInstalled(btn) {
+    var text = btn.getAttribute("data-installed-text");
+    if (text) btn.textContent = text;
