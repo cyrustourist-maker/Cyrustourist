@@ -233,18 +233,18 @@ let activeCat = "";
 /* ---------- FILTER CHIPS ---------- */
 
 function buildFilters(){
+  const allChip = document.createElement("div");
+  allChip.className = "filterChip active";
+  allChip.textContent = "همه";
+  allChip.onclick = function(){ setActiveCat(""); };
+  filterRow.appendChild(allChip);
+
   const leaderChip = document.createElement("div");
   leaderChip.className = "filterChip leaderChip";
   leaderChip.textContent = "🧭 لیدر تور";
   leaderChip.dataset.leaderTour = "1";
   leaderChip.onclick = function(){ showComingSoon(); };
   filterRow.appendChild(leaderChip);
-
-  const allChip = document.createElement("div");
-  allChip.className = "filterChip active";
-  allChip.textContent = "همه";
-  allChip.onclick = function(){ setActiveCat(""); };
-  filterRow.appendChild(allChip);
 
   Object.keys(TOURISM_CATEGORIES).forEach(function(key){
     const cat = TOURISM_CATEGORIES[key];
