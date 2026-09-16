@@ -1478,6 +1478,7 @@ alt="Cyrus Tourist"
 
 <img
 class="siteHeroImage"
+id="cyrusAppHeroImg"
 src="assets/images/cyrustourist-app-hero-2026.jpg"
 alt="گردشگری سایروس توریست — نقشه گردشگری، گردشگری سلامت، جاذبه‌های گردشگری، اقامتگاه‌ها، راهنمای سفر، فیلم ویژه، جستجوی هوشمند، طبیعت‌گردی"
 width="720"
@@ -1486,17 +1487,17 @@ loading="eager"
 fetchpriority="high"
 >
 
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" style="left:3.9%;top:57.4%;width:19.4%;height:9%;"></a>
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" style="left:27.5%;top:57.4%;width:19.4%;height:9%;"></a>
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" style="left:51.7%;top:57.4%;width:19.4%;height:9%;"></a>
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" style="left:75.3%;top:57.4%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.039" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" data-fx="0.517" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.753" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
 
-<a class="cyrusHeroHotspot glass" href="#guide" aria-label="راهنمای سفر" style="left:3.9%;top:71.5%;width:19.4%;height:9%;"></a>
-<a class="cyrusHeroHotspot glass" href="#videos" aria-label="نمایش فیلم ویژه" style="left:27.5%;top:71.5%;width:19.4%;height:9%;"></a>
-<a class="cyrusHeroHotspot glass" href="#heroSmartSearch" aria-label="جستجوی هوشمند" style="left:51.7%;top:71.5%;width:19.4%;height:9%;"></a>
-<a class="cyrusHeroHotspot glass" href="#nearby" aria-label="تور گردشگری" style="left:75.3%;top:71.5%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#guide" aria-label="راهنمای سفر" data-fx="0.039" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass" href="#videos" aria-label="نمایش فیلم ویژه" data-fx="0.275" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass" href="#heroSmartSearch" aria-label="جستجوی هوشمند" data-fx="0.517" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass" href="#nearby" aria-label="تور گردشگری" data-fx="0.753" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
 
-<a class="cyrusHeroHotspot glass searchGlass" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" style="left:6.25%;top:39.5%;width:87.5%;height:5.4%;"></a>
+<a class="cyrusHeroHotspot glass searchGlass" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.0625" data-fy="0.395" data-fw="0.875" data-fh="0.054"></a>
 
 </div>
 
@@ -5795,6 +5796,57 @@ getNearbyAttractions,
 };
 
 initializeNearbyCategories();
+
+(function(){
+
+var heroImg = document.getElementById('cyrusAppHeroImg');
+
+if(!heroImg){
+return;
+}
+
+var hotspots = Array.prototype.slice.call(
+document.querySelectorAll('.cyrusHeroHotspot[data-fx]')
+);
+
+function positionHeroHotspots(){
+
+var w = heroImg.offsetWidth;
+var h = heroImg.offsetHeight;
+
+if(!w || !h){
+return;
+}
+
+hotspots.forEach(function(el){
+
+var fx = parseFloat(el.getAttribute('data-fx'));
+var fy = parseFloat(el.getAttribute('data-fy'));
+var fw = parseFloat(el.getAttribute('data-fw'));
+var fh = parseFloat(el.getAttribute('data-fh'));
+
+el.style.left = (fx*w)+'px';
+el.style.top = (fy*h)+'px';
+el.style.width = (fw*w)+'px';
+el.style.height = (fh*h)+'px';
+
+});
+
+}
+
+if(heroImg.complete){
+positionHeroHotspots();
+}
+
+heroImg.addEventListener('load', positionHeroHotspots);
+window.addEventListener('resize', positionHeroHotspots);
+window.addEventListener('orientationchange', positionHeroHotspots);
+
+if(window.ResizeObserver){
+new ResizeObserver(positionHeroHotspots).observe(heroImg);
+}
+
+})();
 
 document.querySelectorAll('[data-map-filter]').forEach(function(el){
 
