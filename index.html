@@ -289,6 +289,18 @@ display:block;
 margin:auto
 }
 
+.heroTextSrOnly{
+position:absolute;
+width:1px;
+height:1px;
+padding:0;
+margin:-1px;
+overflow:hidden;
+clip:rect(0,0,0,0);
+white-space:nowrap;
+border:0
+}
+
 .siteHeroTitle{
 font-size:clamp(28px,4vw,48px);
 line-height:1.35;
@@ -1452,7 +1464,7 @@ alt="Cyrus Tourist"
 
 <div class="siteHero">
 
-<div>
+<div class="heroTextSrOnly">
 <h1 class="siteHeroTitle" data-i18n="heroTitle">
 گردشگری سایروس توریست
 </h1>
@@ -1474,17 +1486,17 @@ loading="eager"
 fetchpriority="high"
 >
 
-<a class="cyrusHeroHotspot glass" href="#map" aria-label="نقشه گردشگری" style="left:2%;top:69%;width:21.5%;height:13.8%;"></a>
-<a class="cyrusHeroHotspot glass" href="#nearby" aria-label="گردشگری سلامت" style="left:26.4%;top:69%;width:21.5%;height:13.8%;"></a>
-<a class="cyrusHeroHotspot glass" href="#attractions" aria-label="جاذبه‌های گردشگری" style="left:52.1%;top:69%;width:21.5%;height:13.8%;"></a>
-<a class="cyrusHeroHotspot glass" href="#residence" aria-label="اقامتگاه‌ها" style="left:76.4%;top:69%;width:21.5%;height:13.8%;"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" style="left:3.9%;top:57.4%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" style="left:27.5%;top:57.4%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" style="left:51.7%;top:57.4%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" style="left:75.3%;top:57.4%;width:19.4%;height:9%;"></a>
 
-<a class="cyrusHeroHotspot glass" href="#guide" aria-label="راهنمای سفر" style="left:2%;top:82.3%;width:21.5%;height:13.8%;"></a>
-<a class="cyrusHeroHotspot glass" href="#videos" aria-label="نمایش فیلم ویژه" style="left:26.4%;top:82.3%;width:21.5%;height:13.8%;"></a>
-<a class="cyrusHeroHotspot glass" href="#heroSmartSearch" aria-label="جستجوی هوشمند" style="left:52.1%;top:82.3%;width:21.5%;height:13.8%;"></a>
-<a class="cyrusHeroHotspot glass" href="#attractions" aria-label="طبیعت‌گردی" style="left:76.4%;top:82.3%;width:21.5%;height:13.8%;"></a>
+<a class="cyrusHeroHotspot glass" href="#guide" aria-label="راهنمای سفر" style="left:3.9%;top:71.5%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#videos" aria-label="نمایش فیلم ویژه" style="left:27.5%;top:71.5%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#heroSmartSearch" aria-label="جستجوی هوشمند" style="left:51.7%;top:71.5%;width:19.4%;height:9%;"></a>
+<a class="cyrusHeroHotspot glass" href="#nearby" aria-label="تور گردشگری" style="left:75.3%;top:71.5%;width:19.4%;height:9%;"></a>
 
-<a class="cyrusHeroHotspot glass searchGlass" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" style="left:5.6%;top:49.2%;width:88.9%;height:5.9%;"></a>
+<a class="cyrusHeroHotspot glass searchGlass" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" style="left:6.25%;top:39.5%;width:87.5%;height:5.4%;"></a>
 
 </div>
 
@@ -5783,6 +5795,36 @@ getNearbyAttractions,
 };
 
 initializeNearbyCategories();
+
+document.querySelectorAll('[data-map-filter]').forEach(function(el){
+
+var filter = el.getAttribute('data-map-filter');
+
+var targetBtnId =
+filter==='health' ? 'nearbyCatHealth' :
+filter==='attraction' ? 'nearbyCatAttractions' :
+filter==='accommodation' ? 'nearbyCatLodging' :
+null;
+
+if(!targetBtnId){
+return;
+}
+
+el.addEventListener('click', function(){
+
+setTimeout(function(){
+
+var btn = $(targetBtnId);
+
+if(btn){
+btn.click();
+}
+
+}, 400);
+
+});
+
+});
 
 initializeRegister();
 
