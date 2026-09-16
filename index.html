@@ -1113,6 +1113,26 @@ outline-offset:2px
 border-radius:999px
 }
 
+.videoMenuBanner{
+position:relative;
+width:100%;
+line-height:0;
+margin-bottom:22px;
+border-radius:20px;
+overflow:hidden
+}
+
+.videoMenuBannerImg{
+width:100%;
+height:auto;
+display:block;
+border-radius:20px
+}
+
+.videoMenuBanner .cyrusHeroHotspot{
+border-radius:6%
+}
+
 /* GUIDE CONTENT */
 
 .guideCards{
@@ -1932,19 +1952,19 @@ autocomplete="off"
 </div>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;">
+<div class="videoMenuBanner">
 
-<a href="residences/residences.html" style="position:relative;display:block;border-radius:20px;min-height:160px;background:linear-gradient(135deg,#12394d,#063b35);text-decoration:none;color:#fff;padding:18px;box-shadow:0 15px 35px rgba(0,0,0,0.35);">
-<div style="font-size:15px;font-weight:bold;margin-bottom:4px;">🎬 فیلم‌های اقامتی</div>
-<div style="font-size:12px;opacity:.75;">اقامتگاه | بوم‌گردی | کلبه</div>
-<div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;position:absolute;bottom:16px;left:50%;transform:translateX(-50%);box-shadow:0 8px 20px rgba(0,0,0,.35);">▶</div>
-</a>
+<img
+class="videoMenuBannerImg"
+src="assets/images/video_menu_header.png"
+alt="فیلم‌های اقامتی | اقامتگاه، بوم‌گردی، کلبه — جاذبه‌های گردشگری | ایران، تاریخ، طبیعت، فرهنگ"
+width="1139"
+height="759"
+loading="lazy"
+>
 
-<a href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" style="position:relative;display:block;border-radius:20px;min-height:160px;background:linear-gradient(135deg,#315b78,#071a2a);text-decoration:none;color:#fff;padding:18px;box-shadow:0 15px 35px rgba(0,0,0,0.35);">
-<div style="font-size:15px;font-weight:bold;margin-bottom:4px;">🏛️ جاذبه‌های گردشگری</div>
-<div style="font-size:12px;opacity:.75;">ایران | تاریخ | طبیعت | فرهنگ</div>
-<div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;position:absolute;bottom:16px;left:50%;transform:translateX(-50%);box-shadow:0 8px 20px rgba(0,0,0,.35);">▶</div>
-</a>
+<a class="cyrusHeroHotspot glass" href="residences/residences.html" aria-label="فیلم‌های اقامتی" style="left:0.5%;top:1.5%;width:49.5%;height:97%;"></a>
+<a class="cyrusHeroHotspot glass" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="جاذبه‌های گردشگری" style="left:53.5%;top:1.5%;width:45.5%;height:97%;"></a>
 
 </div>
 
