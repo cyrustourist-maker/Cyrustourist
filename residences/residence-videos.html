@@ -130,6 +130,40 @@ body{
   background:linear-gradient(135deg,var(--gold),var(--goldBright));
   color:#3a2a00;
 }
+.filterChip.leaderChip{
+  border:1px dashed rgba(255,211,106,.55);
+  color:var(--goldBright);
+  background:rgba(255,211,106,.08);
+}
+.filterChip.leaderChip:active{
+  background:rgba(255,211,106,.22);
+}
+
+.ctToast{
+  position:fixed;
+  left:50%;
+  bottom:26px;
+  transform:translateX(-50%) translateY(18px);
+  max-width:calc(100% - 32px);
+  width:340px;
+  background:linear-gradient(135deg,rgba(20,15,0,.96),rgba(10,8,0,.96));
+  border:1px solid rgba(255,211,106,.5);
+  box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 1px rgba(255,211,106,.12) inset;
+  color:var(--goldBright);
+  font-size:12.5px;
+  line-height:1.9;
+  padding:14px 16px;
+  border-radius:16px;
+  text-align:center;
+  z-index:999;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.ctToast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
 
 .grid{
   display:grid;
@@ -381,6 +415,8 @@ const RV_I18N = {
   headerTitle:{fa:"🎬 فیلم‌های اقامتگاه‌ها", en:"🎬 Residence Videos", ar:"🎬 فيديوهات أماكن الإقامة"},
   searchPlaceholder:{fa:"جست‌وجو با کد، نام، شهر یا استان...", en:"Search by code, name, city or province...", ar:"البحث بالرمز أو الاسم أو المدينة أو المحافظة..."},
   allChip:{fa:"همه", en:"All", ar:"الكل"},
+  leaderTourChip:{fa:"🧭 لیدر تور", en:"🧭 Tour Leader", ar:"🧭 قائد الجولة"},
+  comingSoonMsg:{fa:"🚧 این بخش در حال آماده‌سازی است و به‌زودی از پایگاه‌داده فعال می‌شود.", en:"🚧 This section is being prepared and will go live from the database soon.", ar:"🚧 هذا القسم قيد التجهيز وسيتم تفعيله قريبًا من قاعدة البيانات."},
   sortChip:{fa:"⭐ بیشترین امتیاز", en:"⭐ Top Rated", ar:"⭐ الأعلى تقييمًا"},
   emptyResult:{fa:"نتیجه‌ای پیدا نشد", en:"No results found", ar:"لا توجد نتائج"},
   emptyLabel:{fa:"جای خالی", en:"Vacant Slot", ar:"مكان شاغر"},
@@ -823,6 +859,13 @@ function buildFilters(){
     filterRow.appendChild(chip);
   });
 
+  const leaderChip = document.createElement("div");
+  leaderChip.className = "filterChip leaderChip";
+  leaderChip.textContent = t("leaderTourChip");
+  leaderChip.dataset.leaderTour = "1";
+  leaderChip.onclick = function(){ showComingSoon(); };
+  filterRow.appendChild(leaderChip);
+
   const sortChip = document.createElement("div");
   sortChip.className = "filterChip sortChip" + (sortByRating ? " active" : "");
   sortChip.textContent = t("sortChip");
@@ -837,7 +880,7 @@ function buildFilters(){
 function setActiveType(key){
   activeType = key;
   Array.from(filterRow.children).forEach(function(chip){
-    if(chip.classList.contains("sortChip")) return;
+    if(chip.classList.contains("sortChip") || chip.dataset.leaderTour) return;
     chip.classList.toggle("active", (chip.dataset.type || "") === key);
   });
   render();
@@ -845,9 +888,24 @@ function setActiveType(key){
 
 /* ---------- GRID RENDER ---------- */
 
+const LEADER_TOUR_KEYWORDS = ["لیدر تور","لیدر","تور لیدر","leader tour","tour leader","leader","قائد الجولة","قائد"];
+
+function isLeaderTourQuery(q){
+  if(!q) return false;
+  return LEADER_TOUR_KEYWORDS.some(function(kw){
+    return q.indexOf(kw.toLowerCase()) !== -1;
+  });
+}
+
 function render(){
   const q = (searchInput.value || "").trim().toLowerCase();
   grid.innerHTML = "";
+
+  if(isLeaderTourQuery(q)){
+    grid.innerHTML =
+      '<div class="emptyState" style="grid-column:1/-1;text-align:center;padding:50px 20px;color:rgba(255,255,255,.5);"><div style="font-size:36px;margin-bottom:10px;">🧭</div>'+t("comingSoonMsg")+'</div>';
+    return;
+  }
 
   let list = RESIDENCE_SLOTS.filter(function(slot){
     if(!slot.assigned) return true;
@@ -897,6 +955,24 @@ function render(){
 
     grid.appendChild(card);
   });
+}
+
+let ctToastTimer = null;
+
+function showComingSoon(){
+  let toastEl = document.getElementById("ctToast");
+  if(!toastEl){
+    toastEl = document.createElement("div");
+    toastEl.id = "ctToast";
+    toastEl.className = "ctToast";
+    document.body.appendChild(toastEl);
+  }
+  toastEl.textContent = t("comingSoonMsg");
+  toastEl.classList.add("show");
+  clearTimeout(ctToastTimer);
+  ctToastTimer = setTimeout(function(){
+    toastEl.classList.remove("show");
+  }, 2600);
 }
 
 buildFilters();
