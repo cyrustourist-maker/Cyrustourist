@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>برگزیده‌ها | سایروس توریست</title>
+<link rel="icon" href="assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180.png">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070f18">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{
+  --bg:#070f18;
+  --card:#0d2432;
+  --cardAlt:#0a1c28;
+  --gold:#ffd36a;
+  --goldBright:#ffe39a;
+  --brand1:#11998e;
+  --brand2:#38ef7d;
+  --brand3:#667eea;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;background:var(--bg);color:#fff;
+  font-family:Tahoma,Arial,sans-serif;padding-bottom:40px;
+}
+a{color:inherit;}
+
+.header{
+  position:relative;
+  margin:14px 14px 6px;
+  padding:22px 18px;
+  border-radius:22px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#123244,#0a1c28 55%,#1a2f52);
+  border:1px solid rgba(255,211,106,.3);
+  box-shadow:0 14px 34px rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.header::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,211,106,.16),transparent 45%),
+    radial-gradient(circle at 90% 80%,rgba(56,239,125,.14),transparent 50%);
+  pointer-events:none;
+}
+.header h1{
+  position:relative;font-size:21px;margin:0;font-weight:900;
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#fff,var(--goldBright));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.backBtn{
+  position:relative;flex-shrink:0;
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:19px;color:#04241f;
+  background:linear-gradient(135deg,var(--gold),var(--goldBright));
+  box-shadow:0 6px 18px rgba(255,211,106,.35),0 0 0 3px rgba(255,211,106,.15);
+  transition:.18s;
+}
+.backBtn:active{transform:scale(.92);}
+.sub{padding:0 18px;margin:0 14px;color:rgba(255,255,255,.55);font-size:12.5px;}
+
+.tabRow{
+  display:flex;gap:8px;padding:16px 16px 4px;
+}
+.tabChip{
+  flex:1;text-align:center;padding:11px 10px;border-radius:16px;
+  font-size:13px;font-weight:bold;cursor:pointer;
+  background:var(--card);border:1px solid rgba(255,211,106,.22);color:rgba(255,255,255,.8);
+}
+.tabChip.active{
+  background:linear-gradient(135deg,var(--brand1),var(--brand2));
+  border-color:transparent;color:#04241f;
+}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;}
+.vCard{
+  border-radius:20px;overflow:hidden;background:var(--card);
+  border:1px solid rgba(255,211,106,.14);text-decoration:none;color:#fff;
+  display:block;box-shadow:0 12px 28px rgba(0,0,0,.3);position:relative;
+}
+.vCoverWrap{
+  position:relative;width:100%;aspect-ratio:1/1;
+  background:linear-gradient(135deg,#0a1c28,#12394d);overflow:hidden;
+}
+.vCoverWrap iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;
+}
+.vBadge{
+  position:absolute;top:10px;left:10px;z-index:2;
+  padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:900;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
+  color:#fff;box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+.vHeart{
+  position:absolute;top:8px;right:8px;z-index:3;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,90,120,.28);backdrop-filter:blur(3px);
+  border:1px solid rgba(255,120,150,.65);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;cursor:pointer;padding:0;
+}
+.vPlay{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;}
+.vPlay span{
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.4);
+}
+.vBody{padding:13px 13px 15px;}
+.vTitle{
+  font-size:13.5px;font-weight:bold;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  min-height:2.6em;
+}
+.vLoc{margin-top:9px;font-size:11.5px;color:var(--goldBright);display:flex;align-items:center;gap:4px;}
+
+.emptyState{
+  grid-column:1/-1;text-align:center;padding:60px 20px;color:rgba(255,255,255,.5);
+}
+.emptyState .ic{font-size:38px;margin-bottom:12px;}
+.emptyState a{
+  display:inline-block;margin-top:14px;padding:10px 20px;border-radius:14px;
+  background:linear-gradient(135deg,var(--brand1),var(--brand2));
+  color:#04241f;font-weight:bold;text-decoration:none;font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>❤️ برگزیده‌ها</h1>
+<a class="backBtn" href="index.html#top" aria-label="بازگشت">→</a>
+</div>
+<div class="sub">فیلم‌های گردشگری و اقامتگاه‌هایی که به علاقه‌مندی‌ها اضافه کرده‌اید</div>
+
+<div class="tabRow">
+<div class="tabChip active" id="tabTourism">🎬 فیلم‌های گردشگری</div>
+<div class="tabChip" id="tabResidence">🏡 اقامتگاه‌ها</div>
+</div>
+
+<div class="grid" id="favGrid"></div>
+
+<script src="assets/favorites.js"></script>
+<script>
+const favGrid = document.getElementById("favGrid");
+const tabTourism = document.getElementById("tabTourism");
+const tabResidence = document.getElementById("tabResidence");
+
+let activeTab = "tourism";
+
+function setTab(tab){
+  activeTab = tab;
+  tabTourism.classList.toggle("active", tab === "tourism");
+  tabResidence.classList.toggle("active", tab === "residence");
+  render();
+}
+
+tabTourism.onclick = function(){ setTab("tourism"); };
+tabResidence.onclick = function(){ setTab("residence"); };
+
+function removeFav(type, id, btn){
+  CyrusFavorites.remove(type, id);
+  const card = btn.closest(".vCard");
+  if(card) card.remove();
+  if(!favGrid.querySelector(".vCard")) render();
+}
+
+function render(){
+  favGrid.innerHTML = "";
+  const data = CyrusFavorites.loadAll();
+  const list = data[activeTab] || [];
+
+  if(!list.length){
+    const msg = activeTab === "tourism"
+      ? "هنوز فیلم گردشگری به علاقه‌مندی‌ها اضافه نکرده‌اید"
+      : "هنوز اقامتگاهی به علاقه‌مندی‌ها اضافه نکرده‌اید";
+    const link = activeTab === "tourism"
+      ? '<a href="tourism-videos.html">مشاهده فیلم‌های گردشگری</a>'
+      : '<a href="residences/residence-videos.html">مشاهده اقامتگاه‌ها</a>';
+    favGrid.innerHTML =
+      '<div class="emptyState"><div class="ic">🤍</div>' + msg + link + '</div>';
+    return;
+  }
+
+  list.forEach(function(item){
+    const card = document.createElement("a");
+    card.className = "vCard";
+    card.href = item.href || "#";
+
+    const badge = activeTab === "tourism"
+      ? "#" + item.id
+      : (item.typeIcon ? item.typeIcon + " " + (item.typeLabel || "") : "#" + item.id);
+
+    card.innerHTML =
+      '<div class="vCoverWrap">' +
+        '<iframe src="https://www.aparat.com/video/video/embed/videohash/' + item.hash + '/vt/frame" loading="lazy"></iframe>' +
+        '<div class="vBadge">' + badge + '</div>' +
+        '<button type="button" class="vHeart" aria-label="حذف از علاقه‌مندی‌ها">❤️</button>' +
+        '<div class="vPlay"><span>▶</span></div>' +
+      '</div>' +
+      '<div class="vBody">' +
+        '<div class="vTitle">' + item.title + '</div>' +
+        '<div class="vLoc">📍 ' + item.loc + '</div>' +
+      '</div>';
+
+    const heartBtn = card.querySelector(".vHeart");
+    heartBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      removeFav(activeTab, item.id, heartBtn);
+    });
+
+    favGrid.appendChild(card);
+  });
+}
+
+render();
+</script>
+
+</body>
+</html>
