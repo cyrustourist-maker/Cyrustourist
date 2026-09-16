@@ -108,6 +108,26 @@ a{color:inherit;}
   background:linear-gradient(135deg,var(--brand1),var(--brand2));
   border-color:transparent;color:#04241f;
 }
+.filterChip.leaderChip{
+  border:1px dashed rgba(255,211,106,.55);
+  color:var(--goldBright);
+  background:rgba(255,211,106,.08);
+}
+.filterChip.leaderChip:active{
+  background:rgba(255,211,106,.22);
+}
+.ctToast{
+  position:fixed;left:50%;bottom:26px;
+  transform:translateX(-50%) translateY(18px);
+  max-width:calc(100% - 32px);width:340px;
+  background:linear-gradient(135deg,rgba(20,15,0,.96),rgba(10,8,0,.96));
+  border:1px solid rgba(255,211,106,.5);
+  box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 1px rgba(255,211,106,.12) inset;
+  color:var(--goldBright);font-size:12.5px;line-height:1.9;
+  padding:14px 16px;border-radius:16px;text-align:center;z-index:999;
+  opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;
+}
+.ctToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 .grid{
   display:grid;grid-template-columns:1fr 1fr;gap:14px;
@@ -136,6 +156,20 @@ a{color:inherit;}
   padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:900;
   background:linear-gradient(135deg,var(--brand1),var(--brand2),var(--brand3));
   color:#fff;box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+.vHeart{
+  position:absolute;top:8px;right:8px;z-index:3;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(3px);
+  border:1px solid rgba(255,211,106,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;cursor:pointer;padding:0;
+  transition:.18s;
+}
+.vHeart.active{
+  background:rgba(255,90,120,.28);
+  border-color:rgba(255,120,150,.65);
+  box-shadow:0 0 0 3px rgba(255,120,150,.18);
 }
 .vPlay{
   position:absolute;inset:0;z-index:2;
@@ -188,6 +222,7 @@ a{color:inherit;}
 <div class="grid" id="videoGrid"></div>
 
 <script src="tourism-videos-data.js"></script>
+<script src="assets/favorites.js"></script>
 <script>
 const grid = document.getElementById("videoGrid");
 const searchInput = document.getElementById("searchInput");
@@ -198,6 +233,13 @@ let activeCat = "";
 /* ---------- FILTER CHIPS ---------- */
 
 function buildFilters(){
+  const leaderChip = document.createElement("div");
+  leaderChip.className = "filterChip leaderChip";
+  leaderChip.textContent = "🧭 لیدر تور";
+  leaderChip.dataset.leaderTour = "1";
+  leaderChip.onclick = function(){ showComingSoon(); };
+  filterRow.appendChild(leaderChip);
+
   const allChip = document.createElement("div");
   allChip.className = "filterChip active";
   allChip.textContent = "همه";
@@ -218,9 +260,29 @@ function buildFilters(){
 function setActiveCat(key){
   activeCat = key;
   Array.from(filterRow.children).forEach(function(chip){
+    if(chip.dataset.leaderTour) return;
     chip.classList.toggle("active", (chip.dataset.cat || "") === key);
   });
   render();
+}
+
+let ctToastTimer = null;
+function showComingSoon(){
+  let toastEl = document.getElementById("ctToast");
+  if(!toastEl){
+    toastEl = document.createElement("div");
+    toastEl.id = "ctToast";
+    toastEl.className = "ctToast";
+    document.body.appendChild(toastEl);
+  }
+  toastEl.textContent = "🚧 این بخش در حال آماده‌سازی است و به‌زودی از پایگاه‌داده فعال می‌شود.";
+  toastEl.classList.add("show");
+  clearTimeout(ctToastTimer);
+  ctToastTimer = setTimeout(function(){ toastEl.classList.remove("show"); }, 2600);
+}
+
+function favItem(v){
+  return { id:v.id, title:v.title.fa, loc:v.loc.fa, hash:v.hash, href:"tourism-video.html?id="+v.id };
 }
 
 /* ---------- GRID RENDER ---------- */
@@ -252,10 +314,13 @@ function render(){
     card.className = "vCard";
     card.href = "tourism-video.html?id=" + v.id;
 
+    const fav = CyrusFavorites.isFav("tourism", v.id);
+
     card.innerHTML =
       '<div class="vCoverWrap">' +
         '<iframe src="https://www.aparat.com/video/video/embed/videohash/' + v.hash + '/vt/frame" loading="lazy"></iframe>' +
         '<div class="vBadge">#' + v.id + '</div>' +
+        '<button type="button" class="vHeart' + (fav ? ' active' : '') + '" data-id="' + v.id + '" aria-label="افزودن به علاقه‌مندی‌ها">' + (fav ? '❤️' : '🤍') + '</button>' +
         '<div class="vPlay"><span>▶</span></div>' +
       '</div>' +
       '<div class="vBody">' +
@@ -263,6 +328,15 @@ function render(){
         '<div class="vDesc">بخشی از مجموعه فیلم‌های گردشگری سایروس توریست، در دسته‌ی ' + cat.fa + '...</div>' +
         '<div class="vLoc">📍 ' + v.loc.fa + '</div>' +
       '</div>';
+
+    const heartBtn = card.querySelector(".vHeart");
+    heartBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const nowFav = CyrusFavorites.toggle("tourism", favItem(v));
+      heartBtn.classList.toggle("active", nowFav);
+      heartBtn.textContent = nowFav ? "❤️" : "🤍";
+    });
 
     grid.appendChild(card);
   });
