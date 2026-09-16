@@ -1113,6 +1113,91 @@ outline-offset:2px
 border-radius:999px
 }
 
+/* GUIDE CONTENT */
+
+.guideCards{
+display:grid;
+gap:12px;
+margin-top:18px
+}
+
+.guideCard{
+padding:16px 18px;
+border:1px solid rgba(255,211,106,.22);
+border-radius:16px;
+background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02))
+}
+
+.guideCard summary{
+cursor:pointer;
+font-size:15.5px;
+font-weight:800;
+list-style:none;
+display:flex;
+align-items:center;
+gap:8px;
+flex-wrap:wrap
+}
+
+.guideCard summary::-webkit-details-marker{
+display:none
+}
+
+.guideCardSub{
+display:block;
+width:100%;
+font-size:12.5px;
+font-weight:400;
+color:var(--muted);
+margin-top:2px
+}
+
+.guideCard ol{
+margin:14px 0 2px;
+padding-inline-start:22px;
+display:grid;
+gap:8px
+}
+
+.guideCard li{
+font-size:13.5px;
+line-height:1.8;
+color:#dfeef5
+}
+
+.guideChecklist{
+margin-top:22px;
+padding:20px;
+border:1px solid rgba(255,211,106,.3);
+border-radius:20px;
+background:rgba(255,211,106,.05)
+}
+
+.guideChecklistGrid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:10px;
+margin-top:14px
+}
+
+.guideChecklistGrid label{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13.5px
+}
+
+.guideMessage{
+margin-top:16px;
+padding:16px 18px;
+border-radius:16px;
+background:rgba(255,255,255,.04);
+border:1px solid var(--line);
+font-size:13.5px;
+line-height:1.8;
+color:var(--muted)
+}
+
 /* THANK YOU */
 
 .thanksButton{
@@ -2993,6 +3078,108 @@ data-video-id="27">
 <span data-i18n="catSupport">پشتیبانی</span>
 </div>
 
+</div>
+
+<div class="guideCards">
+
+<details class="guideCard">
+<summary>🧳 <b>قبل از سفر</b><span class="guideCardSub">آماده‌سازی هوشمندانه برای یک سفر بهتر</span></summary>
+<ol>
+<li>مقصد و مسیر سفر را از قبل بررسی کنید.</li>
+<li>مدارک شناسایی و وسایل ضروری را همراه داشته باشید.</li>
+<li>لباس مناسب فصل و مقصد انتخاب کنید.</li>
+<li>مقدار کافی آب و خوراکی برای مسیر در نظر بگیرید.</li>
+<li>پیش از حرکت وضعیت خودرو و سوخت را بررسی کنید.</li>
+</ol>
+</details>
+
+<details class="guideCard">
+<summary>🗺️ <b>مسیر و جابه‌جایی</b><span class="guideCardSub">راهنمای استفاده بهتر از مسیر و نقشه</span></summary>
+<ol>
+<li>پیش از حرکت مسیر اصلی و مسیرهای جایگزین را بررسی کنید.</li>
+<li>برای مسیرهای طولانی زمان کافی در نظر بگیرید.</li>
+<li>در زمان رانندگی از تلفن همراه استفاده نکنید.</li>
+<li>در مناطق ناشناخته، موقعیت مکانی خود را بررسی کنید.</li>
+<li>در جاده‌های کوهستانی با سرعت مطمئن حرکت کنید.</li>
+</ol>
+</details>
+
+<details class="guideCard">
+<summary>⛰️ <b>طبیعت‌گردی و کوهنوردی</b><span class="guideCardSub">طبیعت را ببینید و سالم به خانه برگردید</span></summary>
+<ol>
+<li>کفش و لباس مناسب مسیر همراه داشته باشید.</li>
+<li>آب کافی و وسایل ضروری را فراموش نکنید.</li>
+<li>قبل از ورود به مسیرهای ناشناخته، شرایط مسیر را بررسی کنید.</li>
+<li>تنها در مسیرهای دشوار و ناشناخته حرکت نکنید.</li>
+<li>زباله‌های خود را در طبیعت رها نکنید.</li>
+</ol>
+</details>
+
+<details class="guideCard">
+<summary>🏡 <b>اقامتگاه و بوم‌گردی</b><span class="guideCardSub">انتخاب اقامتگاهی مناسب برای سفر</span></summary>
+<ol>
+<li>موقعیت اقامتگاه را قبل از انتخاب بررسی کنید.</li>
+<li>امکانات و شرایط اقامت را از قبل بپرسید.</li>
+<li>برای اقامتگاه‌های دور از شهر، مسیر دسترسی را بررسی کنید.</li>
+<li>به قوانین و فرهنگ محلی احترام بگذارید.</li>
+<li>در بوم‌گردی‌ها به حفظ محیط‌زیست و بافت سنتی کمک کنید.</li>
+</ol>
+</details>
+
+<details class="guideCard">
+<summary>🍽️ <b>گردشگری خوراک</b><span class="guideCardSub">طعم غذاهای محلی ایران را تجربه کنید</span></summary>
+<ol>
+<li>غذاهای محلی هر منطقه را با رعایت نکات بهداشتی امتحان کنید.</li>
+<li>از مراکز معتبر و تمیز غذا تهیه کنید.</li>
+<li>آب آشامیدنی سالم همراه داشته باشید.</li>
+<li>فرهنگ غذایی و سنت‌های محلی را محترم بشمارید.</li>
+<li>تجربه غذاهای سنتی بخشی از سفر و شناخت فرهنگ ایران است.</li>
+</ol>
+</details>
+
+<details class="guideCard">
+<summary>🌱 <b>حفاظت از طبیعت</b><span class="guideCardSub">سفر مسئولانه برای آیندگان</span></summary>
+<ol>
+<li>زباله در طبیعت رها نکنید.</li>
+<li>به درختان و پوشش گیاهی آسیب نزنید.</li>
+<li>از روشن کردن آتش در محل‌های ممنوع خودداری کنید.</li>
+<li>حیات‌وحش را تعقیب یا تغذیه نکنید.</li>
+<li>آب و منابع طبیعی را بیهوده مصرف نکنید.</li>
+</ol>
+</details>
+
+<details class="guideCard">
+<summary>🚨 <b>ایمنی در سفر</b><span class="guideCardSub">چند نکته ساده برای سفری امن‌تر</span></summary>
+<ol>
+<li>شماره‌های ضروری و اطلاعات تماس همراهان را در دسترس داشته باشید.</li>
+<li>در شرایط نامناسب جوی از ادامه مسیر پرخطر خودداری کنید.</li>
+<li>در مسیرهای کوهستانی و طبیعت، زمان بازگشت را در نظر بگیرید.</li>
+<li>وسایل کمک‌های اولیه را در سفرهای طبیعت‌گردی همراه داشته باشید.</li>
+<li>در شرایط اضطراری ابتدا خود و همراهان را به محل امن منتقل کنید.</li>
+</ol>
+</details>
+
+</div>
+
+<div class="guideChecklist">
+<b>✅ چک‌لیست سفر</b>
+<p>قبل از حرکت موارد ضروری را بررسی کنید.</p>
+<div class="guideChecklistGrid">
+<label><input type="checkbox"> مدارک شناسایی</label>
+<label><input type="checkbox"> کیف پول و وسایل ضروری</label>
+<label><input type="checkbox"> شارژر و پاوربانک</label>
+<label><input type="checkbox"> آب آشامیدنی</label>
+<label><input type="checkbox"> داروهای مورد نیاز</label>
+<label><input type="checkbox"> لباس مناسب مقصد</label>
+<label><input type="checkbox"> کفش مناسب</label>
+<label><input type="checkbox"> وسایل کمک‌های اولیه</label>
+<label><input type="checkbox"> بررسی خودرو و سوخت</label>
+<label><input type="checkbox"> بررسی مسیر سفر</label>
+</div>
+</div>
+
+<div class="guideMessage">
+💚 ایران را ببینیم، طبیعت را دوست داشته باشیم و با سفر مسئولانه، زیبایی‌های کشورمان را برای آیندگان حفظ کنیم.
 </div>
 
 </div>
