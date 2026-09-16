@@ -215,6 +215,18 @@ body{
 .emptyIcon{font-size:24px;color:rgba(255,255,255,.35);margin-top:auto;}
 .emptyLabel{font-size:12px;font-weight:bold;color:rgba(255,255,255,.55);margin-top:6px;}
 .emptySub{font-size:10px;color:rgba(255,255,255,.3);}
+.slotHeart{
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(0,0,0,.4);backdrop-filter:blur(3px);
+  border:1px solid rgba(255,211,106,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;padding:0;flex-shrink:0;
+  transition:.18s;
+}
+.slotHeart.active{
+  background:rgba(255,90,120,.28);
+  border-color:rgba(255,120,150,.65);
+}
 
 .overlay{
   position:fixed;inset:0;
@@ -400,6 +412,7 @@ body{
   <a class="btnPrimary" href="residences.html#registerResidenceBtn" style="margin-top:6px;" id="emptySheetBtn">✅ ثبت‌نام اقامتگاه (عضویت یک‌ساله)</a>
 </div>
 
+<script src="../assets/favorites.js"></script>
 <script>
 let currentLang = "fa";
 
@@ -843,6 +856,13 @@ let sortByRating = false;
 function buildFilters(){
   filterRow.innerHTML = "";
 
+  const leaderChip = document.createElement("div");
+  leaderChip.className = "filterChip leaderChip";
+  leaderChip.textContent = t("leaderTourChip");
+  leaderChip.dataset.leaderTour = "1";
+  leaderChip.onclick = function(){ showComingSoon(); };
+  filterRow.appendChild(leaderChip);
+
   const allChip = document.createElement("div");
   allChip.className = "filterChip" + (activeType === "" ? " active" : "");
   allChip.textContent = t("allChip");
@@ -858,13 +878,6 @@ function buildFilters(){
     chip.onclick = function(){ setActiveType(key); };
     filterRow.appendChild(chip);
   });
-
-  const leaderChip = document.createElement("div");
-  leaderChip.className = "filterChip leaderChip";
-  leaderChip.textContent = t("leaderTourChip");
-  leaderChip.dataset.leaderTour = "1";
-  leaderChip.onclick = function(){ showComingSoon(); };
-  filterRow.appendChild(leaderChip);
 
   const sortChip = document.createElement("div");
   sortChip.className = "filterChip sortChip" + (sortByRating ? " active" : "");
@@ -937,13 +950,27 @@ function render(){
 
     if(slot.assigned){
       const typeInfo = RESIDENCE_TYPES[slot.type] || RESIDENCE_TYPES.touristic;
+      const fav = CyrusFavorites.isFav("residence", slot.code);
       card.innerHTML =
         '<div class="slotCoverWrap"><iframe class="slotCover" src="https://www.aparat.com/video/video/embed/videohash/'+slot.aparatHash+'/vt/frame" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>' +
-        '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><span>▶️</span></div>' +
+        '<div class="slotTopRow"><span class="codeBadge">#'+slot.code+'</span><button type="button" class="slotHeart'+(fav?' active':'')+'" data-code="'+slot.code+'" aria-label="افزودن به علاقه‌مندی‌ها">'+(fav?'❤️':'🤍')+'</button></div>' +
         '<div class="slotTitle">'+slot.name+'</div>' +
         '<div class="slotLoc">📍 '+slot.city+'</div>' +
         '<div class="slotLoc" style="margin-top:2px;">'+typeInfo.icon+' '+typeInfo[currentLang]+' &nbsp; ⭐ '+(slot.rating || "—")+'</div>';
       card.onclick = function(){ openDetail(slot); };
+      const heartBtn = card.querySelector(".slotHeart");
+      heartBtn.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        const item = {
+          id: slot.code, title: slot.name, loc: slot.city,
+          hash: slot.aparatHash, href: "residence-videos.html?code=" + slot.code,
+          typeIcon: typeInfo.icon, typeLabel: typeInfo[currentLang], rating: slot.rating
+        };
+        const nowFav = CyrusFavorites.toggle("residence", item);
+        heartBtn.classList.toggle("active", nowFav);
+        heartBtn.textContent = nowFav ? "❤️" : "🤍";
+      });
     } else {
       card.innerHTML =
         '<span class="codeBadge">#'+slot.code+'</span>' +
@@ -978,6 +1005,17 @@ function showComingSoon(){
 buildFilters();
 render();
 searchInput.addEventListener("input", render);
+
+(function(){
+  const params = new URLSearchParams(location.search);
+  const code = params.get("code");
+  if(code){
+    const slot = RESIDENCE_SLOTS.find(function(s){
+      return s.assigned && String(s.code) === String(code);
+    });
+    if(slot) openDetail(slot);
+  }
+})();
 
 /* ================= LANGUAGE SWITCH ================= */
 
