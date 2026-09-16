@@ -856,18 +856,18 @@ let sortByRating = false;
 function buildFilters(){
   filterRow.innerHTML = "";
 
+  const allChip = document.createElement("div");
+  allChip.className = "filterChip" + (activeType === "" ? " active" : "");
+  allChip.textContent = t("allChip");
+  allChip.onclick = function(){ setActiveType(""); };
+  filterRow.appendChild(allChip);
+
   const leaderChip = document.createElement("div");
   leaderChip.className = "filterChip leaderChip";
   leaderChip.textContent = t("leaderTourChip");
   leaderChip.dataset.leaderTour = "1";
   leaderChip.onclick = function(){ showComingSoon(); };
   filterRow.appendChild(leaderChip);
-
-  const allChip = document.createElement("div");
-  allChip.className = "filterChip" + (activeType === "" ? " active" : "");
-  allChip.textContent = t("allChip");
-  allChip.onclick = function(){ setActiveType(""); };
-  filterRow.appendChild(allChip);
 
   Object.keys(RESIDENCE_TYPES).forEach(function(key){
     const typeDef = RESIDENCE_TYPES[key];
