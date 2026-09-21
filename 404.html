@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06121d">
+<meta name="robots" content="noindex">
+<title>سایروس توریست — CYRUS TOURIST</title>
+<style>
+:root{--bg:#050f18;--gold:#ffd36a;--gold2:#ffe9a8;--teal:#29e0ad;--txt:#eaf2f8;--mut:rgba(234,242,248,.66);color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{min-height:100vh;min-height:100dvh;background:var(--bg);color:var(--txt);font-family:Tahoma,"Vazirmatn",system-ui,sans-serif;overflow-x:hidden;position:relative}
+/* پس‌زمینه‌ی آرورا — فقط CSS، بدون تصویر و درخواست اضافه */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(70px);opacity:.34;animation:fl 16s ease-in-out infinite alternate}
+.bg i:nth-child(1){background:#0f6d8c;top:-30vmax;right:-20vmax}
+.bg i:nth-child(2){background:#7a5a10;bottom:-34vmax;left:-24vmax;animation-delay:-6s}
+.bg i:nth-child(3){background:#0b8f6b;top:30%;left:30%;width:40vmax;height:40vmax;opacity:.16;animation-delay:-11s}
+@keyframes fl{to{transform:translate3d(6vmax,4vmax,0) scale(1.15)}}
+@media(prefers-reduced-motion:reduce){.bg i{animation:none}}
+.wrap{position:relative;z-index:1;width:100%;max-width:440px;margin:0 auto;padding:22px 16px calc(34px + env(safe-area-inset-bottom))}
+/* برند */
+.brand{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0 20px}
+.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe39a,#e2a93a);box-shadow:0 6px 20px rgba(255,211,106,.35)}
+.logo svg{width:24px;height:24px}
+.brand b{font-size:19px;letter-spacing:2.2px;color:var(--gold2)}
+.brand small{display:block;font-size:10.5px;letter-spacing:0;color:var(--mut);margin-top:2px}
+/* کارت اصلی */
+.hero{position:relative;border-radius:30px;padding:30px 20px 24px;text-align:center;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid rgba(255,211,106,.38);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12)}
+.ring{position:relative;width:104px;height:104px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center}
+.ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--gold),transparent 35%,var(--teal) 60%,transparent 80%,var(--gold));animation:sp 6s linear infinite;-webkit-mask:radial-gradient(circle,transparent 56%,#000 58%);mask:radial-gradient(circle,transparent 56%,#000 58%)}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ring span{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:42px;background:radial-gradient(circle at 30% 25%,#1c4a63,#0a2233);box-shadow:inset 0 0 18px rgba(255,211,106,.15)}
+.kind{font-size:12px;color:var(--gold);letter-spacing:.5px;margin-bottom:6px}
+.hero h1{margin:0 0 10px;font-size:22px;line-height:1.5;color:#fff}
+.id{display:inline-flex;align-items:center;gap:6px;direction:ltr;padding:4px 14px;border-radius:14px;font-size:12px;color:var(--gold2);background:rgba(255,211,106,.1);border:1px solid rgba(255,211,106,.28);margin-bottom:14px}
+.hero p{margin:0 0 20px;font-size:13.5px;line-height:2;color:var(--mut)}
+/* دکمه‌ها */
+.cta{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:58px;border-radius:18px;border:0;text-decoration:none;font:inherit;font-size:16px;font-weight:900;color:#3a2a00;cursor:pointer;background:linear-gradient(90deg,#ffd36a,#ffe9a8,#ffd36a);background-size:200% 100%;box-shadow:0 10px 28px rgba(255,211,106,.32);animation:sh 3.2s ease-in-out infinite}
+@keyframes sh{50%{background-position:100% 0}}
+.cta:active{transform:scale(.98)}
+.cta svg{width:22px;height:22px}
+.hint{margin:12px 2px 0;font-size:11.5px;line-height:1.9;color:var(--mut)}
+.note{display:none;margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,200,87,.1);border:1px solid rgba(255,200,87,.35);font-size:12px;line-height:1.9;color:#ffd98a;text-align:right}
+.tip{display:none;margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(41,224,173,.09);border:1px solid rgba(41,224,173,.3);font-size:12px;line-height:1.9;color:#9df0d2;text-align:right}
+/* جداکننده */
+.sep{display:flex;align-items:center;gap:12px;margin:26px 4px 14px;color:var(--mut);font-size:12.5px}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,211,106,.4),transparent)}
+/* فروشگاه‌ها */
+.stores{display:grid;gap:10px}
+.store{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:20px;text-decoration:none;color:var(--txt);background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);transition:transform .15s,border-color .15s}
+.store:active{transform:scale(.985);border-color:rgba(255,211,106,.6)}
+.store .ic{flex:none;width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:color-mix(in srgb,var(--c) 22%,#0a1a26);border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
+.store b{display:block;font-size:14.5px}
+.store small{color:var(--mut);font-size:11.5px}
+.store .go{margin-inline-start:auto;font-size:22px;color:var(--gold)}
+.store.rec{border-color:rgba(255,211,106,.5)}
+.store .badge{font-size:9.5px;padding:2px 8px;border-radius:9px;background:var(--gold);color:#3a2a00;font-weight:900;margin-inline-start:8px;vertical-align:2px}
+/* ویژگی‌ها */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px}
+.feat div{text-align:center;padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:11px;line-height:1.7;color:var(--mut)}
+.feat em{display:block;font-style:normal;font-size:22px;margin-bottom:2px}
+.foot{margin-top:24px;text-align:center;font-size:12px}
+.foot a{color:var(--gold);text-decoration:none}
+.demo{position:relative;z-index:2;background:#3a2a00;color:var(--gold2);text-align:center;font-size:11.5px;padding:7px;border-bottom:1px solid rgba(255,211,106,.4)}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="bg"><i></i><i></i><i></i></div>
+<div id="demo" class="demo hide">پیش‌نمایش — در سایت واقعی نوع و شماره از آدرس صفحه خوانده می‌شود</div>
 
+<div class="wrap">
+  <div class="brand">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#3a2a00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-5.6 7-12a7 7 0 1 0-14 0c0 6.4 7 12 7 12z"/><circle cx="12" cy="10" r="2.6" fill="#3a2a00"/></svg></div>
+    <div><b>CYRUS TOURIST</b><small>سایروس توریست — همراه سفرهای شما</small></div>
+  </div>
+
+  <div class="hero">
+    <div class="ring"><span id="emo">🧳</span></div>
+    <div class="kind" id="kind">سایروس توریست</div>
+    <h1 id="title">در برنامه ببینید</h1>
+    <div class="id hide" id="idbox"></div>
+    <p id="desc"></p>
+
+    <a class="cta" id="openApp" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#3a2a00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      باز کردن در برنامه
+    </a>
+    <div class="hint" id="hint">برنامه روی گوشی‌تان نصب است؟ با یک لمس، همین مورد مستقیم باز می‌شود.</div>
+    <div class="note" id="note">برنامه باز نشد؟ احتمالاً نصب نیست — از یکی از گزینه‌های پایین نصبش کنید و دوباره روی لینک بزنید.</div>
+    <div class="tip" id="tip">💡 این لینک داخل مرورگر یک برنامه (تلگرام، اینستاگرام، …) باز شده. اگر دکمه‌ی بالا جواب نداد، از منوی ⋮ گزینه‌ی «باز کردن در Chrome» را بزنید.</div>
+  </div>
+
+  <div class="sep" id="sep">برنامه را ندارید؟ رایگان نصب کنید</div>
+
+  <div class="stores" id="stores">
+    <a class="store rec" style="--c:#29e0ad" href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&amp;ref=share">
+      <div class="ic">🛒</div><div><b>کافه‌بازار <span class="badge">پیشنهادی</span></b><small>نصب با یک لمس از بازار</small></div><span class="go">‹</span></a>
+    <a class="store" style="--c:#4da3ff" href="https://myket.ir/app/cyrustourist.ir.app">
+      <div class="ic">📱</div><div><b>مایکت</b><small>نصب از مایکت</small></div><span class="go">‹</span></a>
+    <a class="store" style="--c:#ffd36a" href="https://cyrustourist.ir/downloads/android.html">
+      <div class="ic">⬇️</div><div><b>دانلود مستقیم</b><small>از سایت سایروس توریست</small></div><span class="go">‹</span></a>
+  </div>
+
+  <div class="feat">
+    <div><em>🎬</em>فیلم‌های گردشگری ایران</div>
+    <div><em>🧭</em>تور، لیدر و آژانس</div>
+    <div><em>🗺️</em>نقشه و مسیریابی</div>
+  </div>
+
+  <div class="foot"><a href="https://cyrustourist.ir/">← صفحه‌ی اصلی سایت</a></div>
+</div>
+
+<script>
+(function(){
+  var TYPES={
+    video:{e:'🎬',t:'فیلم ویژه'},
+    tour:{e:'🧳',t:'تور گردشگری'},
+    guide:{e:'🧭',t:'لیدر تور'},
+    agency:{e:'🏢',t:'آژانس مسافرتی'},
+    accommodation:{e:'🏨',t:'اقامتگاه'},
+    attraction:{e:'⛰️',t:'جاذبه گردشگری'},
+    health:{e:'🏥',t:'گردشگری سلامت'}
+  };
+  var $=function(x){return document.getElementById(x)};
+  var fa=function(n){return String(n).replace(/\d/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'[d]})};
+  var ua=navigator.userAgent||'';
+  var isAndroid=/Android/i.test(ua);
+  var inApp=/Telegram|Instagram|FBAN|FBAV|Line\/|Twitter|WhatsApp|; wv\)|Version\/[\d.]+ Chrome/i.test(ua);
+  var m=location.pathname.match(/\/(video|tour|guide|agency|accommodation|attraction|health)\/([^\/?#]+)/);
+  var q=new URLSearchParams(location.search);
+  var type=m?m[1]:q.get('type');
+  var id=m?decodeURIComponent(m[2]):q.get('id');
+  var real=/cyrustourist\.ir$/.test(location.hostname)||/github\.io$/.test(location.hostname);
+  if(!type&&!real){type='tour';id='76';$('demo').classList.remove('hide')}
+
+  var valid=type&&TYPES[type]&&id;
+  if(valid){
+    var T=TYPES[type];
+    $('emo').textContent=T.e;
+    $('kind').textContent='در سایروس توریست ببینید';
+    $('title').textContent=T.t;
+    $('idbox').classList.remove('hide');
+    $('idbox').textContent='#'+id;
+    $('desc').textContent='این مورد در برنامه‌ی سایروس توریست آماده‌ی مشاهده است.';
+    var intent='intent://cyrustourist.ir/'+type+'/'+encodeURIComponent(id)+'#Intent;scheme=https;package=cyrustourist.ir.app;end';
+    var a=$('openApp');
+    a.href=isAndroid?intent:'https://cyrustourist.ir/downloads/android.html';
+    if(isAndroid){
+      a.addEventListener('click',function(){
+        setTimeout(function(){ if(!document.hidden) $('note').style.display='block'; },1700);
+      });
+      if(inApp) $('tip').style.display='block';
+    }else{
+      // گوشی اندروید نیست
+      a.classList.add('hide');
+      $('hint').textContent='این برنامه برای اندروید است. لینک را روی گوشی اندرویدی‌تان باز کنید.';
+    }
+  }else{
+    $('emo').textContent='🧭';
+    $('kind').textContent='سایروس توریست';
+    $('title').textContent='این صفحه پیدا نشد';
+    $('desc').textContent='آدرس معتبر نیست یا این مورد دیگر وجود ندارد. می‌توانید برنامه را نصب کنید یا به صفحه‌ی اصلی بروید.';
+    $('openApp').classList.add('hide');
+    $('hint').classList.add('hide');
+  }
+})();
+</script>
+</body>
+</html>
