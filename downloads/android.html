@@ -557,11 +557,16 @@
 
 
             /*
-             * مسیر ثابت فایل APK
+             * مسیر ثابت فایل APK (ریشه‌ی سایت؛ حروف بزرگ/کوچک مهم است)
+             * فایل روی سرور: https://cyrustourist.ir/Cyrustourist.ir.apk
              */
 
             const apkPath =
-                "android/cyrustourist.ir.apk";
+                "/Cyrustourist.ir.apk";
+
+            /* فایل‌های کوچک‌تر از این حد سالم نیستند (مثلاً فایل ۱ بایتی) */
+            const MIN_APK_BYTES =
+                5 * 1024 * 1024;
 
 
             fetch(
@@ -576,21 +581,43 @@
                 loading.style.display =
                     "none";
 
+                const header =
+                    response.headers.get("content-length");
 
-                if (response.ok) {
+                const size =
+                    header
+                        ? parseInt(header, 10)
+                        : 0;
+
+                /* اگر سرور اندازه را نفرستاد، فقط به وضعیت پاسخ اعتماد می‌کنیم */
+                const sizeOk =
+                    !header || size >= MIN_APK_BYTES;
+
+                if (response.ok && sizeOk) {
 
                     resultTitle.innerHTML =
                         "🎉 فایل آماده است";
 
                     resultText.innerHTML =
-                        "فایل اپلیکیشن سایروس توریست آماده دانلود است.";
+                        "دانلود فایل اپلیکیشن سایروس توریست شروع می‌شود.";
 
                     setTimeout(function() {
 
-                        window.location.href =
-                            apkPath;
+                        const link =
+                            document.createElement("a");
 
-                    }, 700);
+                        link.href = apkPath;
+
+                        link.download =
+                            "cyrustourist.ir.apk";
+
+                        document.body.appendChild(link);
+
+                        link.click();
+
+                        document.body.removeChild(link);
+
+                    }, 500);
 
                 }
 
