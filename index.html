@@ -497,6 +497,34 @@ font-size:12.5px;
 color:var(--muted);
 }
 
+
+/* SOCIAL — کارت‌های مشکی با آیکون قرمز ملایم */
+.socialTitle{margin:36px 0 6px;color:#fff;font-size:18px}
+.socialSub{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.9}
+.socialGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:14px}
+.socialBtn{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 8px 14px;border-radius:26px;text-decoration:none;text-align:center;color:#fff;overflow:hidden;
+background:linear-gradient(165deg,#17171a 0%,#0a0a0c 60%,#120a0b 100%);
+border:1px solid rgba(255,107,107,.22);
+box-shadow:0 10px 26px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);
+transition:transform .25s,border-color .25s,box-shadow .25s}
+.socialBtn::before{content:"";position:absolute;left:-30%;right:-30%;bottom:-60%;height:85%;background:radial-gradient(circle,rgba(255,107,107,.55),transparent 65%);opacity:.35;transition:opacity .3s}
+.socialBtn:hover,.socialBtn:focus-visible{transform:translateY(-6px);border-color:rgba(255,140,140,.75);box-shadow:0 18px 44px rgba(0,0,0,.6),0 0 0 1px rgba(255,107,107,.25)}
+.socialBtn:hover::before,.socialBtn:focus-visible::before{opacity:.8}
+.socialBtn:active{transform:scale(.97)}
+.socialIcon{position:relative;z-index:1;width:66px;height:66px;border-radius:22px;display:grid;place-items:center;
+background:radial-gradient(circle at 30% 20%,#2a2a2f,#0d0d10 70%);
+border:1px solid rgba(255,140,140,.35);
+box-shadow:0 10px 24px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12),0 0 22px rgba(255,107,107,.18);
+transition:transform .3s,box-shadow .3s}
+.socialBtn:hover .socialIcon{transform:rotate(-6deg) scale(1.08);box-shadow:0 12px 28px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.16),0 0 30px rgba(255,107,107,.45)}
+.socialIcon svg{width:34px;height:34px}
+.socialName{position:relative;z-index:1;font-size:13.5px;font-weight:700}
+.socialHandle{position:relative;z-index:1;direction:ltr;font-size:11px;color:rgba(255,179,171,.85);margin-top:-6px}
+.socialGo{position:relative;z-index:1;font-size:11px;color:#ffb3ab;padding:3px 12px;border-radius:12px;background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.28)}
+.socialGo::after{content:" \2039"}
+html[dir="ltr"] .socialGo::after{content:" \203A"}
+@media(prefers-reduced-motion:reduce){.socialBtn,.socialIcon{transition:none}}
+
 /* MAP */
 
 .mapBox{
@@ -3457,6 +3485,70 @@ style="width:100%;font-size:15px;padding:16px;">
 
 </div>
 
+<!-- SOCIAL MEDIA -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="socialRg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#ffd0ca"/>
+<stop offset="1" stop-color="#ff5f5f"/>
+</linearGradient>
+</defs>
+</svg>
+
+<h3 id="social" class="socialTitle" style="scroll-margin-top:90px;" data-i18n="socialTitle">🌐 ما را در شبکه‌های اجتماعی دنبال کنید</h3>
+<p class="socialSub" data-i18n="socialSub">تازه‌ترین فیلم‌ها، جاذبه‌ها و خبرهای سایروس توریست را از کانال‌های ما ببینید.</p>
+
+<div class="socialGrid">
+
+<a class="socialBtn" href="https://www.instagram.com/cyrustourist" target="_blank" rel="noopener">
+<span class="socialIcon">
+<svg viewBox="0 0 24 24" fill="none" stroke="url(#socialRg)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r=".95" fill="url(#socialRg)" stroke="none"/></svg>
+</span>
+<span class="socialName" data-i18n="socialInstagramLabel">اینستاگرام</span>
+<span class="socialHandle">@cyrustourist</span>
+<span class="socialGo" data-i18n="socialFollow">دنبال کنید</span>
+</a>
+
+<a class="socialBtn" href="https://www.youtube.com/@cyrustourist" target="_blank" rel="noopener">
+<span class="socialIcon">
+<svg viewBox="0 0 24 24" fill="none"><rect x="2.6" y="5.8" width="18.8" height="12.4" rx="3.6" stroke="url(#socialRg)" stroke-width="1.9"/><path d="M10.1 9.2v5.6l4.9-2.8z" fill="url(#socialRg)"/></svg>
+</span>
+<span class="socialName" data-i18n="socialYoutubeLabel">یوتیوب</span>
+<span class="socialHandle">@cyrustourist</span>
+<span class="socialGo" data-i18n="socialFollow">دنبال کنید</span>
+</a>
+
+<a class="socialBtn" href="https://www.aparat.com/cyrustourist" target="_blank" rel="noopener">
+<span class="socialIcon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.6" stroke="url(#socialRg)" stroke-width="1.9"/><path d="M10.3 8.7v6.6l5.4-3.3z" fill="url(#socialRg)"/><circle cx="18.6" cy="5.4" r="1.6" fill="url(#socialRg)"/></svg>
+</span>
+<span class="socialName" data-i18n="socialAparatLabel">آپارات</span>
+<span class="socialHandle">cyrustourist</span>
+<span class="socialGo" data-i18n="socialFollow">دنبال کنید</span>
+</a>
+
+<a class="socialBtn" href="https://www.tiktok.com/@cyrustourist" target="_blank" rel="noopener">
+<span class="socialIcon">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(.9 .9)" stroke="rgba(255,95,95,.35)"><path d="M14.2 4v10.6a3.5 3.5 0 11-3.5-3.5"/><path d="M14.2 4c.3 2.5 2 4.1 4.6 4.3"/></g><g stroke="url(#socialRg)"><path d="M14.2 4v10.6a3.5 3.5 0 11-3.5-3.5"/><path d="M14.2 4c.3 2.5 2 4.1 4.6 4.3"/></g></svg>
+</span>
+<span class="socialName" data-i18n="socialTiktokLabel">تیک‌تاک</span>
+<span class="socialHandle">@cyrustourist</span>
+<span class="socialGo" data-i18n="socialFollow">دنبال کنید</span>
+</a>
+
+<a class="socialBtn" href="https://t.me/Cyrustourist" target="_blank" rel="noopener">
+<span class="socialIcon">
+<svg viewBox="0 0 24 24" fill="url(#socialRg)"><path d="M21.94 4.4a1.4 1.4 0 00-1.9-.86L2.7 10.6c-1 .38-.98 1.8.03 2.15l4.53 1.58 1.75 5.6c.28.9 1.44 1.13 2.05.4l2.53-3.02 4.7 3.47c.85.63 2.06.17 2.28-.87l3.3-15.5c.05-.24.05-.5-.03-.72zM8.9 13.9l8.9-6.9c.2-.15.4.1.24.28l-7.4 7.5-.3 3.2-1.44-4.08z"/></svg>
+</span>
+<span class="socialName" data-i18n="contactTelegramLabel">تلگرام</span>
+<span class="socialHandle">@Cyrustourist</span>
+<span class="socialGo" data-i18n="socialFollow">دنبال کنید</span>
+</a>
+
+</div>
+
+
 </div>
 </section>
 
@@ -5317,6 +5409,13 @@ contactEmailLabel:{fa:'ایمیل',en:'Email',ar:'البريد الإلكترو�
 contactTelegramLabel:{fa:'تلگرام',en:'Telegram',ar:'تيليجرام'},
 contactEitaaLabel:{fa:'ایتا',en:'Eitaa',ar:'إيتا'},
 contactWhatsappLabel:{fa:'واتساپ',en:'WhatsApp',ar:'واتساب'},
+socialTitle:{fa:'🌐 ما را در شبکه‌های اجتماعی دنبال کنید',en:'🌐 Follow us on social media',ar:'🌐 تابعونا على وسائل التواصل الاجتماعي'},
+socialSub:{fa:'تازه‌ترین فیلم‌ها، جاذبه‌ها و خبرهای سایروس توریست را از کانال‌های ما ببینید.',en:'Watch the latest videos, attractions and news of Cyrus Tourist on our channels.',ar:'شاهدوا أحدث الأفلام والمعالم وأخبار سايروس توريست على قنواتنا.'},
+socialFollow:{fa:'دنبال کنید',en:'Follow',ar:'تابعنا'},
+socialInstagramLabel:{fa:'اینستاگرام',en:'Instagram',ar:'إنستغرام'},
+socialYoutubeLabel:{fa:'یوتیوب',en:'YouTube',ar:'يوتيوب'},
+socialAparatLabel:{fa:'آپارات',en:'Aparat',ar:'آپارات'},
+socialTiktokLabel:{fa:'تیک‌تاک',en:'TikTok',ar:'تيك توك'},
 
 heroTitle:{fa:'گردشگری سایروس توریست',en:'Cyrus Tourist',ar:'سايروس توريست للسياحة'},
 heroSub:{fa:'ایران را با سایروس توریست ببینید',en:'Discover Iran with Cyrus Tourist',ar:'اكتشف إيران مع سايروس توريست'},
