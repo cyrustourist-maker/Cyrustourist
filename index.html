@@ -1078,7 +1078,55 @@ line-height:0
 
 .cyrusHeroDownloadArea .siteHeroImage{
 margin:0 auto;
-max-width:100%
+max-width:100%;
+width:100%;
+height:auto;
+display:block;
+aspect-ratio:9/16
+}
+
+/* ===== Desktop hero: wider banner image + real nav buttons =====
+   نسخه دسکتاپ عکس (assets/images/cyrustourist-hero-desktop.jpg) طرحی
+   بدون آیکون‌های چاپ‌شده است، پس به‌جای هات‌اسپات‌های نامرئیِ منطبق با
+   مختصات عکس موبایل، دکمه‌های واقعیِ زیر را نشان می‌دهیم. */
+.cyrusHeroDesktopNav{
+display:none;
+position:absolute;
+left:50%;
+bottom:6%;
+transform:translateX(-50%);
+gap:12px;
+flex-wrap:wrap;
+justify-content:center;
+max-width:90%;
+z-index:20
+}
+
+.cyrusHeroDesktopNav a{
+background:rgba(10,44,88,.72);
+border:1px solid rgba(255,211,106,.6);
+color:#f4d36b;
+font-size:14px;
+padding:10px 20px;
+border-radius:999px;
+text-decoration:none;
+white-space:nowrap;
+-webkit-backdrop-filter:blur(4px);
+backdrop-filter:blur(4px);
+transition:background .18s ease,color .18s ease,transform .12s ease
+}
+
+.cyrusHeroDesktopNav a:hover{
+background:rgba(255,211,106,.9);
+color:#0a2c58;
+transform:translateY(-2px)
+}
+
+@media (min-width:1024px){
+.cyrusHeroDownloadArea{max-width:1100px}
+.cyrusHeroDownloadArea .siteHeroImage{aspect-ratio:3/1}
+.cyrusHeroDownloadArea>.cyrusHeroHotspot[data-fx]{display:none}
+.cyrusHeroDesktopNav{display:flex}
 }
 
 .cyrusHeroHotspot{
@@ -1608,16 +1656,17 @@ alt="Cyrus Tourist"
 
 <div class="cyrusHeroDownloadArea cyrusAppHero">
 
+<picture>
+<source media="(min-width:1024px)" srcset="assets/images/cyrustourist-hero-desktop.jpg">
 <img
 class="siteHeroImage"
 id="cyrusAppHeroImg"
 src="assets/images/cyrustourist-app-hero-2026.jpg"
 alt="گردشگری سایروس توریست — نقشه گردشگری، گردشگری سلامت، جاذبه‌های گردشگری، اقامتگاه‌ها، راهنمای سفر، فیلم ویژه، جستجوی هوشمند، طبیعت‌گردی"
-width="720"
-height="1280"
 loading="eager"
 fetchpriority="high"
 >
+</picture>
 
 <a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.039" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
 <a class="cyrusHeroHotspot glass" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
@@ -1635,6 +1684,18 @@ fetchpriority="high"
 <a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه" data-fx="0.2167" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
 <a class="cyrusHeroHotspot glass" href="favorites.html" aria-label="علاقه‌مندی‌ها" data-fx="0.4056" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
 <a class="cyrusHeroHotspot glass" href="#videoMenuBanner" aria-label="فیلم‌های ویژه" data-fx="0.5944" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
+
+<!-- فقط در دسکتاپ نمایش داده می‌شود (عکس دسکتاپ آیکون چاپ‌شده ندارد) -->
+<div class="cyrusHeroDesktopNav">
+<a href="#map" data-map-filter="none">نقشه گردشگری</a>
+<a href="#map" data-map-filter="health">گردشگری سلامت</a>
+<a href="#map" data-map-filter="attraction">جاذبه‌های گردشگری</a>
+<a href="#map" data-map-filter="accommodation">اقامتگاه‌ها</a>
+<a href="#guide">راهنمای سفر</a>
+<a href="#videos">فیلم ویژه</a>
+<a href="#map">جستجوی هوشمند</a>
+<a href="#nearby">تور گردشگری</a>
+</div>
 
 </div>
 
