@@ -801,6 +801,15 @@ box-shadow:0 6px 0 #92400e,0 10px 18px rgba(0,0,0,.35)
 box-shadow:0 2px 0 #92400e,0 4px 10px rgba(0,0,0,.35)
 }
 
+.nearbyCatBtn.food{
+background:linear-gradient(160deg,#c084fc,#7e22ce);
+box-shadow:0 6px 0 #4c1d78,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.food:active{
+box-shadow:0 2px 0 #4c1d78,0 4px 10px rgba(0,0,0,.35)
+}
+
 .nearbyCatBtn.reset{
 background:linear-gradient(160deg,#94a3b8,#475569);
 box-shadow:0 6px 0 #1e293b,0 10px 18px rgba(0,0,0,.35)
@@ -1640,9 +1649,9 @@ fetchpriority="high"
 </picture>
 
 <a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.039" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" data-fx="0.517" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.753" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" data-fx="0.517" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.753" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
 
 <a class="cyrusHeroHotspot glass heroHotspotMobile" href="#guide" aria-label="راهنمای سفر" data-fx="0.039" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
 <a class="cyrusHeroHotspot glass heroHotspotMobile" href="#videos" aria-label="نمایش فیلم ویژه" data-fx="0.275" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
@@ -1660,9 +1669,9 @@ fetchpriority="high"
 <a class="cyrusHeroHotspot glass searchGlass heroHotspotDesktop" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.1938" data-fy="0.3569" data-fw="0.6148" data-fh="0.1014"></a>
 
 <a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.1156" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.3125" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="attraction" aria-label="جاذبه‌ها" data-fx="0.5094" data-fy="0.5139" data-fw="0.1805" data-fh="0.1903"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.7055" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.3125" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" data-map-filter="attraction" aria-label="جاذبه‌ها" data-fx="0.5094" data-fy="0.5139" data-fw="0.1805" data-fh="0.1903"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.7055" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
 
 <a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#guide" aria-label="راهنمای سفر" data-fx="0.1156" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
 <a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#videos" aria-label="فیلم‌های ویژه" data-fx="0.3125" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
@@ -1931,6 +1940,10 @@ autocomplete="off"
 
 <button type="button" class="nearbyCatBtn lodging" id="nearbyCatLodging" data-category="lodging">
 🏨 اقامتگاه‌های اطراف
+</button>
+
+<button type="button" class="nearbyCatBtn food" id="nearbyCatFood" data-category="food">
+☕ کافه و رستوران
 </button>
 
 <button type="button" class="nearbyCatBtn reset" id="nearbyResetBtn">
@@ -4267,6 +4280,23 @@ camp_site:'کمپ'
 
 }
 
+function translateFood(v){
+
+return {
+
+restaurant:'رستوران',
+cafe:'کافه',
+fast_food:'فست‌فود',
+food_court:'فودکورت',
+ice_cream:'بستنی‌فروشی',
+bakery:'نانوایی و شیرینی‌فروشی',
+confectionery:'شیرینی‌فروشی',
+pastry:'شیرینی‌فروشی'
+
+}[v]||'کافه و رستوران';
+
+}
+
 /* =========================================================
    NEARBY
 ========================================================= */
@@ -4469,6 +4499,18 @@ relation["tourism"~"^(hotel|guest_house|hostel|motel|apartment|camp_site)$"](aro
 );
 out center tags;` :
 
+nearbyCategory==='food' ?
+
+`[out:json][timeout:25];
+(
+node["amenity"~"^(restaurant|cafe|fast_food|food_court|ice_cream)$"](around:${radius},${userLat},${userLon});
+way["amenity"~"^(restaurant|cafe|fast_food|food_court|ice_cream)$"](around:${radius},${userLat},${userLon});
+relation["amenity"~"^(restaurant|cafe|fast_food|food_court|ice_cream)$"](around:${radius},${userLat},${userLon});
+node["shop"~"^(bakery|confectionery|pastry)$"](around:${radius},${userLat},${userLon});
+way["shop"~"^(bakery|confectionery|pastry)$"](around:${radius},${userLat},${userLon});
+);
+out center tags;` :
+
 `[out:json][timeout:25];
 (
 node["tourism"](around:${radius},${userLat},${userLon});
@@ -4588,6 +4630,13 @@ translateLodging(
 t.tourism
 );
 
+}else if(nearbyCategory==='food'){
+
+type =
+translateFood(
+t.amenity||t.shop
+);
+
 }else if(t.tourism){
 
 type =
@@ -4652,11 +4701,13 @@ clearNearbyMarkers();
 const categoryNoun =
 nearbyCategory==='health' ? 'مرکز درمانی' :
 nearbyCategory==='lodging' ? 'اقامتگاه' :
+nearbyCategory==='food' ? 'کافه یا رستوران' :
 'جاذبه';
 
 const categoryIcon =
 nearbyCategory==='health' ? '🏥' :
 nearbyCategory==='lodging' ? '🏨' :
+nearbyCategory==='food' ? '☕' :
 '📍';
 
 if(!list.length){
