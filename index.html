@@ -1085,48 +1085,18 @@ display:block;
 aspect-ratio:9/16
 }
 
-/* ===== Desktop hero: wider banner image + real nav buttons =====
-   نسخه دسکتاپ عکس (assets/images/cyrustourist-hero-desktop.jpg) طرحی
-   بدون آیکون‌های چاپ‌شده است، پس به‌جای هات‌اسپات‌های نامرئیِ منطبق با
-   مختصات عکس موبایل، دکمه‌های واقعیِ زیر را نشان می‌دهیم. */
-.cyrusHeroDesktopNav{
-display:none;
-position:absolute;
-left:50%;
-bottom:6%;
-transform:translateX(-50%);
-gap:12px;
-flex-wrap:wrap;
-justify-content:center;
-max-width:90%;
-z-index:20
-}
-
-.cyrusHeroDesktopNav a{
-background:rgba(10,44,88,.72);
-border:1px solid rgba(255,211,106,.6);
-color:#f4d36b;
-font-size:14px;
-padding:10px 20px;
-border-radius:999px;
-text-decoration:none;
-white-space:nowrap;
--webkit-backdrop-filter:blur(4px);
-backdrop-filter:blur(4px);
-transition:background .18s ease,color .18s ease,transform .12s ease
-}
-
-.cyrusHeroDesktopNav a:hover{
-background:rgba(255,211,106,.9);
-color:#0a2c58;
-transform:translateY(-2px)
-}
+/* ===== Desktop hero =====
+   عکس دسکتاپ (assets/images/cyrustourist-hero-desktop.jpg, 1280x720) خودش
+   ۸ کلید + نوار جستجو را چاپ‌شده دارد (دقیقاً مثل عکس موبایل)، پس همان روشِ
+   هات‌اسپات نامرئیِ فراکشنال را با مختصات مخصوص همین عکس تکرار می‌کنیم.
+   .heroHotspotMobile فقط زیر ۱۰۲۴px و .heroHotspotDesktop فقط از ۱۰۲۴px به بالا دیده می‌شود. */
+.heroHotspotDesktop{display:none}
 
 @media (min-width:1024px){
 .cyrusHeroDownloadArea{max-width:1100px}
-.cyrusHeroDownloadArea .siteHeroImage{aspect-ratio:3/1}
-.cyrusHeroDownloadArea>.cyrusHeroHotspot[data-fx]{display:none}
-.cyrusHeroDesktopNav{display:flex}
+.cyrusHeroDownloadArea .siteHeroImage{aspect-ratio:16/9}
+.heroHotspotMobile{display:none}
+.heroHotspotDesktop{display:block}
 }
 
 .cyrusHeroHotspot{
@@ -1668,34 +1638,35 @@ fetchpriority="high"
 >
 </picture>
 
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.039" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" data-fx="0.517" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.753" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.039" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" data-fx="0.517" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.753" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
 
-<a class="cyrusHeroHotspot glass" href="#guide" aria-label="راهنمای سفر" data-fx="0.039" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass" href="#videos" aria-label="نمایش فیلم ویژه" data-fx="0.275" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass" href="#heroSmartSearch" aria-label="جستجوی هوشمند" data-fx="0.517" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass" href="#nearby" aria-label="تور گردشگری" data-fx="0.753" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#guide" aria-label="راهنمای سفر" data-fx="0.039" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#videos" aria-label="نمایش فیلم ویژه" data-fx="0.275" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#heroSmartSearch" aria-label="جستجوی هوشمند" data-fx="0.517" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" aria-label="تور گردشگری" data-fx="0.753" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
 
-<a class="cyrusHeroHotspot glass searchGlass" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.0625" data-fy="0.395" data-fw="0.875" data-fh="0.054"></a>
+<a class="cyrusHeroHotspot glass searchGlass heroHotspotMobile" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.0625" data-fy="0.395" data-fw="0.875" data-fh="0.054"></a>
 
-<!-- ردیف کلیدهای خانه/نقشه/علاقه‌مندی‌ها/فیلم‌های ویژه/حساب کاربری روی عکس هدر -->
-<a class="cyrusHeroHotspot glass" href="#map" data-map-filter="none" aria-label="نقشه" data-fx="0.2167" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
-<a class="cyrusHeroHotspot glass" href="favorites.html" aria-label="علاقه‌مندی‌ها" data-fx="0.4056" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
-<a class="cyrusHeroHotspot glass" href="#videoMenuBanner" aria-label="فیلم‌های ویژه" data-fx="0.5944" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
+<!-- ردیف کلیدهای خانه/نقشه/علاقه‌مندی‌ها/فیلم‌های ویژه/حساب کاربری روی عکس هدر (موبایل) -->
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="none" aria-label="نقشه" data-fx="0.2167" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="favorites.html" aria-label="علاقه‌مندی‌ها" data-fx="0.4056" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
+<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#videoMenuBanner" aria-label="فیلم‌های ویژه" data-fx="0.5944" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
 
-<!-- فقط در دسکتاپ نمایش داده می‌شود (عکس دسکتاپ آیکون چاپ‌شده ندارد) -->
-<div class="cyrusHeroDesktopNav">
-<a href="#map" data-map-filter="none">نقشه گردشگری</a>
-<a href="#map" data-map-filter="health">گردشگری سلامت</a>
-<a href="#map" data-map-filter="attraction">جاذبه‌های گردشگری</a>
-<a href="#map" data-map-filter="accommodation">اقامتگاه‌ها</a>
-<a href="#guide">راهنمای سفر</a>
-<a href="#videos">فیلم ویژه</a>
-<a href="#map">جستجوی هوشمند</a>
-<a href="#nearby">تور گردشگری</a>
-</div>
+<!-- هات‌اسپات‌های عکس دسکتاپ (1280x720) — مطابق مختصات واقعیِ کلیدهای چاپ‌شده روی همان عکس -->
+<a class="cyrusHeroHotspot glass searchGlass heroHotspotDesktop" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.1938" data-fy="0.3569" data-fw="0.6148" data-fh="0.1014"></a>
+
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.1156" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.3125" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="attraction" aria-label="جاذبه‌ها" data-fx="0.5094" data-fy="0.5139" data-fw="0.1805" data-fh="0.1903"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.7055" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
+
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#guide" aria-label="راهنمای سفر" data-fx="0.1156" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#videos" aria-label="فیلم‌های ویژه" data-fx="0.3125" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" aria-label="جستجوی هوشمند" data-fx="0.5094" data-fy="0.7319" data-fw="0.1805" data-fh="0.1944"></a>
+<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" aria-label="تور گردشگری" data-fx="0.7055" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
 
 </div>
 
