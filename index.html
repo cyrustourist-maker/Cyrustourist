@@ -1098,10 +1098,10 @@ aspect-ratio:9/16
    عکس دسکتاپ (assets/images/cyrustourist-hero-desktop.jpg, 1280x720) خودش
    ۸ کلید + نوار جستجو را چاپ‌شده دارد (دقیقاً مثل عکس موبایل)، پس همان روشِ
    هات‌اسپات نامرئیِ فراکشنال را با مختصات مخصوص همین عکس تکرار می‌کنیم.
-   .heroHotspotMobile فقط زیر ۱۰۲۴px و .heroHotspotDesktop فقط از ۱۰۲۴px به بالا دیده می‌شود. */
+   .heroHotspotMobile فقط زیر ۹۰۱px و .heroHotspotDesktop فقط از ۹۰۱px به بالا دیده می‌شود (هم‌راستا با شکستگی منو در max-width:900px تا فاصله‌ای بین این دو حالت نمونه). */
 .heroHotspotDesktop{display:none}
 
-@media (min-width:1024px){
+@media (min-width:901px){
 .siteHero{grid-template-columns:1fr}
 .cyrusHeroDownloadArea{max-width:100%}
 .cyrusHeroDownloadArea .siteHeroImage{aspect-ratio:16/9}
@@ -1712,7 +1712,7 @@ alt="Cyrus Tourist"
 <div class="cyrusHeroDownloadArea cyrusAppHero">
 
 <picture>
-<source media="(min-width:1024px)" srcset="assets/images/cyrustourist-hero-desktop.jpg">
+<source media="(min-width:901px)" srcset="assets/images/cyrustourist-hero-desktop.jpg">
 <img
 class="siteHeroImage"
 id="cyrusAppHeroImg"
