@@ -1188,6 +1188,71 @@ border-radius:20px
 border-radius:6%
 }
 
+/* AD / PROMO CAROUSEL — نوار چرخشی تبلیغاتی زیر هدر */
+
+.adCarousel{
+position:relative;
+width:100%;
+aspect-ratio:16/9;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:22px;
+box-shadow:var(--shadow);
+border:1px solid var(--line);
+background:var(--card)
+}
+
+.adCarousel a.adSlide{
+position:absolute;
+inset:0;
+display:block;
+opacity:0;
+transition:opacity .7s ease;
+pointer-events:none
+}
+
+.adCarousel a.adSlide.active{
+opacity:1;
+pointer-events:auto
+}
+
+.adCarousel img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block
+}
+
+.adCarouselDots{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:6px;
+z-index:2
+}
+
+.adCarouselDots button{
+width:8px;
+height:8px;
+border-radius:50%;
+border:0;
+background:rgba(255,255,255,.45);
+cursor:pointer;
+padding:0
+}
+
+.adCarouselDots button.active{
+background:#fff
+}
+
+@media(max-width:600px){
+.adCarousel{
+border-radius:14px
+}
+}
+
 /* GUIDE CONTENT */
 
 .guideCards{
@@ -1684,6 +1749,130 @@ fetchpriority="high"
 
 </div>
 </section>
+
+<!-- AD / PROMO CAROUSEL (زیر هدر) -->
+<!--
+  راهنما:
+  - هر عکس را با نام banner-01.jpg تا banner-10.jpg داخل پوشه assets/images/ads/ آپلود کن (به همین ترتیب شماره).
+  - سایز پیشنهادی هر عکس: 1600×900 پیکسل (نسبت 16:9)، فرمت jpg، حجم زیر 300KB — همین یک سایز برای موبایل و دسکتاپ کافی است.
+  - فعلاً هر اسلاید با لمس/کلیک صفحه آپارات را باز می‌کند. وقتی تبلیغ واقعی آماده شد، فقط href همان <a class="adSlide"> را عوض کن.
+  - برای اضافه کردن اسلاید بیشتر (تا ۱۰ تا)، کل بلوک <a class="adSlide">...</a> را کپی کن و شماره عکس را عوض کن.
+-->
+<section>
+<div class="wrap">
+
+<div class="adCarousel" id="adCarousel">
+
+<a class="adSlide active" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-01.jpg" alt="تبلیغات ۱" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-02.jpg" alt="تبلیغات ۲" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-03.jpg" alt="تبلیغات ۳" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-04.jpg" alt="تبلیغات ۴" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-05.jpg" alt="تبلیغات ۵" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-06.jpg" alt="تبلیغات ۶" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-07.jpg" alt="تبلیغات ۷" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-08.jpg" alt="تبلیغات ۸" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-09.jpg" alt="تبلیغات ۹" loading="lazy">
+</a>
+<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
+<img src="assets/images/ads/banner-10.jpg" alt="تبلیغات ۱۰" loading="lazy">
+</a>
+
+<div class="adCarouselDots" id="adCarouselDots"></div>
+
+</div>
+
+</div>
+</section>
+
+<script>
+(function(){
+var wrap = document.getElementById('adCarousel');
+if(!wrap){return;}
+var slides = Array.prototype.slice.call(wrap.querySelectorAll('.adSlide'));
+var dotsWrap = document.getElementById('adCarouselDots');
+var current = 0;
+var timer;
+
+slides.forEach(function(slide){
+var img = slide.querySelector('img');
+img.addEventListener('error', function(){
+slide.style.display = 'none';
+slides = slides.filter(function(s){return s !== slide;});
+buildDots();
+if(current >= slides.length){current = 0;}
+show(current);
+});
+});
+
+function buildDots(){
+if(!dotsWrap){return;}
+dotsWrap.innerHTML = '';
+if(slides.length <= 1){return;}
+slides.forEach(function(_, i){
+var b = document.createElement('button');
+if(i === current){b.classList.add('active');}
+b.setAttribute('aria-label', 'اسلاید ' + (i + 1));
+b.addEventListener('click', function(){
+current = i;
+show(current);
+restart();
+});
+dotsWrap.appendChild(b);
+});
+}
+
+function show(i){
+slides.forEach(function(s, idx){
+s.classList.toggle('active', idx === i);
+});
+if(dotsWrap){
+Array.prototype.forEach.call(dotsWrap.children, function(d, idx){
+d.classList.toggle('active', idx === i);
+});
+}
+}
+
+function next(){
+if(!slides.length){return;}
+current = (current + 1) % slides.length;
+show(current);
+}
+
+function restart(){
+clearInterval(timer);
+if(slides.length > 1){
+timer = setInterval(next, 4000);
+}
+}
+
+if(slides.length){
+buildDots();
+show(0);
+restart();
+}
+
+wrap.addEventListener('mouseenter', function(){clearInterval(timer);});
+wrap.addEventListener('mouseleave', restart);
+
+})();
+</script>
 
 <!-- MAIN CATEGORIES -->
 
