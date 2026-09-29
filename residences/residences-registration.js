@@ -809,6 +809,183 @@
     }
 
 
+
+    /* =========================================================
+       آب‌وهوا (Open-Meteo — بدون کلید و بدون محدودیت منطقه‌ای)
+       ========================================================= */
+
+    const WEATHER_TEXT = {
+        fa: { chip: "آب‌وهوای موقعیت شما", chipLoading: "در حال دریافت آب‌وهوا…", chipAsk: "نمایش آب‌وهوای موقعیت من", title: "🌤 هواشناسی", back: "↩ برگشت", refresh: "🔄 به‌روزرسانی", feels: "احساس‌شده", humidity: "رطوبت", wind: "باد", kmh: "کیلومتر/ساعت", forecast: "پیش‌بینی روزهای آینده", today: "امروز", yourLocation: "موقعیت شما", errDenied: "دسترسی به موقعیت مکانی داده نشد. اجازه‌ی مکان را در مرورگر فعال کنید.", errUnsupported: "مرورگر شما از موقعیت مکانی پشتیبانی نمی‌کند.", errFetch: "دریافت اطلاعات آب‌وهوا ممکن نشد. اتصال اینترنت را بررسی کنید.", locale: "fa-IR" },
+        en: { chip: "Weather at your location", chipLoading: "Loading weather…", chipAsk: "Show weather at my location", title: "🌤 Weather", back: "↩ Back", refresh: "🔄 Refresh", feels: "Feels like", humidity: "Humidity", wind: "Wind", kmh: "km/h", forecast: "Upcoming days", today: "Today", yourLocation: "Your location", errDenied: "Location access was denied. Allow location in your browser.", errUnsupported: "Your browser does not support geolocation.", errFetch: "Could not load weather. Check your connection.", locale: "en-US" },
+        ar: { chip: "طقس موقعك", chipLoading: "جارٍ تحميل الطقس…", chipAsk: "عرض الطقس في موقعي", title: "🌤 الأرصاد الجوية", back: "↩ رجوع", refresh: "🔄 تحديث", feels: "الإحساس", humidity: "الرطوبة", wind: "الرياح", kmh: "كم/س", forecast: "الأيام القادمة", today: "اليوم", yourLocation: "موقعك", errDenied: "تم رفض الوصول إلى الموقع. فعّل إذن الموقع في المتصفح.", errUnsupported: "متصفحك لا يدعم تحديد الموقع.", errFetch: "تعذّر تحميل الطقس. تحقق من الاتصال.", locale: "ar" }
+    };
+
+    const WEATHER_CODES = {
+        0: ["☀️", { fa: "آفتابی", en: "Clear", ar: "صافٍ" }],
+        1: ["🌤", { fa: "عمدتاً صاف", en: "Mostly clear", ar: "صافٍ غالباً" }],
+        2: ["⛅", { fa: "کمی ابری", en: "Partly cloudy", ar: "غائم جزئياً" }],
+        3: ["☁️", { fa: "ابری", en: "Cloudy", ar: "غائم" }],
+        45: ["🌫", { fa: "مه", en: "Fog", ar: "ضباب" }],
+        51: ["🌦", { fa: "نم‌نم باران", en: "Drizzle", ar: "رذاذ" }],
+        61: ["🌧", { fa: "باران", en: "Rain", ar: "مطر" }],
+        66: ["🌧", { fa: "باران یخ‌زده", en: "Freezing rain", ar: "مطر متجمد" }],
+        71: ["🌨", { fa: "برف", en: "Snow", ar: "ثلج" }],
+        80: ["🌦", { fa: "رگبار", en: "Showers", ar: "زخات" }],
+        85: ["🌨", { fa: "رگبار برف", en: "Snow showers", ar: "زخات ثلج" }],
+        95: ["⛈", { fa: "رعدوبرق", en: "Thunderstorm", ar: "عاصفة رعدية" }]
+    };
+
+    function weatherInfo(code) {
+        const keys = [0, 1, 2, 3, 45, 51, 61, 66, 71, 80, 85, 95];
+        let k = 0;
+        keys.forEach(function (x) { if (code >= x) { k = x; } });
+        if (code >= 51 && code <= 57) { k = 51; }
+        if (code >= 56 && code <= 57) { k = 66; }
+        if (code >= 61 && code <= 65) { k = 61; }
+        if (code >= 71 && code <= 77) { k = 71; }
+        if (code >= 80 && code <= 82) { k = 80; }
+        return WEATHER_CODES[k] || WEATHER_CODES[0];
+    }
+
+    function wt(key) {
+        const l = getLanguage();
+        return (WEATHER_TEXT[l] || WEATHER_TEXT.fa)[key] || WEATHER_TEXT.fa[key] || key;
+    }
+
+    const WeatherState = { data: null, place: "", loading: false, error: "" };
+
+    function fetchJSON(url, ms) {
+        const c = new AbortController();
+        const t = setTimeout(function () { c.abort(); }, ms || 10000);
+        return fetch(url, { signal: c.signal }).then(function (r) {
+            clearTimeout(t);
+            if (!r.ok) { throw new Error("http"); }
+            return r.json();
+        });
+    }
+
+    function getPosition() {
+        return new Promise(function (resolve, reject) {
+            if (!navigator.geolocation) { return reject(new Error("unsupported")); }
+            navigator.geolocation.getCurrentPosition(resolve, function () { reject(new Error("denied")); },
+                { enableHighAccuracy: false, timeout: 12000, maximumAge: 600000 });
+        });
+    }
+
+    function loadWeather() {
+        if (WeatherState.loading) { return Promise.resolve(); }
+        WeatherState.loading = true;
+        WeatherState.error = "";
+        renderWeatherChip();
+        renderWeatherPanel();
+        return getPosition().then(function (pos) {
+            const lat = pos.coords.latitude.toFixed(4);
+            const lon = pos.coords.longitude.toFixed(4);
+            const wx = fetchJSON("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon +
+                "&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m" +
+                "&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=4");
+            const geo = fetchJSON("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + lat +
+                "&longitude=" + lon + "&localityLanguage=" + (getLanguage() === "ar" ? "ar" : getLanguage() === "en" ? "en" : "fa"), 6000)
+                .then(function (g) { return g.city || g.locality || g.principalSubdivision || ""; })
+                .catch(function () { return ""; });
+            return Promise.all([wx, geo]).then(function (r) {
+                WeatherState.data = r[0];
+                WeatherState.place = r[1];
+            });
+        }).catch(function (e) {
+            WeatherState.error = e && e.message === "denied" ? "errDenied" :
+                e && e.message === "unsupported" ? "errUnsupported" : "errFetch";
+        }).then(function () {
+            WeatherState.loading = false;
+            renderWeatherChip();
+            renderWeatherPanel();
+        });
+    }
+
+    function renderWeatherChip() {
+        const chip = document.getElementById("ctWeatherChip");
+        if (!chip) { return; }
+        const l = getLanguage();
+        if (WeatherState.loading) { chip.textContent = "⏳ " + wt("chipLoading"); return; }
+        if (WeatherState.data && WeatherState.data.current) {
+            const c = WeatherState.data.current;
+            const info = weatherInfo(c.weather_code);
+            chip.textContent = info[0] + " " + Math.round(c.temperature_2m) + "° · " +
+                (WeatherState.place || wt("chip")) + " · " + info[1][l];
+            return;
+        }
+        chip.textContent = "📍 " + wt("chipAsk");
+    }
+
+    function closeWeatherPanel() {
+        const p = document.getElementById("ctWeatherPanel");
+        if (p) { p.remove(); }
+    }
+
+    function renderWeatherPanel() {
+        const p = document.getElementById("ctWeatherPanel");
+        if (!p) { return; }
+        const l = getLanguage();
+        const nf = new Intl.NumberFormat(wt("locale"));
+        let body = "";
+        if (WeatherState.loading) {
+            body = '<div class="ct-weather-msg">⏳ ' + escapeHTML(wt("chipLoading")) + "</div>";
+        } else if (WeatherState.error) {
+            body = '<div class="ct-weather-msg">' + escapeHTML(wt(WeatherState.error)) + "</div>";
+        } else if (WeatherState.data && WeatherState.data.current) {
+            const c = WeatherState.data.current;
+            const d = WeatherState.data.daily;
+            const info = weatherInfo(c.weather_code);
+            let days = "";
+            for (let i = 0; i < d.time.length; i++) {
+                const di = weatherInfo(d.weather_code[i]);
+                const label = i === 0 ? wt("today") :
+                    new Date(d.time[i] + "T12:00:00").toLocaleDateString(wt("locale"), { weekday: "long" });
+                days += '<div class="ct-weather-day"><span>' + escapeHTML(label) + "</span><span>" + di[0] + "</span><span dir=\"ltr\">" +
+                    nf.format(Math.round(d.temperature_2m_max[i])) + "° / " + nf.format(Math.round(d.temperature_2m_min[i])) + "°</span></div>";
+            }
+            body = '<div class="ct-weather-place">📍 ' + escapeHTML(WeatherState.place || wt("yourLocation")) + "</div>" +
+                '<div class="ct-weather-main"><span class="ct-weather-icon">' + info[0] + '</span><span class="ct-weather-temp" dir="ltr">' +
+                nf.format(Math.round(c.temperature_2m)) + "°C</span></div>" +
+                '<div class="ct-weather-cond">' + escapeHTML(info[1][l]) + "</div>" +
+                '<div class="ct-weather-stats"><div><b>' + escapeHTML(wt("feels")) + "</b><span dir=\"ltr\">" + nf.format(Math.round(c.apparent_temperature)) + "°</span></div>" +
+                "<div><b>" + escapeHTML(wt("humidity")) + "</b><span dir=\"ltr\">" + nf.format(Math.round(c.relative_humidity_2m)) + "%</span></div>" +
+                "<div><b>" + escapeHTML(wt("wind")) + "</b><span>" + nf.format(Math.round(c.wind_speed_10m)) + " " + escapeHTML(wt("kmh")) + "</span></div></div>" +
+                '<h4 class="ct-weather-sub">' + escapeHTML(wt("forecast")) + "</h4>" + days;
+        }
+        p.innerHTML = '<div class="ct-weather-box"><h3 class="ct-registration-section-title">' + escapeHTML(wt("title")) + "</h3>" + body +
+            '<div class="ct-registration-actions" style="margin-top:16px">' +
+            '<button type="button" class="ct-registration-button secondary" id="ctWeatherBack">' + escapeHTML(wt("back")) + "</button>" +
+            '<button type="button" class="ct-registration-button primary" id="ctWeatherRefresh">' + escapeHTML(wt("refresh")) + "</button></div></div>";
+        const b = document.getElementById("ctWeatherBack");
+        const r = document.getElementById("ctWeatherRefresh");
+        if (b) { b.addEventListener("click", closeWeatherPanel); }
+        if (r) { r.addEventListener("click", function () { WeatherState.data = null; loadWeather(); }); }
+    }
+
+    function openWeatherPanel() {
+        const overlay = document.getElementById("cyrusResidenceRegistration");
+        if (!overlay) { return; }
+        closeWeatherPanel();
+        const p = document.createElement("div");
+        p.id = "ctWeatherPanel";
+        p.className = "ct-weather-panel";
+        p.setAttribute("dir", getLanguage() === "en" ? "ltr" : "rtl");
+        p.addEventListener("click", function (e) { if (e.target === p) { closeWeatherPanel(); } });
+        overlay.appendChild(p);
+        renderWeatherPanel();
+        if (!WeatherState.data && !WeatherState.loading) { loadWeather(); }
+    }
+
+    function initWeather() {
+        const chip = document.getElementById("ctWeatherChip");
+        if (!chip) { return; }
+        chip.addEventListener("click", openWeatherPanel);
+        renderWeatherChip();
+        if (!WeatherState.data && !WeatherState.loading && !WeatherState.error) { loadWeather(); }
+    }
+
+
     /* =========================================================
        عنوان پنجره ثبت‌نام بر اساس دسته‌بندی انتخاب‌شده
        ========================================================= */
@@ -993,6 +1170,32 @@
                 );
         }
 
+        .ct-weather-chip {
+            display:block; width:100%; border:0; cursor:pointer; padding:10px 14px; font-size:13px; font-weight:900;
+            font-family:inherit; color:#0b5f57; background:linear-gradient(135deg,#e3f7f2,#eaf4ff); text-align:center;
+            border-bottom:1px solid #d6e9e6;
+        }
+        .ct-weather-chip:hover { filter:brightness(.97); }
+        .ct-weather-panel {
+            position:fixed; inset:0; z-index:2147483000; display:flex; align-items:center; justify-content:center;
+            padding:16px; background:rgba(15,25,35,.55);
+        }
+        .ct-weather-box {
+            width:100%; max-width:420px; max-height:90vh; overflow:auto; box-sizing:border-box;
+            background:#fff; border-radius:22px; padding:20px;
+        }
+        .ct-weather-place { font-size:14px; font-weight:900; color:#313b46; text-align:center; }
+        .ct-weather-main { display:flex; align-items:center; justify-content:center; gap:12px; margin:8px 0 2px; }
+        .ct-weather-icon { font-size:52px; }
+        .ct-weather-temp { font-size:44px; font-weight:900; color:#11998e; }
+        .ct-weather-cond { text-align:center; font-size:14px; font-weight:800; color:#5a6572; margin-bottom:14px; }
+        .ct-weather-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+        .ct-weather-stats div { background:#f4f7fa; border-radius:12px; padding:9px 4px; text-align:center; }
+        .ct-weather-stats b { display:block; font-size:11px; color:#6b7683; margin-bottom:3px; }
+        .ct-weather-stats span { font-size:13px; font-weight:900; color:#25303b; }
+        .ct-weather-sub { margin:6px 0; font-size:13px; color:#11998e; }
+        .ct-weather-day { display:flex; justify-content:space-between; align-items:center; padding:8px 4px; border-top:1px solid #eef1f4; font-size:13px; font-weight:800; color:#313b46; }
+        .ct-weather-msg { text-align:center; padding:24px 8px; font-size:13px; font-weight:800; line-height:2; color:#5a6572; }
         .ct-sample-video {
             position:relative;
             padding-top:56.25%;
@@ -1804,6 +2007,8 @@
         return `
             <div class="ct-sample-card">
 
+                <button type="button" class="ct-weather-chip" id="ctWeatherChip">📍</button>
+
                 <div class="ct-sample-video">
                     <iframe
                         src="${escapeHTML(
@@ -2185,6 +2390,8 @@
        ========================================================= */
 
     function bindSampleCardEvents() {
+        initWeather();
+
 
         const toggle =
             document.getElementById(
