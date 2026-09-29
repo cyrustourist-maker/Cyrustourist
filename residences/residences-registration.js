@@ -43,10 +43,35 @@
         whatsapp:
             "https://wa.me/989153448818",
 
+        eitaa:
+            "https://eitaa.com/cyrustourist",
+
         supportUsername:
             "@Cyrustourist"
 
     };
+
+
+    /* =========================================================
+       دسته‌بندی‌های ثبت‌نام (اقامتگاه، لیدر تور، گردشگری سلامت و ...)
+       ========================================================= */
+
+    const REGISTRATION_CATEGORIES = {
+
+        residence: { fa: "اقامتگاه", en: "Residence", ar: "الإقامة" },
+        cafe: { fa: "کافه", en: "Cafe", ar: "مقهى" },
+        restaurant: { fa: "رستوران", en: "Restaurant", ar: "مطعم" },
+        tourleader: { fa: "لیدر تور", en: "Tour Leader", ar: "قائد الجولة" },
+        health: { fa: "گردشگری سلامت", en: "Health Tourism", ar: "السياحة العلاجية" },
+        agency: { fa: "آژانس مسافرتی", en: "Travel Agency", ar: "وكالة سفر" },
+        services: { fa: "خدمات گردشگری", en: "Tourism Services", ar: "خدمات سياحية" },
+        handicraft: { fa: "صنایع دستی", en: "Handicrafts", ar: "الصناعات اليدوية" },
+        partner: { fa: "همکار گردشگری", en: "Tourism Partner", ar: "شريك سياحي" }
+
+    };
+
+
+    let CurrentCategory = "residence";
 
 
     /* =========================================================
@@ -99,29 +124,32 @@
             title:
                 "➕ ثبت اقامتگاه در سایروس توریست",
 
+            titleTemplate:
+                "➕ ثبت {cat} در سایروس توریست",
+
             subtitle:
-                "اقامتگاه خود را معرفی کنید و در سامانه گردشگری سایروس توریست دیده شوید.",
+                "کسب‌وکار یا خدمات گردشگری خود را معرفی کنید و در سامانه گردشگری سایروس توریست دیده شوید.",
 
             benefitsTitle:
-                "🌟 مزایای ثبت اقامتگاه",
+                "🌟 مزایای ثبت‌نام در سایروس توریست",
 
             benefit1:
-                "🎬 نمایش فیلم اقامتگاه در سایت و نرم‌افزار سایروس توریست",
+                "🎬 نمایش فیلم معرفی در سایت و نرم‌افزار سایروس توریست",
 
             benefit1Desc:
-                "لینک فیلم اقامتگاه را ارسال کنید یا در صورت درخواست، تولید فیلم توسط سایروس توریست انجام می‌شود.",
+                "لینک فیلم معرفی خود را ارسال کنید یا در صورت درخواست، تولید فیلم توسط سایروس توریست انجام می‌شود.",
 
             benefit2:
                 "🗺️ مسیریابی",
 
             benefit2Desc:
-                "گردشگران می‌توانند مسیر رسیدن به اقامتگاه را مشاهده کنند.",
+                "گردشگران می‌توانند مسیر رسیدن به شما را مشاهده کنند.",
 
             benefit3:
                 "📞 تماس مستقیم گردشگر",
 
             benefit3Desc:
-                "امکان تماس مستقیم گردشگر با اقامتگاه در صورت فعال بودن شماره تماس.",
+                "امکان تماس مستقیم گردشگر با شما در صورت فعال بودن شماره تماس.",
 
             benefit4:
                 "📸 نمایش اینستاگرام",
@@ -139,13 +167,25 @@
                 "⭐ امتیاز گردشگران",
 
             benefit6Desc:
-                "گردشگران می‌توانند به اقامتگاه از ۱ تا ۵ ستاره امتیاز دهند.",
+                "گردشگران می‌توانند از ۱ تا ۵ ستاره به شما امتیاز دهند.",
+
+            benefit7:
+                "📢 حضور در فضای تبلیغاتی سایروس توریست",
+
+            benefit7Desc:
+                "معرفی مستمر شما در وب‌سایت، نرم‌افزار و شبکه‌های اجتماعی سایروس توریست در طول دوره عضویت.",
+
+            benefit8:
+                "🤝 دیده‌شدن توسط گردشگران بیشتر",
+
+            benefit8Desc:
+                "دسترسی گردشگران داخلی و خارجی به اطلاعات و راه‌های ارتباطی شما از طریق یک سامانه واحد.",
 
             sampleTitle:
-                "🏡 نمونه کارت اقامتگاه شما",
+                "🏡 نمونه کارت معرفی شما",
 
             sampleDesc:
-                "این یک نمونه از کارت اقامتگاه شماست. برای فیلم اقامتگاه دو روش دارید: ۱. ارسال لینک فیلم شبکه‌های اجتماعی‌تان به پشتیبانی سایروس توریست ۲. سفارش تولید محتوای حرفه‌ای توسط تیم سایروس توریست (حضوری یا دورکاری).",
+                "این یک نمونه از کارت معرفی شماست. برای فیلم معرفی دو روش دارید: ۱. ارسال لینک فیلم شبکه‌های اجتماعی‌تان به پشتیبانی سایروس توریست ۲. سفارش تولید محتوای حرفه‌ای توسط تیم سایروس توریست (حضوری یا دورکاری).",
 
             sampleRoute:
                 "🗺️ مسیریابی (مکان من)",
@@ -170,6 +210,24 @@
 
             sampleWebsite:
                 "🌐 وب‌سایت",
+
+            sampleYoutube:
+                "▶️ یوتیوب",
+
+            sampleTiktok:
+                "🎵 تیک‌تاک",
+
+            sampleAparat:
+                "▶️ آپارات",
+
+            sampleTelegram:
+                "✈️ تلگرام",
+
+            sampleWhatsapp:
+                "💬 واتساپ",
+
+            sampleEitaa:
+                "💬 ایتا",
 
             rulesTitle:
                 "📋 قوانین و شرایط خدمات",
@@ -198,6 +256,9 @@
             whatsappSupport:
                 "💬 پشتیبانی واتساپ",
 
+            eitaaSupport:
+                "💬 پشتیبانی ایتا",
+
             back:
                 "↩ برگشت",
 
@@ -215,8 +276,11 @@
             title:
                 "➕ Register a Residence on Cyrus Tourist",
 
+            titleTemplate:
+                "➕ Register {cat} on Cyrus Tourist",
+
             subtitle:
-                "Introduce your accommodation and make it visible on Cyrus Tourist.",
+                "Introduce your tourism business or service and make it visible on Cyrus Tourist.",
 
             benefitsTitle:
                 "🌟 Registration Benefits",
@@ -255,13 +319,25 @@
                 "⭐ Tourist ratings",
 
             benefit6Desc:
-                "Tourists can rate the residence from 1 to 5 stars.",
+                "Tourists can rate you from 1 to 5 stars.",
+
+            benefit7:
+                "📢 Presence in Cyrus Tourist's advertising space",
+
+            benefit7Desc:
+                "Ongoing visibility on the Cyrus Tourist website, app and social media during your membership period.",
+
+            benefit8:
+                "🤝 Reach more tourists",
+
+            benefit8Desc:
+                "Domestic and international tourists can find your information and contact details in one place.",
 
             sampleTitle:
-                "🏡 Sample Residence Card",
+                "🏡 Sample Listing Card",
 
             sampleDesc:
-                "This is a sample of your residence card. There are two ways to add your video: 1. Send your social media video link to Cyrus Tourist support 2. Order professional content production by the Cyrus Tourist team (in person or remote).",
+                "This is a sample of your listing card. There are two ways to add your video: 1. Send your social media video link to Cyrus Tourist support 2. Order professional content production by the Cyrus Tourist team (in person or remote).",
 
             sampleRoute:
                 "🗺️ Route (My Location)",
@@ -286,6 +362,24 @@
 
             sampleWebsite:
                 "🌐 Website",
+
+            sampleYoutube:
+                "▶️ YouTube",
+
+            sampleTiktok:
+                "🎵 TikTok",
+
+            sampleAparat:
+                "▶️ Aparat",
+
+            sampleTelegram:
+                "✈️ Telegram",
+
+            sampleWhatsapp:
+                "💬 WhatsApp",
+
+            sampleEitaa:
+                "💬 Eitaa",
 
             rulesTitle:
                 "📋 Terms and Conditions",
@@ -314,6 +408,9 @@
             whatsappSupport:
                 "💬 WhatsApp Support",
 
+            eitaaSupport:
+                "💬 Eitaa Support",
+
             back:
                 "↩ Back",
 
@@ -331,8 +428,11 @@
             title:
                 "➕ تسجيل مكان الإقامة في سايروس توريست",
 
+            titleTemplate:
+                "➕ تسجيل {cat} في سايروس توريست",
+
             subtitle:
-                "عرّف بمكان إقامتك واظهر في منصة سايروس توريست السياحية.",
+                "عرّف بعملك أو خدماتك السياحية واظهر في منصة سايروس توريست السياحية.",
 
             benefitsTitle:
                 "🌟 مزايا التسجيل",
@@ -371,10 +471,22 @@
                 "⭐ تقييم السياح",
 
             benefit6Desc:
-                "يمكن للسياح تقييم مكان الإقامة من نجمة إلى خمس نجوم.",
+                "يمكن للسياح تقييمك من نجمة إلى خمس نجوم.",
+
+            benefit7:
+                "📢 التواجد في المساحة الإعلانية لسايروس توريست",
+
+            benefit7Desc:
+                "ظهور مستمر لك على موقع وتطبيق ووسائل التواصل الاجتماعي لسايروس توريست خلال فترة العضوية.",
+
+            benefit8:
+                "🤝 الوصول إلى مزيد من السياح",
+
+            benefit8Desc:
+                "يمكن للسياح المحليين والأجانب الوصول إلى معلوماتك وطرق التواصل معك من خلال منصة واحدة.",
 
             sampleTitle:
-                "🏡 نموذج بطاقة الإقامة الخاصة بك",
+                "🏡 نموذج بطاقة التعريف الخاصة بك",
 
             sampleDesc:
                 "هذا نموذج لبطاقة إقامتك. لديك طريقتان لإضافة الفيديو: ١. إرسال رابط فيديو من وسائل التواصل الاجتماعي إلى دعم سايروس توريست ٢. طلب إنتاج محتوى احترافي من فريق سايروس توريست (حضورياً أو عن بُعد).",
@@ -403,6 +515,24 @@
             sampleWebsite:
                 "🌐 الموقع الإلكتروني",
 
+            sampleYoutube:
+                "▶️ يوتيوب",
+
+            sampleTiktok:
+                "🎵 تيك توك",
+
+            sampleAparat:
+                "▶️ آپارات",
+
+            sampleTelegram:
+                "✈️ تلغرام",
+
+            sampleWhatsapp:
+                "💬 واتساب",
+
+            sampleEitaa:
+                "💬 ایتا",
+
             rulesTitle:
                 "📋 الشروط والأحكام",
 
@@ -429,6 +559,9 @@
 
             whatsappSupport:
                 "💬 دعم واتساب",
+
+            eitaaSupport:
+                "💬 دعم إيتا",
 
             back:
                 "↩ رجوع",
@@ -483,6 +616,31 @@
             current[key] ||
             REGISTRATION_TEXT.fa[key] ||
             key
+        );
+
+    }
+
+
+    /* =========================================================
+       عنوان پنجره ثبت‌نام بر اساس دسته‌بندی انتخاب‌شده
+       ========================================================= */
+
+    function registrationTitle() {
+
+        const language =
+            getLanguage();
+
+        const category =
+            REGISTRATION_CATEGORIES[CurrentCategory] ||
+            REGISTRATION_CATEGORIES.residence;
+
+        const label =
+            category[language] ||
+            category.fa;
+
+        return text("titleTemplate").replace(
+            "{cat}",
+            label
         );
 
     }
@@ -1101,7 +1259,7 @@
 
                     <h2 id="ctRegistrationTitle">
                         ${escapeHTML(
-                            text("title")
+                            registrationTitle()
                         )}
                     </h2>
 
