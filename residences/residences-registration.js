@@ -90,7 +90,25 @@
             "https://www.instagram.com/cyrustourist?igsi=aDc3end6dTNqNW1o",
 
         website:
-            "https://cyrustourist-maker.github.io/Cyrustourist/#residence"
+            "https://cyrustourist-maker.github.io/Cyrustourist/#residence",
+
+        youtube:
+            "https://www.youtube.com/@cyrustourist",
+
+        tiktok:
+            "https://www.tiktok.com/@cyrustourist",
+
+        aparat:
+            "https://www.aparat.com/cyrustourist",
+
+        telegram:
+            "https://t.me/Cyrustourist",
+
+        whatsapp:
+            "https://wa.me/989153448818",
+
+        eitaa:
+            "https://eitaa.com/cyrustourist"
 
     };
 
@@ -914,11 +932,12 @@
 
         .ct-sample-links {
             display:flex;
-            gap:10px;
+            flex-wrap:wrap;
+            gap:8px;
         }
 
         .ct-sample-link {
-            flex:1 1 auto;
+            flex:1 1 calc(50% - 8px);
             display:flex;
             align-items:center;
             justify-content:center;
@@ -1087,7 +1106,7 @@
         .ct-support-buttons {
             display:grid;
             grid-template-columns:
-                repeat(3,minmax(0,1fr));
+                repeat(2,minmax(0,1fr));
             gap:10px;
         }
 
@@ -1133,6 +1152,15 @@
                     135deg,
                     #25d366,
                     #128c7e
+                );
+        }
+
+        .ct-support-eitaa {
+            background:
+                linear-gradient(
+                    135deg,
+                    #5fc9a8,
+                    #0f9d78
                 );
         }
 
@@ -1325,6 +1353,16 @@
                                 "benefit6Desc"
                             )}
 
+                            ${benefitHTML(
+                                "benefit7",
+                                "benefit7Desc"
+                            )}
+
+                            ${benefitHTML(
+                                "benefit8",
+                                "benefit8Desc"
+                            )}
+
                         </div>
 
 
@@ -1476,6 +1514,22 @@
                                     ${escapeHTML(
                                         text(
                                             "whatsappSupport"
+                                        )
+                                    )}
+                                </a>
+
+
+                                <a
+                                    class="ct-support-button ct-support-eitaa"
+                                    href="${escapeHTML(
+                                        REGISTRATION_CONFIG.eitaa
+                                    )}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    ${escapeHTML(
+                                        text(
+                                            "eitaaSupport"
                                         )
                                     )}
                                 </a>
@@ -1685,6 +1739,84 @@
                         >
                             ${escapeHTML(
                                 text("sampleWebsite")
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.youtube
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleYoutube")
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.tiktok
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleTiktok")
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.aparat
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleAparat")
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.telegram
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleTelegram")
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.whatsapp
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleWhatsapp")
+                            )}
+                        </a>
+
+                        <a
+                            class="ct-sample-link"
+                            href="${escapeHTML(
+                                SAMPLE_CARD_CONFIG.eitaa
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(
+                                text("sampleEitaa")
                             )}
                         </a>
 
@@ -2023,7 +2155,27 @@
        باز کردن ثبت اقامتگاه
        ========================================================= */
 
-    function openRegistration() {
+    function openRegistration(category) {
+
+        if (
+            category &&
+            REGISTRATION_CATEGORIES[category] &&
+            category !== CurrentCategory
+        ) {
+
+            CurrentCategory = category;
+
+            const existing =
+                document.getElementById(
+                    "cyrusResidenceRegistration"
+                );
+
+            if (existing) {
+                existing.remove();
+            }
+
+        }
+
 
         createRegistrationModal();
 
@@ -2164,7 +2316,11 @@
 
                                     event.preventDefault();
 
-                                    openRegistration();
+                                    openRegistration(
+                                        button.getAttribute(
+                                            "data-category"
+                                        )
+                                    );
 
                                 }
                             );
