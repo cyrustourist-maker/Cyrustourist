@@ -81,7 +81,11 @@
 "sameAs":[
   "https://t.me/Cyrustourist",
   "https://eitaa.com/cyrustourist",
-  "https://wa.me/989153448818"
+  "https://wa.me/989153448818",
+  "https://www.instagram.com/cyrustourist",
+  "https://www.youtube.com/@cyrustourist",
+  "https://www.aparat.com/cyrustourist",
+  "https://www.tiktok.com/@cyrustourist"
 ],
 "contactPoint":[
   {
@@ -1649,6 +1653,226 @@ grid-template-columns:1fr
 height:430px
 }
 }
+
+/* ============================================================
+   CYRUS APP-STYLE BLOCK — استایل بلوک جدید زیر هدر (مثل اپ)
+   ============================================================ */
+
+.cyrusAppBlock{
+--cyrusAccent:#f2cf5b;
+--cyrusAccentText:#f7f1d0;
+--cyrusBlockBg1:#050b1b;
+--cyrusBlockBg2:#07132c;
+--cyrusBlockText:#f5fbff;
+--cyrusBlockMuted:#aeb8cf;
+--cyrusCardBg1:#112751;
+--cyrusCardBg2:#071329;
+padding:26px 0 30px;
+background:linear-gradient(180deg,var(--cyrusBlockBg1),var(--cyrusBlockBg2));
+transition:background .3s ease
+}
+
+.cyrusAppBlock[data-cyrus-color="blue"]{--cyrusAccent:#55b9ff;--cyrusAccentText:#e7f6ff}
+.cyrusAppBlock[data-cyrus-color="emerald"]{--cyrusAccent:#49d6a3;--cyrusAccentText:#e6fff6}
+.cyrusAppBlock[data-cyrus-color="purple"]{--cyrusAccent:#c48cff;--cyrusAccentText:#f7edff}
+.cyrusAppBlock[data-cyrus-color="red"]{--cyrusAccent:#ff7777;--cyrusAccentText:#fff0f0}
+.cyrusAppBlock[data-cyrus-color="cyan"]{--cyrusAccent:#4de7e7;--cyrusAccentText:#e8ffff}
+
+.cyrusAppBlock[data-cyrus-display="day"]{
+--cyrusBlockBg1:#f7fbff;
+--cyrusBlockBg2:#eaf2fa;
+--cyrusBlockText:#16233a;
+--cyrusBlockMuted:#52647c;
+--cyrusCardBg1:#ffffff;
+--cyrusCardBg2:#e8f0f8
+}
+
+.cyrusAppBlock[data-cyrus-anim="off"] *{
+transition:none !important;
+animation:none !important
+}
+
+.cyrusBlockTitle{
+color:var(--cyrusAccentText,var(--cyrusAccent));
+font-size:18px;
+font-weight:900;
+margin:26px 0 14px
+}
+
+/* دایره‌های میان‌بر */
+
+.cyrusCircles{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+max-width:420px;
+margin:0 auto
+}
+
+.cyrusCircle{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
+padding:22px 10px;
+border-radius:50%;
+aspect-ratio:1/1;
+justify-content:center;
+color:var(--cyrusBlockText);
+background:radial-gradient(circle at 35% 30%,var(--cyrusCardBg1),var(--cyrusCardBg2));
+border:2px solid var(--cyrusAccent);
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+transition:transform .2s ease,box-shadow .2s ease
+}
+
+.cyrusCircle:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 34px rgba(0,0,0,.3)
+}
+
+.cyrusCircleIcon{color:var(--cyrusAccent)}
+
+.cyrusCircleLabel{
+font-size:13.5px;
+font-weight:800;
+text-align:center
+}
+
+/* بنر تبلیغاتی */
+
+.cyrusAdBox{
+margin-top:22px;
+border-radius:14px;
+overflow:hidden;
+border:1px solid var(--cyrusAccent);
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+background:var(--cyrusCardBg2)
+}
+
+.cyrusAdBoxLink{display:block}
+
+.cyrusAdBox img{
+display:block;
+width:100%;
+height:auto;
+aspect-ratio:8.4/1;
+object-fit:cover
+}
+
+@media (max-width:640px){
+.cyrusAdBox img{aspect-ratio:16/9;object-fit:contain}
+}
+
+/* باکس معرفی کسب‌وکار */
+
+.cyrusPromoBox{
+margin-top:20px;
+padding:18px 16px;
+border-radius:16px;
+border:1px solid var(--cyrusAccent);
+background:var(--cyrusCardBg1);
+text-align:center
+}
+
+.cyrusPromoLine1{
+margin:0 0 8px;
+color:var(--cyrusAccentText,var(--cyrusAccent));
+font-weight:900;
+font-size:15px
+}
+
+.cyrusPromoLine2{
+display:inline-block;
+color:var(--cyrusBlockText);
+font-size:14px
+}
+
+.cyrusPromoLine2:hover{color:var(--cyrusAccent)}
+
+/* شبکه‌های اجتماعی */
+
+.cyrusSocialGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px
+}
+
+@media (max-width:520px){
+.cyrusSocialGrid{grid-template-columns:repeat(2,1fr)}
+}
+
+.cyrusSocialBtn{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:13px 16px;
+border-radius:13px;
+border:1px solid var(--cyrusAccent);
+background:var(--cyrusCardBg1);
+color:var(--cyrusBlockText);
+font-size:13.5px;
+font-weight:700;
+transition:transform .2s ease,background .2s ease
+}
+
+.cyrusSocialBtn:hover{
+transform:translateY(-2px);
+background:var(--cyrusCardBg2)
+}
+
+.cyrusSocialBtn b{color:var(--cyrusAccent);font-weight:900}
+
+/* تنظیمات ظاهری */
+
+.cyrusSettingsRow{
+margin-top:22px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center
+}
+
+.cyrusSettingBtn{
+padding:10px 14px;
+border-radius:12px;
+border:1px solid var(--cyrusAccent);
+background:var(--cyrusCardBg1);
+color:var(--cyrusBlockText);
+font-size:12.5px;
+font-weight:700;
+cursor:pointer
+}
+
+.cyrusSettingBtn:hover{background:var(--cyrusCardBg2)}
+
+.cyrusColorSwatches{
+margin-top:12px;
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+justify-content:center
+}
+
+.cyrusSwatch{
+display:flex;
+align-items:center;
+gap:7px;
+padding:8px 12px;
+border-radius:20px;
+border:1px solid var(--cyrusBlockMuted);
+background:var(--cyrusCardBg2);
+color:var(--cyrusBlockText);
+font-size:12px;
+cursor:pointer
+}
+
+.cyrusSwatch i{
+width:14px;
+height:14px;
+border-radius:50%;
+display:inline-block
+}
+
 </style>
 </head>
 
@@ -1692,197 +1916,393 @@ alt="Cyrus Tourist"
 
 <main id="top">
 
-<!-- HERO -->
+<!-- ============================================================
+     CYRUS APP SECTION — جایگزین عکس هدر قدیمی؛ دقیقاً به سبک اپ اندروید
+     (۸ کلید اصلی + تبلیغات متصل به دیتابیس + شبکه‌های اجتماعی + تنظیمات
+     ظاهری با رنگ/حالت‌شب‌وروز/انیمیشن/صدا). لگوی کوچک بالای سایت در
+     هدر و متن‌های سئوی head دست‌نخورده باقی مانده‌اند.
+     ============================================================ -->
+<style>
+.cyrusAppSection{
+--cyrusGold:#f2cf5b;--cyrusGold2:#ffe7a0;--cyrusText:#fff7dc;--cyrusMuted:#aeb8cf;
+--cyrusBg1:#050b1b;--cyrusBg2:#0a1530;--cyrusBg3:#07132c;--cyrusCard1:#112751;--cyrusCard2:#071329;
+padding:30px 0 36px;
+background:
+ radial-gradient(ellipse at 50% -8%,#173d78 0%,#0b1b3b 31%,transparent 55%),
+ linear-gradient(180deg,var(--cyrusBg1) 0%,var(--cyrusBg3) 52%,#040916 100%);
+color:#fff;
+transition:background .3s ease,color .3s ease
+}
+.cyrusAppSection[data-cyrus-color="blue"]{--cyrusGold:#55b9ff;--cyrusText:#e7f6ff}
+.cyrusAppSection[data-cyrus-color="emerald"]{--cyrusGold:#49d6a3;--cyrusText:#e6fff6}
+.cyrusAppSection[data-cyrus-color="purple"]{--cyrusGold:#c48cff;--cyrusText:#f7edff}
+.cyrusAppSection[data-cyrus-color="red"]{--cyrusGold:#ff7777;--cyrusText:#fff0f0}
+.cyrusAppSection[data-cyrus-color="cyan"]{--cyrusGold:#4de7e7;--cyrusText:#e8ffff}
+.cyrusAppSection[data-cyrus-display="day"]{
+background:linear-gradient(180deg,#f7fbff 0%,#eaf2fa 52%,#dfe9f3 100%);
+color:#16233a;
+--cyrusCard1:#ffffff;--cyrusCard2:#e8f0f8;--cyrusMuted:#52647c
+}
+.cyrusAppSection[data-cyrus-anim="off"] .cyrusPhone *{animation:none !important;transition:none !important}
+.cyrusAppSection[data-cyrus-anim="low"] .cyrusCircle:after,
+.cyrusAppSection[data-cyrus-anim="low"] .cyrusSocial:after{animation-duration:14s}
 
-<section class="hero">
-<div class="wrap">
+.cyrusPhone{max-width:520px;margin:0 auto;padding:0 18px;position:relative}
 
-<div class="siteHero">
+@keyframes cyrusSweep{0%,15%{left:-55%;opacity:0}28%{opacity:.9}60%{opacity:.9}82%,100%{left:130%;opacity:0}}
 
-<div class="heroTextSrOnly">
-<h1 class="siteHeroTitle" data-i18n="heroTitle">
-گردشگری سایروس توریست
-</h1>
+.cyrusBrand{position:relative;text-align:center;padding:6px 4px 18px}
+.cyrusBrand:after{content:"";position:absolute;left:18%;right:18%;bottom:2px;height:1px;background:linear-gradient(90deg,transparent,var(--cyrusGold)99,transparent)}
+.cyrusLogo{width:72px;height:72px;margin:0 auto 10px;border-radius:50%;overflow:hidden;border:3px solid var(--cyrusGold);box-shadow:0 0 0 6px rgba(242,207,91,.08)}
+.cyrusLogo img{width:100%;height:100%;object-fit:cover;display:block}
+.cyrusH1{font:700 21px Georgia,serif;letter-spacing:.5px;margin:2px 0;color:var(--cyrusText)}
+.cyrusFa{font-size:15px;color:var(--cyrusGold);margin-top:2px;font-weight:700}
+.cyrusTag{font-size:12px;color:var(--cyrusMuted);margin:6px 0 0;line-height:1.7}
+.cyrusTagEn{font-size:10.5px;color:var(--cyrusMuted);margin-top:3px;direction:ltr;letter-spacing:.4px;opacity:.85}
 
-<p class="siteHeroSub" data-i18n="heroSub">
-ایران را با سایروس توریست ببینید
-</p>
+.cyrusGrid8{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;padding:6px 0 0}
+@media (min-width:640px){.cyrusGrid8{grid-template-columns:repeat(4,1fr)}}
+
+.cyrusItem{text-align:center;color:inherit;display:block}
+.cyrusCircle{width:100%;max-width:150px;margin:0 auto;aspect-ratio:1;border-radius:50%;border:3px solid var(--cyrusGold);
+background:radial-gradient(circle at 32% 20%,#2a9fd4 0%,#164f8c 42%,#0a1f46 78%,#071127 100%);
+display:grid;place-items:center;position:relative;overflow:hidden;
+box-shadow:0 12px 26px rgba(0,0,0,.35);transition:transform .2s ease}
+.cyrusAppSection[data-cyrus-display="day"] .cyrusCircle{background:radial-gradient(circle at 32% 20%,#bfe3ff 0%,#8fc3ee 42%,#4f8fc9 78%,#2c6299 100%)}
+.cyrusItem:hover .cyrusCircle{transform:translateY(-3px)}
+.cyrusCircle:before{content:"";position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(255,255,255,.23);box-shadow:inset 0 0 25px rgba(0,0,0,.4)}
+.cyrusCircle:after{content:"";position:absolute;top:-25%;left:-55%;width:27%;height:150%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),rgba(255,233,166,.65),transparent);transform:skewX(-18deg);animation:cyrusSweep 8s ease-in-out infinite;pointer-events:none}
+.cyrusItem:nth-child(2) .cyrusCircle:after{animation-delay:-.6s}
+.cyrusItem:nth-child(3) .cyrusCircle:after{animation-delay:-1.2s}
+.cyrusItem:nth-child(4) .cyrusCircle:after{animation-delay:-1.8s}
+.cyrusItem:nth-child(5) .cyrusCircle:after{animation-delay:-2.4s}
+.cyrusItem:nth-child(6) .cyrusCircle:after{animation-delay:-3s}
+.cyrusItem:nth-child(7) .cyrusCircle:after{animation-delay:-3.6s}
+.cyrusItem:nth-child(8) .cyrusCircle:after{animation-delay:-4.2s}
+.cyrusPlaceholder{font-size:42px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5));position:relative;z-index:2}
+.cyrusLabel{display:block;margin-top:8px;color:var(--cyrusText);font-weight:700;font-size:12.5px;line-height:1.3}
+
+.cyrusBlockTitle{color:var(--cyrusGold);font-size:16px;font-weight:800;margin:26px 2px 10px;text-align:right}
+
+.cyrusCarousel{border:1.5px solid var(--cyrusGold);border-radius:20px;overflow:hidden;
+background:linear-gradient(135deg,var(--cyrusCard1),var(--cyrusCard2));
+box-shadow:0 14px 30px rgba(0,0,0,.4);margin-bottom:14px}
+.cyrusCarouselLink{display:block}
+.cyrusCarousel img{display:block;width:100%;height:auto;aspect-ratio:8.4/1;object-fit:cover}
+@media (max-width:520px){.cyrusCarousel img{aspect-ratio:16/9;object-fit:contain}}
+
+.cyrusNote{margin:8px 0 4px;border:1px solid rgba(242,207,91,.35);border-radius:18px;padding:15px;
+color:var(--cyrusMuted);text-align:center;line-height:1.9;font-size:12.5px;
+background:rgba(7,20,43,.85);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.cyrusAppSection[data-cyrus-display="day"] .cyrusNote{background:rgba(255,255,255,.85)}
+.cyrusNote a{color:var(--cyrusGold);text-decoration:none;font-weight:700}
+
+.cyrusSocials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.cyrusSocial{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+height:74px;border:1px solid rgba(242,207,91,.55);border-radius:15px;
+background:linear-gradient(145deg,var(--cyrusCard1),var(--cyrusCard2));
+color:var(--cyrusText);font-size:11.5px;font-weight:700;box-shadow:0 6px 14px rgba(0,0,0,.35);
+position:relative;overflow:hidden}
+.cyrusSocial:after{content:"";position:absolute;top:-20%;left:-55%;width:30%;height:145%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:cyrusSweep 8s ease-in-out infinite}
+.cyrusSocial .cyrusIco{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;border:1px solid rgba(242,207,91,.4);background:rgba(5,13,32,.6);font-size:13px}
+
+.cyrusSettingsWrap{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px 0 4px}
+.cyrusSettingBtn{border:1px solid rgba(242,207,91,.5);border-radius:14px;
+background:linear-gradient(145deg,var(--cyrusCard1),var(--cyrusCard2));color:var(--cyrusText);
+padding:9px 14px;font:700 12px Tahoma,Arial;box-shadow:0 6px 14px rgba(0,0,0,.35);cursor:pointer}
+.cyrusSettingBtn:active{transform:scale(.97)}
+
+.cyrusModal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:9999;padding:14px}
+.cyrusModal.show{display:flex}
+.cyrusPanel{width:min(430px,100%);border:1px solid rgba(242,207,91,.6);border-radius:24px;
+background:linear-gradient(160deg,#102751,#050d1d);padding:18px;box-shadow:0 -10px 35px rgba(0,0,0,.7);color:#fff}
+.cyrusAppSection[data-cyrus-display="day"] .cyrusPanel{background:linear-gradient(160deg,#f7fbff,#dfeaf4);color:#16233a}
+.cyrusPanel h2{font-size:16px;margin:0 0 12px;color:var(--cyrusGold2,var(--cyrusGold))}
+.cyrusOptRow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.cyrusOpt{border:1px solid rgba(242,207,91,.35);border-radius:13px;padding:11px 8px;background:rgba(7,20,46,.9);
+color:#dfe6f5;text-align:center;font:700 12px Tahoma;cursor:pointer}
+.cyrusAppSection[data-cyrus-display="day"] .cyrusOpt{background:#edf3f9;color:#334861}
+.cyrusOpt.active{border-color:var(--cyrusGold);box-shadow:0 0 14px rgba(242,207,91,.3);color:var(--cyrusGold2,var(--cyrusGold))}
+.cyrusCloseModal{margin-top:12px;width:100%;border:0;border-radius:12px;padding:10px;background:var(--cyrusGold);color:#111;font-weight:800;cursor:pointer}
+</style>
+
+<section class="cyrusAppSection" id="cyrusAppSection" data-cyrus-color="gold" data-cyrus-display="night" data-cyrus-anim="low" data-cyrus-sound="classic">
+<div class="cyrusPhone">
+
+<div class="cyrusBrand">
+<div class="cyrusLogo"><img src="assets/images/logo.png" alt="لوگوی سایروس توریست" loading="lazy"></div>
+<h1 class="cyrusH1" data-i18n="heroTitle">گردشگری سایروس توریست</h1>
+<div class="cyrusFa">سایروس توریست</div>
+<p class="cyrusTag" data-i18n="heroSub">ایران را با سایروس توریست ببینید</p>
+<div class="cyrusTagEn">From Iran to the World</div>
 </div>
 
-<div class="cyrusHeroDownloadArea cyrusAppHero">
-
-<picture>
-<source media="(min-width:901px)" srcset="assets/images/cyrustourist-hero-desktop.jpg">
-<img
-class="siteHeroImage"
-id="cyrusAppHeroImg"
-src="assets/images/cyrustourist-app-hero-2026.jpg"
-alt="گردشگری سایروس توریست — نقشه گردشگری، گردشگری سلامت، جاذبه‌های گردشگری، اقامتگاه‌ها، راهنمای سفر، فیلم ویژه، جستجوی هوشمند، طبیعت‌گردی"
-loading="eager"
-fetchpriority="high"
->
-</picture>
-
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.039" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.275" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" data-map-filter="attraction" aria-label="جاذبه‌های گردشگری" data-fx="0.517" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.753" data-fy="0.574" data-fw="0.194" data-fh="0.09"></a>
-
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#guide" aria-label="راهنمای سفر" data-fx="0.039" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#videos" aria-label="نمایش فیلم ویژه" data-fx="0.275" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#heroSmartSearch" aria-label="جستجوی هوشمند" data-fx="0.517" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#nearby" aria-label="تور گردشگری" data-fx="0.753" data-fy="0.715" data-fw="0.194" data-fh="0.09"></a>
-
-<a class="cyrusHeroHotspot glass searchGlass heroHotspotMobile" id="heroSmartSearch" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.0625" data-fy="0.395" data-fw="0.875" data-fh="0.054"></a>
-
-<!-- ردیف کلیدهای خانه/نقشه/علاقه‌مندی‌ها/فیلم‌های ویژه/حساب کاربری روی عکس هدر (موبایل) -->
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#map" data-map-filter="none" aria-label="نقشه" data-fx="0.2167" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="favorites.html" aria-label="علاقه‌مندی‌ها" data-fx="0.4056" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
-<a class="cyrusHeroHotspot glass heroHotspotMobile" href="#videoMenuBanner" aria-label="فیلم‌های ویژه" data-fx="0.5944" data-fy="0.467" data-fw="0.1889" data-fh="0.073"></a>
-
-<!-- هات‌اسپات‌های عکس دسکتاپ (1280x720) — مطابق مختصات واقعیِ کلیدهای چاپ‌شده روی همان عکس -->
-<a class="cyrusHeroHotspot glass searchGlass heroHotspotDesktop" href="#map" aria-label="جستجوی هوشمند — رفتن به نقشه" data-fx="0.1938" data-fy="0.3569" data-fw="0.6148" data-fh="0.1014"></a>
-
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" data-map-filter="none" aria-label="نقشه گردشگری" data-fx="0.1156" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" data-map-filter="health" aria-label="گردشگری سلامت" data-fx="0.3125" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" data-map-filter="attraction" aria-label="جاذبه‌ها" data-fx="0.5094" data-fy="0.5139" data-fw="0.1805" data-fh="0.1903"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" data-map-filter="accommodation" aria-label="اقامتگاه‌ها" data-fx="0.7055" data-fy="0.5139" data-fw="0.1813" data-fh="0.1903"></a>
-
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#guide" aria-label="راهنمای سفر" data-fx="0.1156" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#videos" aria-label="فیلم‌های ویژه" data-fx="0.3125" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#map" aria-label="جستجوی هوشمند" data-fx="0.5094" data-fy="0.7319" data-fw="0.1805" data-fh="0.1944"></a>
-<a class="cyrusHeroHotspot glass heroHotspotDesktop" href="#nearby" aria-label="تور گردشگری" data-fx="0.7055" data-fy="0.7319" data-fw="0.1813" data-fh="0.1944"></a>
-
+<div class="cyrusGrid8">
+<a class="cyrusItem" href="#map"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🗺️</span></div><span class="cyrusLabel" data-i18n="catMap">نقشه گردشگری</span></a>
+<a class="cyrusItem" href="#nearby" data-map-filter="attraction"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🏛️</span></div><span class="cyrusLabel" data-i18n="catAttractions">جاذبه‌های گردشگری</span></a>
+<a class="cyrusItem" href="#nearby" data-map-filter="health"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">❤️</span></div><span class="cyrusLabel">گردشگری سلامت</span></a>
+<a class="cyrusItem" href="#nearby" data-map-filter="accommodation"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🏡</span></div><span class="cyrusLabel" data-i18n="catResidence">اقامتگاه</span></a>
+<a class="cyrusItem" href="#videoMenuBanner"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🎬</span></div><span class="cyrusLabel">نمایش ویژه فیلم</span></a>
+<a class="cyrusItem" href="#nearby"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🧳</span></div><span class="cyrusLabel">تور گردشگری</span></a>
+<a class="cyrusItem" href="#guide"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🧭</span></div><span class="cyrusLabel" data-i18n="catGuide">راهنمای سفر</span></a>
+<a class="cyrusItem" href="#map"><div class="cyrusCircle"><span class="cyrusPlaceholder" aria-hidden="true">🔎</span></div><span class="cyrusLabel">جستجوی پیشرفته</span></a>
 </div>
 
+<h2 class="cyrusBlockTitle">تبلیغات ویژه</h2>
+
+<div class="cyrusCarousel" id="cyrusAdBox1" data-slot="1">
+<a class="cyrusCarouselLink" id="cyrusAdBoxLink1" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات ویژه سایروس توریست">
+<img id="cyrusAdBoxImg1" src="assets/images/ads/banner-01.jpg" alt="تبلیغات ویژه سایروس توریست" loading="lazy">
+</a>
 </div>
 
+<div class="cyrusCarousel" id="cyrusAdBox2" data-slot="2">
+<a class="cyrusCarouselLink" id="cyrusAdBoxLink2" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات ویژه سایروس توریست">
+<img id="cyrusAdBoxImg2" src="assets/images/ads/banner-04.jpg" alt="تبلیغات ویژه سایروس توریست" loading="lazy">
+</a>
 </div>
-</section>
 
-<!-- AD / PROMO CAROUSEL (زیر هدر) -->
-<!--
-  راهنما:
-  - هر عکس را با نام banner-01.jpg تا banner-10.jpg داخل پوشه assets/images/ads/ آپلود کن (به همین ترتیب شماره).
-  - سایز پیشنهادی هر عکس: 1600×900 پیکسل (نسبت 16:9)، فرمت jpg، حجم زیر 300KB — همین یک سایز برای موبایل و دسکتاپ کافی است.
-  - فعلاً هر اسلاید با لمس/کلیک صفحه آپارات را باز می‌کند. وقتی تبلیغ واقعی آماده شد، فقط href همان <a class="adSlide"> را عوض کن.
-  - برای اضافه کردن اسلاید بیشتر (تا ۱۰ تا)، کل بلوک <a class="adSlide">...</a> را کپی کن و شماره عکس را عوض کن.
--->
-<section class="adPromoSection">
-<div class="wrap">
+<div class="cyrusNote">🌍 دیده شوید؛ انتخاب شوید!<br>
+<a href="residences/residences.html">معرفی کسب‌وکار شما در Cyrus Tourist</a></div>
 
-<div class="adCarousel" id="adCarousel">
+<h2 class="cyrusBlockTitle">با جهان دیده شوید</h2>
 
-<a class="adSlide active" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-01.jpg" alt="تبلیغات ۱" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-02.jpg" alt="تبلیغات ۲" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-03.jpg" alt="تبلیغات ۳" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-04.jpg" alt="تبلیغات ۴" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-05.jpg" alt="تبلیغات ۵" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-06.jpg" alt="تبلیغات ۶" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-07.jpg" alt="تبلیغات ۷" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-08.jpg" alt="تبلیغات ۸" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-09.jpg" alt="تبلیغات ۹" loading="lazy">
-</a>
-<a class="adSlide" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات">
-<img src="assets/images/ads/banner-10.jpg" alt="تبلیغات ۱۰" loading="lazy">
-</a>
-<a class="adSlide" href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share" target="_blank" rel="noopener" aria-label="نصب از بازار">
-<img src="assets/images/ads/banner-bazaar.jpg" alt="نصب اپلیکیشن سایروس توریست از بازار" loading="lazy">
-</a>
-
-<div class="adCarouselDots" id="adCarouselDots"></div>
-
+<div class="cyrusSocials">
+<a class="cyrusSocial" href="https://www.instagram.com/cyrustourist" target="_blank" rel="noopener"><span class="cyrusIco" aria-hidden="true">📷</span>اینستاگرام</a>
+<a class="cyrusSocial" href="https://www.aparat.com/cyrustourist" target="_blank" rel="noopener"><span class="cyrusIco" aria-hidden="true">▶</span>آپارات</a>
+<a class="cyrusSocial" href="https://www.youtube.com/@cyrustourist" target="_blank" rel="noopener"><span class="cyrusIco" aria-hidden="true">▶</span>یوتیوب</a>
+<a class="cyrusSocial" href="https://t.me/Cyrustourist" target="_blank" rel="noopener"><span class="cyrusIco" aria-hidden="true">➤</span>تلگرام</a>
+<a class="cyrusSocial" href="https://eitaa.com/cyrustourist" target="_blank" rel="noopener"><span class="cyrusIco" aria-hidden="true">💬</span>ایتا</a>
+<a class="cyrusSocial" href="#contact"><span class="cyrusIco" aria-hidden="true">↗</span>لینک‌ها</a>
 </div>
+
+<div class="cyrusSettingsWrap">
+<button type="button" class="cyrusSettingBtn" id="cyrusSoundBtn">🔊 صدا</button>
+<button type="button" class="cyrusSettingBtn" id="cyrusColorBtn">🎨 رنگ</button>
+<button type="button" class="cyrusSettingBtn" id="cyrusModeBtn">🌙 حالت</button>
+<button type="button" class="cyrusSettingBtn" id="cyrusAnimBtn">✨ انیمیشن</button>
+</div>
+
+<div class="cyrusModal" id="cyrusColorModal"><div class="cyrusPanel" role="dialog" aria-modal="true" aria-label="تنظیمات رنگ">
+<h2>🎨 انتخاب رنگ برنامه</h2>
+<div class="cyrusOptRow">
+<button type="button" class="cyrusOpt" data-cyrus-theme="gold">طلایی</button>
+<button type="button" class="cyrusOpt" data-cyrus-theme="blue">آبی</button>
+<button type="button" class="cyrusOpt" data-cyrus-theme="emerald">زمردی</button>
+<button type="button" class="cyrusOpt" data-cyrus-theme="purple">بنفش</button>
+<button type="button" class="cyrusOpt" data-cyrus-theme="red">قرمز</button>
+<button type="button" class="cyrusOpt" data-cyrus-theme="cyan">فیروزه‌ای</button>
+</div>
+<button type="button" class="cyrusCloseModal" data-cyrus-close>بستن</button>
+</div></div>
+
+<div class="cyrusModal" id="cyrusModeModal"><div class="cyrusPanel" role="dialog" aria-modal="true" aria-label="حالت شب و روز">
+<h2>🌙 حالت شب و روز</h2>
+<div class="cyrusOptRow">
+<button type="button" class="cyrusOpt" data-cyrus-mode="night">🌙 شب</button>
+<button type="button" class="cyrusOpt" data-cyrus-mode="day">☀️ روز</button>
+</div>
+<button type="button" class="cyrusCloseModal" data-cyrus-close>بستن</button>
+</div></div>
+
+<div class="cyrusModal" id="cyrusAnimModal"><div class="cyrusPanel" role="dialog" aria-modal="true" aria-label="کنترل انیمیشن">
+<h2>✨ کنترل انیمیشن</h2>
+<div class="cyrusOptRow">
+<button type="button" class="cyrusOpt" data-cyrus-anim-opt="smooth">روان</button>
+<button type="button" class="cyrusOpt" data-cyrus-anim-opt="low">کم</button>
+<button type="button" class="cyrusOpt" data-cyrus-anim-opt="off">خاموش</button>
+</div>
+<button type="button" class="cyrusCloseModal" data-cyrus-close>بستن</button>
+</div></div>
+
+<div class="cyrusModal" id="cyrusSoundModal"><div class="cyrusPanel" role="dialog" aria-modal="true" aria-label="تنظیمات صدا">
+<h2>🔊 تنظیمات افکت لمس</h2>
+<div class="cyrusOptRow">
+<button type="button" class="cyrusOpt" data-cyrus-sound-opt="classic">کلاسیک</button>
+<button type="button" class="cyrusOpt" data-cyrus-sound-opt="soft">نرم</button>
+<button type="button" class="cyrusOpt" data-cyrus-sound-opt="gold">طلایی</button>
+<button type="button" class="cyrusOpt" data-cyrus-sound-opt="silent">🔇 سکوت</button>
+</div>
+<button type="button" class="cyrusCloseModal" data-cyrus-close>بستن</button>
+</div></div>
 
 </div>
 </section>
 
 <script>
 (function(){
-var wrap = document.getElementById('adCarousel');
-if(!wrap){return;}
-var slides = Array.prototype.slice.call(wrap.querySelectorAll('.adSlide'));
-var dotsWrap = document.getElementById('adCarouselDots');
-var current = 0;
-var timer;
 
-slides.forEach(function(slide){
-var img = slide.querySelector('img');
-img.addEventListener('error', function(){
-slide.style.display = 'none';
-slides = slides.filter(function(s){return s !== slide;});
-buildDots();
-if(current >= slides.length){current = 0;}
-show(current);
-});
-});
+var section = document.getElementById('cyrusAppSection');
+if(!section){return;}
 
-function buildDots(){
-if(!dotsWrap){return;}
-dotsWrap.innerHTML = '';
-if(slides.length <= 1){return;}
-slides.forEach(function(_, i){
-var b = document.createElement('button');
-if(i === current){b.classList.add('active');}
-b.setAttribute('aria-label', 'اسلاید ' + (i + 1));
-b.addEventListener('click', function(){
-current = i;
-show(current);
-restart();
-});
-dotsWrap.appendChild(b);
+function safeGet(k){try{return localStorage.getItem(k);}catch(_e){return null;}}
+function safeSet(k,v){try{localStorage.setItem(k,v);}catch(_e){}}
+
+/* ---------- تنظیمات ظاهری ---------- */
+
+var KEY_COLOR='cyrusColorMode', KEY_DISPLAY='cyrusDisplayMode', KEY_ANIM='cyrusAnimationMode', KEY_SOUND='cyrusSoundMode';
+
+function setActive(sel, value, attr){
+Array.prototype.forEach.call(section.querySelectorAll(sel), function(b){
+b.classList.toggle('active', b.getAttribute(attr) === value);
 });
 }
+
+function applyColor(v){section.setAttribute('data-cyrus-color', v); safeSet(KEY_COLOR, v); setActive('[data-cyrus-theme]', v, 'data-cyrus-theme');}
+function applyDisplay(v){section.setAttribute('data-cyrus-display', v); safeSet(KEY_DISPLAY, v); setActive('[data-cyrus-mode]', v, 'data-cyrus-mode');}
+function applyAnim(v){section.setAttribute('data-cyrus-anim', v); safeSet(KEY_ANIM, v); setActive('[data-cyrus-anim-opt]', v, 'data-cyrus-anim-opt');}
+function applySound(v){section.setAttribute('data-cyrus-sound', v); safeSet(KEY_SOUND, v); setActive('[data-cyrus-sound-opt]', v, 'data-cyrus-sound-opt');}
+
+applyColor(safeGet(KEY_COLOR) || 'gold');
+applyDisplay(safeGet(KEY_DISPLAY) === 'day' ? 'day' : 'night');
+applyAnim(['smooth','low','off'].indexOf(safeGet(KEY_ANIM)) > -1 ? safeGet(KEY_ANIM) : 'low');
+applySound(safeGet(KEY_SOUND) === 'silent' ? 'silent' : (['classic','soft','gold','silent'].indexOf(safeGet(KEY_SOUND)) > -1 ? safeGet(KEY_SOUND) : 'classic'));
+
+Array.prototype.forEach.call(section.querySelectorAll('[data-cyrus-theme]'), function(b){b.addEventListener('click', function(){applyColor(b.getAttribute('data-cyrus-theme')); playTap();});});
+Array.prototype.forEach.call(section.querySelectorAll('[data-cyrus-mode]'), function(b){b.addEventListener('click', function(){applyDisplay(b.getAttribute('data-cyrus-mode')); playTap();});});
+Array.prototype.forEach.call(section.querySelectorAll('[data-cyrus-anim-opt]'), function(b){b.addEventListener('click', function(){applyAnim(b.getAttribute('data-cyrus-anim-opt')); playTap();});});
+Array.prototype.forEach.call(section.querySelectorAll('[data-cyrus-sound-opt]'), function(b){b.addEventListener('click', function(){applySound(b.getAttribute('data-cyrus-sound-opt')); if(b.getAttribute('data-cyrus-sound-opt')!=='silent'){playTap();}});});
+
+/* ---------- مودال‌ها ---------- */
+
+function openModal(id){var m = document.getElementById(id); if(m){m.classList.add('show'); m.setAttribute('aria-hidden','false');}}
+function closeModal(m){m.classList.remove('show'); m.setAttribute('aria-hidden','true');}
+
+var soundBtn = document.getElementById('cyrusSoundBtn');
+var colorBtn = document.getElementById('cyrusColorBtn');
+var modeBtn = document.getElementById('cyrusModeBtn');
+var animBtn = document.getElementById('cyrusAnimBtn');
+
+if(soundBtn){soundBtn.addEventListener('click', function(){openModal('cyrusSoundModal');});}
+if(colorBtn){colorBtn.addEventListener('click', function(){openModal('cyrusColorModal');});}
+if(modeBtn){modeBtn.addEventListener('click', function(){openModal('cyrusModeModal');});}
+if(animBtn){animBtn.addEventListener('click', function(){openModal('cyrusAnimModal');});}
+
+Array.prototype.forEach.call(section.querySelectorAll('.cyrusModal'), function(m){
+m.addEventListener('click', function(e){if(e.target === m){closeModal(m);}});
+Array.prototype.forEach.call(m.querySelectorAll('[data-cyrus-close]'), function(btn){
+btn.addEventListener('click', function(){closeModal(m);});
+});
+});
+
+/* ---------- افکت صدای لمس ---------- */
+
+var audioCtx = null;
+function getAudio(){if(!audioCtx){audioCtx = new (window.AudioContext || window.webkitAudioContext)();} return audioCtx;}
+function tone(freq, dur, type, gain, delay){
+var c = getAudio(), o = c.createOscillator(), g = c.createGain();
+o.type = type || 'sine'; o.frequency.value = freq;
+g.gain.setValueAtTime(.0001, c.currentTime + (delay||0));
+g.gain.exponentialRampToValueAtTime(gain || .04, c.currentTime + (delay||0) + .008);
+g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + (delay||0) + dur);
+o.connect(g); g.connect(c.destination);
+o.start(c.currentTime + (delay||0));
+o.stop(c.currentTime + (delay||0) + dur + .02);
+}
+function playTap(){
+var mode = section.getAttribute('data-cyrus-sound');
+if(mode === 'silent'){return;}
+try{
+var c = getAudio(); if(c.state === 'suspended'){c.resume();}
+if(mode === 'soft'){tone(520,.055,'sine',.025);}
+else if(mode === 'gold'){tone(660,.055,'triangle',.035); tone(990,.07,'triangle',.025,.045);}
+else {tone(520,.045,'sine',.035); tone(780,.06,'sine',.022,.035);}
+}catch(_e){}
+}
+
+Array.prototype.forEach.call(section.querySelectorAll('.cyrusItem,.cyrusSocial'), function(el){
+el.addEventListener('click', function(){playTap(); if(navigator.vibrate){navigator.vibrate(8);}});
+});
+
+/* ---------- بنرهای تبلیغاتی جایگاه ۱ و ۲ — متصل به دیتابیس + عکس‌های پیش‌فرض ---------- */
+
+function imageUrlFromAd(raw){
+var v = (raw || '').trim();
+if(!v){return '';}
+if(v.indexOf('http://') === 0 || v.indexOf('https://') === 0 || v.indexOf('data:') === 0){return v;}
+if(v.indexOf('//') === 0){return 'https:' + v;}
+return 'https://cyrus-tourist-admin-panel.cyrustourist.workers.dev' + (v.indexOf('/') === 0 ? v : '/' + v);
+}
+
+function setupAdSlot(slot, boxId, linkId, imgId, defaultItems){
+
+var box = document.getElementById(boxId);
+var link = document.getElementById(linkId);
+var img = document.getElementById(imgId);
+if(!box || !link || !img){return;}
+
+var items = defaultItems.slice();
+var index = 0;
+var timer = null;
 
 function show(i){
-slides.forEach(function(s, idx){
-s.classList.toggle('active', idx === i);
+if(!items.length){box.style.display = 'none'; return;}
+box.style.display = '';
+var item = items[i];
+img.src = item.img;
+link.href = item.link || 'https://www.aparat.com/Cyrustourist';
+}
+
+function startRotation(){
+if(timer){clearInterval(timer);}
+if(items.length < 2){return;}
+timer = setInterval(function(){
+index = (index + 1) % items.length;
+show(index);
+}, 6000);
+}
+
+img.addEventListener('error', function(){
+if(items.length < 2){return;}
+items.splice(index, 1);
+index = index % items.length;
+show(index);
+startRotation();
 });
-if(dotsWrap){
-Array.prototype.forEach.call(dotsWrap.children, function(d, idx){
-d.classList.toggle('active', idx === i);
-});
-}
-}
 
-function next(){
-if(!slides.length){return;}
-current = (current + 1) % slides.length;
-show(current);
-}
-
-function restart(){
-clearInterval(timer);
-if(slides.length > 1){
-timer = setInterval(next, 4000);
-}
-}
-
-if(slides.length){
-buildDots();
 show(0);
-restart();
+startRotation();
+
+fetch('https://cyrus-tourist-admin-panel.cyrustourist.workers.dev/advertisements?slot=' + slot, {headers:{'Accept':'application/json'}, cache:'no-cache'})
+.then(function(res){return res.ok ? res.json() : null;})
+.then(function(data){
+if(!data){return;}
+var list = data.data || data.ads || data.advertisements || data.items || (Array.isArray(data) ? data : []);
+if(!Array.isArray(list)){return;}
+
+var dbItems = list
+.filter(function(a){return a && (a.is_active === undefined || a.is_active === 1 || a.is_active === true) && (a.image_url || a.imageUrl || a.image);})
+.sort(function(a,b){return (a.sort_order||1) - (b.sort_order||1);})
+.map(function(a){
+return {
+img: imageUrlFromAd(a.image_url || a.imageUrl || a.image),
+link: (a.link_url || a.linkUrl || a.link || '').trim() || 'https://www.aparat.com/Cyrustourist'
+};
+});
+
+if(!dbItems.length){return;}
+
+/* ترکیبی: تبلیغ‌های دیتابیس + عکس‌های پیش‌فرض سایت، پشت‌سرهم می‌چرخند */
+items = dbItems.concat(defaultItems);
+index = 0;
+show(0);
+startRotation();
+})
+.catch(function(){
+/* خطای شبکه: همان عکس‌های پیش‌فرض که از ابتدا نمایش داده شده بودند باقی می‌مانند */
+});
+
 }
 
-wrap.addEventListener('mouseenter', function(){clearInterval(timer);});
-wrap.addEventListener('mouseleave', restart);
+setupAdSlot(1, 'cyrusAdBox1', 'cyrusAdBoxLink1', 'cyrusAdBoxImg1', [
+{img:'assets/images/ads/banner-01.jpg', link:'residences/residences.html'},
+{img:'assets/images/ads/banner-03.jpg', link:'residences/residences.html'}
+]);
+
+setupAdSlot(2, 'cyrusAdBox2', 'cyrusAdBoxLink2', 'cyrusAdBoxImg2', [
+{img:'assets/images/ads/banner-04.jpg', link:'residences/residences.html'},
+{img:'assets/images/ads/banner-06.jpg', link:'residences/residences.html'}
+]);
 
 })();
 </script>
