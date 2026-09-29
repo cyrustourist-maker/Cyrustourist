@@ -503,6 +503,19 @@
       background: #aa7208;
     }
 
+    .register-category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .register-category-grid .register-residence-btn {
+      padding: 11px 18px;
+      font-size: 13px;
+    }
+
     .registration-contact-links {
       display: flex;
       justify-content: center;
@@ -532,6 +545,7 @@
     .registration-contact-btn.call { background: linear-gradient(145deg,#34d399,#059669); }
     .registration-contact-btn.telegram { background: linear-gradient(145deg,#4fb6e8,#229ED9); }
     .registration-contact-btn.whatsapp { background: linear-gradient(145deg,#34d67a,#25D366); }
+    .registration-contact-btn.eitaa { background: linear-gradient(145deg,#5fc9a8,#0f9d78); }
 
     /* =========================
        FOOTER
@@ -765,22 +779,55 @@
       <section class="registration-box">
 
         <h2 class="registration-title">
-          ➕ ثبت اقامتگاه در سایروس توریست
+          ➕ ثبت‌نام در سایروس توریست
         </h2>
 
         <p class="registration-description">
-          اقامتگاه خود را معرفی کنید و از خدمات معرفی، نمایش فیلم،
-          مسیریابی، تماس مستقیم و امتیاز گردشگران بهره‌مند شوید.
+          اقامتگاه، کافه، رستوران، لیدر تور، گردشگری سلامت، آژانس مسافرتی،
+          خدمات گردشگری، صنایع‌دستی یا همکاری گردشگری خود را معرفی کنید و از
+          خدمات معرفی، نمایش فیلم، مسیریابی، تماس مستقیم و امتیاز گردشگران
+          بهره‌مند شوید.
         </p>
 
-        <button
-          id="registerResidenceBtn"
-          class="register-residence-btn"
-          type="button"
-          data-residence-register
-        >
-          ➕ ثبت اقامتگاه
-        </button>
+        <div class="register-category-grid">
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="residence">
+            ➕ ثبت اقامتگاه
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="cafe">
+            ➕ ثبت کافه
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="restaurant">
+            ➕ ثبت رستوران
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="tourleader">
+            ➕ ثبت لیدر تور
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="health">
+            ➕ ثبت گردشگری سلامت
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="agency">
+            ➕ ثبت آژانس مسافرتی
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="services">
+            ➕ ثبت خدمات گردشگری
+          </button>
+
+          <button class="register-residence-btn" type="button" data-residence-register data-category="handicraft">
+            ➕ ثبت صنایع‌دستی
+          </button>
+
+          <button id="registerResidenceBtn" class="register-residence-btn" type="button" data-residence-register data-category="partner">
+            ➕ ثبت همکار گردشگری
+          </button>
+
+        </div>
 
         <div class="registration-contact-links">
 
@@ -794,6 +841,10 @@
 
           <a class="registration-contact-btn whatsapp" href="https://wa.me/989153448818" target="_blank" rel="noopener">
             💬 واتساپ
+          </a>
+
+          <a class="registration-contact-btn eitaa" href="https://eitaa.com/cyrustourist" target="_blank" rel="noopener">
+            💬 ایتا
           </a>
 
         </div>
