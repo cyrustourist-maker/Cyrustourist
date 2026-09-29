@@ -814,6 +814,15 @@ box-shadow:0 6px 0 #4c1d78,0 10px 18px rgba(0,0,0,.35)
 box-shadow:0 2px 0 #4c1d78,0 4px 10px rgba(0,0,0,.35)
 }
 
+.nearbyCatBtn.handicraft{
+background:linear-gradient(160deg,#fb923c,#c2410c);
+box-shadow:0 6px 0 #7c2d12,0 10px 18px rgba(0,0,0,.35)
+}
+
+.nearbyCatBtn.handicraft:active{
+box-shadow:0 2px 0 #7c2d12,0 4px 10px rgba(0,0,0,.35)
+}
+
 .nearbyCatBtn.reset{
 background:linear-gradient(160deg,#94a3b8,#475569);
 box-shadow:0 6px 0 #1e293b,0 10px 18px rgba(0,0,0,.35)
@@ -2566,6 +2575,10 @@ autocomplete="off"
 
 <button type="button" class="nearbyCatBtn food" id="nearbyCatFood" data-category="food">
 ☕ کافه و رستوران
+</button>
+
+<button type="button" class="nearbyCatBtn handicraft" id="nearbyCatHandicraft" data-category="handicraft">
+🧵 صنایع‌دستی
 </button>
 
 <button type="button" class="nearbyCatBtn reset" id="nearbyResetBtn">
@@ -4921,6 +4934,21 @@ pastry:'شیرینی‌فروشی'
 
 }
 
+function translateHandicraft(v){
+
+return {
+
+craft:'صنایع‌دستی',
+gift:'صنایع‌دستی و سوغاتی',
+carpet:'فرش‌فروشی',
+jewelry:'زیورآلات دست‌ساز',
+pottery:'سفالگری',
+weaver:'بافندگی'
+
+}[v]||'صنایع‌دستی';
+
+}
+
 /* =========================================================
    NEARBY
 ========================================================= */
@@ -5135,6 +5163,18 @@ way["shop"~"^(bakery|confectionery|pastry)$"](around:${radius},${userLat},${user
 );
 out center tags;` :
 
+nearbyCategory==='handicraft' ?
+
+`[out:json][timeout:25];
+(
+node["shop"~"^(craft|gift)$"](around:${radius},${userLat},${userLon});
+way["shop"~"^(craft|gift)$"](around:${radius},${userLat},${userLon});
+relation["shop"~"^(craft|gift)$"](around:${radius},${userLat},${userLon});
+node["craft"](around:${radius},${userLat},${userLon});
+way["craft"](around:${radius},${userLat},${userLon});
+);
+out center tags;` :
+
 `[out:json][timeout:25];
 (
 node["tourism"](around:${radius},${userLat},${userLon});
@@ -5261,6 +5301,13 @@ translateFood(
 t.amenity||t.shop
 );
 
+}else if(nearbyCategory==='handicraft'){
+
+type =
+translateHandicraft(
+t.shop||t.craft
+);
+
 }else if(t.tourism){
 
 type =
@@ -5326,12 +5373,14 @@ const categoryNoun =
 nearbyCategory==='health' ? 'مرکز درمانی' :
 nearbyCategory==='lodging' ? 'اقامتگاه' :
 nearbyCategory==='food' ? 'کافه یا رستوران' :
+nearbyCategory==='handicraft' ? 'صنایع‌دستی' :
 'جاذبه';
 
 const categoryIcon =
 nearbyCategory==='health' ? '🏥' :
 nearbyCategory==='lodging' ? '🏨' :
 nearbyCategory==='food' ? '☕' :
+nearbyCategory==='handicraft' ? '🧵' :
 '📍';
 
 if(!list.length){
