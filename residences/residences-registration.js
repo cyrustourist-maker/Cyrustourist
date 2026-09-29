@@ -251,7 +251,7 @@
                 "📋 قوانین و شرایط خدمات",
 
             rules:
-                "خدمات سایروس توریست در این بخش صرفاً در چارچوب تبلیغات، معرفی و خدمات دیجیتال و مجازی ارائه می‌شود. در صورت بروز اختلال، محدودیت یا قطعی در زیرساخت‌های اینترنت، مخابرات یا سرویس‌های شخص ثالث که خارج از کنترل سایروس توریست باشد، مسئولیت مستقیم اختلال متوجه سایروس توریست نخواهد بود.",
+                "ثبت‌نام در سایروس توریست با پرداخت حق عضویت یک‌ساله انجام می‌شود و صرفاً برای حضور در فضای تبلیغاتی سایروس توریست و معرفی شما به کاربران است. این خدمت در چارچوب خدمات دیجیتال، تبلیغاتی و زیرساخت‌های مبتنی بر اینترنت ارائه می‌شود. در صورت اختلال، محدودیت یا قطعی اینترنت، مخابرات یا سرویس‌های شخص ثالث که خارج از کنترل سایروس توریست است، سایروس توریست مسئولیت مستقیمی نخواهد داشت.",
 
             accept:
                 "☐ قوانین و شرایط خدمات سایروس توریست را مطالعه کرده‌ام و می‌پذیرم.",
@@ -403,7 +403,7 @@
                 "📋 Terms and Conditions",
 
             rules:
-                "Cyrus Tourist services in this section are provided solely within the framework of advertising, introduction and digital/virtual services. In the event of disruption, limitation or interruption of internet, telecommunications or third-party services beyond the control of Cyrus Tourist, Cyrus Tourist shall not be directly responsible for such disruption.",
+                "Registration with Cyrus Tourist is completed by paying a one-year membership fee and is solely for having a presence in the Cyrus Tourist advertising space and being introduced to users. This service is provided within the framework of digital, advertising and internet-based infrastructure services. In the event of disruption, limitation or interruption of internet, telecommunications or third-party services beyond the control of Cyrus Tourist, Cyrus Tourist shall not be directly responsible.",
 
             accept:
                 "☐ I have read and accept the Cyrus Tourist terms and conditions.",
@@ -555,7 +555,7 @@
                 "📋 الشروط والأحكام",
 
             rules:
-                "تُقدَّم خدمات سايروس توريست في هذا القسم حصراً ضمن إطار الإعلان والتعريف والخدمات الرقمية والافتراضية. وفي حال حدوث خلل أو تقييد أو انقطاع في خدمات الإنترنت أو الاتصالات أو خدمات الجهات الخارجية الخارجة عن سيطرة سايروس توريست، فلا تتحمل سايروس توريست المسؤولية المباشرة عن هذا الخلل.",
+                "يتم التسجيل في سايروس توريست عبر دفع رسوم عضوية لمدة سنة واحدة، وهو مخصص حصراً للتواجد في المساحة الإعلانية لسايروس توريست وتعريفكم للمستخدمين. تُقدَّم هذه الخدمة ضمن إطار الخدمات الرقمية والإعلانية والبنى التحتية القائمة على الإنترنت. وفي حال حدوث خلل أو تقييد أو انقطاع في خدمات الإنترنت أو الاتصالات أو خدمات الجهات الخارجية الخارجة عن سيطرة سايروس توريست، فلا تتحمل سايروس توريست مسؤولية مباشرة.",
 
             accept:
                 "☐ لقد قرأت شروط خدمات سايروس توريست وأوافق عليها.",
@@ -636,6 +636,176 @@
             key
         );
 
+    }
+
+
+
+    /* =========================================================
+       متن‌های فرم ثبت‌نام
+       ========================================================= */
+
+    const FORM_TEXT = {
+        fa: {
+            title: "📝 فرم ثبت‌نام",
+            desc: "اطلاعات زیر را تکمیل کنید. فیلدهای ستاره‌دار الزامی هستند.",
+            name: "نام کسب‌وکار / اقامتگاه *",
+            category: "دسته‌بندی *",
+            phone: "شماره تلفن *",
+            video: "لینک فیلم معرفی",
+            socials: "شبکه‌های اجتماعی (اختیاری)",
+            confirm: "اطلاعات واردشده را بررسی کرده‌ام و صحت آن را تأیید می‌کنم. *",
+            submit: "✅ تأیید و ارسال",
+            back: "↩ برگشت",
+            errName: "نام را وارد کنید.",
+            errPhone: "شماره تلفن معتبر وارد کنید.",
+            errLink: "لینک واردشده معتبر نیست.",
+            errConfirm: "تأیید نهایی الزامی است.",
+            sendTitle: "ارسال اطلاعات",
+            sendDesc: "اطلاعات شما کپی شد. یکی از پیام‌رسان‌ها را باز کنید و پیام را برای پشتیبانی ارسال (paste) کنید.",
+            msgHead: "درخواست ثبت‌نام در سایروس توریست"
+        },
+        en: {
+            title: "📝 Registration Form",
+            desc: "Please complete the details below. Fields marked * are required.",
+            name: "Business / Residence name *",
+            category: "Category *",
+            phone: "Phone number *",
+            video: "Intro video link",
+            socials: "Social networks (optional)",
+            confirm: "I have reviewed the information and confirm it is correct. *",
+            submit: "✅ Confirm and send",
+            back: "↩ Back",
+            errName: "Please enter the name.",
+            errPhone: "Please enter a valid phone number.",
+            errLink: "The link is not valid.",
+            errConfirm: "Final confirmation is required.",
+            sendTitle: "Send your information",
+            sendDesc: "Your details were copied. Open a messenger and paste the message to support.",
+            msgHead: "Cyrus Tourist registration request"
+        },
+        ar: {
+            title: "📝 نموذج التسجيل",
+            desc: "يرجى إكمال البيانات أدناه. الحقول المعلَّمة بـ * إلزامية.",
+            name: "اسم النشاط / الإقامة *",
+            category: "الفئة *",
+            phone: "رقم الهاتف *",
+            video: "رابط فيديو التعريف",
+            socials: "شبكات التواصل (اختياري)",
+            confirm: "لقد راجعت المعلومات وأؤكد صحتها. *",
+            submit: "✅ تأكيد وإرسال",
+            back: "↩ رجوع",
+            errName: "يرجى إدخال الاسم.",
+            errPhone: "يرجى إدخال رقم هاتف صحيح.",
+            errLink: "الرابط غير صالح.",
+            errConfirm: "التأكيد النهائي مطلوب.",
+            sendTitle: "إرسال المعلومات",
+            sendDesc: "تم نسخ بياناتكم. افتحوا أحد التطبيقات والصقوا الرسالة للدعم.",
+            msgHead: "طلب تسجيل في سايروس توريست"
+        }
+    };
+
+    const FORM_SOCIALS = [
+        ["instagram", "اینستاگرام / Instagram"],
+        ["website", "وب‌سایت / Website"],
+        ["youtube", "یوتیوب / YouTube"],
+        ["tiktok", "تیک‌تاک / TikTok"],
+        ["aparat", "آپارات / Aparat"],
+        ["telegram", "تلگرام / Telegram"],
+        ["whatsapp", "واتساپ / WhatsApp"],
+        ["eitaa", "ایتا / Eitaa"]
+    ];
+
+    function ft(key) {
+        const l = getLanguage();
+        return (FORM_TEXT[l] || FORM_TEXT.fa)[key] || FORM_TEXT.fa[key] || key;
+    }
+
+    function isValidLink(v) {
+        if (!v) { return true; }
+        try {
+            const u = new URL(/^https?:\/\//i.test(v) ? v : "https://" + v);
+            return u.hostname.indexOf(".") > 0;
+        } catch (e) { return false; }
+    }
+
+    function formHTML() {
+        const l = getLanguage();
+        const cats = Object.keys(REGISTRATION_CATEGORIES).map(function (k) {
+            return '<option value="' + k + '"' + (k === CurrentCategory ? " selected" : "") + ">" +
+                escapeHTML(REGISTRATION_CATEGORIES[k][l] || REGISTRATION_CATEGORIES[k].fa) + "</option>";
+        }).join("");
+        const socials = FORM_SOCIALS.map(function (x) {
+            return '<label class="ct-form-field"><span>' + escapeHTML(x[1]) +
+                '</span><input type="text" dir="ltr" inputmode="url" data-social="' + x[0] +
+                '" placeholder="https://"></label>';
+        }).join("");
+        return '<div id="ctRegistrationFormStep" class="ct-registration-support">' +
+            '<h3 class="ct-registration-section-title">' + escapeHTML(ft("title")) + "</h3>" +
+            '<p class="ct-form-desc">' + escapeHTML(ft("desc")) + "</p>" +
+            '<label class="ct-form-field"><span>' + escapeHTML(ft("name")) + '</span><input type="text" id="ctFormName" maxlength="120"></label>' +
+            '<label class="ct-form-field"><span>' + escapeHTML(ft("category")) + '</span><select id="ctFormCategory">' + cats + "</select></label>" +
+            '<label class="ct-form-field"><span>' + escapeHTML(ft("phone")) + '</span><input type="tel" dir="ltr" id="ctFormPhone" maxlength="20" placeholder="09xxxxxxxxx"></label>' +
+            '<label class="ct-form-field"><span>' + escapeHTML(ft("video")) + '</span><input type="text" dir="ltr" inputmode="url" id="ctFormVideo" placeholder="https://"></label>' +
+            '<div class="ct-form-group">' + escapeHTML(ft("socials")) + "</div>" + socials +
+            '<label class="ct-registration-check"><input type="checkbox" id="ctFormConfirm"><span>' + escapeHTML(ft("confirm")) + "</span></label>" +
+            '<div class="ct-form-error" id="ctFormError" role="alert"></div>' +
+            '<div class="ct-registration-actions">' +
+            '<button type="button" class="ct-registration-button primary" id="ctFormSubmit">' + escapeHTML(ft("submit")) + "</button>" +
+            '<button type="button" class="ct-registration-button secondary" id="ctFormBack">' + escapeHTML(ft("back")) + "</button>" +
+            "</div></div>";
+    }
+
+    function collectForm() {
+        const g = function (id) { const e = document.getElementById(id); return e ? e.value.trim() : ""; };
+        const socials = {};
+        document.querySelectorAll("#ctRegistrationFormStep [data-social]").forEach(function (i) {
+            socials[i.getAttribute("data-social")] = i.value.trim();
+        });
+        return { name: g("ctFormName"), category: g("ctFormCategory"), phone: g("ctFormPhone"), video: g("ctFormVideo"), socials: socials };
+    }
+
+    function buildMessage(d) {
+        const l = getLanguage();
+        const cat = REGISTRATION_CATEGORIES[d.category] || REGISTRATION_CATEGORIES.residence;
+        const lines = [ft("msgHead"), "",
+            ft("name").replace(" *", "") + ": " + d.name,
+            ft("category").replace(" *", "") + ": " + (cat[l] || cat.fa),
+            ft("phone").replace(" *", "") + ": " + d.phone];
+        if (d.video) { lines.push(ft("video") + ": " + d.video); }
+        FORM_SOCIALS.forEach(function (x) {
+            if (d.socials[x[0]]) { lines.push(x[1].split(" / ")[1] + ": " + d.socials[x[0]]); }
+        });
+        return lines.join("\n");
+    }
+
+    function showFormError(msg) {
+        const e = document.getElementById("ctFormError");
+        if (e) { e.textContent = msg || ""; }
+    }
+
+    function submitForm() {
+        const d = collectForm();
+        const confirmBox = document.getElementById("ctFormConfirm");
+        if (!d.name) { return showFormError(ft("errName")); }
+        if (d.phone.replace(/\D/g, "").length < 8) { return showFormError(ft("errPhone")); }
+        const links = [d.video].concat(Object.keys(d.socials).map(function (k) { return d.socials[k]; }));
+        if (!links.every(isValidLink)) { return showFormError(ft("errLink")); }
+        if (!confirmBox || !confirmBox.checked) { return showFormError(ft("errConfirm")); }
+        showFormError("");
+
+        const message = buildMessage(d);
+        RegistrationState.message = message;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(message).catch(function () {});
+        }
+        const wa = document.querySelector(".ct-support-whatsapp");
+        if (wa) {
+            wa.href = REGISTRATION_CONFIG.whatsapp + "?text=" + encodeURIComponent(message);
+        }
+        const desc = document.getElementById("ctSendDesc");
+        if (desc) { desc.textContent = ft("sendDesc"); }
+        showSupportStep();
     }
 
 
@@ -1070,6 +1240,16 @@
             background:#edf1f5;
         }
 
+        .ct-form-desc { font-size:13px; color:#5a6572; line-height:1.9; margin:0 0 14px; }
+        .ct-form-field { display:block; margin-bottom:12px; }
+        .ct-form-field > span { display:block; font-size:12px; font-weight:800; color:#313b46; margin-bottom:5px; }
+        .ct-form-field input, .ct-form-field select {
+            width:100%; box-sizing:border-box; padding:11px 13px; font-size:14px; font-family:inherit;
+            border:1px solid #d9e0e7; border-radius:12px; background:#fff; color:#25303b;
+        }
+        .ct-form-field input:focus, .ct-form-field select:focus { outline:2px solid #11998e55; border-color:#11998e; }
+        .ct-form-group { font-size:13px; font-weight:900; color:#11998e; margin:16px 0 8px; }
+        .ct-form-error { color:#c0392b; font-size:13px; font-weight:800; min-height:18px; margin-bottom:10px; }
         .ct-registration-support {
             display:none;
         }
@@ -1426,6 +1606,8 @@
                     </div>
 
 
+                    ${formHTML()}
+
                     <div
                         id="ctRegistrationSupportStep"
                         class="ct-registration-support"
@@ -1445,6 +1627,7 @@
                                     "supportReady"
                                 )
                             )}
+                        <br><span id="ctSendDesc"></span>
                         </div>
 
 
@@ -1922,7 +2105,7 @@
                     }
 
 
-                    showSupportStep();
+                    showFormStep();
 
                 }
             );
@@ -1936,13 +2119,18 @@
                 "click",
                 function () {
 
-                    showTermsStep();
+                    showFormStep();
 
                 }
             );
 
         }
 
+
+        const formSubmit = document.getElementById("ctFormSubmit");
+        const formBack = document.getElementById("ctFormBack");
+        if (formSubmit) { formSubmit.addEventListener("click", submitForm); }
+        if (formBack) { formBack.addEventListener("click", showTermsStep); }
 
         bindSampleCardEvents();
 
@@ -2073,7 +2261,20 @@
        نمایش مرحله قوانین
        ========================================================= */
 
+    function showFormStep() {
+        const t = document.getElementById("ctRegistrationTermsStep");
+        const f = document.getElementById("ctRegistrationFormStep");
+        const sp = document.getElementById("ctRegistrationSupportStep");
+        if (t) { t.style.display = "none"; }
+        if (sp) { sp.classList.remove("active"); }
+        if (f) { f.classList.add("active"); }
+        RegistrationState.completed = false;
+    }
+
     function showTermsStep() {
+        const _f = document.getElementById("ctRegistrationFormStep");
+        if (_f) { _f.classList.remove("active"); }
+
 
         const terms =
             document.getElementById(
@@ -2115,6 +2316,9 @@
        ========================================================= */
 
     function showSupportStep() {
+        const _f = document.getElementById("ctRegistrationFormStep");
+        if (_f) { _f.classList.remove("active"); }
+
 
         const terms =
             document.getElementById(
