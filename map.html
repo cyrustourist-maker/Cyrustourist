@@ -52,7 +52,9 @@ car:{l:"🔧 خدمات خودرو",c:"#b45309",t:["shop=car_repair","amenity=ca
 sim:{l:"📱 سیم‌کارت",c:"#4f46e5",t:["shop=mobile_phone","office=telecommunication"]}};
 var MAIN=["attraction","health","stay"],EP=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
 var $=function(i){return document.getElementById(i)},map=L.map("map",{zoomControl:true}).setView([35.6892,51.389],12),layer=L.layerGroup().addTo(map),me=null,meMark=null,cur=null,busy=false;
-L.tileLayer("https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap © CARTO"}).addTo(map);
+/* منبع کاشی نقشه — برای عوض‌کردن سرویس فقط همین دو خط را تغییر دهید */
+var TILES="https://tile.openstreetmap.org/{z}/{x}/{y}.png",ATTR="© OpenStreetMap";
+L.tileLayer(TILES,{maxZoom:19,attribution:ATTR}).addTo(map);
 function mk(k,p){var b=document.createElement("button");b.type="button";b.className="b";b.textContent=CATS[k].l;b.style.background=CATS[k].c;b.style.color="#fff";b.dataset.k=k;b.onclick=function(){run(k)};p.appendChild(b)}
 MAIN.forEach(function(k){mk(k,$("main"))});Object.keys(CATS).filter(function(k){return MAIN.indexOf(k)<0}).forEach(function(k){mk(k,$("quick"))});
 function st(t,e){var s=$("st");s.textContent=t;s.className=e?"err":""}
