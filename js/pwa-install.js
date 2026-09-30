@@ -127,27 +127,27 @@
     document.body.appendChild(overlay);
   }
 
+  /* کلیک با delegation: مستقل از ترتیب لود اسکریپت‌ها و دکمه‌هایی که بعداً ساخته می‌شوند */
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest("[data-cyrus-install-btn]") : null;
+    if (!btn) return;
+    if (isStandalone()) return;
+
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.finally(function () {
+        deferredPrompt = null;
+      });
+      return;
+    }
+
+    showManualGuide();
+  });
+
   function bindButtons() {
     installButtons = Array.prototype.slice.call(
       document.querySelectorAll("[data-cyrus-install-btn]")
     );
-
-    installButtons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        if (isStandalone()) return;
-
-        if (deferredPrompt) {
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.finally(function () {
-            deferredPrompt = null;
-          });
-          return;
-        }
-
-        showManualGuide();
-      });
-    });
-
     refreshButtons();
   }
 
