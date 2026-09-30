@@ -80,13 +80,13 @@ var f=document.createElement("button");f.className="b o";f.textContent="روی �
 map.fitBounds(L.latLngBounds(pts.concat([[c.lat,c.lng]])).pad(0.1),{maxZoom:15})}
 map.on("moveend",function(){if(cur&&!busy)$("here").hidden=false});
 $("here").onclick=function(){me=null;run(cur)};
-function locate(cb){if(!navigator.geolocation){st("مرورگر شما موقعیت‌یابی را پشتیبانی نمی‌کند.",1);return}
-st("در حال یافتن موقعیت شما…");navigator.geolocation.getCurrentPosition(function(p){me=L.latLng(p.coords.latitude,p.coords.longitude);if(meMark)meMark.remove();meMark=L.circleMarker(me,{radius:8,color:"#fff",weight:3,fillColor:"#2563eb",fillOpacity:1}).addTo(map).bindPopup("موقعیت شما");map.setView(me,14);st("موقعیت شما پیدا شد.");if(cb)cb()},function(){st("اجازهٔ موقعیت داده نشد؛ شهر را جستجو کنید.",1)},{enableHighAccuracy:true,timeout:12000})}
+function locate(cb,always){if(!navigator.geolocation){st("مرورگر شما موقعیت‌یابی را پشتیبانی نمی‌کند.",1);return}
+st("در حال یافتن موقعیت شما…");navigator.geolocation.getCurrentPosition(function(p){me=L.latLng(p.coords.latitude,p.coords.longitude);if(meMark)meMark.remove();meMark=L.circleMarker(me,{radius:8,color:"#fff",weight:3,fillColor:"#2563eb",fillOpacity:1}).addTo(map).bindPopup("موقعیت شما");map.setView(me,14);st("موقعیت شما پیدا شد.");if(cb)cb()},function(){st("اجازهٔ موقعیت داده نشد؛ نقشه روی مرکز فعلی است. شهر را جستجو کنید.",1);if(always&&cb)cb()},{enableHighAccuracy:true,timeout:12000})}
 $("loc").onclick=function(){locate(function(){if(cur)run(cur)})};
 function search(){var v=$("q").value.trim();if(!v)return;st("در حال جستجو…");
 fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=fa&q="+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(d){if(!d.length){st("مکانی پیدا نشد.",1);return}me=null;map.setView([+d[0].lat,+d[0].lon],13);st("نقشه روی «"+(d[0].display_name||v).split("،")[0]+"» قرار گرفت. حالا یکی از کلیدها را بزنید.");if(cur)setTimeout(function(){run(cur)},400)}).catch(function(){st("جستجو ممکن نشد.",1)})}
 $("go").onclick=search;$("q").onkeydown=function(e){if(e.key==="Enter")search()};
-var m=location.hash.match(/k=(\w+)/);if(m&&CATS[m[1]])locate(function(){run(m[1])});
+var m=location.hash.match(/k=(\w+)/);if(m&&CATS[m[1]])locate(function(){run(m[1])},true);
 })();
 </script>
 <script src="js/pwa-bar.js" defer></script><script src="js/pwa-install.js" defer></script>
