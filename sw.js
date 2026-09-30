@@ -1,4 +1,4 @@
-const CYRUS_CACHE = "cyrus-tourist-v12";
+const CYRUS_CACHE = "cyrus-tourist-v13";
 
 const CORE_FILES = [
   "./",
@@ -6,6 +6,8 @@ const CORE_FILES = [
   "install.html",
   "register.html",
   "map.html",
+  "tourism-videos.html",
+  "residences/residences.html",
   "js/pwa-bar.js",
   "js/pwa-install.js",
   "manifest.json",
