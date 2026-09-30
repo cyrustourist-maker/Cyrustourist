@@ -291,6 +291,41 @@
 
         }
 
+.notice {
+
+            margin:
+                0 auto 26px;
+
+            padding:
+                14px 16px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,211,106,0.14);
+
+            border:
+                1px solid
+                rgba(255,211,106,0.38);
+
+            color: #ffe9a8;
+
+            font-size: 13.5px;
+
+            line-height: 2;
+
+        }
+
+        .notice a {
+
+            color: #ffffff;
+
+            font-weight: bold;
+
+            text-decoration: underline;
+
+        }
+
         .result-text {
 
             font-size: 14px;
@@ -472,12 +507,38 @@
 
         </p>
 
+        <div class="notice">
+
+            این نسخه مخصوص گوشی‌های قدیمی (۳۲ بیتی) است.
+
+            <br>
+
+            اگر گوشی جدید دارید یا نصب انجام نشد، لطفاً نسخهٔ ۶۴ بیتی جدید را از
+
+            <a
+                href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&amp;ref=share"
+                target="_blank"
+                rel="noopener"
+            >بازار</a>
+
+            یا
+
+            <a
+                href="https://myket.ir/app/cyrustourist.ir.app"
+                target="_blank"
+                rel="noopener"
+            >مایکت</a>
+
+            دریافت کنید.
+
+        </div>
+
         <button
             class="download-button"
             onclick="startDownload()"
         >
 
-            📥 دانلود مستقیم اپ اندروید
+            📥 دانلود مستقیم (مخصوص گوشی‌های ۳۲ بیتی)
 
         </button>
 
@@ -558,11 +619,11 @@
 
             /*
              * مسیر ثابت فایل APK (ریشه‌ی سایت؛ حروف بزرگ/کوچک مهم است)
-             * فایل روی سرور: https://cyrustourist.ir/Cyrustourist.ir.apk
+             * فایل روی سرور: https://cyrustourist.ir/Cyrustourist-32bit.apk
              */
 
             const apkPath =
-                "/Cyrustourist.ir.apk";
+                "/Cyrustourist-32bit.apk";
 
             /* فایل‌های کوچک‌تر از این حد سالم نیستند (مثلاً فایل ۱ بایتی) */
             const MIN_APK_BYTES =
@@ -609,7 +670,7 @@
                         link.href = apkPath;
 
                         link.download =
-                            "cyrustourist.ir.apk";
+                            "Cyrustourist-32bit.apk";
 
                         document.body.appendChild(link);
 
