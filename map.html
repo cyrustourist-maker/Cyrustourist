@@ -1,0 +1,93 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06121d">
+<title>نقشهٔ گردشگری و خدمات اطراف من | جاذبه‌ها، گردشگری سلامت و اقامتگاه | سایروس توریست</title><meta name="description" content="نقشهٔ آنلاین گردشگری ایران: جاذبه‌های گردشگری، مراکز گردشگری سلامت، هتل و اقامتگاه، رستوران، پمپ‌بنزین، خودپرداز و پارکینگ اطراف شما با مسیریابی و تماس مستقیم.">
+<meta name="keywords" content="نقشه گردشگری ایران, جاذبه های گردشگری اطراف من, هتل اطراف من, گردشگری سلامت, خدمات گردشگری, سایروس توریست">
+<link rel="canonical" href="https://cyrustourist.ir/map.html"><link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/images/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="assets/images/apple-touch-icon-180.png">
+<meta property="og:type" content="website"><meta property="og:locale" content="fa_IR"><meta property="og:site_name" content="سایروس توریست">
+<meta property="og:title" content="نقشهٔ گردشگری و خدمات اطراف من | جاذبه‌ها، گردشگری سلامت و اقامتگاه | سایروس توریست"><meta property="og:description" content="نقشهٔ آنلاین گردشگری ایران: جاذبه‌های گردشگری، مراکز گردشگری سلامت، هتل و اقامتگاه، رستوران، پمپ‌بنزین، خودپرداز و پارکینگ اطراف شما با مسیریابی و تماس مستقیم."><meta property="og:url" content="https://cyrustourist.ir/map.html">
+<meta property="og:image" content="https://cyrustourist.ir/assets/images/cyrustourist-hero-2026.webp.jpg"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "نقشهٔ گردشگری سایروس توریست", "url": "https://cyrustourist.ir/map.html", "applicationCategory": "TravelApplication", "operatingSystem": "Any", "inLanguage": "fa", "description": "نقشهٔ آنلاین گردشگری ایران: جاذبه‌های گردشگری، مراکز گردشگری سلامت، هتل و اقامتگاه، رستوران، پمپ‌بنزین، خودپرداز و پارکینگ اطراف شما با مسیریابی و تماس مستقیم.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "IRR"}}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"><style>
+:root{--bg:#06121d;--card:#0b2230;--line:#17384a;--ac:#29e0ad;--tx:#eaf6f2;--mu:#9bb0aa}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.9}
+.w{max-width:900px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 14px calc(90px + env(safe-area-inset-bottom))}
+a{color:var(--ac);text-decoration:none}h1{font-size:21px;margin:4px 0}p{margin:2px 0;color:var(--mu);font-size:14px}
+.bar{display:flex;gap:8px;margin:10px 0}.bar input{flex:1;min-width:0;font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.b{font:inherit;font-weight:800;border:0;border-radius:14px;padding:0 14px;min-height:46px;cursor:pointer;background:var(--ac);color:#06121d}
+.b.o{background:var(--card);color:var(--ac);border:1px solid var(--line)}
+.main{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.main .b{min-height:64px;color:#fff;font-size:14px;line-height:1.5;box-shadow:0 5px 14px rgba(0,0,0,.35)}
+.q{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.q .b{white-space:nowrap;min-height:40px;font-size:13px}.q .b.on,.main .b.on{outline:3px solid #fff}
+#map{height:56vh;min-height:320px;border-radius:18px;border:1px solid var(--line);direction:ltr;margin-top:6px}
+#st{margin:10px 0;color:var(--mu);font-size:14px;min-height:22px}.err{color:#ff8a8a}
+.it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:8px 0}.it b{display:block}.it small{color:var(--mu)}
+.it .r{display:flex;gap:8px;margin-top:8px}.it .b{min-height:38px;font-size:13px;display:inline-flex;align-items:center}
+[hidden]{display:none!important}
+</style></head><body><main class="w">
+<nav style="font-size:13px;color:var(--mu)"><a href="./">سایروس توریست</a> › نقشه</nav>
+<h1>نقشهٔ گردشگری و خدمات اطراف شما</h1>
+<p>یکی از کلیدها را بزنید؛ مکان‌های اطراف روی نقشه و در فهرست زیر آن نمایش داده می‌شود.</p>
+<div class="bar"><input id="q" placeholder="جستجوی شهر یا مکان…" enterkeyhint="search"><button class="b" id="go">جستجو</button><button class="b o" id="loc" title="موقعیت من">📍</button></div>
+<div class="main" id="main"></div><div class="q" id="quick"></div>
+<div id="map" role="application" aria-label="نقشه"></div>
+<button class="b" id="here" hidden style="width:100%;margin-top:8px">🔄 جستجو در این محدوده</button>
+<div id="st" aria-live="polite"></div><div id="list"></div>
+<noscript><p>برای استفاده از نقشه، جاوااسکریپت را فعال کنید.</p></noscript>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+var CATS={
+attraction:{l:"🏛️ جاذبه‌های گردشگری",c:"#e11d48",t:["tourism=attraction","tourism=museum","tourism=gallery","tourism=viewpoint","tourism=artwork","historic=monument","historic=castle","historic=archaeological_site","historic=ruins","historic=memorial","leisure=park"]},
+health:{l:"🩺 گردشگری سلامت",c:"#0891b2",t:["healthcare","amenity=hospital","amenity=clinic","amenity=doctors","amenity=pharmacy","amenity=spa"]},
+stay:{l:"🏨 اقامتگاه",c:"#7c3aed",t:["tourism=hotel","tourism=hostel","tourism=guest_house","tourism=motel","tourism=camp_site","tourism=caravan_site","tourism=chalet","tourism=apartment","tourism=alpine_hut"]},
+food:{l:"🍽️ رستوران و کافه",c:"#ea580c",t:["amenity=restaurant","amenity=fast_food","amenity=cafe"]},
+fuel:{l:"⛽ پمپ‌بنزین",c:"#ca8a04",t:["amenity=fuel"]},
+atm:{l:"🏧 خودپرداز و بانک",c:"#16a34a",t:["amenity=atm","amenity=bank"]},
+parking:{l:"🅿️ پارکینگ",c:"#475569",t:["amenity=parking"]},
+wc:{l:"🚻 سرویس بهداشتی",c:"#0d9488",t:["amenity=toilets"]},
+police:{l:"🚓 پلیس",c:"#1d4ed8",t:["amenity=police"]},
+market:{l:"🛒 فروشگاه",c:"#db2777",t:["shop=supermarket","shop=convenience","shop=mall"]},
+car:{l:"🔧 خدمات خودرو",c:"#b45309",t:["shop=car_repair","amenity=car_wash"]},
+sim:{l:"📱 سیم‌کارت",c:"#4f46e5",t:["shop=mobile_phone","office=telecommunication"]}};
+var MAIN=["attraction","health","stay"],EP=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
+var $=function(i){return document.getElementById(i)},map=L.map("map",{zoomControl:true}).setView([35.6892,51.389],12),layer=L.layerGroup().addTo(map),me=null,meMark=null,cur=null,busy=false;
+L.tileLayer("https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap © CARTO"}).addTo(map);
+function mk(k,p){var b=document.createElement("button");b.type="button";b.className="b";b.textContent=CATS[k].l;b.style.background=CATS[k].c;b.style.color="#fff";b.dataset.k=k;b.onclick=function(){run(k)};p.appendChild(b)}
+MAIN.forEach(function(k){mk(k,$("main"))});Object.keys(CATS).filter(function(k){return MAIN.indexOf(k)<0}).forEach(function(k){mk(k,$("quick"))});
+function st(t,e){var s=$("st");s.textContent=t;s.className=e?"err":""}
+function dist(a,b,c,d){var R=6371000,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(h))}
+function fmt(m){return m<1000?Math.round(m)+" متر":(m/1000).toFixed(1)+" کیلومتر"}
+function query(k,c,r){var p=CATS[k].t.map(function(t){var i=t.indexOf("=");return"nwr(around:"+r+","+c.lat.toFixed(5)+","+c.lng.toFixed(5)+")"+(i>0?'["'+t.slice(0,i)+'"="'+t.slice(i+1)+'"]':'["'+t+'"]')+";"}).join("");return"[out:json][timeout:15];("+p+");out center tags qt 200;"}
+function fetchOP(q){return Promise.any(EP.map(function(u){return fetch(u,{method:"POST",body:"data="+encodeURIComponent(q),headers:{"Content-Type":"application/x-www-form-urlencoded"},signal:AbortSignal.timeout(20000)}).then(function(r){if(!r.ok)throw 0;return r.json()})}))}
+function run(k){if(busy)return;cur=k;$("here").hidden=true;
+document.querySelectorAll("[data-k]").forEach(function(b){b.classList.toggle("on",b.dataset.k===k)});
+var c=me||map.getCenter();busy=true;st("در حال جستجوی "+CATS[k].l.replace(/^\S+\s/,"")+" اطراف…");
+fetchOP(query(k,c,15000)).then(function(d){var seen={},out=[];
+(d.elements||[]).forEach(function(e){var la=e.lat||(e.center&&e.center.lat),lo=e.lon||(e.center&&e.center.lon),t=e.tags||{},n=t["name:fa"]||t.name||t["name:en"];if(!la||!lo||!n||seen[e.type+e.id])return;seen[e.type+e.id]=1;
+out.push({n:n,la:la,lo:lo,ph:t.phone||t["contact:phone"],ad:[t["addr:street"],t["addr:city"]].filter(Boolean).join("، "),d:dist(c.lat,c.lng,la,lo)})});
+out.sort(function(a,b){return a.d-b.d});show(k,out,c)}).catch(function(){st("دریافت اطلاعات ممکن نشد. اینترنت را بررسی کنید و دوباره تلاش کنید.",1)}).finally(function(){busy=false})}
+function show(k,out,c){layer.clearLayers();var L0=$("list");L0.textContent="";
+if(!out.length){st("مورد نام‌داری در این محدوده پیدا نشد. نقشه را جابه‌جا کنید یا شهر دیگری جستجو کنید.");return}
+st(out.length+" مورد پیدا شد — نزدیک‌ترین‌ها بالاتر");var pts=[];
+out.slice(0,60).forEach(function(o){var m=L.circleMarker([o.la,o.lo],{radius:9,color:"#fff",weight:2,fillColor:CATS[k].c,fillOpacity:1}).addTo(layer);pts.push([o.la,o.lo]);
+var pop=document.createElement("div");pop.style.direction="rtl";var bb=document.createElement("b");bb.textContent=o.n;pop.appendChild(bb);m.bindPopup(pop);
+var it=document.createElement("div");it.className="it";var t=document.createElement("b");t.textContent=o.n;it.appendChild(t);
+var s=document.createElement("small");s.textContent=fmt(o.d)+(o.ad?" · "+o.ad:"");it.appendChild(s);
+var r=document.createElement("div");r.className="r";var a=document.createElement("a");a.className="b";a.target="_blank";a.rel="noopener";a.href="https://www.google.com/maps/dir/?api=1&destination="+o.la+","+o.lo;a.textContent="🧭 مسیریابی";r.appendChild(a);
+if(o.ph){var p=document.createElement("a");p.className="b o";p.href="tel:"+o.ph.split(";")[0].replace(/[^\d+]/g,"");p.textContent="📞 تماس";r.appendChild(p)}
+var f=document.createElement("button");f.className="b o";f.textContent="روی نقشه";f.onclick=function(){map.flyTo([o.la,o.lo],16);m.openPopup();$("map").scrollIntoView({behavior:"smooth",block:"center"})};r.appendChild(f);it.appendChild(r);L0.appendChild(it)});
+map.fitBounds(L.latLngBounds(pts.concat([[c.lat,c.lng]])).pad(0.1),{maxZoom:15})}
+map.on("moveend",function(){if(cur&&!busy)$("here").hidden=false});
+$("here").onclick=function(){me=null;run(cur)};
+function locate(cb){if(!navigator.geolocation){st("مرورگر شما موقعیت‌یابی را پشتیبانی نمی‌کند.",1);return}
+st("در حال یافتن موقعیت شما…");navigator.geolocation.getCurrentPosition(function(p){me=L.latLng(p.coords.latitude,p.coords.longitude);if(meMark)meMark.remove();meMark=L.circleMarker(me,{radius:8,color:"#fff",weight:3,fillColor:"#2563eb",fillOpacity:1}).addTo(map).bindPopup("موقعیت شما");map.setView(me,14);st("موقعیت شما پیدا شد.");if(cb)cb()},function(){st("اجازهٔ موقعیت داده نشد؛ شهر را جستجو کنید.",1)},{enableHighAccuracy:true,timeout:12000})}
+$("loc").onclick=function(){locate(function(){if(cur)run(cur)})};
+function search(){var v=$("q").value.trim();if(!v)return;st("در حال جستجو…");
+fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=fa&q="+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(d){if(!d.length){st("مکانی پیدا نشد.",1);return}me=null;map.setView([+d[0].lat,+d[0].lon],13);st("نقشه روی «"+(d[0].display_name||v).split("،")[0]+"» قرار گرفت. حالا یکی از کلیدها را بزنید.");if(cur)setTimeout(function(){run(cur)},400)}).catch(function(){st("جستجو ممکن نشد.",1)})}
+$("go").onclick=search;$("q").onkeydown=function(e){if(e.key==="Enter")search()};
+var m=location.hash.match(/k=(\w+)/);if(m&&CATS[m[1]])locate(function(){run(m[1])});
+})();
+</script>
+<script src="js/pwa-bar.js" defer></script><script src="js/pwa-install.js" defer></script>
+</body></html>
