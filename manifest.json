@@ -6,13 +6,21 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui", "browser"],
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
   "orientation": "portrait-primary",
   "background_color": "#070f18",
   "theme_color": "#070f18",
   "lang": "fa-IR",
   "dir": "rtl",
-  "categories": ["travel", "lifestyle", "navigation"],
+  "categories": [
+    "travel",
+    "lifestyle",
+    "navigation"
+  ],
   "icons": [
     {
       "src": "assets/images/icon-192.png",
@@ -25,6 +33,48 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "assets/images/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-detail.png",
+      "sizes": "720x1420",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "assets/images/screenshot-gallery.png",
+      "sizes": "720x1420",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "فیلم‌های گردشگری",
+      "url": "tourism-videos.html",
+      "icons": [
+        {
+          "src": "assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "اقامتگاه‌ها",
+      "url": "residences/residences.html",
+      "icons": [
+        {
+          "src": "assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
