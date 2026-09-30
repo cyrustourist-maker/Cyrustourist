@@ -46,5 +46,6 @@
     bar.innerHTML = '<button type="button" class="i" data-cyrus-install-btn data-installed-text="✔ نصب شده است">📲 دریافت وب‌اپ (PWA)</button><button type="button" class="x" aria-label="بستن">×</button>';
     bar.querySelector(".x").onclick = function () { bar.remove(); try { sessionStorage.setItem(KEY, "1"); } catch (e) {} };
     document.body.appendChild(bar);
+    window.addEventListener("appinstalled", function () { bar.remove(); });
   });
 })();
