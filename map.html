@@ -22,15 +22,21 @@ a{color:var(--ac);text-decoration:none}h1{font-size:21px;margin:4px 0}p{margin:2
 #st{margin:10px 0;color:var(--mu);font-size:14px;min-height:22px}.err{color:#ff8a8a}
 .it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:8px 0}.it b{display:block}.it small{color:var(--mu)}
 .it .r{display:flex;gap:8px;margin-top:8px}.it .b{min-height:38px;font-size:13px;display:inline-flex;align-items:center}
+.rad{display:flex;align-items:center;gap:8px;overflow-x:auto;margin:6px 0;scrollbar-width:none}.rad span{white-space:nowrap;color:#f2cf5b;font-weight:800;font-size:13px}.rad .b{min-height:38px;font-size:13px;white-space:nowrap;background:var(--card);color:var(--tx);border:1px solid var(--line)}.rad .b.on{background:var(--ac);color:#06121d}.vip{display:block;text-align:center;margin:6px 0;background:linear-gradient(90deg,#b8902f,#f2cf5b);color:#1b1404;font-weight:900;border-radius:14px;padding:10px}.rt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0}.rt input{width:100%;font:inherit;color:var(--tx);background:#071a27;border:1px solid var(--line);border-radius:12px;padding:11px;margin-top:8px}.rt b{color:var(--ac)}
 [hidden]{display:none!important}
 </style></head><body><main class="w">
 <nav style="font-size:13px;color:var(--mu)"><a href="./">سایروس توریست</a> › نقشه</nav>
 <h1>نقشهٔ گردشگری و خدمات اطراف شما</h1>
 <p>یکی از کلیدها را بزنید؛ مکان‌های اطراف روی نقشه و در فهرست زیر آن نمایش داده می‌شود.</p>
 <div class="bar"><input id="q" placeholder="جستجوی شهر یا مکان…" enterkeyhint="search"><button class="b" id="go">جستجو</button><button class="b o" id="loc" title="موقعیت من">📍</button></div>
-<div class="main" id="main"></div><div class="q" id="quick"></div>
+<div class="main" id="main"></div><a class="vip" id="vip" href="tourism-videos.html" hidden>✨ نمایش ویژه</a>
+<div class="rad" id="rad"><span>🎯 شعاع جستجو</span></div>
+<div class="q" id="quick"></div>
 <div id="map" role="application" aria-label="نقشه"></div>
 <button class="b" id="here" hidden style="width:100%;margin-top:8px">🔄 جستجو در این محدوده</button>
+<section class="rt" aria-labelledby="rth"><b id="rth">🧭 مسیریابی</b>
+<input id="o" value="موقعیت فعلی من" readonly><input id="d" placeholder="هدف سفر (نام شهر یا مکان)" enterkeyhint="go">
+<button class="b" id="rgo" style="width:100%;margin-top:8px">🧭 مسیریابی</button><div id="rs" style="margin-top:6px;color:var(--mu);font-size:14px"></div></section>
 <div id="st" aria-live="polite"></div><div id="list"></div>
 <noscript><p>برای استفاده از نقشه، جاوااسکریپت را فعال کنید.</p></noscript>
 </main>
@@ -51,21 +57,23 @@ market:{l:"🛒 فروشگاه",c:"#db2777",t:["shop=supermarket","shop=convenie
 car:{l:"🔧 خدمات خودرو",c:"#b45309",t:["shop=car_repair","amenity=car_wash"]},
 sim:{l:"📱 سیم‌کارت",c:"#4f46e5",t:["shop=mobile_phone","office=telecommunication"]}};
 var MAIN=["attraction","health","stay"],EP=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
-var $=function(i){return document.getElementById(i)},map=L.map("map",{zoomControl:true}).setView([35.6892,51.389],12),layer=L.layerGroup().addTo(map),me=null,meMark=null,cur=null,busy=false;
+var RAD=5000,$=function(i){return document.getElementById(i)},map=L.map("map",{zoomControl:true}).setView([35.6892,51.389],12),layer=L.layerGroup().addTo(map),me=null,meMark=null,cur=null,busy=false;
 /* منبع کاشی نقشه — برای عوض‌کردن سرویس فقط همین دو خط را تغییر دهید */
 var TILES="https://tile.openstreetmap.org/{z}/{x}/{y}.png",ATTR="© OpenStreetMap";
 L.tileLayer(TILES,{maxZoom:19,attribution:ATTR}).addTo(map);
 function mk(k,p){var b=document.createElement("button");b.type="button";b.className="b";b.textContent=CATS[k].l;b.style.background=CATS[k].c;b.style.color="#fff";b.dataset.k=k;b.onclick=function(){run(k)};p.appendChild(b)}
 MAIN.forEach(function(k){mk(k,$("main"))});Object.keys(CATS).filter(function(k){return MAIN.indexOf(k)<0}).forEach(function(k){mk(k,$("quick"))});
+[5,10,15,25,50].forEach(function(n){var b=document.createElement("button");b.type="button";b.className="b"+(n===5?" on":"");b.textContent=n+" کیلومتر";b.onclick=function(){RAD=n*1000;document.querySelectorAll("#rad .b").forEach(function(x){x.classList.toggle("on",x===b)});if(cur&&!busy)run(cur)};$("rad").appendChild(b)});
+function vip(k){var a=$("vip");a.hidden=false;a.href=k==="stay"?"residences/residences.html":"tourism-videos.html";a.textContent=k==="stay"?"🏨 نمایش اقامتگاه":"✨ نمایش ویژه"}
 function st(t,e){var s=$("st");s.textContent=t;s.className=e?"err":""}
 function dist(a,b,c,d){var R=6371000,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(h))}
 function fmt(m){return m<1000?Math.round(m)+" متر":(m/1000).toFixed(1)+" کیلومتر"}
 function query(k,c,r){var p=CATS[k].t.map(function(t){var i=t.indexOf("=");return"nwr(around:"+r+","+c.lat.toFixed(5)+","+c.lng.toFixed(5)+")"+(i>0?'["'+t.slice(0,i)+'"="'+t.slice(i+1)+'"]':'["'+t+'"]')+";"}).join("");return"[out:json][timeout:15];("+p+");out center tags qt 200;"}
 function fetchOP(q){return Promise.any(EP.map(function(u){return fetch(u,{method:"POST",body:"data="+encodeURIComponent(q),headers:{"Content-Type":"application/x-www-form-urlencoded"},signal:AbortSignal.timeout(20000)}).then(function(r){if(!r.ok)throw 0;return r.json()})}))}
-function run(k){if(busy)return;cur=k;$("here").hidden=true;
+function run(k){if(busy)return;cur=k;vip(k);$("here").hidden=true;
 document.querySelectorAll("[data-k]").forEach(function(b){b.classList.toggle("on",b.dataset.k===k)});
 var c=me||map.getCenter();busy=true;st("در حال جستجوی "+CATS[k].l.replace(/^\S+\s/,"")+" اطراف…");
-fetchOP(query(k,c,15000)).then(function(d){var seen={},out=[];
+fetchOP(query(k,c,RAD)).then(function(d){var seen={},out=[];
 (d.elements||[]).forEach(function(e){var la=e.lat||(e.center&&e.center.lat),lo=e.lon||(e.center&&e.center.lon),t=e.tags||{},n=t["name:fa"]||t.name||t["name:en"];if(!la||!lo||!n||seen[e.type+e.id])return;seen[e.type+e.id]=1;
 out.push({n:n,la:la,lo:lo,ph:t.phone||t["contact:phone"],ad:[t["addr:street"],t["addr:city"]].filter(Boolean).join("، "),d:dist(c.lat,c.lng,la,lo)})});
 out.sort(function(a,b){return a.d-b.d});show(k,out,c)}).catch(function(){st("دریافت اطلاعات ممکن نشد. اینترنت را بررسی کنید و دوباره تلاش کنید.",1)}).finally(function(){busy=false})}
@@ -87,6 +95,16 @@ st("در حال یافتن موقعیت شما…");navigator.geolocation.getCur
 $("loc").onclick=function(){locate(function(){if(cur)run(cur)})};
 function search(){var v=$("q").value.trim();if(!v)return;st("در حال جستجو…");
 fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=fa&q="+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(d){if(!d.length){st("مکانی پیدا نشد.",1);return}me=null;map.setView([+d[0].lat,+d[0].lon],13);st("نقشه روی «"+(d[0].display_name||v).split("،")[0]+"» قرار گرفت. حالا یکی از کلیدها را بزنید.");if(cur)setTimeout(function(){run(cur)},400)}).catch(function(){st("جستجو ممکن نشد.",1)})}
+var rl=null;function rs(t){$("rs").textContent=t}
+function geo(v){return fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=fa&q="+encodeURIComponent(v)).then(function(r){return r.json()})}
+function route(){var v=$("d").value.trim();if(!v){rs("هدف سفر را وارد کنید.");return}
+if(!me){rs("موقعیت شما لازم است؛ اجازه بدهید…");locate(route);return}
+rs("در حال مسیریابی…");geo(v).then(function(d){if(!d.length){rs("هدف پیدا نشد.");return}var la=+d[0].lat,lo=+d[0].lon;
+return fetch("https://router.project-osrm.org/route/v1/driving/"+me.lng+","+me.lat+";"+lo+","+la+"?overview=full&geometries=geojson").then(function(r){return r.json()}).then(function(j){
+if(!j.routes||!j.routes.length){rs("مسیری پیدا نشد.");return}var r=j.routes[0];if(rl)rl.remove();rl=L.geoJSON(r.geometry,{style:{color:"#2563eb",weight:6}}).addTo(map);
+L.circleMarker([la,lo],{radius:9,color:"#fff",weight:2,fillColor:"#e11d48",fillOpacity:1}).addTo(rl);map.fitBounds(rl.getBounds().pad(0.15));
+var m=Math.round(r.duration/60);rs("مسافت "+fmt(r.distance)+" · زمان تقریبی "+(m>=60?Math.floor(m/60)+" ساعت و "+m%60+" دقیقه":m+" دقیقه"));$("map").scrollIntoView({behavior:"smooth",block:"center"})})}).catch(function(){rs("مسیریابی ممکن نشد. اینترنت را بررسی کنید.")})}
+$("rgo").onclick=route;$("d").onkeydown=function(e){if(e.key==="Enter")route()};
 $("go").onclick=search;$("q").onkeydown=function(e){if(e.key==="Enter")search()};
 var m=location.hash.match(/k=(\w+)/);if(m&&CATS[m[1]])locate(function(){run(m[1])},true);
 })();
