@@ -1,8 +1,9 @@
-const CYRUS_CACHE = "cyrus-tourist-v10";
+const CYRUS_CACHE = "cyrus-tourist-v11";
 
 const CORE_FILES = [
   "./",
   "index.html",
+  "install.html",
   "manifest.json",
   "assets/images/logo.png",
   "assets/images/header-fix.css",
