@@ -1,4 +1,4 @@
-const CYRUS_CACHE = "cyrus-tourist-v13";
+const CYRUS_CACHE = "cyrus-tourist-v18";
 
 const CORE_FILES = [
   "./",
@@ -10,6 +10,7 @@ const CORE_FILES = [
   "residences/residences.html",
   "js/pwa-bar.js",
   "js/pwa-install.js",
+  "tour.html",
   "manifest.json",
   "assets/images/logo.png",
   "assets/images/header-fix.css",
@@ -88,7 +89,27 @@ self.addEventListener("fetch", function (event) {
     return;
   }
 
-  // بقیه (تصویر، CSS، JS): اول کش، بعد شبکه
+  // JS و CSS و JSON: اول شبکه (هر تغییر خودکار اعمال شود)، اگر آفلاین بود از کش
+  if (/\.(js|css|json)$/i.test(url.pathname)) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-cache" })
+        .then(function (response) {
+          if (response && response.status === 200 && response.type !== "opaque") {
+            var copy = response.clone();
+            caches.open(CYRUS_CACHE).then(function (cache) {
+              cache.put(event.request, copy);
+            });
+          }
+          return response;
+        })
+        .catch(function () {
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // تصویر و فونت و بقیه: اول کش، بعد شبکه
   event.respondWith(
     caches.match(event.request).then(function (cached) {
       if (cached) {
