@@ -19,7 +19,7 @@ h1{font-size:24px;line-height:1.7;margin:8px 0}h2{font-size:18px;color:var(--ac)
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0}
 .btn{display:block;width:100%;text-align:center;font:inherit;font-weight:800;font-size:16px;background:var(--ac);color:var(--bg);border:0;border-radius:14px;padding:14px;margin-top:12px;cursor:pointer}
 .btn.o{background:transparent;color:var(--ac);border:1.5px solid var(--ac)}.row{display:grid;gap:10px;grid-template-columns:1fr 1fr}
-details{border-top:1px solid var(--line);padding:8px 0}summary{cursor:pointer;font-weight:700}
+details{border-top:1px solid var(--line);padding:8px 0}summary{cursor:pointer;font-weight:700}#pwaHow ol{margin:6px 0 8px;padding-inline-start:20px;color:var(--mu)}
 .tag{display:inline-block;font-size:12px;border:1px solid var(--ac);color:var(--ac);border-radius:20px;padding:0 10px}
 </style></head><body><main class="w">
 <nav style="font-size:13px;color:var(--mu)"><a href="./">سایروس توریست</a> › نصب اپلیکیشن</nav>
@@ -29,7 +29,12 @@ details{border-top:1px solid var(--line);padding:8px 0}summary{cursor:pointer;fo
 <section class="card" aria-labelledby="pwa"><span class="tag">پیشنهادی · همهٔ گوشی‌ها</span>
 <h2 id="pwa">نصب وب اپلیکیشن سایروس توریست (PWA)</h2>
 <p>بدون اپ‌استور و کم‌حجم؛ با یک لمس نصب می‌شود و مثل اپلیکیشن تمام‌صفحه باز می‌شود. روی آیفون از Safari استفاده کنید.</p>
-<button class="btn" type="button" data-cyrus-install-btn data-installed-text="✔ نصب شده است">📲 نصب وب اپلیکیشن</button></section>
+<button class="btn" type="button" data-cyrus-install-btn data-installed-text="✔ نصب شده است">📲 نصب وب اپلیکیشن</button>
+<div id="pwaHow" style="margin-top:12px"><b>آموزش نصب (اگر پنجرهٔ نصب باز نشد)</b>
+<details data-p="android"><summary>📱 اندروید (Chrome)</summary><ol><li>روی نشانهٔ سه‌نقطه ⋮ بالای مرورگر Chrome بزنید.</li><li>گزینهٔ «Install app» یا «افزودن به صفحه اصلی» را انتخاب کنید.</li><li>روی «Install» بزنید؛ آیکون سایروس توریست روی صفحهٔ اصلی گوشی اضافه می‌شود.</li></ol></details>
+<details data-p="ios"><summary>🍏 آیفون (Safari)</summary><ol><li>سایت را حتماً در Safari باز کنید، نه در کروم یا مرورگر داخل برنامه‌ها.</li><li>دکمهٔ اشتراک‌گذاری ⬆️ پایین صفحه را بزنید.</li><li>گزینهٔ «Add to Home Screen» (افزودن به صفحه اصلی) را انتخاب کنید و «Add» بزنید.</li></ol></details>
+<details data-p="desktop"><summary>💻 ویندوز و مک (Chrome یا Edge)</summary><ol><li>در نوار آدرس، نشانهٔ نصب ⊕ را پیدا کنید و بزنید.</li><li>گزینهٔ «Install» را تأیید کنید.</li><li>اگر نشانه نبود: منوی سه‌نقطه ← «Install Cyrus Tourist».</li></ol></details>
+<p style="font-size:12px">نکته: حالت ناشناس (Incognito) نصب را غیرفعال می‌کند.</p></div></section>
 
 <section class="card" aria-labelledby="apk"><h2 id="apk">نصب نسخهٔ ۳۲ بیتی سایروس توریست</h2>
 <p>مخصوص گوشی‌های اندرویدی قدیمی‌تر با پردازندهٔ ۳۲ بیتی (حجم تقریبی ۲۱ مگابایت).</p>
