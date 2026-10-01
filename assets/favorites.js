@@ -16,6 +16,7 @@
     }
     if(!Array.isArray(data.tourism)) data.tourism = [];
     if(!Array.isArray(data.residence)) data.residence = [];
+    if(!Array.isArray(data.places)) data.places = [];
     return data;
   }
 
@@ -67,7 +68,7 @@
 
   function count(){
     var data = loadAll();
-    return (data.tourism ? data.tourism.length : 0) + (data.residence ? data.residence.length : 0);
+    return (data.tourism ? data.tourism.length : 0) + (data.residence ? data.residence.length : 0) + (data.places ? data.places.length : 0);
   }
 
   window.CyrusFavorites = {
