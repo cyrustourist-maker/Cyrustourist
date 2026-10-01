@@ -172,7 +172,7 @@ function removeFav(type, id, btn){
   CyrusFavorites.remove(type, id);
   const card = btn.closest(".vCard");
   if(card) card.remove();
-  if(!favGrid.querySelector(".vCard")) render();
+  if(type !== "places" && !favGrid.querySelector(".vCard")) render();
 }
 
 function render(){
@@ -180,14 +180,42 @@ function render(){
   const data = CyrusFavorites.loadAll();
   const list = data[activeTab] || [];
 
+  if(activeTab === "places"){
+    if(!list.length){
+      favGrid.innerHTML = '<div class="emptyState"><div class="ic">🤍</div>هنوز مکانی به علاقه‌مندی‌ها اضافه نکرده‌اید<a href="map.html">رفتن به نقشه</a></div>';
+      return;
+    }
+    list.forEach(function(item){
+      const card = document.createElement("div");
+      card.style.cssText = "display:flex;gap:12px;align-items:center;background:#112b3e;border:1px solid #2b3a44;border-radius:20px;padding:12px;margin:8px 0;grid-column:1/-1";
+      const ic = document.createElement("div");
+      ic.style.cssText = "flex:none;width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#ffe08a,#f2b84b);display:grid;place-items:center;font-size:28px";
+      ic.textContent = item.icon || "📍";
+      const tx = document.createElement("div");
+      tx.style.cssText = "flex:1;min-width:0;color:#fff";
+      const t = document.createElement("b"); t.textContent = item.title; t.dir = "auto"; t.style.display = "block";
+      const l = document.createElement("small"); l.textContent = item.loc || ""; l.style.color = "#f2cf5b";
+      tx.appendChild(t); tx.appendChild(l);
+      const ac = document.createElement("div");
+      ac.style.cssText = "display:flex;flex-direction:column;align-items:center;gap:8px";
+      const h = document.createElement("button"); h.type = "button"; h.textContent = "❤️"; h.setAttribute("aria-label","حذف از علاقه‌مندی‌ها");
+      h.style.cssText = "background:none;border:0;font-size:24px;cursor:pointer";
+      h.onclick = function(){ removeFav("places", item.id, h); card.remove(); if(!favGrid.children.length) render(); };
+      const a = document.createElement("a"); a.href = item.href || "#"; a.target = "_blank"; a.rel = "noopener"; a.textContent = "🧭 مسیر";
+      a.style.cssText = "background:#0a84b8;color:#fff;border-radius:14px;padding:8px 14px;font-weight:800;font-size:13px;text-decoration:none";
+      ac.appendChild(h); ac.appendChild(a);
+      card.appendChild(ic); card.appendChild(tx); card.appendChild(ac);
+      favGrid.appendChild(card);
+    });
+    return;
+  }
+
   if(!list.length){
     const msg = activeTab === "tourism"
       ? "هنوز فیلم گردشگری به علاقه‌مندی‌ها اضافه نکرده‌اید"
-      : activeTab === "places" ? "هنوز مکانی به علاقه‌مندی‌ها اضافه نکرده‌اید"
       : "هنوز اقامتگاهی به علاقه‌مندی‌ها اضافه نکرده‌اید";
     const link = activeTab === "tourism"
       ? '<a href="tourism-videos.html">مشاهده فیلم‌های گردشگری</a>'
-      : activeTab === "places" ? '<a href="map.html">رفتن به نقشه</a>'
       : '<a href="residences/residence-videos.html">مشاهده اقامتگاه‌ها</a>';
     favGrid.innerHTML =
       '<div class="emptyState"><div class="ic">🤍</div>' + msg + link + '</div>';
@@ -195,20 +223,6 @@ function render(){
   }
 
   list.forEach(function(item){
-    if(activeTab === "places"){
-      const pc = document.createElement("a");
-      pc.className = "vCard"; pc.href = item.href || "#"; pc.target = "_blank"; pc.rel = "noopener";
-      const body = document.createElement("div"); body.className = "vBody";
-      const t = document.createElement("div"); t.className = "vTitle"; t.textContent = item.title || "";
-      const l = document.createElement("div"); l.className = "vLoc"; l.textContent = "📍 " + (item.loc || "");
-      const g = document.createElement("div"); g.className = "vLoc"; g.textContent = "🧭 مسیریابی در گوگل مپ";
-      body.appendChild(t); body.appendChild(l); body.appendChild(g);
-      const hb = document.createElement("button"); hb.type = "button"; hb.className = "vHeart"; hb.textContent = "❤️"; hb.setAttribute("aria-label","حذف از علاقه‌مندی‌ها");
-      hb.style.position = "static"; hb.style.margin = "8px 8px 0"; 
-      hb.addEventListener("click", function(e){ e.preventDefault(); e.stopPropagation(); removeFav("places", item.id, hb); });
-      pc.appendChild(hb); pc.appendChild(body); favGrid.appendChild(pc);
-      return;
-    }
     const card = document.createElement("a");
     card.className = "vCard";
     card.href = item.href || "#";
