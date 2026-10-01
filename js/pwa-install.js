@@ -68,7 +68,30 @@
     };
   }
 
-  function showManualGuide() {
+  /* آموزش نصب درست زیر کلید (برای کلیدهای داخل صفحه) */
+  function inlineGuide(btn) {
+    var how = document.getElementById("pwaHow");
+    if (how) {
+      var p = isIOS() ? "ios" : isAndroid() ? "android" : "desktop";
+      Array.prototype.forEach.call(how.querySelectorAll("details"), function (d) {
+        d.open = d.getAttribute("data-p") === p;
+      });
+      how.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    var old = btn.nextElementSibling;
+    if (old && old.className === "cyg") { old.remove(); return; }
+    var info = stepsFor(), box = document.createElement("div");
+    box.className = "cyg"; box.setAttribute("dir", "rtl");
+    box.style.cssText = "margin-top:10px;padding:14px 16px;border-radius:16px;background:#0b2230;border:1px solid #17384a;color:#eaf6f2;line-height:1.9;text-align:right;font-size:14px";
+    var t = document.createElement("b"); t.textContent = "📲 " + info.title; box.appendChild(t);
+    var ol = document.createElement("ol"); ol.style.cssText = "margin:8px 0 0;padding-inline-start:20px";
+    info.steps.forEach(function (x) { var li = document.createElement("li"); li.textContent = x; ol.appendChild(li); });
+    box.appendChild(ol); btn.insertAdjacentElement("afterend", box);
+  }
+
+  function showManualGuide(btn) {
+    if (btn && !(btn.closest && btn.closest(".cpb"))) { inlineGuide(btn); return; }
     var info = stepsFor();
 
     var overlay = document.createElement("div");
@@ -141,7 +164,7 @@
       return;
     }
 
-    showManualGuide();
+    showManualGuide(btn);
   });
 
   function bindButtons() {
