@@ -2028,6 +2028,57 @@ color:#dfe6f5;text-align:center;font:700 12px Tahoma;cursor:pointer}
 .cyrusAppSection[data-cyrus-display="day"] .cyrusOpt{background:#edf3f9;color:#334861}
 .cyrusOpt.active{border-color:var(--cyrusGold);box-shadow:0 0 14px rgba(242,207,91,.3);color:var(--cyrusGold2,var(--cyrusGold))}
 .cyrusCloseModal{margin-top:12px;width:100%;border:0;border-radius:12px;padding:10px;background:var(--cyrusGold);color:#111;font-weight:800;cursor:pointer}
+
+/* ===== نوار جستجوی صفحهٔ اصلی (مثل اپ) + ردیف استوری ===== */
+.cyrusStories{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 10px;margin:12px 0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cyrusStories::-webkit-scrollbar{display:none}
+.cyrusStories[hidden]{display:none}
+.cyrusStItem{flex:none;width:74px;display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;color:var(--cyrusText);font:700 11.5px Tahoma,Arial;-webkit-tap-highlight-color:transparent}
+.cyrusStRing{position:relative;width:68px;height:68px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--cyrusGold2,#ffe7a0),var(--cyrusGold),#b8862b);display:block}
+.cyrusStRing.seen{background:rgba(174,184,207,.45)}
+.cyrusStAv{width:100%;height:100%;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(145deg,var(--cyrusCard1),var(--cyrusCard2));border:2px solid #050b1b;color:var(--cyrusGold2,#ffe7a0);font:800 24px Tahoma,Arial}
+.cyrusStAv img{width:100%;height:100%;object-fit:cover;display:block}
+.cyrusStTick{position:absolute;bottom:-1px;right:-1px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;border:2px solid #050b1b}
+.cyrusStTick.blue{background:#1d9bf0}
+.cyrusStTick.gold{background:#d4a017;color:#2a1c00}
+.cyrusStName{max-width:74px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.cyrusSearchBar{display:flex;align-items:center;gap:10px;margin:12px 0 6px;padding:7px;border:2px solid var(--cyrusGold);border-radius:999px;background:linear-gradient(135deg,var(--cyrusCard1),var(--cyrusCard2));box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.cyrusSearchMain{flex:1;min-width:0;display:flex;align-items:center;gap:10px;color:var(--cyrusMuted);text-decoration:none;font:700 14.5px Tahoma,Arial;-webkit-tap-highlight-color:transparent}
+.cyrusSearchTxt{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cyrusSearchIco{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;border:2px solid var(--cyrusGold);background:rgba(20,22,26,.75);color:var(--cyrusGold2,#ffe7a0)}
+.cyrusSearchIco svg{width:22px;height:22px;display:block}
+.cyrusSearchBar:active{transform:scale(.99)}
+
+.cyrusSV{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.94);display:none}
+.cyrusSV.show{display:block}
+.cyrusSVBox{position:relative;margin:0 auto;height:100%;max-width:480px;background:#050b1b;overflow:hidden;direction:rtl}
+html[dir="ltr"] .cyrusSVBox{direction:ltr}
+.cyrusSVBars{position:absolute;top:calc(8px + env(safe-area-inset-top,0px));left:10px;right:10px;display:flex;gap:4px;z-index:6;direction:ltr}
+.cyrusSVBar{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+.cyrusSVBar i{display:block;height:100%;width:0;background:#fff}
+.cyrusSVHead{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));left:10px;right:10px;display:flex;align-items:center;gap:10px;z-index:6;color:#fff}
+.cyrusSVAv{width:38px;height:38px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#112751;border:2px solid var(--cyrusGold,#f2cf5b);font:800 16px Tahoma,Arial;flex:none}
+.cyrusSVAv img{width:100%;height:100%;object-fit:cover}
+.cyrusSVWho{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.cyrusSVWho b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cyrusSVWho small{font-size:11px;opacity:.85}
+.cyrusSVClose{border:0;background:rgba(0,0,0,.4);color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;flex:none}
+.cyrusSVMedia{position:absolute;inset:0;display:grid;place-items:center}
+.cyrusSVMedia img{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.cyrusSVCap{position:absolute;left:14px;right:14px;bottom:76px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.55);color:#fff;font:600 15px/1.8 Tahoma,Arial;text-align:center;unicode-bidi:plaintext;word-break:break-word}
+.cyrusSVText{width:100%;height:100%;display:grid;place-items:center;padding:28px;color:#fff;font:700 24px/1.9 Tahoma,Arial;text-align:center;unicode-bidi:plaintext;word-break:break-word}
+.cyrusSVText.b0{background:linear-gradient(160deg,#112751,#050d1d)}
+.cyrusSVText.b1{background:linear-gradient(160deg,#b8862b,#4a3208)}
+.cyrusSVText.b2{background:linear-gradient(160deg,#0f766e,#052e2b)}
+.cyrusSVText.b3{background:linear-gradient(160deg,#7c3aed,#2e1065)}
+.cyrusSVText.b4{background:linear-gradient(160deg,#be123c,#4c0519)}
+.cyrusSVText.b5{background:linear-gradient(160deg,#0369a1,#082f49)}
+.cyrusSVStats{position:absolute;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#fff;font:700 13px Tahoma,Arial;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.cyrusSVStats a{color:var(--cyrusGold2,#ffe7a0);text-decoration:none;font-size:12px}
+.cyrusSVZ{position:absolute;top:70px;bottom:56px;width:50%;z-index:4;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.cyrusSVZa{left:0}
+.cyrusSVZb{right:0}
 </style>
 
 <section class="cyrusAppSection" id="cyrusAppSection" data-cyrus-color="gold" data-cyrus-display="night" data-cyrus-anim="low" data-cyrus-sound="classic">
@@ -2039,6 +2090,16 @@ color:#dfe6f5;text-align:center;font:700 12px Tahoma;cursor:pointer}
 <div class="cyrusFa">سایروس توریست</div>
 <p class="cyrusTag" data-i18n="heroSub">ایران را با سایروس توریست ببینید</p>
 <div class="cyrusTagEn">From Iran to the World</div>
+</div>
+
+<div class="cyrusStories" id="cyrusStories" aria-label="Stories" hidden></div>
+
+<div class="cyrusSearchBar">
+<a class="cyrusSearchMain" href="map.html?focus=1" aria-label="جستجو در نقشه">
+<span class="cyrusSearchIco" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></span>
+<span class="cyrusSearchTxt" data-i18n="homeSearchPh">کجا می‌خواهید بروید؟</span>
+</a>
+<a class="cyrusSearchIco" href="favorites.html" aria-label="علاقه‌مندی‌ها"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9-9.3C2.1 8 4 5 7 5c1.8 0 3.2 1 5 3 1.8-2 3.2-3 5-3 3 0 4.9 3 4 6.2-1.5 4.7-9 9.3-9 9.3z"/></svg></a>
 </div>
 
 <div class="cyrusGrid8">
@@ -2132,6 +2193,226 @@ color:#dfe6f5;text-align:center;font:700 12px Tahoma;cursor:pointer}
 
 </div>
 </section>
+
+<script>
+/* ===== استوری‌ها در سایت (فقط نمایش؛ گذاشتن، لایک و ثبت بازدید در اپ) ===== */
+(function(){
+var API='https://cyrus-tourist-admin-panel.cyrustourist.workers.dev';
+var row=document.getElementById('cyrusStories');
+if(!row){return;}
+var SEEN_KEY='cyrusStoriesSeen';
+var DUR=5000;
+var groups=[];
+var ov=null,barsEl,fillEls=[],avEl,whoB,whoS,mediaEl,statsEl,gi=0,si=0,raf=0,elapsed=0,last=0,paused=false,tok=0,isOpen=false,prevOverflow='';
+
+function lang(){var l=document.documentElement.lang;return (l==='en'||l==='ar')?l:'fa';}
+function tr(o){return o[lang()]||o.fa;}
+var TXT={
+now:{fa:'اکنون',en:'now',ar:'الآن'},
+m:{fa:function(n){return n+' دقیقه پیش';},en:function(n){return n+'m ago';},ar:function(n){return 'قبل '+n+' د';}},
+h:{fa:function(n){return n+' ساعت پیش';},en:function(n){return n+'h ago';},ar:function(n){return 'قبل '+n+' س';}},
+close:{fa:'بستن',en:'Close',ar:'إغلاق'},
+more:{fa:'لایک و گذاشتن استوری در اپ',en:'Like & post stories in the app',ar:'الإعجاب ونشر القصص في التطبيق'},
+bad:{fa:'نمایش این استوری ممکن نشد',en:'Could not load this story',ar:'تعذر عرض هذه القصة'}
+};
+function ago(at){
+var t=Date.parse(String(at||'').replace(' ','T')+'Z');
+if(isNaN(t)){return '';}
+var m=Math.floor((Date.now()-t)/60000);
+if(m<1){return tr(TXT.now);}
+if(m<60){return TXT.m[lang()](m);}
+return TXT.h[lang()](Math.floor(m/60));
+}
+function num(n){try{return Number(n||0).toLocaleString(lang()==='en'?'en':(lang()==='ar'?'ar':'fa'));}catch(e){return String(n||0);}}
+
+function seenGet(){try{return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}')||{};}catch(e){return {};}}
+function seenAdd(id){
+var s=seenGet();s[id]=1;
+var k=Object.keys(s);
+if(k.length>300){k.slice(0,k.length-300).forEach(function(x){delete s[x];});}
+try{localStorage.setItem(SEEN_KEY,JSON.stringify(s));}catch(e){}
+}
+function groupSeen(g,s){return g.stories.every(function(x){return s[x.id];});}
+function initial(name){var n=String(name||'').trim();return n?Array.from(n)[0]:'👤';}
+function fillAvatar(box,g){
+box.textContent='';
+if(g.has_photo){
+var im=new Image();im.alt='';im.decoding='async';
+im.onerror=function(){im.remove();box.textContent=initial(g.name);};
+im.src=API+'/api/users/photo?uid='+encodeURIComponent(g.uid);
+box.appendChild(im);
+}else{box.textContent=initial(g.name);}
+}
+
+function render(){
+var s=seenGet();
+var order=groups.map(function(g,i){return {g:g,i:i,seen:groupSeen(g,s)};});
+order.sort(function(a,b){return (a.seen-b.seen)||(a.i-b.i);});
+row.textContent='';
+order.forEach(function(o){
+var b=document.createElement('button');
+b.type='button';b.className='cyrusStItem';
+var ring=document.createElement('span');
+ring.className='cyrusStRing'+(o.seen?' seen':'');
+var av=document.createElement('span');av.className='cyrusStAv';
+fillAvatar(av,o.g);
+ring.appendChild(av);
+if(o.g.badge==='gold'||o.g.badge==='blue'){
+var t=document.createElement('span');t.className='cyrusStTick '+o.g.badge;t.textContent='✓';ring.appendChild(t);
+}
+var nm=document.createElement('span');nm.className='cyrusStName';nm.textContent=o.g.name||'';
+b.appendChild(ring);b.appendChild(nm);
+b.addEventListener('click',function(){openViewer(o.i,0,b);});
+row.appendChild(b);
+});
+}
+
+function build(){
+if(ov){return;}
+ov=document.createElement('div');
+ov.className='cyrusSV';
+ov.setAttribute('role','dialog');
+ov.setAttribute('aria-modal','true');
+ov.innerHTML='<div class="cyrusSVBox"><div class="cyrusSVBars"></div><div class="cyrusSVHead"><span class="cyrusSVAv"></span><span class="cyrusSVWho"><b></b><small></small></span><button type="button" class="cyrusSVClose">✕</button></div><div class="cyrusSVMedia"></div><div class="cyrusSVStats"><span></span><a href="install.html"></a></div><div class="cyrusSVZ cyrusSVZa"></div><div class="cyrusSVZ cyrusSVZb"></div></div>';
+document.body.appendChild(ov);
+barsEl=ov.querySelector('.cyrusSVBars');
+avEl=ov.querySelector('.cyrusSVAv');
+whoB=ov.querySelector('.cyrusSVWho b');
+whoS=ov.querySelector('.cyrusSVWho small');
+mediaEl=ov.querySelector('.cyrusSVMedia');
+statsEl=ov.querySelector('.cyrusSVStats');
+ov.querySelector('.cyrusSVClose').addEventListener('click',closeViewer);
+ov.addEventListener('click',function(e){if(e.target===ov){closeViewer();}});
+function zone(el,dirFn){
+var down=0;
+function resume(){paused=false;}
+el.addEventListener('pointerdown',function(){down=Date.now();paused=true;});
+el.addEventListener('pointerup',function(){var tap=Date.now()-down<250;resume();if(tap){dirFn();}});
+el.addEventListener('pointercancel',resume);
+el.addEventListener('pointerleave',function(){if(paused){resume();}});
+el.addEventListener('contextmenu',function(e){e.preventDefault();});
+}
+var rtl=function(){return document.documentElement.dir==='rtl';};
+zone(ov.querySelector('.cyrusSVZa'),function(){rtl()?next():prev();});
+zone(ov.querySelector('.cyrusSVZb'),function(){rtl()?prev():next();});
+document.addEventListener('keydown',function(e){
+if(!isOpen){return;}
+if(e.key==='Escape'){closeViewer();}
+else if(e.key==='ArrowLeft'){rtl()?next():prev();}
+else if(e.key==='ArrowRight'){rtl()?prev():next();}
+});
+document.addEventListener('visibilitychange',function(){if(isOpen){paused=document.hidden;}});
+}
+
+function stopTimer(){if(raf){cancelAnimationFrame(raf);raf=0;}}
+function tick(ts){
+if(!isOpen){return;}
+if(!paused){elapsed+=ts-last;}
+last=ts;
+var p=Math.min(1,elapsed/DUR);
+if(fillEls[si]){fillEls[si].style.width=(p*100)+'%';}
+if(p>=1){next();return;}
+raf=requestAnimationFrame(tick);
+}
+function startTimer(my){
+if(my!==tok){return;}
+last=performance.now();
+raf=requestAnimationFrame(tick);
+}
+
+function show(){
+var g=groups[gi];if(!g){closeViewer();return;}
+var st=g.stories[si];if(!st){closeViewer();return;}
+var my=++tok;
+stopTimer();
+elapsed=0;paused=false;
+barsEl.textContent='';fillEls=[];
+g.stories.forEach(function(_x,i){
+var bar=document.createElement('span');bar.className='cyrusSVBar';
+var f=document.createElement('i');
+f.style.width=i<si?'100%':'0';
+bar.appendChild(f);barsEl.appendChild(bar);fillEls.push(f);
+});
+fillAvatar(avEl,g);
+whoB.textContent=(g.name||'')+(g.badge?' ✓':'');
+whoS.textContent=ago(st.at);
+mediaEl.textContent='';
+var spans=statsEl.querySelectorAll('span,a');
+spans[0].textContent='❤ '+num(st.likes)+'   👁 '+num(st.views);
+spans[1].textContent=tr(TXT.more);
+ov.querySelector('.cyrusSVClose').setAttribute('aria-label',tr(TXT.close));
+seenAdd(st.id);
+if(st.kind==='text'||!st.has_image){
+var d=document.createElement('div');
+d.className='cyrusSVText b'+((Number(st.bg)||0)%6);
+d.setAttribute('dir','auto');
+d.textContent=st.text||'';
+mediaEl.appendChild(d);
+startTimer(my);
+}else{
+var im=new Image();im.alt='';im.decoding='async';
+im.onload=function(){startTimer(my);};
+im.onerror=function(){
+if(my!==tok){return;}
+im.remove();
+var d2=document.createElement('div');d2.className='cyrusSVText b0';d2.textContent=tr(TXT.bad);
+mediaEl.appendChild(d2);startTimer(my);
+};
+im.src=API+'/api/stories/image?id='+encodeURIComponent(st.id);
+mediaEl.appendChild(im);
+if(st.text){
+var c=document.createElement('div');c.className='cyrusSVCap';c.setAttribute('dir','auto');c.textContent=st.text;mediaEl.appendChild(c);
+}
+}
+/* پیش‌بارگذاری عکس استوری بعدی */
+var nx=g.stories[si+1];
+if(nx&&nx.has_image){var pre=new Image();pre.src=API+'/api/stories/image?id='+encodeURIComponent(nx.id);}
+}
+
+function next(){
+var g=groups[gi];
+if(si<g.stories.length-1){si++;show();}
+else if(gi<groups.length-1){gi++;si=0;show();}
+else{closeViewer();}
+}
+function prev(){
+if(si>0){si--;show();}
+else if(gi>0){gi--;si=groups[gi].stories.length-1;show();}
+else{show();}
+}
+
+var opener=null;
+function openViewer(i,s,btn){
+build();
+gi=i;si=s||0;opener=btn||null;
+isOpen=true;
+prevOverflow=document.body.style.overflow;
+document.body.style.overflow='hidden';
+ov.classList.add('show');
+show();
+}
+function closeViewer(){
+if(!isOpen){return;}
+isOpen=false;tok++;
+stopTimer();
+ov.classList.remove('show');
+mediaEl.textContent='';
+document.body.style.overflow=prevOverflow;
+render();
+}
+
+fetch(API+'/api/stories',{headers:{'Accept':'application/json'},cache:'no-cache'})
+.then(function(r){return r.ok?r.json():null;})
+.then(function(d){
+if(!d||!d.success||!Array.isArray(d.groups)){return;}
+groups=d.groups.filter(function(g){return g&&Array.isArray(g.stories)&&g.stories.length;});
+if(!groups.length){return;}
+render();
+row.hidden=false;
+})
+.catch(function(){});
+})();
+</script>
 
 <script>
 (function(){
@@ -6186,6 +6467,7 @@ mapTitle:{fa:'نقشه گردشگری',en:'Tourist Map',ar:'خريطة سياح�
 mapSub:{fa:'موقعیت خود را پیدا کنید و جاذبه‌های اطراف را ببینید.',en:'Find your location and see nearby attractions.',ar:'حدد موقعك وشاهد المعالم القريبة.'},
 mapSearchPlaceholder:{fa:'جستجوی مکان...',en:'Search a place...',ar:'ابحث عن مكان...'},
 mapSearchBtn:{fa:'جستجو',en:'Search',ar:'بحث'},
+homeSearchPh:{fa:'کجا می‌خواهید بروید؟',en:'Where do you want to go?',ar:'إلى أين تريد أن تذهب؟'},
 myLocationBtn:{fa:'📍 موقعیت من',en:'📍 My Location',ar:'📍 موقعي'},
 catNearby2:{fa:'جاذبه‌های اطراف',en:'Nearby Attractions',ar:'المعالم القريبة'},
 mapInfo:{fa:'برای استفاده از موقعیت مکانی، اجازه دسترسی به موقعیت را در مرورگر تأیید کنید.',en:'To use your location, please allow location access in your browser.',ar:'لاستخدام موقعك، يرجى السماح بالوصول إلى الموقع في المتصفح.'},
