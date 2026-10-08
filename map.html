@@ -119,6 +119,8 @@ $("back").onclick=function(){if(history.length>1)history.back();else location.hr
 $("gms").onclick=function(){var q=$("q").value.trim()||(cur?CATS[cur].l.replace(/^\S+\s/,""):"");if(!q){st("عبارت جستجو را بنویسید یا یکی از کلیدها را بزنید.",1);return}window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q),"_blank","noopener")};
 $("rgo").onclick=route;$("d").onkeydown=function(e){if(e.key==="Enter")route()};
 $("go").onclick=search;$("q").onkeydown=function(e){if(e.key==="Enter")search()};
+var qp=new URLSearchParams(location.search),qv=(qp.get("q")||"").trim();
+if(qv){$("q").value=qv.slice(0,120);search()}else if(qp.get("focus")==="1"){setTimeout(function(){$("q").focus()},200)}
 var m=location.hash.match(/k=(\w+)/);if(m&&CATS[m[1]])locate(function(){run(m[1])},true);
 })();
 </script>
