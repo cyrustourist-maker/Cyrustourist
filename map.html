@@ -31,7 +31,8 @@ a{color:var(--ac);text-decoration:none}h1{font-size:21px;margin:4px 0}p{margin:2
 .pc .ac{flex:none;display:flex;flex-direction:column;align-items:center;gap:8px}.pc .hb{background:none;border:0;font-size:26px;color:#f2cf5b;cursor:pointer;padding:0;line-height:1}
 .pc .rb{font:inherit;font-weight:800;font-size:13px;border:0;border-radius:14px;padding:8px 14px;background:#0a84b8;color:#fff;cursor:pointer}
 [hidden]{display:none!important}
-</style></head><body><main class="w">
+</style><link rel="stylesheet" href="assets/site.css">
+</head><body><main class="w">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><button class="b o" id="back" type="button">↩ بازگشت</button><nav style="font-size:13px;color:var(--mu)"><a href="./">سایروس توریست</a> › نقشه</nav></div>
 <h1>نقشهٔ گردشگری و خدمات اطراف شما</h1>
 <p>یکی از کلیدها را بزنید؛ مکان‌های اطراف روی نقشه و در فهرست زیر آن نمایش داده می‌شود.</p>
@@ -49,6 +50,7 @@ a{color:var(--ac);text-decoration:none}h1{font-size:21px;margin:4px 0}p{margin:2
 <noscript><p>برای استفاده از نقشه، جاوااسکریپت را فعال کنید.</p></noscript>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="js/map-touch.js"></script>
 <script src="assets/favorites.js"></script>
 <script>
 (function(){
@@ -70,6 +72,7 @@ var RAD=5000,$=function(i){return document.getElementById(i)},map=L.map("map",{z
 /* منبع کاشی نقشه — برای عوض‌کردن سرویس فقط همین دو خط را تغییر دهید */
 var TILES="https://tile.openstreetmap.org/{z}/{x}/{y}.png",ATTR="© OpenStreetMap";
 L.tileLayer(TILES,{maxZoom:19,attribution:ATTR}).addTo(map);
+if(window.cyrusMapTouchGuard)cyrusMapTouchGuard(map);
 function mk(k,p){var b=document.createElement("button");b.type="button";b.className="b";b.textContent=CATS[k].l;b.style.background=CATS[k].c;b.style.color="#fff";b.dataset.k=k;b.onclick=function(){run(k)};p.appendChild(b)}
 MAIN.forEach(function(k){mk(k,$("main"))});Object.keys(CATS).filter(function(k){return MAIN.indexOf(k)<0}).forEach(function(k){mk(k,$("quick"))});
 [5,10,15,25,50].forEach(function(n){var b=document.createElement("button");b.type="button";b.className="b"+(n===5?" on":"");b.textContent=n+" کیلومتر";b.onclick=function(){RAD=n*1000;document.querySelectorAll("#rad .b").forEach(function(x){x.classList.toggle("on",x===b)});if(cur&&!busy)run(cur)};$("rad").appendChild(b)});
@@ -125,4 +128,19 @@ var m=location.hash.match(/k=(\w+)/);if(m&&CATS[m[1]])locate(function(){run(m[1]
 })();
 </script>
 <script src="js/pwa-bar.js" defer></script><script src="js/pwa-install.js" defer></script>
+<footer class="cyrusFooter">
+<div class="cyrusFooterIn">
+<a class="cyrusFooterBrand" href="/">سایروس توریست</a>
+<nav aria-label="پیوندهای سایت">
+<a href="/">خانه</a>
+<a href="/map.html">نقشه گردشگری</a>
+<a href="/tourism-videos.html">فیلم‌های گردشگری</a>
+<a href="/residences/residences.html">اقامتگاه</a>
+<a href="/tour.html">تور گردشگری</a>
+<a href="/register.html">ثبت‌نام</a>
+<a href="/install.html">نصب اپلیکیشن</a>
+</nav>
+<p>From Iran to the World</p>
+</div>
+</footer>
 </body></html>
