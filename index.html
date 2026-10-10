@@ -1570,6 +1570,171 @@ font-size:13.5px;
 margin:0 0 14px
 }
 
+/* PARTNER HOSTING (ایران‌سرور) */
+
+.partnerHost{
+position:relative;
+margin-top:30px;
+padding:26px 22px 20px;
+border-radius:26px;
+border:1.5px solid transparent;
+background:
+linear-gradient(160deg,rgba(11,34,48,.96),rgba(6,18,29,.96)) padding-box,
+linear-gradient(135deg,var(--gold),var(--green),var(--blue)) border-box;
+box-shadow:0 22px 55px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.03) inset;
+overflow:hidden
+}
+
+.partnerHost::before{
+content:"";
+position:absolute;
+inset:-40% -10% auto auto;
+width:420px;
+height:420px;
+background:radial-gradient(circle,rgba(255,211,106,.16),transparent 62%);
+pointer-events:none
+}
+
+.partnerHost::after{
+content:"";
+position:absolute;
+inset:auto auto -45% -12%;
+width:420px;
+height:420px;
+background:radial-gradient(circle,rgba(41,224,173,.14),transparent 62%);
+pointer-events:none
+}
+
+.partnerHostHead{
+position:relative;
+z-index:1;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:14px;
+flex-wrap:wrap;
+margin-bottom:18px
+}
+
+.partnerHostHead h3{
+margin:0 0 4px;
+font-size:21px;
+background:linear-gradient(90deg,var(--gold),var(--green));
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent
+}
+
+.partnerHostHead p{
+margin:0;
+color:var(--muted);
+font-size:13.5px;
+max-width:560px
+}
+
+.partnerHostBadge{
+flex:none;
+font-size:12px;
+font-weight:700;
+padding:4px 12px;
+border-radius:999px;
+color:var(--gold);
+border:1px solid rgba(255,211,106,.45);
+background:rgba(255,211,106,.08)
+}
+
+.partnerHostGrid{
+position:relative;
+z-index:1;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:12px
+}
+
+.partnerHostTile{
+--c:var(--gold);
+display:flex;
+flex-direction:column;
+gap:4px;
+padding:15px 14px 13px;
+border-radius:18px;
+border:1px solid color-mix(in srgb,var(--c) 38%,transparent);
+background:
+radial-gradient(circle at 85% 0%,color-mix(in srgb,var(--c) 22%,transparent),transparent 60%),
+linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+color:var(--text);
+text-decoration:none;
+transition:transform .22s,box-shadow .22s,border-color .22s
+}
+
+.partnerHostTile:hover,
+.partnerHostTile:focus-visible{
+transform:translateY(-4px);
+border-color:var(--c);
+box-shadow:0 14px 30px color-mix(in srgb,var(--c) 28%,transparent);
+outline:none
+}
+
+.partnerHostIcon{
+width:40px;
+height:40px;
+display:grid;
+place-items:center;
+font-size:21px;
+border-radius:12px;
+margin-bottom:6px;
+background:color-mix(in srgb,var(--c) 20%,transparent);
+border:1px solid color-mix(in srgb,var(--c) 45%,transparent)
+}
+
+.partnerHostTile b{
+font-size:15px;
+color:var(--c)
+}
+
+.partnerHostTile span.d{
+font-size:12.5px;
+color:var(--muted);
+line-height:1.7
+}
+
+.partnerHostGo{
+margin-top:6px;
+font-size:12px;
+font-weight:700;
+color:var(--c)
+}
+
+.partnerHostFoot{
+position:relative;
+z-index:1;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
+margin-top:18px;
+padding-top:14px;
+border-top:1px dashed var(--line)
+}
+
+.partnerHostFoot small{
+color:var(--muted);
+font-size:12px;
+flex:1 1 260px
+}
+
+@media(prefers-reduced-motion:reduce){
+.partnerHostTile{transition:none}
+.partnerHostTile:hover{transform:none}
+}
+
+@media(max-width:600px){
+.partnerHost{padding:20px 14px 16px;border-radius:22px}
+.partnerHostGrid{grid-template-columns:repeat(2,1fr)}
+.partnerHostHead h3{font-size:18px}
+}
+
 /* RESPONSIVE */
 
 @media(max-width:900px){
@@ -4052,6 +4217,62 @@ data-video-id="27">
 </div>
 </div>
 
+<div class="partnerHost" id="partnerHost">
+
+<div class="partnerHostHead">
+<div>
+<h3 data-i18n="hostTitle">🚀 وب‌سایت و سرور برای کسب‌وکار گردشگری شما</h3>
+<p data-i18n="hostSub">اقامتگاه، آژانس یا تور خود را آنلاین کنید. هاست و سرور پیشنهادی از همکار ما ایران‌سرور.</p>
+</div>
+<span class="partnerHostBadge" data-i18n="hostBadge">همکار پیشنهادی</span>
+</div>
+
+<div class="partnerHostGrid">
+<a class="partnerHostTile" style="--c:#42b8ff" href="https://hub.iranserver.com/aff.php?url=/web-hosting/wordpress&amp;aff=2949" target="_blank" rel="sponsored nofollow noopener" data-host="wp">
+<div class="partnerHostIcon" aria-hidden="true">🌐</div>
+<b data-i18n="hostWp">هاست وردپرس</b>
+<span class="d" data-i18n="hostWpD">سایت وردپرسی سریع و پایدار برای معرفی کسب‌وکار شما</span>
+<span class="partnerHostGo" data-i18n="hostGo">مشاهده ←</span>
+</a>
+<a class="partnerHostTile" style="--c:#ffd36a" href="https://hub.iranserver.com/aff.php?url=/sitesaz&amp;aff=2949" target="_blank" rel="sponsored nofollow noopener" data-host="sitesaz">
+<div class="partnerHostIcon" aria-hidden="true">🧩</div>
+<b data-i18n="hostSite">سایت‌ساز</b>
+<span class="d" data-i18n="hostSiteD">بدون کدنویسی، سایت اقامتگاه یا آژانس خود را بسازید</span>
+<span class="partnerHostGo" data-i18n="hostGo">مشاهده ←</span>
+</a>
+<a class="partnerHostTile" style="--c:#29e0ad" href="https://hub.iranserver.com/aff.php?url=/vps&amp;aff=2949" target="_blank" rel="sponsored nofollow noopener" data-host="vps">
+<div class="partnerHostIcon" aria-hidden="true">🖥️</div>
+<b data-i18n="hostVps">سرور مجازی</b>
+<span class="d" data-i18n="hostVpsD">منابع اختصاصی برای سایت‌ها و سرویس‌های پرترافیک</span>
+<span class="partnerHostGo" data-i18n="hostGo">مشاهده ←</span>
+</a>
+<a class="partnerHostTile" style="--c:#ff8f6b" href="https://hub.iranserver.com/aff.php?url=/dedicated-server&amp;aff=2949" target="_blank" rel="sponsored nofollow noopener" data-host="ded">
+<div class="partnerHostIcon" aria-hidden="true">🛡️</div>
+<b data-i18n="hostDed">سرور اختصاصی</b>
+<span class="d" data-i18n="hostDedD">حداکثر قدرت و امنیت برای پروژه‌های بزرگ</span>
+<span class="partnerHostGo" data-i18n="hostGo">مشاهده ←</span>
+</a>
+<a class="partnerHostTile" style="--c:#c48cff" href="https://hub.iranserver.com/aff.php?url=/vps/iran&amp;aff=2949" target="_blank" rel="sponsored nofollow noopener" data-host="cloud">
+<div class="partnerHostIcon" aria-hidden="true">☁️</div>
+<b data-i18n="hostCloud">سرورهای ابری</b>
+<span class="d" data-i18n="hostCloudD">مقیاس‌پذیر و آماده برای رشد کسب‌وکار</span>
+<span class="partnerHostGo" data-i18n="hostGo">مشاهده ←</span>
+</a>
+<a class="partnerHostTile" style="--c:#4de7e7" href="https://hub.iranserver.com/aff.php?url=/cdn&amp;aff=2949" target="_blank" rel="sponsored nofollow noopener" data-host="cdn">
+<div class="partnerHostIcon" aria-hidden="true">⚡</div>
+<b data-i18n="hostCdn">شبکه توزیع محتوا (CDN)</b>
+<span class="d" data-i18n="hostCdnD">نمایش سریع‌تر تصاویر و فیلم برای گردشگران</span>
+<span class="partnerHostGo" data-i18n="hostGo">مشاهده ←</span>
+</a>
+</div>
+
+<div class="partnerHostFoot">
+<small data-i18n="hostNote">لینک همکاری در فروش: خرید از این لینک‌ها برای سایروس توریست کمیسیون دارد و برای شما هزینهٔ اضافه ندارد.</small>
+<a class="btn primary" href="https://hub.iranserver.com/aff.php?aff=2949" target="_blank" rel="sponsored nofollow noopener" data-i18n="hostAll">مشاهده همهٔ سرویس‌ها</a>
+</div>
+
+</div>
+
 </div>
 </section>
 
@@ -6505,6 +6726,25 @@ catHotel:{fa:'هتل',en:'Hotel',ar:'فندق'},
 catGuesthouse:{fa:'مهمان‌خانه',en:'Guesthouse',ar:'بيت ضيافة'},
 catEcolodge:{fa:'بوم‌گردی',en:'Eco-lodge',ar:'نزل بيئي'},
 catCamp:{fa:'کمپ',en:'Camp',ar:'مخيم'},
+
+hostTitle:{fa:'🚀 وب‌سایت و سرور برای کسب‌وکار گردشگری شما',en:'🚀 Website & hosting for your tourism business',ar:'🚀 موقع واستضافة لعملك السياحي'},
+hostSub:{fa:'اقامتگاه، آژانس یا تور خود را آنلاین کنید. هاست و سرور پیشنهادی از همکار ما ایران‌سرور.',en:'Put your stay, agency or tours online. Recommended hosting and servers from our partner Iranserver.',ar:'اعرض مكان إقامتك أو وكالتك أو جولاتك على الإنترنت. استضافة وخوادم مقترحة من شريكنا إيران سرور.'},
+hostBadge:{fa:'همکار پیشنهادی',en:'Recommended partner',ar:'شريك مقترح'},
+hostGo:{fa:'مشاهده ←',en:'View →',ar:'عرض ←'},
+hostAll:{fa:'مشاهده همهٔ سرویس‌ها',en:'View all services',ar:'عرض كل الخدمات'},
+hostNote:{fa:'لینک همکاری در فروش: خرید از این لینک‌ها برای سایروس توریست کمیسیون دارد و برای شما هزینهٔ اضافه ندارد.',en:'Affiliate links: purchases through these links earn Cyrus Tourist a commission at no extra cost to you.',ar:'روابط شراكة: الشراء عبر هذه الروابط يمنح سايروس توريست عمولة دون أي تكلفة إضافية عليك.'},
+hostWp:{fa:'هاست وردپرس',en:'WordPress hosting',ar:'استضافة ووردبريس'},
+hostWpD:{fa:'سایت وردپرسی سریع و پایدار برای معرفی کسب‌وکار شما',en:'Fast, stable WordPress sites to showcase your business',ar:'مواقع ووردبريس سريعة ومستقرة لعرض نشاطك'},
+hostSite:{fa:'سایت‌ساز',en:'Website builder',ar:'منشئ المواقع'},
+hostSiteD:{fa:'بدون کدنویسی، سایت اقامتگاه یا آژانس خود را بسازید',en:'Build your stay or agency website without coding',ar:'أنشئ موقع إقامتك أو وكالتك دون برمجة'},
+hostVps:{fa:'سرور مجازی',en:'VPS',ar:'خادم افتراضي'},
+hostVpsD:{fa:'منابع اختصاصی برای سایت‌ها و سرویس‌های پرترافیک',en:'Dedicated resources for busy sites and services',ar:'موارد مخصصة للمواقع والخدمات كثيرة الزيارات'},
+hostDed:{fa:'سرور اختصاصی',en:'Dedicated server',ar:'خادم مخصص'},
+hostDedD:{fa:'حداکثر قدرت و امنیت برای پروژه‌های بزرگ',en:'Maximum power and security for large projects',ar:'أقصى قوة وأمان للمشاريع الكبيرة'},
+hostCloud:{fa:'سرورهای ابری',en:'Cloud servers',ar:'خوادم سحابية'},
+hostCloudD:{fa:'مقیاس‌پذیر و آماده برای رشد کسب‌وکار',en:'Scalable and ready for your growth',ar:'قابلة للتوسع وجاهزة لنمو عملك'},
+hostCdn:{fa:'شبکه توزیع محتوا (CDN)',en:'Content delivery network (CDN)',ar:'شبكة توصيل المحتوى (CDN)'},
+hostCdnD:{fa:'نمایش سریع‌تر تصاویر و فیلم برای گردشگران',en:'Faster images and video for tourists',ar:'عرض أسرع للصور والفيديو للسياح'},
 
 guideTitle:{fa:'🧭 راهنمای سفر',en:'🧭 Travel Guide',ar:'🧭 دليل السفر'},
 guideSub:{fa:'راهنمای گردشگری سایروس توریست',en:'Cyrus Tourist travel guide',ar:'دليل سايروس توريست السياحي'},
