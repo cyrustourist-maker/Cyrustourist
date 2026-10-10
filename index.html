@@ -1743,6 +1743,260 @@ flex:1 1 260px
 .partnerHostHead h3{font-size:18px}
 }
 
+/* LIVE SUPPORT (پشتیبانی زنده) */
+
+.cySupFab{
+position:fixed;
+left:18px;
+bottom:88px;
+z-index:5000;
+width:58px;
+height:58px;
+border:0;
+border-radius:50%;
+cursor:pointer;
+display:grid;
+place-items:center;
+color:#06202a;
+background:linear-gradient(135deg,var(--gold),var(--green));
+box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 4px rgba(255,211,106,.16);
+transition:transform .2s
+}
+
+.cySupFab:hover{transform:translateY(-3px)}
+.cySupFab svg{width:30px;height:30px}
+
+.cySupDot{
+position:absolute;
+top:1px;
+right:1px;
+width:15px;
+height:15px;
+border-radius:50%;
+background:#7a8c97;
+border:2.5px solid #06121d
+}
+
+.cySupFab.isOn .cySupDot{background:#2ee66b}
+
+.cySupFab.isOn .cySupDot::after{
+content:"";
+position:absolute;
+inset:-6px;
+border-radius:50%;
+border:2px solid #2ee66b;
+opacity:.6;
+animation:cySupPing 1.8s ease-out infinite
+}
+
+@keyframes cySupPing{
+from{transform:scale(.6);opacity:.7}
+to{transform:scale(1.5);opacity:0}
+}
+
+.cySupScrim{
+position:fixed;
+inset:0;
+z-index:5190;
+background:rgba(0,0,0,.55);
+opacity:0;
+pointer-events:none;
+transition:opacity .25s
+}
+
+.cySupSheet{
+position:fixed;
+left:50%;
+bottom:0;
+z-index:5200;
+width:min(520px,100%);
+max-height:92vh;
+overflow:auto;
+transform:translate(-50%,105%);
+transition:transform .32s cubic-bezier(.2,.8,.2,1);
+border:1px solid rgba(255,255,255,.18);
+border-bottom:0;
+border-radius:26px 26px 0 0;
+background:linear-gradient(145deg,rgba(41,224,173,.12),rgba(66,184,255,.08)),#071722;
+box-shadow:0 -20px 60px rgba(0,0,0,.55);
+padding-bottom:env(safe-area-inset-bottom)
+}
+
+body.cySupOpen .cySupScrim{opacity:1;pointer-events:auto}
+body.cySupOpen .cySupSheet{transform:translate(-50%,0)}
+
+.cySupHead{
+display:flex;
+align-items:center;
+gap:12px;
+padding:16px;
+color:#06202a;
+background:linear-gradient(135deg,var(--gold),var(--green))
+}
+
+.cySupAvatar{
+flex:none;
+width:50px;
+height:50px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:rgba(255,255,255,.34)
+}
+
+.cySupAvatar svg{width:28px;height:28px}
+
+.cySupHead h2{
+margin:0;
+font-size:17px;
+line-height:1.5
+}
+
+.cySupStatus{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:12.5px;
+font-weight:700
+}
+
+.cySupStatus i{
+width:10px;
+height:10px;
+border-radius:50%;
+background:#6b7f8b;
+display:inline-block
+}
+
+.cySupSheet.isOn .cySupStatus i{background:#12a84a}
+
+.cySupClose{
+margin-inline-start:auto;
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+cursor:pointer;
+font-size:18px;
+color:#06202a;
+background:rgba(255,255,255,.34)
+}
+
+.cySupBody{
+padding:16px;
+display:grid;
+gap:14px
+}
+
+.cySupBody p{
+margin:0;
+font-size:14px;
+line-height:1.9;
+color:var(--muted)
+}
+
+.cySupHours{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+padding:9px 13px;
+border-radius:13px;
+border:1px dashed var(--line);
+font-size:13px
+}
+
+.cySupHours b{color:var(--gold)}
+
+.cySupGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
+
+.cySupCh{
+display:grid;
+justify-items:center;
+gap:3px;
+padding:14px 8px 11px;
+border-radius:18px;
+text-align:center;
+color:#fff;
+border:1px solid var(--line);
+background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+transition:transform .2s,border-color .2s
+}
+
+.cySupCh:hover,
+.cySupCh:focus-visible{
+transform:translateY(-3px);
+border-color:var(--gold);
+outline:none
+}
+
+.cySupCh .contactIcon{width:48px;height:48px}
+.cySupCh b{font-size:14px}
+.cySupCh small{direction:ltr;font-size:11.5px;color:var(--muted)}
+
+.cySupPhone{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:10px 13px;
+border-radius:15px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+font-size:14px
+}
+
+.cySupPhone span{direction:ltr;font-weight:800;letter-spacing:.4px}
+
+.cySupCopy{
+cursor:pointer;
+color:#fff;
+font-size:12px;
+font-weight:700;
+padding:3px 13px;
+border-radius:999px;
+background:transparent;
+border:1px solid var(--line)
+}
+
+.cySupFoot{
+text-align:center;
+font-size:12px;
+color:var(--muted)
+}
+
+.cySupFab:focus-visible,
+.cySupClose:focus-visible,
+.cySupCopy:focus-visible{
+outline:2px solid var(--green);
+outline-offset:2px
+}
+
+@media(prefers-reduced-motion:reduce){
+.cySupSheet,.cySupScrim,.cySupFab{transition:none}
+.cySupFab.isOn .cySupDot::after{animation:none}
+}
+
+/* thanks modal: Bazaar button */
+.thanksActions{
+display:grid;
+gap:10px;
+margin-top:6px
+}
+
+.thanksActions .btn{display:block}
+
+.btn.bazaar{
+border:0;
+color:#2a1d00;
+font-weight:900;
+background:linear-gradient(135deg,var(--gold),#ffb347)
+}
+
 /* RESPONSIVE */
 
 @media(max-width:900px){
@@ -4753,6 +5007,77 @@ style="width:100%;font-size:15px;padding:16px;">
 
 </div>
 
+<!-- LIVE SUPPORT -->
+
+<button class="cySupFab" id="cySupFab" type="button" aria-haspopup="dialog" aria-controls="cySupSheet" aria-label="پشتیبانی زنده">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6.5" rx="1.6" fill="currentColor"/><rect x="17.5" y="13" width="4" height="6.5" rx="1.6" fill="currentColor"/><path d="M19.5 19.5c0 1.4-1.6 2.2-4 2.2h-2"/></svg>
+<span class="cySupDot"></span>
+</button>
+
+<div class="cySupScrim" id="cySupScrim"></div>
+
+<div class="cySupSheet" id="cySupSheet" role="dialog" aria-modal="true" aria-labelledby="cySupTitle" tabindex="-1">
+
+<div class="cySupHead">
+<div class="cySupAvatar">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6.5" rx="1.6" fill="currentColor"/><rect x="17.5" y="13" width="4" height="6.5" rx="1.6" fill="currentColor"/><path d="M19.5 19.5c0 1.4-1.6 2.2-4 2.2h-2"/></svg>
+</div>
+<div>
+<h2 id="cySupTitle" data-i18n="supTitle">پشتیبانی سایروس توریست</h2>
+<div class="cySupStatus"><i></i><span id="cySupStatusText">همکاران ما آنلاین هستند</span></div>
+</div>
+<button class="cySupClose" id="cySupClose" type="button" aria-label="بستن">✕</button>
+</div>
+
+<div class="cySupBody">
+
+<p id="cySupMsg">برای راهنمایی، ثبت‌نام اقامتگاه یا همکاری تبلیغاتی با ما در ارتباط باشید. از هر پیام‌رسانی که راحت‌ترید پیام بدهید.</p>
+
+<div class="cySupHours"><span data-i18n="supHours">ساعت پاسخ‌گویی</span><b data-i18n="supHoursVal">۱۰ تا ۱۸</b></div>
+
+<div class="cySupGrid">
+
+<a class="cySupCh" href="https://wa.me/989153448818" target="_blank" rel="noopener">
+<span class="contactIcon" style="background:linear-gradient(145deg,#34d67a,#25D366);">
+<svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.94 9.94 0 004.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.83 14.18c-.25.7-1.24 1.29-2.03 1.46-.55.12-1.26.21-3.67-.79-3.08-1.28-5.06-4.4-5.21-4.6-.15-.2-1.25-1.66-1.25-3.17 0-1.5.79-2.24 1.07-2.55.28-.3.6-.38.8-.38.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.86 2.08.93 2.23.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.3.76 1.26 1.64 2.04 1.13 1 2.08 1.32 2.38 1.47.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.77.83 2.08.98.3.15.5.23.58.35.08.13.08.72-.17 1.42z"/></svg>
+</span>
+<b data-i18n="contactWhatsappLabel">واتساپ</b>
+<small>+98 915 344 8818</small>
+</a>
+
+<a class="cySupCh" href="https://t.me/Cyrustourist" target="_blank" rel="noopener">
+<span class="contactIcon" style="background:linear-gradient(145deg,#4fb6e8,#229ED9);">
+<svg viewBox="0 0 24 24" fill="#fff"><path d="M21.94 4.4a1.4 1.4 0 00-1.9-.86L2.7 10.6c-1 .38-.98 1.8.03 2.15l4.53 1.58 1.75 5.6c.28.9 1.44 1.13 2.05.4l2.53-3.02 4.7 3.47c.85.63 2.06.17 2.28-.87l3.3-15.5c.05-.24.05-.5-.03-.72zM8.9 13.9l8.9-6.9c.2-.15.4.1.24.28l-7.4 7.5-.3 3.2-1.44-4.08z"/></svg>
+</span>
+<b data-i18n="contactTelegramLabel">تلگرام</b>
+<small>@Cyrustourist</small>
+</a>
+
+<a class="cySupCh" href="https://eitaa.com/cyrustourist" target="_blank" rel="noopener">
+<span class="contactIcon" style="background:linear-gradient(145deg,#3fc7bb,#00a99d);">
+<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+</span>
+<b data-i18n="contactEitaaLabel">ایتا</b>
+<small>@cyrustourist</small>
+</a>
+
+<a class="cySupCh" href="https://www.instagram.com/cyrustourist" target="_blank" rel="noopener">
+<span class="contactIcon" style="background:linear-gradient(145deg,#f9a43e,#d6286b 55%,#6a3ed1);">
+<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r=".95" fill="#fff" stroke="none"/></svg>
+</span>
+<b data-i18n="socialInstagramLabel">اینستاگرام</b>
+<small>@cyrustourist</small>
+</a>
+
+</div>
+
+<div class="cySupPhone"><span id="cySupNum">0915 344 8818</span><button class="cySupCopy" id="cySupCopy" type="button" data-i18n="supCopy">کپی شماره</button></div>
+
+<div class="cySupFoot" data-i18n="supFoot">پیام‌های خارج از ساعت کاری در اولین فرصت پاسخ داده می‌شوند.</div>
+
+</div>
+</div>
+
 <!-- THANK YOU BUTTON -->
 
 <button
@@ -4786,11 +5111,25 @@ aria-modal="true">
 با ما ایران را بهتر ببینید.
 </p>
 
+<div class="thanksActions">
+
+<a
+class="btn bazaar"
+href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&ref=share"
+target="_blank"
+rel="noopener"
+data-i18n="thanksBazaar">
+📲 نصب نرم‌افزار از بازار
+</a>
+
 <button
 class="btn primary"
-id="closeThanks">
+id="closeThanks"
+data-i18n="thanksContinue">
 ادامه
 </button>
+
+</div>
 
 </div>
 
@@ -6743,6 +7082,14 @@ catHotel:{fa:'هتل',en:'Hotel',ar:'فندق'},
 catGuesthouse:{fa:'مهمان‌خانه',en:'Guesthouse',ar:'بيت ضيافة'},
 catEcolodge:{fa:'بوم‌گردی',en:'Eco-lodge',ar:'نزل بيئي'},
 catCamp:{fa:'کمپ',en:'Camp',ar:'مخيم'},
+supTitle:{fa:'پشتیبانی سایروس توریست',en:'Cyrus Tourist Support',ar:'دعم سايروس توريست'},
+supAria:{fa:'پشتیبانی زنده',en:'Live support',ar:'الدعم المباشر'},
+supHours:{fa:'ساعت پاسخ‌گویی',en:'Reply hours',ar:'ساعات الرد'},
+supHoursVal:{fa:'۱۰ تا ۱۸',en:'10:00 to 18:00',ar:'من 10 إلى 18'},
+supCopy:{fa:'کپی شماره',en:'Copy number',ar:'نسخ الرقم'},
+supFoot:{fa:'پیام‌های خارج از ساعت کاری در اولین فرصت پاسخ داده می‌شوند.',en:'Messages outside working hours are answered as soon as possible.',ar:'يتم الرد على الرسائل خارج ساعات العمل في أقرب وقت.'},
+thanksBazaar:{fa:'📲 نصب نرم‌افزار از بازار',en:'📲 Install the app from Bazaar',ar:'📲 ثبّت التطبيق من بازار'},
+thanksContinue:{fa:'ادامه',en:'Continue',ar:'متابعة'},
 
 hostTitle:{fa:'🚀 وب‌سایت و سرور برای کسب‌وکار گردشگری شما',en:'🚀 Website & hosting for your tourism business',ar:'🚀 موقع واستضافة لعملك السياحي'},
 hostSub:{fa:'اقامتگاه، آژانس یا تور خود را آنلاین کنید. هاست و سرور پیشنهادی از همکار ما ایران‌سرور.',en:'Put your stay, agency or tours online. Recommended hosting and servers from our partner Iranserver.',ar:'اعرض مكان إقامتك أو وكالتك أو جولاتك على الإنترنت. استضافة وخوادم مقترحة من شريكنا إيران سرور.'},
@@ -7525,5 +7872,91 @@ if ("serviceWorker" in navigator) {
 </script>
 <script src="js/pwa-bar.js" defer></script>
 <script src="js/featured-film.js" defer></script>
+
+<script>
+/* LIVE SUPPORT — وضعیت آنلاین از ساعت واقعی تهران (۱۰ تا ۱۸) */
+(function(){
+
+var fab=document.getElementById('cySupFab');
+var sheet=document.getElementById('cySupSheet');
+
+if(!fab||!sheet){return;}
+
+var TXT={
+fa:{on:'همکاران ما آنلاین هستند',off:'الان خارج از ساعت کاری هستیم',
+msgOn:'برای راهنمایی، ثبت‌نام اقامتگاه یا همکاری تبلیغاتی با ما در ارتباط باشید. از هر پیام‌رسانی که راحت‌ترید پیام بدهید.',
+msgOff:'پیام بگذارید؛ از ساعت ۱۰ صبح در اولین فرصت پاسخ می‌دهیم.',
+aria:'پشتیبانی زنده، آنلاین',ariaOff:'پشتیبانی، خارج از ساعت کاری',copied:'کپی شد ✓',copy:'کپی شماره'},
+en:{on:'Our team is online',off:'We are outside working hours',
+msgOn:'Need help, want to register your stay or advertise with us? Message us on any app you like.',
+msgOff:'Leave a message and we will reply from 10:00 as soon as possible.',
+aria:'Live support, online',ariaOff:'Support, outside working hours',copied:'Copied ✓',copy:'Copy number'},
+ar:{on:'فريقنا متصل الآن',off:'نحن خارج ساعات العمل',
+msgOn:'للمساعدة أو تسجيل مكان إقامتك أو الإعلان معنا، راسلنا عبر أي تطبيق يناسبك.',
+msgOff:'اترك رسالة وسنرد عليك من الساعة 10 في أقرب وقت.',
+aria:'الدعم المباشر، متصل',ariaOff:'الدعم، خارج ساعات العمل',copied:'تم النسخ ✓',copy:'نسخ الرقم'}
+};
+
+function lang(){
+var l=(document.documentElement.lang||'fa').toLowerCase().split('-')[0];
+return TXT[l]?l:'fa';
+}
+
+function isOpen(){
+try{
+var h=+new Intl.DateTimeFormat('en-GB',{hour:'numeric',hour12:false,timeZone:'Asia/Tehran'}).format(new Date());
+return h>=10&&h<18;
+}catch(e){return false;}
+}
+
+function paint(){
+var t=TXT[lang()],on=isOpen();
+fab.classList.toggle('isOn',on);
+sheet.classList.toggle('isOn',on);
+document.getElementById('cySupStatusText').textContent=on?t.on:t.off;
+document.getElementById('cySupMsg').textContent=on?t.msgOn:t.msgOff;
+fab.setAttribute('aria-label',on?t.aria:t.ariaOff);
+}
+
+function openSheet(){
+document.body.classList.add('cySupOpen');
+paint();
+sheet.focus();
+}
+
+function closeSheet(){
+document.body.classList.remove('cySupOpen');
+fab.focus();
+}
+
+fab.addEventListener('click',openSheet);
+document.getElementById('cySupClose').addEventListener('click',closeSheet);
+document.getElementById('cySupScrim').addEventListener('click',closeSheet);
+
+document.addEventListener('keydown',function(e){
+if(e.key==='Escape'&&document.body.classList.contains('cySupOpen')){closeSheet();}
+});
+
+document.getElementById('cySupCopy').addEventListener('click',function(){
+var btn=this,t=TXT[lang()];
+function done(){btn.textContent=t.copied;setTimeout(function(){btn.textContent=t.copy;},1600);}
+function sel(){
+var r=document.createRange();
+r.selectNodeContents(document.getElementById('cySupNum'));
+var s=window.getSelection();s.removeAllRanges();s.addRange(r);
+}
+try{
+navigator.clipboard.writeText('09153448818').then(done,sel);
+}catch(e){sel();}
+});
+
+var sw=document.getElementById('languageSelect');
+if(sw){sw.addEventListener('change',function(){setTimeout(paint,50);});}
+
+paint();
+setInterval(paint,60000);
+
+})();
+</script>
 </body>
 </html>
