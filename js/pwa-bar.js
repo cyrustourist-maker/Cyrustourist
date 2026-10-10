@@ -36,9 +36,9 @@
 
   var KEY = "cyrusPwaBarClosed";
   try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
-  css.textContent = ".cpb{position:fixed;z-index:9998;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:460px;margin:0 auto;display:flex;gap:8px;direction:rtl}" +
-    ".cpb button{font:inherit;border:0;cursor:pointer}.cpb .i{flex:1;min-height:52px;border-radius:16px;background:#29e0ad;color:#06121d;font-weight:800;font-size:16px;box-shadow:0 8px 22px rgba(0,0,0,.4)}" +
-    ".cpb .x{width:52px;border-radius:16px;background:#0b2230;color:#eaf6f2;font-size:20px;border:1px solid #17384a}";
+  css.textContent = ".cpb{position:fixed;z-index:9998;left:68px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:360px;margin:0 0 0 auto;display:flex;gap:8px;direction:rtl}" +
+    ".cpb button{font:inherit;border:0;cursor:pointer}.cpb .i{flex:1;min-height:46px;border-radius:14px;background:#29e0ad;color:#06121d;font-weight:800;font-size:14px;box-shadow:0 8px 22px rgba(0,0,0,.4)}" +
+    ".cpb .x{width:46px;border-radius:14px;background:#0b2230;color:#eaf6f2;font-size:20px;border:1px solid #17384a}";
   document.head.appendChild(css);
   ready(function () {
     var bar = document.createElement("div");
