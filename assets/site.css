@@ -1,0 +1,96 @@
+/* =========================================================
+   سایروس توریست — استایل مشترک همهٔ صفحه‌ها
+   ۱) فونت وزیرمتن (فایل روی خود سایت؛ نه گوگل‌فونت)
+   ۲) رنگ‌ها و متغیرهای مشترک
+   ۳) پایین‌صفحهٔ مشترک
+   این فایل در آخر <head> هر صفحه بارگذاری می‌شود تا یکدستی را اعمال کند.
+========================================================= */
+
+/* فایل: assets/fonts/Vazirmatn-Variable.woff2
+   اگر فایل هنوز روی سایت نیست، مرورگر خودکار Tahoma را نشان می‌دهد و چیزی خراب نمی‌شود. */
+@font-face{
+  font-family:"Vazirmatn";
+  src:local("Vazirmatn"),
+      url("fonts/Vazirmatn-Variable.woff2") format("woff2");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap
+}
+
+:root{
+  --cy-bg:#06121d;
+  --cy-bg2:#0b2230;
+  --cy-card:rgba(255,255,255,.08);
+  --cy-line:rgba(255,255,255,.15);
+  --cy-text:#f5fbff;
+  --cy-muted:#b9cbd4;
+  --cy-green:#29e0ad;
+  --cy-blue:#42b8ff;
+  --cy-gold:#ffd36a;
+  --cy-font:"Vazirmatn",Tahoma,system-ui,Arial,sans-serif
+}
+
+html body{font-family:var(--cy-font)}
+button,input,select,textarea{font-family:inherit}
+
+/* ---------- پایین‌صفحهٔ مشترک ---------- */
+
+.cyrusFooter{
+  margin-top:36px;
+  padding:26px 16px calc(92px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--cy-line);
+  background:linear-gradient(180deg,rgba(11,34,48,.55),rgba(3,13,22,.95));
+  color:var(--cy-muted);
+  text-align:center;
+  font-size:13px;
+  line-height:1.9;
+  direction:rtl
+}
+
+.cyrusFooter .cyrusFooterIn{
+  width:min(1100px,100%);
+  margin:0 auto;
+  display:grid;
+  gap:12px;
+  justify-items:center
+}
+
+.cyrusFooter .cyrusFooterBrand{
+  font-weight:900;
+  font-size:16px;
+  background:linear-gradient(90deg,var(--cy-gold),var(--cy-green));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-decoration:none
+}
+
+.cyrusFooter nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px 8px
+}
+
+.cyrusFooter nav a{
+  color:var(--cy-text);
+  text-decoration:none;
+  padding:4px 11px;
+  border:1px solid var(--cy-line);
+  border-radius:999px;
+  background:rgba(255,255,255,.05)
+}
+
+.cyrusFooter nav a:hover,
+.cyrusFooter nav a:focus-visible{
+  border-color:var(--cy-gold);
+  color:var(--cy-gold);
+  outline:none
+}
+
+.cyrusFooter p{margin:0;font-size:12px}
+
+/* داخل وب‌اپ نصب‌شده، نوار تب پایین خودش هست */
+@media (display-mode:standalone){
+  .cyrusFooter{display:none}
+}
