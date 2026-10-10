@@ -6,12 +6,12 @@
    این فایل در آخر <head> هر صفحه بارگذاری می‌شود تا یکدستی را اعمال کند.
 ========================================================= */
 
-/* فایل: assets/fonts/Vazirmatn-Variable.woff2
+/* فایل: assets/Vazirmatn-Variable.woff2
    اگر فایل هنوز روی سایت نیست، مرورگر خودکار Tahoma را نشان می‌دهد و چیزی خراب نمی‌شود. */
 @font-face{
   font-family:"Vazirmatn";
   src:local("Vazirmatn"),
-      url("fonts/Vazirmatn-Variable.woff2") format("woff2");
+      url("Vazirmatn-Variable.woff2") format("woff2");
   font-weight:100 900;
   font-style:normal;
   font-display:swap
