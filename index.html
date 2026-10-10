@@ -24,6 +24,8 @@
 <meta name="keywords" content="گردشگری ایران, سفر به ایران, جاذبه های گردشگری ایران, طبیعت گردی, اقامتگاه های گردشگری, گردشگری سلامت, نقشه گردشگری, راهنمای سفر, سایروس توریست">
 <meta name="author" content="سایروس توریست">
 <link rel="canonical" href="https://cyrustourist.ir/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <title>سایروس توریست | راهنمای سفر و گردشگری ایران با نقشه پویا</title>
 
 <link rel="icon" href="assets/images/favicon.ico" sizes="any">
@@ -73,11 +75,6 @@
   "longitude":59.5164833
 },
 "hasMap":"https://maps.app.goo.gl/znzQrjcTs8zp4EdbA",
-"aggregateRating":{
-  "@type":"AggregateRating",
-  "ratingValue":"5.0",
-  "reviewCount":"4"
-},
 "sameAs":[
   "https://t.me/Cyrustourist",
   "https://eitaa.com/cyrustourist",
@@ -99,7 +96,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
 
 <style>
 :root{
@@ -578,17 +575,13 @@ width:100%;
 height:470px;
 direction:ltr;
 background:#dbe8ec;
-touch-action:pan-y;
-overscroll-behavior:none;
 user-select:none;
 -webkit-user-select:none;
 -webkit-touch-callout:none
 }
 
 .leaflet-container{
-font-family:Tahoma,Arial,sans-serif;
-touch-action:none!important;
-overscroll-behavior:none!important
+font-family:Tahoma,Arial,sans-serif
 }
 
 .leaflet-control-zoom{
@@ -2059,6 +2052,7 @@ display:inline-block
 }
 
 </style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 
 <body>
@@ -2298,13 +2292,13 @@ html[dir="ltr"] .cyrusSVBox{direction:ltr}
 
 <div class="cyrusCarousel" id="cyrusAdBox1" data-slot="1">
 <a class="cyrusCarouselLink" id="cyrusAdBoxLink1" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات ویژه سایروس توریست">
-<img id="cyrusAdBoxImg1" src="assets/images/ads/banner-01.jpg" alt="تبلیغات ویژه سایروس توریست" loading="lazy">
+<img id="cyrusAdBoxImg1" src="assets/images/ads/banner-01.jpg" alt="تبلیغات ویژه سایروس توریست" width="1600" height="900" loading="lazy" decoding="async">
 </a>
 </div>
 
 <div class="cyrusCarousel" id="cyrusAdBox2" data-slot="2">
 <a class="cyrusCarouselLink" id="cyrusAdBoxLink2" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات ویژه سایروس توریست">
-<img id="cyrusAdBoxImg2" src="assets/images/ads/banner-04.jpg" alt="تبلیغات ویژه سایروس توریست" loading="lazy">
+<img id="cyrusAdBoxImg2" src="assets/images/ads/banner-04.jpg" alt="تبلیغات ویژه سایروس توریست" width="1600" height="900" loading="lazy" decoding="async">
 </a>
 </div>
 
@@ -4853,9 +4847,11 @@ id="resourceCloseButton">
 </div>
 
 <script
-src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
 crossorigin="">
 </script>
+
+<script src="js/map-touch.js"></script>
 
 <script>
 
@@ -5135,6 +5131,10 @@ attribution:'© OpenStreetMap'
 }
 
 ).addTo(touristMap);
+
+if(window.cyrusMapTouchGuard){
+cyrusMapTouchGuard(touristMap);
+}
 
 setTimeout(
 invalidate,
