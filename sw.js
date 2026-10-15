@@ -1,4 +1,4 @@
-const CYRUS_CACHE = "cyrus-tourist-v21";
+const CYRUS_CACHE = "cyrus-tourist-v22";
 
 const CORE_FILES = [
   "./",
@@ -86,6 +86,26 @@ self.addEventListener("fetch", function (event) {
           return caches.match(event.request).then(function (cached) {
             return cached || caches.match("index.html");
           });
+        })
+    );
+    return;
+  }
+
+  // عکس‌های تبلیغات: همیشه اول شبکه (تا عکس جدید با همان نام هم فوری دیده شود)
+  if (url.pathname.indexOf("/assets/images/ads/") !== -1) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-cache" })
+        .then(function (response) {
+          if (response && response.status === 200) {
+            var copy = response.clone();
+            caches.open(CYRUS_CACHE).then(function (cache) {
+              cache.put(event.request, copy);
+            });
+          }
+          return response;
+        })
+        .catch(function () {
+          return caches.match(event.request);
         })
     );
     return;
