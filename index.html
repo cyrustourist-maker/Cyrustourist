@@ -2552,7 +2552,7 @@ html[dir="ltr"] .cyrusSVBox{direction:ltr}
 
 <div class="cyrusCarousel" id="cyrusAdBox2" data-slot="2">
 <a class="cyrusCarouselLink" id="cyrusAdBoxLink2" href="https://www.aparat.com/Cyrustourist" target="_blank" rel="noopener" aria-label="تبلیغات ویژه سایروس توریست">
-<img id="cyrusAdBoxImg2" src="assets/images/ads/banner-04.jpg" alt="تبلیغات ویژه سایروس توریست" width="1600" height="900" loading="lazy" decoding="async">
+<img id="cyrusAdBoxImg2" src="assets/images/ads/banner-02.jpg" alt="تبلیغات ویژه سایروس توریست" width="1600" height="900" loading="lazy" decoding="async">
 </a>
 </div>
 
@@ -2967,8 +2967,8 @@ show(index);
 }
 
 img.addEventListener('error', function(){
-if(items.length < 2){return;}
 items.splice(index, 1);
+if(!items.length){box.style.display = 'none'; return;}
 index = index % items.length;
 show(index);
 startRotation();
@@ -3008,12 +3008,16 @@ startRotation();
 
 }
 
+/* عدد فرد (۱،۳،۵،۷ ...) = جدول بالا | عدد زوج (۲،۴،۶ ...) = جدول پایین */
 setupAdSlot(1, 'cyrusAdBox1', 'cyrusAdBoxLink1', 'cyrusAdBoxImg1', [
 {img:'assets/images/ads/banner-01.jpg', link:'residences/residences.html'},
-{img:'assets/images/ads/banner-03.jpg', link:'residences/residences.html'}
+{img:'assets/images/ads/banner-bazaar.jpg', link:'residences/residences.html'},
+{img:'assets/images/ads/banner-05.jpg', link:'residences/residences.html'},
+{img:'assets/images/ads/banner-07.jpg', link:'residences/residences.html'}
 ]);
 
 setupAdSlot(2, 'cyrusAdBox2', 'cyrusAdBoxLink2', 'cyrusAdBoxImg2', [
+{img:'assets/images/ads/banner-02.jpg', link:'residences/residences.html'},
 {img:'assets/images/ads/banner-04.jpg', link:'residences/residences.html'},
 {img:'assets/images/ads/banner-06.jpg', link:'residences/residences.html'}
 ]);
