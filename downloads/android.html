@@ -618,86 +618,39 @@
 
 
             /*
-             * مسیر ثابت فایل APK (ریشه‌ی سایت؛ حروف بزرگ/کوچک مهم است)
-             * فایل روی سرور: https://cyrustourist.ir/Cyrustourist-32bit.apk
+             * فایل APK در Release مخزن سایت در گیت‌هاب نگهداری می‌شود
+             * (آپلود مستقیم در مخزن بالای ۲۵ مگابایت ممکن نیست).
+             * بررسی HEAD بین‌دامنه‌ای ممکن نیست؛ دانلود مستقیم شروع می‌شود.
              */
 
             const apkPath =
-                "/Cyrustourist-32bit.apk";
+                "https://github.com/cyrustourist-maker/Cyrustourist/releases/download/app-latest/Cyrustourist32.ir.apk";
 
-            /* فایل‌های کوچک‌تر از این حد سالم نیستند (مثلاً فایل ۱ بایتی) */
-            const MIN_APK_BYTES =
-                5 * 1024 * 1024;
+            loading.style.display =
+                "none";
 
+            resultTitle.innerHTML =
+                "🎉 فایل آماده است";
 
-            fetch(
-                apkPath,
-                {
-                    method: "HEAD",
-                    cache: "no-store"
-                }
-            )
-            .then(function(response) {
+            resultText.innerHTML =
+                "دانلود فایل اپلیکیشن سایروس توریست شروع می‌شود.";
 
-                loading.style.display =
-                    "none";
+            setTimeout(function() {
 
-                const header =
-                    response.headers.get("content-length");
+                const link =
+                    document.createElement("a");
 
-                const size =
-                    header
-                        ? parseInt(header, 10)
-                        : 0;
+                link.href = apkPath;
 
-                /* اگر سرور اندازه را نفرستاد، فقط به وضعیت پاسخ اعتماد می‌کنیم */
-                const sizeOk =
-                    !header || size >= MIN_APK_BYTES;
+                link.rel = "noopener";
 
-                if (response.ok && sizeOk) {
+                document.body.appendChild(link);
 
-                    resultTitle.innerHTML =
-                        "🎉 فایل آماده است";
+                link.click();
 
-                    resultText.innerHTML =
-                        "دانلود فایل اپلیکیشن سایروس توریست شروع می‌شود.";
+                document.body.removeChild(link);
 
-                    setTimeout(function() {
-
-                        const link =
-                            document.createElement("a");
-
-                        link.href = apkPath;
-
-                        link.download =
-                            "Cyrustourist-32bit.apk";
-
-                        document.body.appendChild(link);
-
-                        link.click();
-
-                        document.body.removeChild(link);
-
-                    }, 500);
-
-                }
-
-                else {
-
-                    showComingSoon();
-
-                }
-
-            })
-
-            .catch(function() {
-
-                loading.style.display =
-                    "none";
-
-                showComingSoon();
-
-            });
+            }, 500);
 
         }
 
