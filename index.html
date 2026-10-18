@@ -5257,7 +5257,7 @@ bazaar:
 
 /* فایل مستقیم: اگر فایل واقعی روی هاست نیست، خالی بماند. */
 androidFile:
-'Cyrustourist-32bit.apk',
+'https://github.com/cyrustourist-maker/Cyrustourist/releases/download/app-latest/Cyrustourist32.ir.apk',
 
 iosFile:
 '',
@@ -7538,6 +7538,9 @@ return (titles[lang] && titles[lang][key]) || titles.fa[key] || 'Cyrus Tourist';
 async function cyrusFileExists(url){
 
 if(!url || !url.trim()) return false;
+
+/* لینک خارجی (Release گیت‌هاب): بررسی HEAD بین‌دامنه‌ای ممکن نیست؛ مستقیم معتبر فرض می‌شود */
+if(/^https:\/\/github\.com\//i.test(url)) return true;
 
 try{
 const response=await fetch(url,{method:'HEAD',cache:'no-store'});
