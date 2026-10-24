@@ -18,7 +18,7 @@ a{color:var(--ac);text-decoration:none}h1{font-size:21px;margin:4px 0}p{margin:2
 .b.o{background:var(--card);color:var(--ac);border:1px solid var(--line)}
 .main{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.main .b{min-height:64px;color:#fff;font-size:14px;line-height:1.5;box-shadow:0 5px 14px rgba(0,0,0,.35)}
 .q{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.q .b{white-space:nowrap;min-height:40px;font-size:13px}.q .b.on,.main .b.on{outline:3px solid #fff}
-#map{height:56vh;min-height:320px;border-radius:18px;border:1px solid var(--line);direction:ltr;margin-top:6px}
+#map{height:56vh;min-height:320px;border-radius:18px;border:1px solid var(--line);direction:ltr;margin-top:6px;background:#0b1730}
 #st{margin:10px 0;color:var(--mu);font-size:14px;min-height:22px}.err{color:#ff8a8a}
 .it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:8px 0}.it b{display:block}.it small{color:var(--mu)}
 .it .r{display:flex;gap:8px;margin-top:8px}.it .b{min-height:38px;font-size:13px;display:inline-flex;align-items:center}
@@ -78,9 +78,18 @@ car:{l:"🔧 خدمات خودرو",c:"#b45309",t:["shop=car_repair","amenity=ca
 sim:{l:"📱 سیم‌کارت",c:"#4f46e5",t:["shop=mobile_phone","office=telecommunication"]}};
 var MAIN=["attraction","health","stay"],EP=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
 var RAD=5000,$=function(i){return document.getElementById(i)},map=L.map("map",{zoomControl:true}).setView([35.6892,51.389],12),layer=L.layerGroup().addTo(map),me=null,meMark=null,cur=null,busy=false;
-/* منبع کاشی نقشه — برای عوض‌کردن سرویس فقط همین دو خط را تغییر دهید */
-var TILES="https://tile.openstreetmap.org/{z}/{x}/{y}.png",ATTR="© OpenStreetMap";
-L.tileLayer(TILES,{maxZoom:19,attribution:ATTR}).addTo(map);
+/* منبع کاشی نقشه — اگر سرور اول بالا نیامد (خطا یا ۸ ثانیه بی‌پاسخ)، خودکار سرور بعدی امتحان می‌شود */
+var TILES=[{u:"https://tile.openstreetmap.org/{z}/{x}/{y}.png",o:{}},{u:"https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",o:{subdomains:"abc"}},{u:"https://tile.openstreetmap.de/{z}/{x}/{y}.png",o:{}}],ATTR="© OpenStreetMap",ti=0,tl=null;
+function useTiles(i){
+if(tl)map.removeLayer(tl);
+ti=i;var o={maxZoom:19,attribution:ATTR};for(var k in TILES[i].o)o[k]=TILES[i].o[k];
+var cl=L.tileLayer(TILES[i].u,o).addTo(map),ok=0,er=0,done=false;tl=cl;
+function bad(){if(done||tl!==cl||ok)return;done=true;if(ti<TILES.length-1){useTiles(ti+1)}else{st("تصاویر نقشه بارگذاری نمی‌شود؛ اتصال اینترنت را بررسی کنید.",1)}}
+cl.on("tileload",function(){ok++});
+cl.on("tileerror",function(){er++;if(er>=4)bad()});
+setTimeout(bad,8000);
+}
+useTiles(0);
 if(window.cyrusMapTouchGuard)cyrusMapTouchGuard(map);
 function mk(k,p){var b=document.createElement("button");b.type="button";b.className="b";b.textContent=CATS[k].l;b.style.background=CATS[k].c;b.style.color="#fff";b.dataset.k=k;b.onclick=function(){run(k)};p.appendChild(b)}
 MAIN.forEach(function(k){mk(k,$("main"))});Object.keys(CATS).filter(function(k){return MAIN.indexOf(k)<0}).forEach(function(k){mk(k,$("quick"))});
