@@ -2953,6 +2953,16 @@ var timer = null;
 var usingPanel = false;
 var started = false;
 
+function mergeItems(panelList, hostList){
+var out = [], seen = {}, a = panelList || [], b = hostList || [];
+var n = Math.max(a.length, b.length);
+for(var k = 0; k < n; k++){
+if(k < a.length && a[k] && !seen[a[k].img]){seen[a[k].img] = 1; out.push(a[k]);}
+if(k < b.length && b[k] && !seen[b[k].img]){seen[b[k].img] = 1; out.push(b[k]);}
+}
+return out;
+}
+
 function show(i){
 if(!items.length){box.style.display = 'none'; return;}
 box.style.display = '';
@@ -2999,7 +3009,7 @@ startRotation();
 /* اولویت ۱: آخرین تبلیغ‌های پنل که در دستگاه ذخیره شده‌اند (نمایش فوری) */
 var cached = null;
 try{cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');}catch(e){cached = null;}
-if(cached && cached.length){start(cached, true);}
+if(cached && cached.length){start(mergeItems(cached, defaultItems), true);}
 
 /* اگر پاسخ پنل دیرتر از ۱٫۵ ثانیه رسید، تا آن موقع عکس‌های پیش‌فرض نشان داده می‌شوند */
 var fallbackTimer = setTimeout(function(){
@@ -3032,9 +3042,10 @@ useDefaults();
 return;
 }
 
-var same = usingPanel && JSON.stringify(items) === JSON.stringify(dbItems);
+var merged = mergeItems(dbItems, defaultItems);
+var same = usingPanel && JSON.stringify(items) === JSON.stringify(merged);
 try{localStorage.setItem(CACHE_KEY, JSON.stringify(dbItems));}catch(e){}
-if(!same){start(dbItems, true);}
+if(!same){start(merged, true);}
 })
 .catch(function(){
 clearTimeout(fallbackTimer);
