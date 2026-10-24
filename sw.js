@@ -1,10 +1,4 @@
-const CYRUS_CACHE = "cyrus-tourist-v23";
-
-/* کتابخانه‌ی نقشه (Leaflet) از cdnjs می‌آید؛ برای آفلاین‌بودن نقشه در کش نگه داشته می‌شود */
-const LEAFLET_URLS = [
-  "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
-];
+const CYRUS_CACHE = "cyrus-tourist-v22";
 
 const CORE_FILES = [
   "./",
@@ -40,19 +34,7 @@ function bypassCache(url) {
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CYRUS_CACHE).then(function (cache) {
-      return cache.addAll(CORE_FILES).then(function () {
-        return Promise.all(
-          LEAFLET_URLS.map(function (u) {
-            return fetch(u, { mode: "cors" })
-              .then(function (r) {
-                if (r && r.ok) {
-                  return cache.put(u, r);
-                }
-              })
-              .catch(function () {});
-          })
-        );
-      });
+      return cache.addAll(CORE_FILES);
     })
   );
   self.skipWaiting();
@@ -81,16 +63,6 @@ self.addEventListener("fetch", function (event) {
   }
 
   var url = new URL(event.request.url);
-
-  // Leaflet: اول کش، اگر نبود شبکه
-  if (LEAFLET_URLS.indexOf(url.href) !== -1) {
-    event.respondWith(
-      caches.match(url.href, { ignoreVary: true }).then(function (cached) {
-        return cached || fetch(event.request);
-      })
-    );
-    return;
-  }
 
   // فقط همین سایت؛ APK و فایل‌های تأیید بدون دخالت Service Worker
   if (url.origin !== self.location.origin || bypassCache(url)) {
