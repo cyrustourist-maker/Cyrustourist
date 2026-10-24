@@ -54,6 +54,15 @@ a{color:var(--ac);text-decoration:none}h1{font-size:21px;margin:4px 0}p{margin:2
 <script src="assets/favorites.js"></script>
 <script>
 (function(){
+if(typeof L==="undefined"){
+var mm=document.getElementById("map");
+mm.style.cssText+=";display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;direction:rtl";
+mm.textContent="نقشه بارگذاری نشد. اتصال اینترنت را بررسی کنید.";
+var rb=document.createElement("button");rb.type="button";rb.className="b";rb.textContent="🔄 تلاش دوباره";
+rb.onclick=function(){location.reload()};mm.appendChild(rb);
+window.addEventListener("online",function(){location.reload()});
+return;
+}
 var CATS={
 attraction:{l:"🏛️ جاذبه‌های گردشگری",c:"#e11d48",t:["tourism=attraction","tourism=museum","tourism=gallery","tourism=viewpoint","tourism=artwork","historic=monument","historic=castle","historic=archaeological_site","historic=ruins","historic=memorial","leisure=park"]},
 health:{l:"🩺 گردشگری سلامت",c:"#0891b2",t:["healthcare","amenity=hospital","amenity=clinic","amenity=doctors","amenity=pharmacy","amenity=spa"]},
