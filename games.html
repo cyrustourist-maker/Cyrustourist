@@ -57,6 +57,13 @@ canvas{display:block;margin:12px auto 0;background:#fff;border-radius:12px;max-w
  padding:10px 16px;font-size:14px;display:none;z-index:50;max-width:90%;text-align:center}
 #cam{position:fixed;inset:0;background:#000;z-index:60;display:none;flex-direction:column;align-items:center;justify-content:center}
 #cam video{width:100%;max-height:75vh;object-fit:cover}
+.steps{margin:10px 0 0;padding:0 22px 0 0;line-height:1.9;font-size:15px;color:#dbe8fb}
+.steps li{margin-top:8px}
+.steps b{color:var(--gold)}
+.note{background:rgba(255,200,61,.12);border:1.5px dashed var(--gold);border-radius:14px;padding:10px 12px;margin-top:10px;font-size:13.5px;line-height:1.9;color:#ffe9a8}
+details.card summary{cursor:pointer;font-weight:800;font-size:16px}
+.qrrow{text-align:center;margin-top:10px}
+.qrrow .muted{margin-top:4px}
 </style>
 </head>
 <body>
@@ -77,9 +84,42 @@ canvas{display:block;margin:12px auto 0;background:#fff;border-radius:12px;max-w
       <div class="game soon"><div class="ic">🎲</div><div><b>منچ</b><div class="muted">به‌زودی</div></div></div>
       <div class="game soon"><div class="ic">♟️</div><div><b>شطرنج</b><div class="muted">به‌زودی</div></div></div>
     </div>
+    <button class="btn gold" id="goIos">🍎 آیفون: پیدا کردن وای‌فای و اتصال به بازی اندروید</button>
     <button class="btn gold" id="goLocal">📶 بازی با وای‌فای (بدون اینترنت)</button>
     <button class="btn" id="goWs">🌐 اتاق آنلاین / میزبان اندروید</button>
     <p class="muted" style="margin-top:14px">برای بازی بدون اینترنت، همه باید یک بار با اینترنت این صفحه را باز کنند تا در گوشی ذخیره شود.</p>
+  </section>
+
+  <!-- آیفون: اتصال به میزبان اندروید -->
+  <section class="screen" id="iosJoin">
+    <div class="card">
+      <h2>🍎 اتصال آیفون به بازی اندروید</h2>
+      <div class="muted">سافاری به سایت‌ها اجازه نمی‌دهد وای‌فای را جستجو کند یا خودکار وصل شود؛ پس وصل‌شدن به وای‌فای را خود آیفون انجام می‌دهد و باقی کار با این صفحه است.</div>
+      <ol class="steps">
+        <li><b>وای‌فای دوست اندرویدی:</b> از او بخواهید وای‌فای بازی (هات‌اسپات) را روشن کند. روی آیفون: <b>تنظیمات ← Wi‑Fi</b> و نام همان شبکه را بزنید؛ یا QR وای‌فای را که او نشان می‌دهد با <b>دوربین آیفون</b> بخوانید و «Join» را بزنید. اگر نوشت «بدون اینترنت»، همان‌جا وصل بمانید.</li>
+        <li><b>آدرس و کد اتاق:</b> آدرسی را که روی گوشی اندروید نوشته شده وارد کنید (معمولاً همین است که پر شده).</li>
+        <li><b>باز کردن بازی:</b> دکمه‌ی پایین را بزنید. اگر iOS دربارهٔ «شبکه‌ی محلی» پرسید، «Allow» را بزنید.</li>
+      </ol>
+      <label>نام شما</label>
+      <input type="text" id="iosName" maxlength="20" placeholder="مثلاً: سارا" autocomplete="off">
+      <label>آدرس میزبان اندروید</label>
+      <input type="text" id="iosAddr" class="ltr" inputmode="url" autocomplete="off" autocapitalize="off" placeholder="192.168.43.1:8080">
+      <label>کد اتاق (اختیاری)</label>
+      <input type="text" id="iosRoom" class="ltr" maxlength="12" inputmode="numeric" placeholder="1234" autocomplete="off">
+      <button class="btn gold" id="iosGo">🎮 باز کردن بازی</button>
+      <div class="note">بدون اینترنت: همین صفحه را یک بار با اینترنت باز کنید تا در گوشی ذخیره شود؛ بعداً بدون اینترنت هم باز می‌شود. اگر آدرس درست نبود، همان‌طور که روی گوشی اندروید نوشته شده بنویسید (فقط عدد و نقطه، مثل 192.168.43.1:8080).</div>
+    </div>
+    <details class="card">
+      <summary>📷 من اندروید دارم؛ QR وای‌فای و QR بازی بساز</summary>
+      <div class="muted">نام و رمز هات‌اسپات را بنویسید؛ آیفون‌ها QR اول را با دوربین می‌خوانند و وصل می‌شوند، بعد QR دوم بازی را باز می‌کند.</div>
+      <input type="text" id="qrSsid" class="ltr" placeholder="نام وای‌فای (SSID)" autocomplete="off">
+      <input type="text" id="qrPass" class="ltr" placeholder="رمز وای‌فای (خالی = بدون رمز)" autocomplete="off">
+      <button class="btn" id="qrMake">ساخت QR</button>
+      <div id="qrOut" hidden>
+        <div class="qrrow"><canvas id="qrWifi"></canvas><div class="muted">۱) QR وای‌فای: با دوربین آیفون بخوانید</div></div>
+        <div class="qrrow"><canvas id="qrGame"></canvas><div class="muted">۲) QR بازی: بعد از وصل‌شدن به وای‌فای بخوانید</div></div>
+      </div>
+    </details>
   </section>
 
   <!-- نام -->
@@ -572,10 +612,54 @@ $('#nameOk').onclick = () => {
 };
 $('#localHost').onclick = () => { if (!window.RTCPeerConnection) return toast('این مرورگر از اتصال مستقیم پشتیبانی نمی‌کند.'); startLocalHost(); };
 
+/* =====================================================================
+   آیفون ← میزبان اندروید (صفحه از روی HTTP همان گوشی باز می‌شود)
+   سافاری فقط «رفتن به آدرس» را اجازه می‌دهد؛ fetch و ws:// از صفحه‌ی HTTPS مسدود است.
+===================================================================== */
+const DEF_ADDR = '192.168.43.1:8080';
+function cleanAddr(v) { return String(v || '').trim().replace(/^https?:\/\//i, '').replace(/\/.*$/, ''); }
+function validAddr(a) { return /^[A-Za-z0-9.\-]+(:\d{1,5})?$/.test(a); }
+function gameLink(addr, room, name) {
+  let h = '';
+  if (room) h += 'room=' + encodeURIComponent(room);
+  if (name) h += (h ? '&' : '') + 'n=' + encodeURIComponent(name);
+  return 'http://' + addr + '/games.html' + (h ? '#' + h : '');
+}
+function openIos() {
+  $('#iosName').value = store.get('cyrusGameName', '');
+  $('#iosAddr').value = store.get('cyrusAddr', DEF_ADDR);
+  $('#iosRoom').value = store.get('cyrusRoom', '');
+  show('iosJoin');
+}
+$('#goIos').onclick = openIos;
+$('#iosGo').onclick = () => {
+  const name = $('#iosName').value.trim(), addr = cleanAddr($('#iosAddr').value), room = $('#iosRoom').value.trim();
+  if (!name) return toast('نام را بنویسید.');
+  if (!validAddr(addr)) return toast('آدرس درست نیست؛ مثل 192.168.43.1:8080 بنویسید.');
+  store.set('cyrusGameName', name); store.set('cyrusAddr', addr); store.set('cyrusRoom', room);
+  toast('در حال رفتن به بازی… اگر باز نشد، وای‌فای آیفون را بررسی کنید.');
+  setTimeout(() => { location.href = gameLink(addr, room, name); }, 400);
+};
+const wifiEsc = v => String(v).replace(/([\\;,:"])/g, '\\$1');
+$('#qrMake').onclick = () => {
+  const ssid = $('#qrSsid').value.trim(), pass = $('#qrPass').value;
+  if (!ssid) return toast('نام وای‌فای را بنویسید.');
+  const addr = cleanAddr($('#iosAddr').value) || DEF_ADDR, room = $('#iosRoom').value.trim();
+  const w = pass ? 'WIFI:T:WPA;S:' + wifiEsc(ssid) + ';P:' + wifiEsc(pass) + ';;' : 'WIFI:T:nopass;S:' + wifiEsc(ssid) + ';;';
+  drawQR($('#qrWifi'), w); drawQR($('#qrGame'), gameLink(addr, room, ''));
+  $('#qrOut').hidden = false;
+};
+if (location.protocol === 'http:') $('#goIos').hidden = true; // روی خود میزبان اندروید لازم نیست
+
 /* ورود از روی لینک QR */
 (function boot() {
-  const a = hashParam('a'), j = hashParam('j'), p = hashParam('p');
-  if (a && p) { // میزبان QR مهمان را با دوربین عادی اسکن کرده
+  const a = hashParam('a'), j = hashParam('j'), p = hashParam('p'), room = hashParam('room');
+  if (room !== null && location.protocol === 'http:') { // صفحه از میزبان اندروید باز شده
+    const dec = v => { try { return decodeURIComponent(v || ''); } catch (e) { return ''; } };
+    S.name = dec(hashParam('n')) || store.get('cyrusGameName', '');
+    afterName = () => { setupWsForm(); $('#wsRoom').value = dec(room); show('wsForm'); };
+    if (S.name) afterName(); else toName();
+  } else if (a && p) { // میزبان QR مهمان را با دوربین عادی اسکن کرده
     if (bc) bc.postMessage({ k: 'ans', p, code: a });
     show('deliver'); setTimeout(() => { try { window.close(); } catch (e) {} }, 800);
   } else if (j && p) {
