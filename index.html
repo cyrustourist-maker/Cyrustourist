@@ -182,7 +182,7 @@ svg{display:block}
 .big{
   width:100%;margin-top:26px;display:flex;justify-content:space-around;
 }
-.big .item{display:flex;flex-direction:column;align-items:center;gap:10px;width:46%}
+.big .item{text-decoration:none;color:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;width:46%}
 .circle{
   width:min(150px,36vw);aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle at 50% 35%,#1c7fe0 0%,#0a4fb0 55%,#073a86 100%);
@@ -190,6 +190,8 @@ svg{display:block}
   box-shadow:0 0 0 7px rgba(53,176,255,.16),0 0 34px rgba(53,176,255,.45);
   display:grid;place-items:center;color:#fff;
 }
+.big .item:active .circle{transform:scale(.96)}
+.circle{transition:transform .12s ease}
 .big .label{color:var(--gold);font-weight:800;font-size:22px}
 
 /* ---------- footer ---------- */
@@ -267,20 +269,25 @@ svg{display:block}
     <span>بازی و سرگرمی</span>
   </a>
 
+  <a class="pill full" id="btnDirect" href="downloads/android.html">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
+    <span>دانلود مستقیم نرم‌افزار</span>
+  </a>
+
   <!-- دایره‌های بزرگ (نمایشی) -->
-  <div class="big" aria-hidden="true">
-    <div class="item">
+  <div class="big">
+    <a class="item" href="classic.html" aria-label="نقشه گردشگری - ورود به سایت اصلی">
       <div class="circle">
         <svg width="62" height="62" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3 3 5.200a1 1 0 0 0-.7 1V20c0 .7.700 1.200 1.300.9L9 19l6 2 6-2.200a1 1 0 0 0 .7-1V4c0-.7-.7-1.200-1.300-.9L15 5 9 3zm.8 2.700 4.400 1.500v11.100l-4.400-1.500V5.700z"/></svg>
       </div>
       <div class="label">نقشه گردشگری</div>
-    </div>
-    <div class="item">
+    </a>
+    <a class="item" href="classic.html" aria-label="جاذبه‌ها - ورود به سایت اصلی">
       <div class="circle">
         <svg width="62" height="62" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.500 2 7.500V9h20V7.500L12 2.500zM4 10v7h2.500v-7H4zm4.700 0v7h2.500v-7H8.700zm4.100 0v7h2.500v-7h-2.500zm4.700 0v7H20v-7h-2.500zM2 18.500V21h20v-2.500H2z"/></svg>
       </div>
       <div class="label">جاذبه‌ها</div>
-    </div>
+    </a>
   </div>
 
   <footer class="foot">
