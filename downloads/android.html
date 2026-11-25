@@ -509,11 +509,11 @@
 
         <div class="notice">
 
-            این نسخه مخصوص گوشی‌های قدیمی (۳۲ بیتی) است.
+            اگر گوشی قدیمی دارید نسخهٔ ۳۲ بیتی و اگر گوشی جدید دارید نسخهٔ ۶۴ بیتی را دانلود کنید.
 
             <br>
 
-            اگر گوشی جدید دارید یا نصب انجام نشد، لطفاً نسخهٔ ۶۴ بیتی جدید را از
+            در صورت مشکل در نصب، می‌توانید اپ را هم از
 
             <a
                 href="http://cafebazaar.ir/app/?id=cyrustourist.ir.app&amp;ref=share"
@@ -535,11 +535,17 @@
 
         <button
             class="download-button"
-            onclick="startDownload()"
+            onclick="startDownload(APK64)"
         >
+            📥 دانلود مستقیم (گوشی‌های جدید ۶۴ بیتی)
+        </button>
 
+        <button
+            class="download-button"
+            style="margin-top:14px;background:linear-gradient(135deg,#2f7fd6,#1a56a8)"
+            onclick="startDownload(APK32)"
+        >
             📥 دانلود مستقیم (مخصوص گوشی‌های ۳۲ بیتی)
-
         </button>
 
         <div
@@ -592,7 +598,10 @@
 
     <script>
 
-        function startDownload() {
+        var APK32 = "https://github.com/cyrustourist-maker/Cyrustourist/releases/download/app-latest/Cyrustourist32.ir.apk";
+        var APK64 = "https://github.com/cyrustourist-maker/Cyrustourist/releases/download/app-latest/Cyrustourist64.ir.apk";
+
+        function startDownload(apkPath) {
 
             const result =
                 document.getElementById("result");
@@ -623,8 +632,7 @@
              * بررسی HEAD بین‌دامنه‌ای ممکن نیست؛ دانلود مستقیم شروع می‌شود.
              */
 
-            const apkPath =
-                "https://github.com/cyrustourist-maker/Cyrustourist/releases/download/app-latest/Cyrustourist32.ir.apk";
+            
 
             loading.style.display =
                 "none";
